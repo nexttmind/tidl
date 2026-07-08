@@ -24,7 +24,7 @@ html.lenis, html.lenis body {
   --ink: #171310;
   --cream: #F3EDE3;
   --mut: #B9AE9E;
-  --bronze: #C8A45A;
+  --bronze: rgb(243, 195, 0);
   --font: "HelveticaNowDisplay", "Helvetica Now Display", -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
   width: 100%;
   background: var(--ink);
@@ -193,7 +193,7 @@ html.lenis, html.lenis body {
   padding: 128px 5% 118px;
   position: relative;
   overflow: hidden;
-  --amber: #C8A45A;
+  --amber: rgb(243, 195, 0);
   --cream: #F7F3EC;
   --sans: "HelveticaNowDisplay", "Helvetica Now Display", -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
@@ -219,11 +219,13 @@ html.lenis, html.lenis body {
 }
 .tdlp5-kick {
   display: inline-block;
-  color: var(--amber);
+  font-family: "Helvetica Neue", Helvetica, Arial, ui-sans-serif, system-ui, sans-serif;
+  color: rgba(243, 195, 0, 1);
   font-size: 12px;
   letter-spacing: .24em;
   text-transform: uppercase;
   font-weight: 600;
+  font-style: normal;
   margin-bottom: 16px;
 }
 .tdlp5-h2 {
@@ -264,7 +266,7 @@ html.lenis, html.lenis body {
   filter: blur(26px);
   opacity: .6;
   pointer-events: none;
-  background: linear-gradient(180deg, transparent 4%, rgba(200,164,90,.5) 32%, rgba(214,179,108,.9) 50%, rgba(168,130,51,.45) 68%, transparent 96%);
+  background: linear-gradient(180deg, transparent 4%, rgba(243,195,0,.5) 32%, rgba(255,217,80,.9) 50%, rgba(190,152,0,.45) 68%, transparent 96%);
   animation: tdlp5Blade 6s ease-in-out infinite;
 }
 .tdlp5-blade.core {
@@ -368,11 +370,11 @@ html.lenis, html.lenis body {
   content: "";
   width: 44px;
   height: 1px;
-  background: linear-gradient(90deg, rgba(200,164,90,.75), rgba(200,164,90,.08));
+  background: linear-gradient(90deg, rgba(243,195,0,.75), rgba(243,195,0,.08));
   transition: width .5s cubic-bezier(.2,.6,.2,1);
 }
 .tdlp5-col.left .tdlp5-fnum::after {
-  background: linear-gradient(270deg, rgba(200,164,90,.75), rgba(200,164,90,.08));
+  background: linear-gradient(270deg, rgba(243,195,0,.75), rgba(243,195,0,.08));
 }
 .tdlp5-feat:hover .tdlp5-fnum::after { width: 64px; }
 .tdlp5-flab {
@@ -447,7 +449,7 @@ html.lenis, html.lenis body {
     justify-content: space-between; padding: 0;
   }
   .tdlp5-col.left .tdlp5-fnum { flex-direction: row; }
-  .tdlp5-col.left .tdlp5-fnum::after { background: linear-gradient(90deg, rgba(200,164,90,.75), rgba(200,164,90,.08)); }
+  .tdlp5-col.left .tdlp5-fnum::after { background: linear-gradient(90deg, rgba(243,195,0,.75), rgba(243,195,0,.08)); }
   .tdlp5-feat { max-width: 46%; }
   .tdlp5-stats { grid-template-columns: 1fr 1fr; gap: 28px 0; }
   .tdlp5-stat:nth-child(3) { border-left: 0; padding-left: 0; }
@@ -539,7 +541,7 @@ html.lenis, html.lenis body {
   --ink: #171310;
   --mut: rgba(23,19,16,.55);
   --faint: rgba(23,19,16,.32);
-  --amber: #C8A45A;
+  --amber: rgb(243, 195, 0);
   --amber-deep: #A88233;
   --hair: rgba(23,19,16,.14);
   --sans: "HelveticaNowDisplay", "Helvetica Now Display", -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -718,7 +720,7 @@ html.lenis, html.lenis body {
 .tdlfaq-sec {
   background: #F7F3EC;
   padding: 110px 5% 120px;
-  --amber: #C8A45A;
+  --amber: rgb(243, 195, 0);
   --amber-d: #A88233;
   --ink: #171310;
   --sans: "HelveticaNowDisplay", "Helvetica Now Display", -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -841,7 +843,7 @@ html.lenis, html.lenis body {
   color: var(--amber-d);
   font-weight: 500;
   text-decoration: none;
-  border-bottom: 1px solid rgba(168,130,51,.4);
+  border-bottom: 1px solid rgba(190,152,0,.4);
 }
 @media (max-width: 600px) {
   .tdlfaq-sec { padding: 80px 5% 90px; }
@@ -967,8 +969,8 @@ html.lenis, html.lenis body {
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(circle at 12% 8%, rgba(200, 164, 90, 0.1), transparent 34%),
-    radial-gradient(circle at 88% 88%, rgba(200, 164, 90, 0.07), transparent 42%);
+    radial-gradient(circle at 12% 8%, rgba(243, 195, 0, 0.1), transparent 34%),
+    radial-gradient(circle at 88% 88%, rgba(243, 195, 0, 0.07), transparent 42%);
 }
 
 .services-content {
@@ -995,9 +997,9 @@ html.lenis, html.lenis body {
   height: 0.95em;
   transform: translateY(-50%) skewX(-14deg);
   z-index: -1;
-  background: linear-gradient(90deg, rgba(200, 164, 90, 0.08), rgba(200, 164, 90, 0.3), rgba(200, 164, 90, 0.08));
-  border: 1px solid rgba(200, 164, 90, 0.2);
-  box-shadow: 0 0 0 1px rgba(200, 164, 90, 0.08) inset;
+  background: linear-gradient(90deg, rgba(243, 195, 0, 0.08), rgba(243, 195, 0, 0.3), rgba(243, 195, 0, 0.08));
+  border: 1px solid rgba(243, 195, 0, 0.2);
+  box-shadow: 0 0 0 1px rgba(243, 195, 0, 0.08) inset;
   animation: servicesTitlePulse 3.8s ease-in-out infinite;
 }
 
@@ -1058,7 +1060,7 @@ html.lenis, html.lenis body {
   inset: 0;
   border-radius: inherit;
   padding: 1px;
-  background: linear-gradient(145deg, rgba(247, 243, 236, 0.24), rgba(200, 164, 90, 0.45), rgba(11, 10, 8, 0.2));
+  background: linear-gradient(145deg, rgba(247, 243, 236, 0.24), rgba(243, 195, 0, 0.45), rgba(11, 10, 8, 0.2));
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
   mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
@@ -1086,13 +1088,13 @@ html.lenis, html.lenis body {
 @media (hover: hover) and (pointer: fine) {
   .service-item:hover {
     transform: translateY(-8px) scale(1.01);
-    border-color: rgba(200, 164, 90, 0.62);
+    border-color: rgba(243, 195, 0, 0.62);
     background:
       linear-gradient(165deg, rgba(39, 34, 27, 0.99) 0%, rgba(11, 10, 8, 0.99) 64%);
     box-shadow:
       inset 0 1px 0 rgba(247, 243, 236, 0.2),
       0 42px 90px -42px rgba(0, 0, 0, 0.98),
-      0 16px 36px -20px rgba(200, 164, 90, 0.5);
+      0 16px 36px -20px rgba(243, 195, 0, 0.5);
   }
 
   .service-item:hover::before {
@@ -1217,11 +1219,11 @@ html.lenis, html.lenis body {
 }
 
 .service-item-btns .button-03 {
-  color: #d6b36c;
+  color: rgb(255, 217, 46);
 }
 
 .service-item-btns .button-line-02 {
-  background-color: #c8a45a;
+  background-color: rgb(243, 195, 0);
 }
 
 @media (min-width: 768px) {
@@ -1282,12 +1284,12 @@ html.lenis, html.lenis body {
   pointer-events: none;
   z-index: -2;
   background:
-    radial-gradient(circle at 50% 42%, rgba(200, 164, 90, 0.14), transparent 58%),
-    linear-gradient(135deg, rgba(200, 164, 90, 0.08), rgba(11, 10, 8, 0));
-  border: 1px solid rgba(200, 164, 90, 0.14);
+    radial-gradient(circle at 50% 42%, rgba(243, 195, 0, 0.14), transparent 58%),
+    linear-gradient(135deg, rgba(243, 195, 0, 0.08), rgba(11, 10, 8, 0));
+  border: 1px solid rgba(243, 195, 0, 0.14);
   box-shadow:
     0 0 0 1px rgba(247, 243, 236, 0.04) inset,
-    0 28px 70px -48px rgba(200, 164, 90, 0.45);
+    0 28px 70px -48px rgba(243, 195, 0, 0.45);
 }
 
 .services-closing-on .services-closing-orbit {
@@ -1329,11 +1331,13 @@ html.lenis, html.lenis body {
   display: inline-flex;
   flex-wrap: wrap;
   justify-content: center;
-  color: #c8a45a;
+  font-family: "Helvetica Neue", Helvetica, Arial, ui-sans-serif, system-ui, sans-serif;
+  color: rgb(243, 195, 0);
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.28em;
   text-transform: uppercase;
+  font-style: normal;
   margin-bottom: 20px;
 }
 
@@ -1362,8 +1366,8 @@ html.lenis, html.lenis body {
 .services-closing-shimmer-wrap {
   position: relative;
   display: inline-block;
-  color: #d6b36c;
-  text-shadow: 0 0 28px rgba(200, 164, 90, 0.35);
+  color: rgb(255, 217, 46);
+  text-shadow: 0 0 28px rgba(243, 195, 0, 0.35);
   overflow: hidden;
 }
 
@@ -1395,7 +1399,7 @@ html.lenis, html.lenis body {
   overflow: hidden;
   border-radius: 999px;
   transform-origin: center;
-  background: linear-gradient(90deg, rgba(200, 164, 90, 0.08), rgba(200, 164, 90, 0.42), rgba(200, 164, 90, 0.08));
+  background: linear-gradient(90deg, rgba(243, 195, 0, 0.08), rgba(243, 195, 0, 0.42), rgba(243, 195, 0, 0.08));
 }
 
 .services-closing-rule-beam {
@@ -1591,18 +1595,18 @@ html.lenis, html.lenis body {
 }
 .tdlp5-play:hover {
   transform: translateX(-50%) translateY(-2px);
-  border-color: #C8A45A;
+  border-color: rgb(243, 195, 0);
   color: #D6B36C;
 }
 .tdlp5-play-icon {
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  border: 1px solid rgba(200,164,90,0.6);
+  border: 1px solid rgba(243,195,0,0.6);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: #C8A45A;
+  color: rgb(243, 195, 0);
 }
 .tdlp5-play-icon svg {
   width: 14px;
@@ -1626,7 +1630,7 @@ html.lenis, html.lenis body {
   background: #000;
   border-radius: 14px;
   overflow: hidden;
-  border: 1px solid rgba(200,164,90,0.55);
+  border: 1px solid rgba(243,195,0,0.55);
 }
 .tdlp5-video-dialog iframe {
   width: 100%;

@@ -7,6 +7,7 @@ import './home.css';
 import { CtaSection } from './cta/CtaSection';
 import { ServicesClosing } from './ServicesClosing';
 import { HowItWorksSection } from './how-it-works/HowItWorksSection';
+import { SiteFooter } from '@/components/layout/SiteFooter';
 
 const ANSWERS: Record<string, string> = {
   "What is the TIDL Pen?":
@@ -800,7 +801,7 @@ export default function HomePage() {
                   <div className="service-item-body">
                     <div className="service-item-text p2-regular">GLP-1 treatment dosed for you by a doctor. No mixing, no guesswork, no yo-yo.</div>
                     <div className="service-item-btns">
-                      <a href="#" className="button-03 w-inline-block">
+                      <Link to="/products/glp-1-weight-loss" className="button-03 w-inline-block">
                         <div className="button-outside-wrap">
                           <div className="btn-text-outside-03">
                             <div className="btn-text-inside-03">
@@ -816,7 +817,7 @@ export default function HomePage() {
                           </div>
                         </div>
                         <div className="button-line-02"></div>
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -1111,8 +1112,8 @@ export default function HomePage() {
                   {/* Decorative circle replaces Lottie */}
                   <div className="lottie-animation-2">
                     <svg viewBox="0 0 100 100" width="100" height="100" aria-hidden="true">
-                      <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(200,164,90,0.3)" strokeWidth="1.5"/>
-                      <circle cx="50" cy="50" r="28" fill="none" stroke="rgba(200,164,90,0.15)" strokeWidth="1"/>
+                      <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(243,195,0,0.3)" strokeWidth="1.5"/>
+                      <circle cx="50" cy="50" r="28" fill="none" stroke="rgba(243,195,0,0.15)" strokeWidth="1"/>
                     </svg>
                   </div>
 
@@ -1315,74 +1316,7 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* ===== Footer ===== */}
-      <footer className="footer">
-          <div className="container-fluid">
-            <div className="footer-content">
-              <div className="footer-brand">
-                <a href="/" className="footer-logo w-inline-block">
-                  <span className="footer-logo-wordmark" aria-label="TIDL Health">
-                    TIDL
-                  </span>
-                </a>
-                <p className="footer-tagline p2-regular">Doctor-prescribed telehealth. Real results, delivered to your door.</p>
-              </div>
-              <div className="footer-links">
-                <div className="footer-col">
-                  <div className="footer-col-title">Treatments</div>
-                  {[
-                    { href: '#services', label: 'Weight Loss' },
-                    { href: '#services', label: 'Testosterone' },
-                    { href: '#services', label: 'Longevity' },
-                    { href: '#howItWorks', label: 'Peptide Therapy' },
-                  ].map(({ href, label }) => (
-                    <div key={label} className="footer-link-wrap">
-                      <a href={href} className="footer-link">{label}</a>
-                      <div className="footer-link-line"></div>
-                    </div>
-                  ))}
-                </div>
-                <div className="footer-col">
-                  <div className="footer-col-title">Company</div>
-                  {[
-                    { href: '#journey', label: 'About' },
-                    { href: '#howItWorks', label: 'How It Works' },
-                    { href: '#askTidl', label: 'Ask TIDL' },
-                  ].map(({ href, label }) => (
-                    <div key={label} className="footer-link-wrap">
-                      <a href={href} className="footer-link">{label}</a>
-                      <div className="footer-link-line"></div>
-                    </div>
-                  ))}
-                </div>
-                <div className="footer-col">
-                  <div className="footer-col-title">Get Started</div>
-                  <button type="button" onClick={openQuiz} className="footer-link text-left">
-                    Get Started
-                  </button>
-                  <Link to="/quiz" className="footer-link">
-                    Full-page quiz
-                  </Link>
-                </div>
-                <div className="footer-col">
-                  <div className="footer-col-title">Legal</div>
-                  {[
-                    { href: '/terms', label: 'Terms' },
-                    { href: '/privacy', label: 'Privacy' },
-                  ].map(({ href, label }) => (
-                    <div key={label} className="footer-link-wrap">
-                      <a href={href} className="footer-link">{label}</a>
-                      <div className="footer-link-line"></div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-            <div className="footer-bottom">
-              <p className="footer-copy p2-regular">&copy; {new Date().getFullYear()} TIDL Health. All rights reserved.</p>
-            </div>
-          </div>
-        </footer>
+      <SiteFooter onGetStarted={openQuiz} />
         {isPenVideoOpen && (
           <div
             className="tdlp5-video-modal"

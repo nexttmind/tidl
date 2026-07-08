@@ -69,6 +69,12 @@
 
 :root {
   --radius: 0.625rem;
+  --brand-accent: rgb(243, 195, 0);
+  --brand-accent-rgb: 243, 195, 0;
+  --brand-accent-bright: rgb(255, 217, 46);
+  --brand-accent-deep: rgb(190, 152, 0);
+  --brand-accent-soft: rgba(243, 195, 0, 0.18);
+  --brand-accent-muted: rgba(243, 195, 0, 0.72);
   --background: oklch(1 0 0);
   --foreground: oklch(0.129 0.042 264.695);
   --card: oklch(1 0 0);
@@ -88,9 +94,9 @@
   --border: oklch(0.929 0.013 255.508);
   --input: oklch(0.929 0.013 255.508);
   --ring: oklch(0.704 0.04 256.788);
-  --gold: oklch(0.735 0.095 84);
-  --gold-bright: oklch(0.78 0.1 86);
-  --gold-deep: oklch(0.66 0.09 80);
+  --gold: var(--brand-accent);
+  --gold-bright: var(--brand-accent-bright);
+  --gold-deep: var(--brand-accent-deep);
   --ink: oklch(0.205 0.012 75);
   --ink-soft: oklch(0.47 0.012 70);
   --shadow-card: 0 24px 60px -24px oklch(0.3 0.03 80 / 0.28);
@@ -156,4 +162,50 @@
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
   }
+
+  /* Webflow shared tokens — override gold/orange secondary palette */
+  :root,
+  body {
+    --secondary: rgb(243, 195, 0);
+    --secondary-02: rgb(190, 152, 0);
+    --secondary-12: rgba(243, 195, 0, 0.12);
+    --secondary-20: rgba(243, 195, 0, 0.2);
+    --secondary-28: rgba(243, 195, 0, 0.28);
+    --secondary-40: rgba(243, 195, 0, 0.4);
+  }
+}
+
+/* Webflow attribution badge — not used in this React app */
+.w-webflow-badge {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Shared site footer */
+.footer-wrapper,
+.footer.container-full {
+  background-color: rgb(14, 14, 14) !important;
+}
+
+.pdp-footer-zone {
+  background: rgb(14, 14, 14);
+}
+
+.pdp-footer-zone .footer-wrapper {
+  background-color: rgb(14, 14, 14) !important;
+}
+
+/* No script/decorative fonts on editorial labels */
+.pdp-kicker,
+.pdp-kicker--light,
+.pdp-outcome-full-index,
+.hiw-kicker,
+.tdlp5-kick,
+.services-closing-kicker {
+  font-family: "Helvetica Neue", Helvetica, Arial, ui-sans-serif, system-ui, sans-serif !important;
+  font-style: normal !important;
+  font-variant: normal !important;
+  text-transform: uppercase !important;
 }

@@ -8,9 +8,9 @@
   --quiz-muted: #6e6e6e;
   --quiz-muted-warm: #b9ae9e;
   --quiz-border: rgba(23, 19, 16, 0.14);
-  --quiz-primary: #d6b36c;
-  --quiz-secondary: #c8a45a;
-  --quiz-bronze: #a88233;
+  --quiz-primary: rgb(255, 217, 46);
+  --quiz-secondary: rgb(243, 195, 0);
+  --quiz-bronze: rgb(190, 152, 0);
   --quiz-accent: var(--quiz-secondary);
   --quiz-btn-bg: var(--quiz-primary);
   --quiz-btn-text: var(--quiz-black);
@@ -87,7 +87,7 @@
 }
 
 .tidl-input:focus {
-  outline: 2px solid rgba(200, 164, 90, 0.35);
+  outline: 2px solid rgba(243, 195, 0, 0.35);
   outline-offset: 1px;
 }
 
@@ -152,7 +152,7 @@
 
 .quiz-option-card.is-selected {
   border-color: var(--quiz-secondary);
-  background: rgba(200, 164, 90, 0.08);
+  background: rgba(243, 195, 0, 0.08);
 }
 
 .quiz-segment {
@@ -169,7 +169,7 @@
 
 .quiz-segment.is-selected {
   border-color: var(--quiz-secondary);
-  background: rgba(200, 164, 90, 0.08);
+  background: rgba(243, 195, 0, 0.08);
 }
 
 .quiz-yesno-btn {
@@ -185,7 +185,7 @@
 
 .quiz-yesno-btn.is-selected {
   border-color: var(--quiz-secondary);
-  background: rgba(200, 164, 90, 0.08);
+  background: rgba(243, 195, 0, 0.08);
 }
 
 .quiz-modal-backdrop {
@@ -245,7 +245,7 @@
 .tidl-notice-box {
   border: 1px solid var(--quiz-border);
   border-radius: 12px;
-  background: rgba(200, 164, 90, 0.06);
+  background: rgba(243, 195, 0, 0.06);
   padding: 16px;
   font-size: 14px;
   line-height: 1.6;
@@ -275,7 +275,7 @@
 .tidl-timeline-dot.is-active {
   background: var(--quiz-secondary);
   color: var(--quiz-black);
-  box-shadow: 0 0 0 3px rgba(200, 164, 90, 0.25);
+  box-shadow: 0 0 0 3px rgba(243, 195, 0, 0.25);
 }
 
 @media (max-width: 640px) {

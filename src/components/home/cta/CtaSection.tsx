@@ -268,7 +268,7 @@ export function CtaSection({ onGetStarted }: { onGetStarted?: () => void }) {
             <button
               type="button"
               onClick={onGetStarted}
-              className="group inline-flex w-full items-center justify-center gap-3 rounded-xl bg-gold px-6 py-3.5 text-base font-medium text-primary-foreground transition-all duration-300 hover:-translate-y-0.5 hover:bg-gold-bright hover:shadow-[0_10px_24px_-8px_oklch(0.66_0.09_80/0.5)] sm:w-auto sm:gap-4 sm:px-10 sm:py-4 sm:text-lg"
+              className="group inline-flex w-full items-center justify-center gap-3 rounded-xl bg-gold px-6 py-3.5 text-base font-medium text-primary-foreground transition-all duration-300 hover:-translate-y-0.5 hover:bg-gold-bright hover:shadow-[0_10px_24px_-8px_rgba(243,195,0,0.5)] sm:w-auto sm:gap-4 sm:px-10 sm:py-4 sm:text-lg"
             >
               Get Started
               <svg

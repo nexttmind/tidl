@@ -14,6 +14,7 @@ import { Route as ConfirmationRouteImport } from './routes/confirmation'
 import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AccountIndexRouteImport } from './routes/account/index'
+import { Route as ProductsGlp1WeightLossRouteImport } from './routes/products/glp-1-weight-loss'
 
 const QuizRoute = QuizRouteImport.update({
   id: '/quiz',
@@ -40,12 +41,18 @@ const AccountIndexRoute = AccountIndexRouteImport.update({
   path: '/account/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProductsGlp1WeightLossRoute = ProductsGlp1WeightLossRouteImport.update({
+  id: '/products/glp-1-weight-loss',
+  path: '/products/glp-1-weight-loss',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/checkout': typeof CheckoutRoute
   '/confirmation': typeof ConfirmationRoute
   '/quiz': typeof QuizRoute
+  '/products/glp-1-weight-loss': typeof ProductsGlp1WeightLossRoute
   '/account/': typeof AccountIndexRoute
 }
 export interface FileRoutesByTo {
@@ -53,6 +60,7 @@ export interface FileRoutesByTo {
   '/checkout': typeof CheckoutRoute
   '/confirmation': typeof ConfirmationRoute
   '/quiz': typeof QuizRoute
+  '/products/glp-1-weight-loss': typeof ProductsGlp1WeightLossRoute
   '/account': typeof AccountIndexRoute
 }
 export interface FileRoutesById {
@@ -61,14 +69,34 @@ export interface FileRoutesById {
   '/checkout': typeof CheckoutRoute
   '/confirmation': typeof ConfirmationRoute
   '/quiz': typeof QuizRoute
+  '/products/glp-1-weight-loss': typeof ProductsGlp1WeightLossRoute
   '/account/': typeof AccountIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/checkout' | '/confirmation' | '/quiz' | '/account/'
+  fullPaths:
+    | '/'
+    | '/checkout'
+    | '/confirmation'
+    | '/quiz'
+    | '/products/glp-1-weight-loss'
+    | '/account/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/checkout' | '/confirmation' | '/quiz' | '/account'
-  id: '__root__' | '/' | '/checkout' | '/confirmation' | '/quiz' | '/account/'
+  to:
+    | '/'
+    | '/checkout'
+    | '/confirmation'
+    | '/quiz'
+    | '/products/glp-1-weight-loss'
+    | '/account'
+  id:
+    | '__root__'
+    | '/'
+    | '/checkout'
+    | '/confirmation'
+    | '/quiz'
+    | '/products/glp-1-weight-loss'
+    | '/account/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -76,6 +104,7 @@ export interface RootRouteChildren {
   CheckoutRoute: typeof CheckoutRoute
   ConfirmationRoute: typeof ConfirmationRoute
   QuizRoute: typeof QuizRoute
+  ProductsGlp1WeightLossRoute: typeof ProductsGlp1WeightLossRoute
   AccountIndexRoute: typeof AccountIndexRoute
 }
 
@@ -116,6 +145,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AccountIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/products/glp-1-weight-loss': {
+      id: '/products/glp-1-weight-loss'
+      path: '/products/glp-1-weight-loss'
+      fullPath: '/products/glp-1-weight-loss'
+      preLoaderRoute: typeof ProductsGlp1WeightLossRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -124,6 +160,7 @@ const rootRouteChildren: RootRouteChildren = {
   CheckoutRoute: CheckoutRoute,
   ConfirmationRoute: ConfirmationRoute,
   QuizRoute: QuizRoute,
+  ProductsGlp1WeightLossRoute: ProductsGlp1WeightLossRoute,
   AccountIndexRoute: AccountIndexRoute,
 }
 export const routeTree = rootRouteImport

@@ -4,9 +4,9 @@
   --hiw-bg-2: #F3EDE3;
   --hiw-ink: #171310;
   --hiw-muted: #5f5954;
-  --hiw-gold: #c8a45a;
-  --hiw-gold-deep: #a88233;
-  --hiw-gold-hover: #d6b36c;
+  --hiw-gold: rgb(243, 195, 0);
+  --hiw-gold-deep: rgb(190, 152, 0);
+  --hiw-gold-hover: rgb(255, 217, 46);
   --hiw-border: rgba(23, 19, 16, 0.08);
   background: var(--hiw-bg);
   position: relative;
@@ -49,7 +49,7 @@
   font-weight: 700;
   letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: var(--hiw-gold-deep);
+  color: rgba(23, 19, 16, 0.55);
 }
 
 .hiw-title {
@@ -97,7 +97,7 @@
   transform-origin: top center;
   background: linear-gradient(180deg, var(--hiw-gold-hover), var(--hiw-gold));
   border-radius: inherit;
-  box-shadow: 0 0 12px rgba(200, 164, 90, 0.45);
+  box-shadow: 0 0 12px rgba(243, 195, 0, 0.45);
 }
 
 .hiw-timeline-step {
@@ -138,8 +138,8 @@
 }
 
 .hiw-timeline-step.is-active .hiw-timeline-dot {
-  border-color: rgba(200, 164, 90, 0.55);
-  box-shadow: 0 0 0 4px rgba(200, 164, 90, 0.12);
+  border-color: rgba(243, 195, 0, 0.55);
+  box-shadow: 0 0 0 4px rgba(243, 195, 0, 0.12);
 }
 
 .hiw-timeline-step.is-active .hiw-timeline-dot::after {
@@ -533,10 +533,10 @@
 @media (hover: hover) and (pointer: fine) {
   .hiw-float-card:hover {
     translate: 0 -4px;
-    border-color: rgba(200, 164, 90, 0.55);
+    border-color: rgba(243, 195, 0, 0.55);
     box-shadow:
       0 2px 12px rgba(23, 19, 16, 0.14),
-      0 16px 40px -22px rgba(200, 164, 90, 0.35),
+      0 16px 40px -22px rgba(243, 195, 0, 0.35),
       0 44px 95px -58px rgba(23, 19, 16, 0.2);
   }
 }
@@ -545,8 +545,8 @@
   width: 34px;
   height: 34px;
   border-radius: 8px;
-  border: 1px solid rgba(200, 164, 90, 0.35);
-  background: rgba(200, 164, 90, 0.1);
+  border: 1px solid rgba(243, 195, 0, 0.35);
+  background: rgba(243, 195, 0, 0.1);
   color: var(--hiw-gold-deep);
   display: grid;
   place-items: center;
@@ -600,8 +600,8 @@
 
 .hiw-cta.is-glow {
   box-shadow:
-    0 0 0 1px rgba(200, 164, 90, 0.25),
-    0 12px 36px -12px rgba(200, 164, 90, 0.55);
+    0 0 0 1px rgba(243, 195, 0, 0.25),
+    0 12px 36px -12px rgba(243, 195, 0, 0.55);
 }
 
 @media (hover: hover) and (pointer: fine) {

@@ -26,7 +26,7 @@ export function ContourMap({
         <motion.path
           key={d}
           d={d}
-          stroke="#C8A45A"
+          stroke="rgb(243, 195, 0)"
           strokeWidth={1}
           strokeLinecap="round"
           initial={{ pathLength: 0, opacity: 0 }}
@@ -64,7 +64,7 @@ export function ContourMap({
           cx="220"
           cy="220"
           r="120"
-          stroke="#C8A45A"
+          stroke="rgb(243, 195, 0)"
           strokeWidth="1"
           initial={{ scale: 0.85, opacity: 0.5 }}
           animate={{ scale: 1.15, opacity: 0 }}
