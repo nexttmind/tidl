@@ -1,6 +1,12 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback, type MouseEvent } from 'react';
 import Lenis from 'lenis';
+import { Link } from '@tanstack/react-router';
+import { useQuizModal } from '@/providers/quiz-modal-provider';
+import { lockPageScroll, unlockPageScroll } from '@/lib/age-gate';
 import './home.css';
+import { CtaSection } from './cta/CtaSection';
+import { ServicesClosing } from './ServicesClosing';
+import { HowItWorksSection } from './how-it-works/HowItWorksSection';
 
 const ANSWERS: Record<string, string> = {
   "What is the TIDL Pen?":
@@ -145,7 +151,22 @@ function FaqIcon() {
 }
 
 export default function HomePage() {
+  const { openModal } = useQuizModal();
+  const openQuiz = useCallback(
+    (e?: MouseEvent) => {
+      e?.preventDefault();
+      openModal();
+    },
+    [openModal],
+  );
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
+
+  useEffect(() => {
+    if (!mobileNavOpen) return;
+    lockPageScroll();
+    return () => unlockPageScroll();
+  }, [mobileNavOpen]);
+
   const [penVisible, setPenVisible] = useState(false);
   const [statsVisible, setStatsVisible] = useState(false);
   const [counters, setCounters] = useState({ c0: 0, c1: 0, c2: 0, c3: 0 });
@@ -229,7 +250,7 @@ export default function HomePage() {
   const [faqTab, setFaqTab] = useState('all');
   const [faqOpen, setFaqOpen] = useState<number | null>(null);
 
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isPenVideoOpen, setIsPenVideoOpen] = useState(false);
 
   const penGridRef = useRef<HTMLDivElement>(null);
   const penStatsRef = useRef<HTMLDivElement>(null);
@@ -391,6 +412,15 @@ export default function HomePage() {
     };
   }, []);
 
+  useEffect(() => {
+    if (!isPenVideoOpen) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setIsPenVideoOpen(false);
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [isPenVideoOpen]);
+
   const handleAsk = useCallback((q: string) => {
     const trimmed = q.trim();
     if (!trimmed) return;
@@ -422,9 +452,6 @@ export default function HomePage() {
     setFaqTab(cat);
     setFaqOpen(null);
   };
-
-  const prevSlide = () => setCurrentSlide((s) => (s - 1 + STORIES.length) % STORIES.length);
-  const nextSlide = () => setCurrentSlide((s) => (s + 1) % STORIES.length);
 
   const visibleFaq = faqTab === 'all'
     ? FAQ_DATA
@@ -477,7 +504,7 @@ export default function HomePage() {
       <div className="tdl-bar" id="tdlBar" style={{ display: 'block', visibility: 'visible', opacity: 1 }}>
         <div className="tdl-bar-inner">
           <span className="tdl-msg">TIDL is now a telehealth platform. Care that delivers results.</span>
-          <a className="tdl-link" href="#">
+          <a className="tdl-link" href="#journey">
             Learn more
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="24" height="24">
               <path d="M5 12h14M13 6l6 6-6 6"/>
@@ -506,28 +533,28 @@ export default function HomePage() {
                   <div className="navbar-info-left">
                     <div className="nav-dropdown _01 w-dropdown">
                       <div className="navitem-toggle w-dropdown-toggle">
-                        <a href="#" className="nav-items-wrap light w-inline-block">
+                        <a href="#services" className="nav-items-wrap light w-inline-block">
                           <div className="nav-item">Treatments</div>
                         </a>
                       </div>
                     </div>
                     <div className="nav-dropdown _02 w-dropdown">
                       <div className="navitem-toggle w-dropdown-toggle">
-                        <a href="#" className="nav-items-wrap light w-inline-block">
+                        <a href="#howItWorks" className="nav-items-wrap light w-inline-block">
                           <div className="nav-item">How it works</div>
                         </a>
                       </div>
                     </div>
                     <div className="nav-dropdown _03 w-dropdown">
                       <div className="navitem-toggle w-dropdown-toggle">
-                        <a href="#" className="nav-items-wrap light w-inline-block">
+                        <a href="#journey" className="nav-items-wrap light w-inline-block">
                           <div className="nav-item">About</div>
                         </a>
                       </div>
                     </div>
                     <div className="nav-dropdown w-dropdown">
                       <div className="navitem-toggle w-dropdown-toggle">
-                        <a href="#" className="nav-items-wrap light w-inline-block">
+                        <a href="#askTidl" className="nav-items-wrap light w-inline-block">
                           <div className="nav-item">Learn</div>
                         </a>
                       </div>
@@ -550,12 +577,12 @@ export default function HomePage() {
 
                 <div className="navbar-right">
                   <div className="navbar-right-btns">
-                    <a href="#" className="button-03 light w-inline-block">
+                    <a href="#" onClick={openQuiz} className="button-03 light w-inline-block">
                       <div className="button-outside-wrap">
                         <div className="btn-text-outside-03">
                           <div className="btn-text-inside-03">
-                            <div className="button-text-03">Get started</div>
-                            <div className="button-text-03">Get started</div>
+                            <div className="button-text-03">Get Started</div>
+                            <div className="button-text-03">Get Started</div>
                           </div>
                         </div>
                         <div className="btn-icon-outside-03">
@@ -611,14 +638,12 @@ export default function HomePage() {
                     <div className="menu-body _01">
                       <div className="menu-body-item">
                         {[
-                          { href: '/', label: 'Home v1' },
-                          { href: '/home-02', label: 'Home v2' },
-                          { href: '/home-03', label: 'Home v3' },
-                          { href: '/about-01', label: 'About v1' },
-                          { href: '/about-02', label: 'About v2' },
-                          { href: '/about-03', label: 'About v3' },
-                          { href: '/appointment', label: 'Appointment' },
-                          { href: '/blogs', label: 'Blogs' },
+                          { href: '#navbar', label: 'Top' },
+                          { href: '#services', label: 'Treatments' },
+                          { href: '#howItWorks', label: 'How It Works' },
+                          { href: '#askTidl', label: 'Ask TIDL' },
+                          { href: '#faq', label: 'FAQ' },
+                          { href: '/quiz', label: 'Quiz' },
                         ].map(({ href, label }) => (
                           <a key={label} href={href} className="dropdown-text-outside w-inline-block">
                             <div className="dropdown-inside-texts">
@@ -630,10 +655,10 @@ export default function HomePage() {
                       </div>
                       <div className="menu-body-item">
                         {[
-                          { href: '/service-01', label: 'Service v1' },
-                          { href: '/service-02', label: 'Service v2' },
-                          { href: '/service-03', label: 'Service v3' },
-                          { href: '/doctors', label: 'Doctors' },
+                          { href: '#tdlp5', label: 'The TIDL Pen' },
+                          { href: '#stories', label: 'Testimonials' },
+                          { href: '#journey', label: 'Journey' },
+                          { href: '#families', label: 'Families' },
                           { href: '/terms', label: 'Terms' },
                           { href: '/privacy', label: 'Privacy' },
                         ].map(({ href, label }) => (
@@ -647,10 +672,10 @@ export default function HomePage() {
                       </div>
                       <div className="menu-body-item">
                         {[
-                          { href: '/service-single', label: 'Service Details' },
-                          { href: '/references/style-guide', label: 'Style Guide' },
-                          { href: '/references/license', label: 'License' },
-                          { href: '/references/changelog', label: 'Changelog' },
+                          { href: '#cta', label: 'Get Started' },
+                          { href: '/checkout', label: 'Checkout' },
+                          { href: '/confirmation', label: 'Confirmation' },
+                          { href: '/account', label: 'Account' },
                         ].map(({ href, label }) => (
                           <a key={label} href={href} className="dropdown-text-outside w-inline-block">
                             <div className="dropdown-inside-texts">
@@ -712,11 +737,11 @@ export default function HomePage() {
                       }}
                       suppressHydrationWarning
                     >
-                      <a href="#" className="button-01 button-03 w-inline-block">
+                      <a href="#" onClick={openQuiz} className="button-01 button-03 w-inline-block">
                         <div className="button-outside-01">
                           <div className="button-inside">
-                            <div className="button-text-01">Get started</div>
-                            <div className="button-text-01">Take Quiz</div>
+                            <div className="button-text-01">Get Started</div>
+                            <div className="button-text-01">Get Started</div>
                           </div>
                         </div>
                       </a>
@@ -747,7 +772,7 @@ export default function HomePage() {
         </div>
 
         {/* ===== Services Section ===== */}
-        <section className="services container-full">
+        <section className="services container-full" id="services">
           <div className="container-fluid">
             <div className="services-content">
               <h2 
@@ -818,7 +843,7 @@ export default function HomePage() {
                         <div className="button-outside-wrap">
                           <div className="btn-text-outside-03">
                             <div className="btn-text-inside-03">
-                              <div className="button-text-03">Coming Soon</div>
+                    <div className="button-text-03">Explore</div>
                               <div className="button-text-03">Explore</div>
                             </div>
                           </div>
@@ -858,7 +883,7 @@ export default function HomePage() {
                         <div className="button-outside-wrap">
                           <div className="btn-text-outside-03">
                             <div className="btn-text-inside-03">
-                              <div className="button-text-03">Coming Soon</div>
+                              <div className="button-text-03">Explore</div>
                               <div className="button-text-03">Explore</div>
                             </div>
                           </div>
@@ -875,12 +900,14 @@ export default function HomePage() {
                   </div>
                 </div>
               </div>
+
+              <ServicesClosing />
             </div>
           </div>
         </section>
 
         {/* ===== TIDL Pen Section ===== */}
-        <section className="tdlp5-sec">
+        <section className="tdlp5-sec" id="tdlp5">
           <div className="tdlp5-head">
             <div className="tdlp5-kick">The TIDL Pen</div>
             <h2 className="tdlp5-h2">GLP-1, pre-dosed.<br /><em>Just click.</em></h2>
@@ -912,6 +939,19 @@ export default function HomePage() {
                     src="https://cdn.prod.website-files.com/6a484773bf274d9b9ec3f5b9/6a4ae82cb673463b10de0cad_hf_20260705_223658_ef5718c4-2d19-4e28-9a03-7f8e1555a580%20(1).png"
                     alt="The TIDL Pen"
                   />
+                  <button
+                    type="button"
+                    className="tdlp5-play"
+                    aria-label="Play how to use the pen video"
+                    onClick={() => setIsPenVideoOpen(true)}
+                  >
+                    <span className="tdlp5-play-icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M8.5 6.8a1 1 0 0 1 1.5-.86l8.2 5.2a1 1 0 0 1 0 1.72l-8.2 5.2A1 1 0 0 1 8.5 17.2V6.8Z" />
+                      </svg>
+                    </span>
+                    <span className="tdlp5-play-label">See how to use the pen</span>
+                  </button>
                 </div>
               </div>
             </div>
@@ -956,8 +996,43 @@ export default function HomePage() {
           <div className="tdlp5-grain"></div>
         </section>
 
+        {/* ===== Stories / Testimonials Section ===== */}
+        <section className="stories-03 container-full" id="stories">
+          <div className="container-fluid for-works">
+            <div className="stories-content-03">
+              <h2 className="stories-title-03 heading-01">Stories from our patients</h2>
+              <div className="stories-grid">
+                {[
+                  { ...STORIES[0], condition: 'Weight Loss' },
+                  { ...STORIES[1], condition: 'GLP-1 Care' },
+                  { ...STORIES[2], condition: 'Metabolic Health' },
+                ].map((story) => (
+                  <article className="stories-card" key={story.name}>
+                    <div className="stories-card-head">
+                      <img
+                        src={story.img}
+                        loading="lazy"
+                        alt={`${story.name} testimonial`}
+                        className="stories-card-avatar"
+                      />
+                      <div className="stories-card-meta">
+                        <div className="stories-card-name">{story.name}</div>
+                        <div className="stories-card-condition">{story.condition}</div>
+                        <div className="stories-card-rating" aria-label="Rated 5 out of 5">
+                          {'★★★★★'}
+                        </div>
+                      </div>
+                    </div>
+                    <p className="stories-card-quote">{story.quote}</p>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* ===== Journey Section ===== */}
-        <section className="journey container-full">
+        <section className="journey container-full" id="journey">
           <div className="container-fluid">
             <div className="journey-content-fixed">
               <div className="journey-content">
@@ -983,11 +1058,11 @@ export default function HomePage() {
                     Meet the team of leading specialists with decades of combined experience across key specialties.
                   </div>
                   <div className="journey-bnts">
-                    <a href="#" className="button-01 button-03 w-inline-block">
+                    <a href="#" onClick={openQuiz} className="button-01 button-03 w-inline-block">
                       <div className="button-outside-01">
                         <div className="button-inside">
-                          <div className="button-text-01">Take the quiz.</div>
-                          <div className="button-text-01">Take Quiz</div>
+                          <div className="button-text-01">Get Started</div>
+                          <div className="button-text-01">Get Started</div>
                         </div>
                       </div>
                     </a>
@@ -1036,8 +1111,8 @@ export default function HomePage() {
                   {/* Decorative circle replaces Lottie */}
                   <div className="lottie-animation-2">
                     <svg viewBox="0 0 100 100" width="100" height="100" aria-hidden="true">
-                      <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,154,46,0.3)" strokeWidth="1.5"/>
-                      <circle cx="50" cy="50" r="28" fill="none" stroke="rgba(255,154,46,0.15)" strokeWidth="1"/>
+                      <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(200,164,90,0.3)" strokeWidth="1.5"/>
+                      <circle cx="50" cy="50" r="28" fill="none" stroke="rgba(200,164,90,0.15)" strokeWidth="1"/>
                     </svg>
                   </div>
 
@@ -1052,18 +1127,18 @@ export default function HomePage() {
         </section>
 
         {/* ===== Families Section ===== */}
-        <section className="families container-full">
+        <section className="families container-full" id="families">
           <div className="container-fluid">
             <div className="families-content">
               <div className="families-head">
                 <h2 className="families-title heading-01">The strongest version of you is a quiz away.</h2>
                 <p className="paragraph-2">Doctor-prescribed GLP-1, TRT, and peptide care, delivered to your door. One five-minute quiz, reviewed by a licensed provider. No waiting rooms, no guesswork.</p>
                 <div className="families-btns">
-                  <a href="#" className="button-01 button-03 w-inline-block">
+                  <a href="#" onClick={openQuiz} className="button-01 button-03 w-inline-block">
                     <div className="button-outside-01">
                       <div className="button-inside">
                         <div className="button-text-01">Get Started</div>
-                        <div className="button-text-01">Take Quiz</div>
+                        <div className="button-text-01">Get Started</div>
                       </div>
                     </div>
                   </a>
@@ -1076,11 +1151,11 @@ export default function HomePage() {
                     <div className="families-card-text p1-regular _01">Pre-dosed and ready to use. No mixing, no measuring, no guesswork. Just click and go.</div>
                   </div>
                   <div className="families-card-btns">
-                    <a href="#" className="button-01 button-03 w-inline-block">
+                    <a href="#" onClick={openQuiz} className="button-01 button-03 w-inline-block">
                       <div className="button-outside-01">
                         <div className="button-inside">
-                          <div className="button-text-01">Learn about the Pen</div>
-                          <div className="button-text-01">Take Quiz</div>
+                          <div className="button-text-01">Get Started</div>
+                          <div className="button-text-01">Get Started</div>
                         </div>
                       </div>
                     </a>
@@ -1114,149 +1189,10 @@ export default function HomePage() {
           />
         </section>
 
-        {/* ===== How TIDL Works Section ===== */}
-        <section className="works container-full _02">
-          <div className="container-fluid">
-            <div className="works-content _02">
-              <h2 className="works-title heading-01 _02">HOW TIDL WORKS</h2>
-            </div>
-            <div className="works-list">
-
-              {/* Step 1 */}
-              <div className="works-item _03-first">
-                <div className="works-item-thumb-wrap">
-                  <img
-                    src="https://cdn.prod.website-files.com/6a484773bf274d9b9ec3f5b9/6a4aa74cb673463b10d3ae0a_hf_20260705_182659_b144a633-d893-4de0-b45e-39e6df164b2f.png"
-                    loading="lazy"
-                    sizes="(max-width: 1728px) 100vw, 1728px"
-                    alt="thumb"
-                    className="works-thumb-img"
-                  />
-                  <img src="https://cdn.prod.website-files.com/6a484773bf274d9b9ec3f5b9/6a484775bf274d9b9ec3f7bc_shadow%20(18).png" loading="lazy" alt="" className="work-thumb-shadow"/>
-                  <div className="works-thumb-cards">
-                    <div className="works-thubm-text">Choose your goal</div>
-                    <div className="works-thumb-inside-wrap">
-                      <img src="https://cdn.prod.website-files.com/6a484773bf274d9b9ec3f5b9/6a48bfe570325ae14a877401_overlay_01a_weight_loss.png" loading="lazy" sizes="(max-width: 960px) 100vw, 960px" alt="" className="works-thumb-inside-img"/>
-                      <img src="https://cdn.prod.website-files.com/6a484773bf274d9b9ec3f5b9/6a48bfe570325ae14a8773fe_overlay_01c_longevity.png" loading="lazy" sizes="(max-width: 960px) 100vw, 960px" alt="" className="works-thumb-inside-img"/>
-                      <img src="https://cdn.prod.website-files.com/6a484773bf274d9b9ec3f5b9/6a48bfe4215abbb8f210f509_overlay_01b_testosterone.png" loading="lazy" sizes="(max-width: 960px) 100vw, 960px" alt="" className="works-thumb-inside-img"/>
-                    </div>
-                  </div>
-                </div>
-                <div className="works-item-info _02">
-                  <div className="works-item-info-head">
-                    <h3 className="works-item-info-title heading-03">01 | Take the quiz</h3>
-                    <div className="works-itm-info-text-02 p2-regular">
-                      Answer a few questions about your health and goals. It takes about five minutes, and it doubles as your medical intake, so there's nothing to fill out twice.
-                    </div>
-                  </div>
-                  <div className="works-item-info-bottom">
-                    <div className="works-item-info-card _02">
-                      <div className="works-item-info-num _02">Your goals</div>
-                      <div className="works-item-info-text c1-text">What you want to improve</div>
-                    </div>
-                    <div className="works-item-info-card _02">
-                      <div className="works-item-info-num _02">Health history</div>
-                      <div className="works-item-info-text c1-text">A few quick medical questions</div>
-                    </div>
-                    <div className="works-item-info-card _02">
-                      <div className="works-item-info-num _02">Takes 5 minutes</div>
-                      <div className="works-item-info-text c1-text">Done on your phone, anytime</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Step 2 */}
-              <div className="works-item _03-first">
-                <div className="works-item-thumb-wrap">
-                  <img
-                    src="https://cdn.prod.website-files.com/6a484773bf274d9b9ec3f5b9/6a4aa74d68be0cc0c1e6ff78_hf_20260705_183156_8357ac89-69ac-4055-a74d-07ea368560c8.png"
-                    loading="lazy"
-                    sizes="(max-width: 1728px) 100vw, 1728px"
-                    alt="thumb"
-                    className="works-thumb-img"
-                  />
-                  <img src="https://cdn.prod.website-files.com/6a484773bf274d9b9ec3f5b9/6a484775bf274d9b9ec3f7bc_shadow%20(18).png" loading="lazy" alt="" className="work-thumb-shadow"/>
-                  <img
-                    src="https://cdn.prod.website-files.com/6a484773bf274d9b9ec3f5b9/6a48bfe5a3e4540bf4bee825_overlay_02_care_plan.png"
-                    loading="lazy"
-                    sizes="(max-width: 3312px) 100vw, 3312px"
-                    alt=""
-                    className="work-additional-img"
-                  />
-                </div>
-                <div className="works-item-info _02">
-                  <div className="works-item-info-head">
-                    <h3 className="works-item-info-title heading-03">02 | From licensed pharmacies to your door</h3>
-                    <div className="works-itm-info-text-02 p2-regular">
-                      Prescribed by licensed providers, filled by US pharmacies, and shipped in discreet, temperature-safe packaging.
-                    </div>
-                  </div>
-                  <div className="works-item-info-bottom">
-                    <div className="works-item-info-card _02">
-                      <div className="works-item-info-num _02">Licensed provider</div>
-                      <div className="works-item-info-text c1-text">Reviewed by a doctor in your state</div>
-                    </div>
-                    <div className="works-item-info-card _02">
-                      <div className="works-item-info-num _02">Personalized plan</div>
-                      <div className="works-item-info-text c1-text">Treatment matched to you</div>
-                    </div>
-                    <div className="works-item-info-card _02">
-                      <div className="works-item-info-num _02">No appointments</div>
-                      <div className="works-item-info-text c1-text">All online, no waiting rooms</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Step 3 */}
-              <div className="works-item _03-first">
-                <div className="works-item-thumb-wrap">
-                  <img
-                    src="https://cdn.prod.website-files.com/6a484773bf274d9b9ec3f5b9/6a4aa92efc42f4d1ca52f73b_hf_20260705_185141_41c69960-1413-4b75-8318-f0800323717b.png"
-                    loading="lazy"
-                    sizes="(max-width: 1728px) 100vw, 1728px"
-                    alt="thumb"
-                    className="works-thumb-img"
-                  />
-                  <img src="https://cdn.prod.website-files.com/6a484773bf274d9b9ec3f5b9/6a484775bf274d9b9ec3f7bc_shadow%20(18).png" loading="lazy" alt="" className="work-thumb-shadow"/>
-                  <img
-                    src="https://cdn.prod.website-files.com/6a484773bf274d9b9ec3f5b9/6a48bfe5843bc2ec3c3806fa_overlay_03_order.png"
-                    loading="lazy"
-                    sizes="(max-width: 3312px) 100vw, 3312px"
-                    alt=""
-                    className="work-additional-img"
-                  />
-                </div>
-                <div className="works-item-info _02">
-                  <div className="works-item-info-head">
-                    <h3 className="works-item-info-title heading-03">03 | Real change, tracked over time</h3>
-                    <div className="works-itm-info-text-02 p2-regular">
-                      Consistent, doctor-guided treatment that supports steady, lasting results.
-                    </div>
-                  </div>
-                  <div className="works-item-info-bottom">
-                    <div className="works-item-info-card _02">
-                      <div className="works-item-info-num _02">Discreet delivery</div>
-                      <div className="works-item-info-text c1-text">Shipped from a licensed pharmacy</div>
-                    </div>
-                    <div className="works-item-info-card _02">
-                      <div className="works-item-info-num _02">Ongoing support</div>
-                      <div className="works-item-info-text c1-text">Message your care team anytime</div>
-                    </div>
-                    <div className="works-item-info-card _02">
-                      <div className="works-item-info-num _02">Easy reorders</div>
-                      <div className="works-item-info-text c1-text">Refills in a tap</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </section>
+        <HowItWorksSection onGetStarted={() => openQuiz()} />
 
         {/* ===== Ask TIDL Section ===== */}
+        <section className="ask-tidl-wrap">
         <div className="ask-tidl" id="askTidl">
           <h2 className="ask-h">Ask TIDL anything</h2>
           <p className="ask-sub">
@@ -1322,178 +1258,10 @@ export default function HomePage() {
 
           <p className="ask-note">TIDL AI shares general information. Your doctor makes every medical decision.</p>
         </div>
-
-        {/* ===== Blog Section ===== */}
-        <section className="feature-blog-02 container-full">
-          <div 
-            data-w-id="3072fecc-9b21-d07c-8a0f-122ed0f211ae"
-            className="feature-blog-content-02"
-          >
-            <h2 className="feature-blog-title-02 heading-01">The Tidl Journal</h2>
-            <div 
-              data-w-id="732914ee-333f-b961-45d6-fc996df4a5d9"
-              className="feature-blog-list-wrap-02"
-            >
-              <div 
-                data-w-id="35af91e4-9c61-6ba2-1c96-b79c2f600fea"
-                className="feature-blog-list-02"
-              >
-                {[
-                  {
-                    href: '#',
-                    img: 'https://cdn.prod.website-files.com/6a484773bf274d9b9ec3f5b9/6a4aec42b6e5359eece02ec0_hf_20260705_222419_e9eea2f4-16e9-4829-bc36-184ebd9190fc%20(1).png',
-                    title: 'What is a GLP-1 pen?',
-                    text: "How the pre-dosed pen works, and why it's simpler than anything before it.",
-                  },
-                  {
-                    href: '#',
-                    img: 'https://cdn.prod.website-files.com/6a484773bf274d9b9ec3f5b9/6a4aeb7bee8a179649d1bc35_hf_20260705_233029_46be476f-68f2-49e7-881f-b334ef1c6bbf.png',
-                    title: 'Peptides, explained simply',
-                    text: "What peptide therapy is, what it does, and who it's actually for",
-                  },
-                  {
-                    href: '#',
-                    img: 'https://cdn.prod.website-files.com/6a484773bf274d9b9ec3f5b9/6a4aeb7bf3a19844a4ae631c_hf_20260705_233049_38c7a73e-b44d-4975-8d17-9919f2b2a881.png',
-                    title: 'What to expect in month one',
-                    text: 'A week-by-week look at your first month of treatment.',
-                  },
-                  {
-                    href: '#',
-                    img: 'https://cdn.prod.website-files.com/6a484773bf274d9b9ec3f5b9/6a4aec07cea6f47c26ee14cf_hf_20260705_233058_7f599980-dfef-43f9-85d2-4073ff9f21c2.png',
-                    title: 'Signs your testosterone may be low',
-                    text: 'Common symptoms, and how a simple assessment can help.',
-                  },
-                ].map(({ href, img, title, text }) => (
-                  <div className="feasture-blog-collection w-dyn-list" key={title}>
-                    <div role="list" className="w-dyn-items">
-                      <div role="listitem" className="w-dyn-item">
-                        <a href={href} className="collection-link w-inline-block">
-                          <div className="feature-blog-item-02">
-                            <div className="feature-blog-thumb-02">
-                              <img src={img} loading="lazy" alt="feature blog img" className="feature-blog-thumb-img-02"/>
-                            </div>
-                            <div className="feature-blog-body-02">
-                              <div className="feature-blog-name-02 heading-05">{title}</div>
-                              <div className="feature-blog-text-02 p1-regular">{text}</div>
-                            </div>
-                          </div>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ===== How to Use the Pen — Video Section ===== */}
-        <section className="section">
-          <div className="section-padding">
-            <div className="page-padding">
-              <div className="container-medium">
-                <div className="section_header">
-                  <h2 className="section_header-title">HOW TO USE THE PEN</h2>
-                </div>
-                <div className="video_component">
-                  <div className="video_placeholder-01">
-                    <div className="layer">
-                      <img
-                        src="https://cdn.prod.website-files.com/6a484773bf274d9b9ec3f5b9/6a4bbd9950fd69347716fcab_hf_20260706_142630_ecfd4adf-10ef-4ea0-804d-21e9849d1aa8.png"
-                        loading="lazy"
-                        sizes="(max-width: 2560px) 100vw, 2560px"
-                        alt=""
-                        className="cover"
-                      />
-                    </div>
-                    <div className="video_placeholder-col-01 is-play-wrap">
-                      <div className="video_play-button-wrap">
-                        <a
-                          href="https://www.youtube.com/watch?v=q-ktd4nEi3w"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="video_play-button"
-                          role="button"
-                          aria-label="Play Video"
-                        >
-                          <div className="video_play-button-icon w-embed">
-                            <svg width="21" height="24" viewBox="0 0 21 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <path d="M19.8937 10.064L3.39375 0.309337C2.05313 -0.48285 0 0.2859 0 2.24527V21.75C0 23.5078 1.90781 24.5672 3.39375 23.6859L19.8937 13.9359C21.3656 13.0687 21.3703 10.9312 19.8937 10.064Z" fill="currentColor"/>
-                            </svg>
-                          </div>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* ===== Stories / Testimonials Section ===== */}
-        <section className="stories-03 container-full">
-          <div className="container-fluid for-works">
-            <div className="stories-content-03">
-              <h2 
-                data-w-id="f251300e-1d20-13ab-99a7-486265690269"
-                className="stories-title-03 heading-01"
-              >
-                Stories from our patients
-              </h2>
-              <div className="stories-slider-react">
-                <div
-                  className="stories-slides-track"
-                  style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-                >
-                  {STORIES.map((story, i) => (
-                    <div className="stories-slide-react" key={i}>
-                      <div className="stories-item-03">
-                        <div className="stories-item-thumb-03">
-                          <img
-                            src={story.img}
-                            loading="lazy"
-                            sizes="(max-width: 1086px) 100vw, 1086px"
-                            alt="slider bg"
-                            className={story.imgClass}
-                          />
-                        </div>
-                        <div className="stories-info-03">
-                          <div className="stories-item-head-03">
-                            <div className="stories-item-text-03 heading-03">{story.quote}</div>
-                          </div>
-                          <div className="stories-item-info-02">
-                            <div className="stories-item-info-title-02 heading-05">{story.name}</div>
-                            <div className="stories-item-info-text-02 p2-regular">{story.role}</div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                <button className="stories-arrow left" onClick={prevSlide} aria-label="Previous">
-                  <img src="https://cdn.prod.website-files.com/6a484773bf274d9b9ec3f5b9/6a484775bf274d9b9ec3f694_arrow-right%20(1).svg" loading="lazy" alt="arrow" className="works-arrow-ico"/>
-                </button>
-                <button className="stories-arrow right" onClick={nextSlide} aria-label="Next">
-                  <img src="https://cdn.prod.website-files.com/6a484773bf274d9b9ec3f5b9/6a484775bf274d9b9ec3f693_arrow-right%20(2).svg" loading="lazy" alt="arrow" className="works-arrow-ico"/>
-                </button>
-                <div className="stories-dots" aria-hidden="true">
-                  {STORIES.map((_, i) => (
-                    <button
-                      key={i}
-                      className={`stories-dot${currentSlide === i ? ' active' : ''}`}
-                      onClick={() => setCurrentSlide(i)}
-                      aria-label={`Go to slide ${i + 1}`}
-                    />
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
         </section>
 
         {/* ===== FAQ Section ===== */}
-        <section className="tdlfaq-sec">
+        <section className="tdlfaq-sec" id="faq">
           <div className="tdlfaq-head">
             <h2 className="tdlfaq-h2">Frequently asked questions</h2>
           </div>
@@ -1535,36 +1303,14 @@ export default function HomePage() {
           </div>
 
           <p className="tdlfaq-foot">
-            Still have a question? <a href="#">Ask TIDL</a> or message our team.
+            Still have a question? <a href="#askTidl">Ask TIDL</a> or message our team.
           </p>
         </section>
 
         {/* ===== CTA Section ===== */}
-        <section className="cta container-full">
-          <div className="container-fluid">
-            <div className="cta-content">
-              <h2 
-                data-w-id="d64b06d4-2215-b165-06a4-ce64c10d68ed"
-                className="cta-title heading-01"
-              >
-                Ready to feel like yourself again?
-              </h2>
-              <p className="cta-text p2-regular">Take the five-minute quiz. A licensed provider reviews everything. Your treatment ships to your door.</p>
-              <a 
-                data-w-id="d64b06d4-2215-b165-06a4-ce64c10d68ef"
-                href="#" 
-                className="button-01 button-03 w-inline-block"
-              >
-                <div className="button-outside-01">
-                  <div className="button-inside">
-                    <div className="button-text-01">Get started</div>
-                    <div className="button-text-01">Take Quiz</div>
-                  </div>
-                </div>
-              </a>
-            </div>
-          </div>
-        </section>
+        <div id="cta">
+          <CtaSection onGetStarted={() => openQuiz()} />
+        </div>
 
         </div>
       </div>
@@ -1575,12 +1321,9 @@ export default function HomePage() {
             <div className="footer-content">
               <div className="footer-brand">
                 <a href="/" className="footer-logo w-inline-block">
-                  <img
-                    src="https://cdn.prod.website-files.com/6a484773bf274d9b9ec3f5b9/6a49afeae23ed952c91c2170_ChatGPTImageJul4202603_07_16AM.png"
-                    alt="TIDL Health"
-                    className="footer-logo-img"
-                    loading="lazy"
-                  />
+                  <span className="footer-logo-wordmark" aria-label="TIDL Health">
+                    TIDL
+                  </span>
                 </a>
                 <p className="footer-tagline p2-regular">Doctor-prescribed telehealth. Real results, delivered to your door.</p>
               </div>
@@ -1588,10 +1331,10 @@ export default function HomePage() {
                 <div className="footer-col">
                   <div className="footer-col-title">Treatments</div>
                   {[
-                    { href: '#', label: 'Weight Loss' },
-                    { href: '#', label: 'Testosterone' },
-                    { href: '#', label: 'Longevity' },
-                    { href: '#', label: 'Peptide Therapy' },
+                    { href: '#services', label: 'Weight Loss' },
+                    { href: '#services', label: 'Testosterone' },
+                    { href: '#services', label: 'Longevity' },
+                    { href: '#howItWorks', label: 'Peptide Therapy' },
                   ].map(({ href, label }) => (
                     <div key={label} className="footer-link-wrap">
                       <a href={href} className="footer-link">{label}</a>
@@ -1602,15 +1345,24 @@ export default function HomePage() {
                 <div className="footer-col">
                   <div className="footer-col-title">Company</div>
                   {[
-                    { href: '/about-01', label: 'About' },
-                    { href: '/blogs', label: 'Journal' },
-                    { href: '/doctors', label: 'Doctors' },
+                    { href: '#journey', label: 'About' },
+                    { href: '#howItWorks', label: 'How It Works' },
+                    { href: '#askTidl', label: 'Ask TIDL' },
                   ].map(({ href, label }) => (
                     <div key={label} className="footer-link-wrap">
                       <a href={href} className="footer-link">{label}</a>
                       <div className="footer-link-line"></div>
                     </div>
                   ))}
+                </div>
+                <div className="footer-col">
+                  <div className="footer-col-title">Get Started</div>
+                  <button type="button" onClick={openQuiz} className="footer-link text-left">
+                    Get Started
+                  </button>
+                  <Link to="/quiz" className="footer-link">
+                    Full-page quiz
+                  </Link>
                 </div>
                 <div className="footer-col">
                   <div className="footer-col-title">Legal</div>
@@ -1631,6 +1383,33 @@ export default function HomePage() {
             </div>
           </div>
         </footer>
+        {isPenVideoOpen && (
+          <div
+            className="tdlp5-video-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-label="How to use the TIDL Pen video"
+            onClick={() => setIsPenVideoOpen(false)}
+          >
+            <div className="tdlp5-video-dialog" onClick={(e) => e.stopPropagation()}>
+              <button
+                type="button"
+                className="tdlp5-video-close"
+                aria-label="Close video"
+                onClick={() => setIsPenVideoOpen(false)}
+              >
+                ×
+              </button>
+              <iframe
+                src="https://www.youtube.com/embed/q-ktd4nEi3w?autoplay=1&rel=0"
+                title="How to use the TIDL Pen"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+          </div>
+        )}
     </div>
   );
 }

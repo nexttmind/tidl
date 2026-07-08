@@ -7,10 +7,15 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { AuthProvider } from "../providers/auth-provider";
+import { QuizModalProvider } from "../providers/quiz-modal-provider";
+import { AgeGate } from "../components/age-gate/AgeGate";
+import { QuizModal } from "../components/quiz/QuizModal";
+import { isAgeGateConfirmed } from "../lib/age-gate";
 
 function NotFoundComponent() {
   return (
@@ -179,13 +184,37 @@ function RootShell({ children }: { children: ReactNode }) {
   );
 }
 
+function AppProviders({ children }: { children: ReactNode }) {
+  const [mounted, setMounted] = useState(false);
+  const [ageConfirmed, setAgeConfirmed] = useState(true);
+
+  useEffect(() => {
+    setMounted(true);
+    setAgeConfirmed(isAgeGateConfirmed());
+  }, []);
+
+  return (
+    <AuthProvider>
+      <QuizModalProvider>
+        {mounted && !ageConfirmed ? (
+          <AgeGate onConfirmed={() => setAgeConfirmed(true)} />
+        ) : null}
+        {children}
+        <QuizModal />
+      </QuizModalProvider>
+    </AuthProvider>
+  );
+}
+
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <AppProviders>
+        {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+        <Outlet />
+      </AppProviders>
     </QueryClientProvider>
   );
 }
