@@ -14,6 +14,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { AuthProvider } from "../providers/auth-provider";
 import { QuizModalProvider } from "../providers/quiz-modal-provider";
 import { AgeGate } from "../components/age-gate/AgeGate";
+import { LenisScroll } from "../components/lenis/LenisScroll";
 import { QuizModal } from "../components/quiz/QuizModal";
 import { isAgeGateConfirmed } from "../lib/age-gate";
 
@@ -121,6 +122,7 @@ function AppProviders({ children }: { children: ReactNode }) {
         {mounted && !ageConfirmed ? (
           <AgeGate onConfirmed={() => setAgeConfirmed(true)} />
         ) : null}
+        <LenisScroll />
         {children}
         <QuizModal />
       </QuizModalProvider>

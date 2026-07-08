@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef, useCallback, type MouseEvent } from 'react';
-import Lenis from 'lenis';
 import { Link } from '@tanstack/react-router';
 import { useQuizModal } from '@/providers/quiz-modal-provider';
 import { lockPageScroll, unlockPageScroll } from '@/lib/age-gate';
@@ -212,32 +211,6 @@ export default function HomePage() {
     return () => {
       clearTimeout(fallbackTimer);
       window.removeEventListener('load', scheduleInit);
-    };
-  }, []);
-
-  // Initialize Lenis smooth scroll
-  useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: 'vertical',
-      gestureOrientation: 'vertical',
-      smoothWheel: true,
-      wheelMultiplier: 1,
-      smoothTouch: false,
-      touchMultiplier: 2,
-      infinite: false,
-    });
-
-    function raf(time: number) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-
-    requestAnimationFrame(raf);
-
-    return () => {
-      lenis.destroy();
     };
   }, []);
 
