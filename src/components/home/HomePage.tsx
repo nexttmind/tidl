@@ -7,7 +7,6 @@ import { useSiteHeaderState } from '@/hooks/useSiteHeaderState';
 import './home.css';
 import { CtaSection } from './cta/CtaSection';
 import { ServicesSection } from './ServicesSection';
-import { ProductsCatalogSection } from './products-catalog/ProductsCatalogSection';
 import { SiteFooter } from '@/components/layout/SiteFooter';
 import { PatientAvatar } from '@/components/brand/PatientAvatar';
 import { SITE_IMAGES } from '@/lib/site-assets';
@@ -138,12 +137,12 @@ export default function HomePage() {
 
   const homeNavLinks = [
     { href: '#services', label: 'Treatments' },
-    { href: '#products', label: 'Products' },
+    { href: '#tdlp5', label: 'The Pen' },
     { href: '#journey', label: 'About' },
     { href: '#askTidl', label: 'Learn' },
     { href: '#stories', label: 'Stories' },
     { href: '#faq', label: 'FAQ' },
-    { to: '/products/glp-1-weight-loss', label: 'GLP-1 Weight Loss' },
+    { to: '/products/glp-1-weight-loss', label: 'GLP-1 Program' },
   ];
 
   useEffect(() => {
@@ -597,6 +596,12 @@ export default function HomePage() {
             </div>
 
             <div className="tdlp5-center" id="tdlp5Stage" ref={penStageRef}>
+              <div className="tdlp5-more tdlp5-more--stage">
+                <Link to="/products/glp-1-weight-loss" className="tdlp5-more-wrap tdlp5-more-wrap--btn">
+                  <span className="tdlp5-more-link">More info</span>
+                  <span className="tdlp5-more-line" aria-hidden="true" />
+                </Link>
+              </div>
               <div className="tdlp5-blade"></div>
               <div className="tdlp5-blade core"></div>
               <div className="tdlp5-aura"></div>
@@ -664,8 +669,6 @@ export default function HomePage() {
 
           <div className="tdlp5-grain"></div>
         </section>
-
-        <ProductsCatalogSection />
 
         {/* ===== Stories / Testimonials Section ===== */}
         <section className="stories-03 container-full" id="stories" data-site-header-theme="light">

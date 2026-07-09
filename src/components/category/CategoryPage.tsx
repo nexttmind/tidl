@@ -18,12 +18,18 @@ import {
 } from "@/lib/categories";
 import { formatCurrency } from "@/lib/pricing";
 import { getGoalFromProduct } from "@/lib/products";
-import type { ProductSlug } from "@/types/quiz";
+import type { GoalId, ProductSlug } from "@/types/quiz";
 import "../home/home.css";
 import "./category.css";
 
 type CategoryPageProps = {
   slug: CategorySlug;
+};
+
+const CATEGORY_GOALS: Record<CategorySlug, GoalId> = {
+  "weight-loss": "weight-loss",
+  testosterone: "hormonal-health",
+  longevity: "longevity",
 };
 
 function CategoryFaq({
@@ -53,11 +59,11 @@ export function CategoryPage({ slug }: CategoryPageProps) {
   const openQuiz = useCallback(
     (productSlug?: ProductSlug) => (e?: MouseEvent) => {
       e?.preventDefault();
-      const slugToUse = productSlug ?? category.productSlugs[0];
-      const goal = getGoalFromProduct(slugToUse);
-      openModal({ product: slugToUse, goal: goal ?? undefined });
+      const slugToUse = productSlug ?? category.productSlugs[0] ?? "glp-1-weight-loss";
+      const goal = getGoalFromProduct(slugToUse) ?? CATEGORY_GOALS[category.slug];
+      openModal({ product: slugToUse, goal });
     },
-    [category.productSlugs, openModal],
+    [category.productSlugs, category.slug, openModal],
   );
 
   useEffect(() => {
@@ -112,8 +118,8 @@ export function CategoryPage({ slug }: CategoryPageProps) {
                   <button type="button" className="cat-btn cat-btn--primary" onClick={openQuiz()}>
                     Get Started
                   </button>
-                  <Link to="/#products" className="cat-btn cat-btn--ghost">
-                    All products
+                  <Link to="/products/glp-1-weight-loss" className="cat-btn cat-btn--ghost">
+                    More info
                   </Link>
                 </div>
               </div>
@@ -220,6 +226,7 @@ export function CategoryPage({ slug }: CategoryPageProps) {
         </div>
       </section>
 
+      {products.length > 0 ? (
       <section className="cat-products" id="category-products" data-site-header-theme="dark">
         <div className="cat-products-inner">
           <header className="cat-products-head">
@@ -260,6 +267,7 @@ export function CategoryPage({ slug }: CategoryPageProps) {
           </div>
         </div>
       </section>
+      ) : null}
 
       <section className="cat-safety" data-site-header-theme="dark">
         <div className="cat-safety-inner">

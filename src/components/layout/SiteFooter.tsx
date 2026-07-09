@@ -5,15 +5,13 @@ import { SITE_IMAGES, SOCIAL_ICONS } from "@/lib/site-assets";
 
 const TREATMENT_LINKS = [
   { href: "/category/weight-loss", label: "Weight Loss" },
+  { href: "/category/testosterone", label: "Testosterone" },
   { href: "/category/longevity", label: "Longevity" },
-  { href: "/category/testosterone", label: "Hormonal Health" },
-  { href: "/category/weight-loss", label: "Metabolic Care" },
-  { href: "/category/longevity", label: "Performance" },
-  { href: "/category/longevity", label: "Recovery" },
+  { href: "/products/glp-1-weight-loss", label: "GLP-1 Program" },
 ] as const;
 
 const COMPANY_LINKS = [
-  { href: "/#products", label: "Products" },
+  { href: "/products/glp-1-weight-loss", label: "GLP-1 Program" },
   { href: "/#faq", label: "FAQs" },
   { href: "/#services", label: "Find Your Treatment" },
   { href: "/#askTidl", label: "AI Discovery" },
@@ -46,11 +44,7 @@ function FooterRouterLink({
   to,
   label,
 }: {
-  to:
-    | "/products/glp-1-weight-loss"
-    | "/products/trt-hormonal"
-    | "/products/longevity-peptides"
-    | "/products/performance-recovery";
+  to: "/products/glp-1-weight-loss";
   label: string;
 }) {
   return (
@@ -85,8 +79,7 @@ export function SiteFooter({ onGetStarted }: SiteFooterProps) {
                 <div className="footer-left-head">
                   <div className="footer-left-title heading-03">Medical-grade care. Built to perform.</div>
                   <div className="footer-left-text p2-regular">
-                    Doctor-prescribed GLP-1, TRT, and peptide treatments for weight, hormones, and recovery, delivered
-                    discreetly to your door.
+                    Doctor-prescribed GLP-1 weight loss with the pre-dosed TIDL Pen, delivered discreetly to your door.
                   </div>
                   <div className="footer-left-btns">
                     <a

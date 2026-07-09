@@ -216,7 +216,7 @@ export const CATEGORIES: Record<CategorySlug, CategoryDefinition> = {
     extendedLead:
       "Low testosterone can affect energy, mood, strength, and focus. TIDL testosterone therapy starts with your symptoms and lab work, reviewed by a licensed provider who builds a protocol around how you actually feel, not a one-size-fits-all chart.",
     heroImage: SITE_IMAGES.services.testosterone,
-    productSlugs: ["trt-hormonal"],
+    productSlugs: [],
     pillars: [
       {
         title: "Lab-guided protocols",
@@ -335,7 +335,7 @@ export const CATEGORIES: Record<CategorySlug, CategoryDefinition> = {
     extendedLead:
       "Longevity care at TIDL is physician-supervised, not supplement-store guesswork. Whether you need recovery support after training or metabolic protocols for long-term health, a licensed provider reviews your goals and prescribes only when appropriate.",
     heroImage: SITE_IMAGES.services.longevity,
-    productSlugs: ["longevity-peptides", "performance-recovery"],
+    productSlugs: [],
     pillars: [
       {
         title: "Peptide protocols",

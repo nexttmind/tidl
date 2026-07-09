@@ -2,11 +2,10 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { CheckoutForm } from "@/components/checkout/CheckoutForm";
 import { CheckoutLayout } from "@/components/checkout/CheckoutLayout";
 import { OrderSummary } from "@/components/checkout/OrderSummary";
-import { FunnelPageShell } from "@/components/layout/FunnelPageShell";
+import "@/components/checkout/checkout.css";
 import { useIsMounted } from "@/hooks/use-is-mounted";
 import { isQuizComplete, readQuizState } from "@/lib/quiz-storage";
 import { useQuizModal } from "@/providers/quiz-modal-provider";
-import "@/components/quiz/quiz.css";
 
 export const Route = createFileRoute("/checkout")({
   component: CheckoutPage,
@@ -17,11 +16,7 @@ function CheckoutPage() {
   const { openModal } = useQuizModal();
 
   if (!mounted) {
-    return (
-      <FunnelPageShell className="min-h-screen">
-        <div aria-hidden />
-      </FunnelPageShell>
-    );
+    return <div className="checkout-page" aria-hidden />;
   }
 
   const stored = readQuizState();
@@ -29,24 +24,25 @@ function CheckoutPage() {
 
   if (!complete || !stored) {
     return (
-      <FunnelPageShell className="flex min-h-screen items-center justify-center px-5">
-        <div className="max-w-md text-center">
-          <h1 className="text-2xl font-medium">Complete your assessment first</h1>
-          <p className="mt-3 text-sm text-[var(--quiz-muted)]">
-            A physician-reviewed treatment plan is created after you finish all 8 steps
-            of the medical intake.
-          </p>
-          <button type="button" onClick={() => openModal()} className="tidl-btn mt-6">
-            Start assessment
-          </button>
-          <p className="mt-4 text-sm">
-            or{" "}
-            <Link to="/quiz" className="text-[var(--quiz-bronze)] underline">
-              continue on full page
-            </Link>
-          </p>
+      <div className="checkout-page" data-site-header-theme="light">
+        <div className="checkout-gate">
+          <div className="checkout-gate-card">
+            <h1 className="checkout-gate-title">Complete your assessment first</h1>
+            <p className="checkout-gate-lead">
+              A physician-reviewed treatment plan is created after you finish all 8 steps of the medical intake.
+            </p>
+            <button type="button" onClick={() => openModal()} className="checkout-submit" style={{ marginTop: 24 }}>
+              Start assessment
+            </button>
+            <p className="checkout-gate-lead" style={{ marginTop: 16 }}>
+              or{" "}
+              <Link to="/quiz" className="checkout-gate-link">
+                continue on full page
+              </Link>
+            </p>
+          </div>
         </div>
-      </FunnelPageShell>
+      </div>
     );
   }
 

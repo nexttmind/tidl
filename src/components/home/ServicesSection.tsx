@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { ServicesClosing } from "./ServicesClosing";
 import { SERVICE_CARDS, SERVICES_INTRO } from "@/lib/services-content";
-import { TRUST_PILLARS, TRUST_STATS } from "@/lib/trust-content";
+import { TRUST_PILLARS } from "@/lib/trust-content";
 
 function ArrowRight() {
   return (
@@ -24,15 +24,6 @@ export function ServicesSection() {
             </h2>
             <p className="services-intro-lead">{SERVICES_INTRO.lead}</p>
           </header>
-
-          <div className="services-trust-stats" aria-label="TIDL trust signals">
-            {TRUST_STATS.map((stat) => (
-              <div className="services-trust-stat" key={stat.label}>
-                <span className="services-trust-stat-value">{stat.value}</span>
-                <span className="services-trust-stat-label">{stat.label}</span>
-              </div>
-            ))}
-          </div>
 
           <div className="service-list">
             {SERVICE_CARDS.map((card, index) => (

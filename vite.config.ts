@@ -29,9 +29,12 @@ export default defineConfig(({ command, mode }) => {
   ];
 
   if (command === "build") {
+    const deployPreset =
+      process.env.NETLIFY === "true" || process.env.NETLIFY === "1" ? "netlify" : "cloudflare-module";
+
     plugins.push(
       nitro({
-        defaultPreset: "cloudflare-module",
+        defaultPreset: deployPreset,
       }),
     );
   }

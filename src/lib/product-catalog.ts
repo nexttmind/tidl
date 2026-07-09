@@ -28,39 +28,6 @@ export const CATALOG_PRODUCTS: CatalogProduct[] = [
     image: SITE_IMAGES.products.penPrimary,
     highlights: ["TIDL Pen delivery", "Licensed provider review", "Discreet shipping"],
   },
-  {
-    slug: "trt-hormonal",
-    categorySlug: "testosterone",
-    form: "pill",
-    shortName: "Testosterone Therapy",
-    headline: "Energy, strength, and drive back on your terms.",
-    summary:
-      "Lab-guided TRT from licensed providers. A plan built around your levels, lifestyle, and goals.",
-    image: SITE_IMAGES.products.pillPink,
-    highlights: ["Lab-guided dosing", "Ongoing monitoring", "Telehealth-first care"],
-  },
-  {
-    slug: "longevity-peptides",
-    categorySlug: "longevity",
-    form: "pen",
-    shortName: "Longevity Peptides",
-    headline: "Recover faster. Sleep deeper. Stay sharp.",
-    summary:
-      "Physician-supervised peptide protocols for recovery, metabolic health, and long-term performance.",
-    image: SITE_IMAGES.products.penSecondary,
-    highlights: ["Personalized protocol", "Recovery-focused", "Ongoing care team"],
-  },
-  {
-    slug: "performance-recovery",
-    categorySlug: "longevity",
-    form: "pill",
-    shortName: "Performance & Recovery",
-    headline: "Train harder. Bounce back faster.",
-    summary:
-      "Targeted metabolic and peptide support for athletic performance and consistent recovery between sessions.",
-    image: SITE_IMAGES.products.pillProtocol,
-    highlights: ["Custom protocol", "Performance-focused", "Physician-reviewed"],
-  },
 ];
 
 export function getCatalogProduct(slug: ProductSlug): CatalogProduct | undefined {
@@ -77,9 +44,6 @@ export function getCatalogPrice(slug: ProductSlug): number {
 
 export const PRODUCT_PATHS: Record<ProductSlug, `/products/${ProductSlug}`> = {
   "glp-1-weight-loss": "/products/glp-1-weight-loss",
-  "trt-hormonal": "/products/trt-hormonal",
-  "longevity-peptides": "/products/longevity-peptides",
-  "performance-recovery": "/products/performance-recovery",
 };
 
 export const CATEGORY_PATHS: Record<CategorySlug, `/category/${CategorySlug}`> = {

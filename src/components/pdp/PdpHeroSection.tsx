@@ -115,6 +115,89 @@ function SocialBubble({
   );
 }
 
+function HeroPenSocialAnimation({
+  productImage,
+  productAlt,
+  productForm,
+  socialA,
+  socialB,
+  floatRef,
+  reduceMotion,
+}: {
+  productImage: string;
+  productAlt: string;
+  productForm: "pen" | "pill";
+  socialA?: { name: string };
+  socialB?: { name: string };
+  floatRef: React.RefObject<HTMLDivElement | null>;
+  reduceMotion: boolean | null;
+}) {
+  const animatePen = productForm === "pen" && !reduceMotion;
+
+  return (
+    <>
+      <div className="pdp-hero-editorial-product-parallax" ref={floatRef}>
+        <div
+          className={`pdp-hero-editorial-product${
+            productForm === "pill" ? " pdp-hero-editorial-product--pill" : ""
+          }`}
+        >
+          <div className="pdp-hero-editorial-product-inner">
+            <motion.img
+              src={productImage}
+              alt={productAlt}
+              className={`pdp-hero-editorial-product-img${
+                productForm === "pill" ? " pdp-hero-editorial-product-img--pill" : ""
+              }`}
+              initial={reduceMotion ? false : { opacity: 0, y: 28, scale: 0.96 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+              loading="eager"
+              fetchPriority="high"
+              decoding="async"
+            />
+          </div>
+          <span className="pdp-hero-editorial-scroll-hint" aria-hidden="true">
+            <svg viewBox="0 0 20 20" fill="none">
+              <circle cx="10" cy="10" r="9" stroke="currentColor" strokeWidth="1.2" />
+              <path d="M10 7v6M7 11l3 3 3-3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+            </svg>
+          </span>
+        </div>
+      </div>
+
+      {socialA ? (
+        <div
+          className={`pdp-hero-social-wrap pdp-hero-social-wrap--left${
+            animatePen ? " pdp-hero-social-wrap--animated" : ""
+          }`}
+        >
+          <SocialBubble
+            className="pdp-hero-social--left"
+            name={socialA.name}
+            message="has just started this plan"
+            tone="purchase"
+          />
+        </div>
+      ) : null}
+      {socialB ? (
+        <div
+          className={`pdp-hero-social-wrap pdp-hero-social-wrap--right${
+            animatePen ? " pdp-hero-social-wrap--animated" : ""
+          }`}
+        >
+          <SocialBubble
+            className="pdp-hero-social--right"
+            name={socialB.name}
+            message="rated this treatment highly"
+            tone="like"
+          />
+        </div>
+      ) : null}
+    </>
+  );
+}
+
 type PdpHeroSectionProps = {
   heroRef: React.RefObject<HTMLElement | null>;
   onStart: (e: MouseEvent) => void;
@@ -220,7 +303,12 @@ export function PdpHeroSection({ heroRef, onStart }: PdpHeroSectionProps) {
             </div>
           </motion.div>
 
-          <div className="pdp-hero-editorial-stage" ref={stageRef}>
+          <div
+            className={`pdp-hero-editorial-stage${
+              productForm === "pen" && !reduceMotion ? " pdp-hero-editorial-stage--animated" : ""
+            }`}
+            ref={stageRef}
+          >
             <div className="pdp-hero-editorial-arch" aria-hidden="true" />
             <div className="pdp-hero-editorial-orb pdp-hero-editorial-orb--a" aria-hidden="true" />
             <div className="pdp-hero-editorial-orb pdp-hero-editorial-orb--b" aria-hidden="true" />
@@ -241,49 +329,15 @@ export function PdpHeroSection({ heroRef, onStart }: PdpHeroSectionProps) {
               />
             </svg>
 
-            <div
-              className={`pdp-hero-editorial-product${
-                productForm === "pill" ? " pdp-hero-editorial-product--pill" : ""
-              }`}
-              ref={floatRef}
-            >
-              <motion.img
-                src={productImage}
-                alt={productAlt}
-                className={`pdp-hero-editorial-product-img${
-                  productForm === "pill" ? " pdp-hero-editorial-product-img--pill" : ""
-                }`}
-                initial={reduceMotion ? false : { opacity: 0, y: 28, scale: 0.96 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
-                loading="eager"
-                fetchPriority="high"
-                decoding="async"
-              />
-              <span className="pdp-hero-editorial-scroll-hint" aria-hidden="true">
-                <svg viewBox="0 0 20 20" fill="none">
-                  <circle cx="10" cy="10" r="9" stroke="currentColor" strokeWidth="1.2" />
-                  <path d="M10 7v6M7 11l3 3 3-3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
-                </svg>
-              </span>
-            </div>
-
-            {socialA ? (
-              <SocialBubble
-                className="pdp-hero-social--left"
-                name={socialA.name}
-                message="has just started this plan"
-                tone="purchase"
-              />
-            ) : null}
-            {socialB ? (
-              <SocialBubble
-                className="pdp-hero-social--right"
-                name={socialB.name}
-                message="rated this treatment highly"
-                tone="like"
-              />
-            ) : null}
+            <HeroPenSocialAnimation
+              productImage={productImage}
+              productAlt={productAlt}
+              productForm={productForm}
+              socialA={socialA}
+              socialB={socialB}
+              floatRef={floatRef}
+              reduceMotion={reduceMotion}
+            />
           </div>
 
           <motion.aside

@@ -13,12 +13,7 @@ export const GOAL_IDS = [
 
 export type GoalId = (typeof GOAL_IDS)[number];
 
-export const PRODUCT_SLUGS = [
-  "glp-1-weight-loss",
-  "longevity-peptides",
-  "trt-hormonal",
-  "performance-recovery",
-] as const;
+export const PRODUCT_SLUGS = ["glp-1-weight-loss"] as const;
 
 export type ProductSlug = (typeof PRODUCT_SLUGS)[number];
 

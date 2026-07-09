@@ -28,54 +28,15 @@ export const PRODUCTS: Product[] = [
     image: SITE_IMAGES.products.penPrimary,
     outcomes: ["Steady weight loss", "Reduced appetite", "Simple weekly routine"],
   },
-  {
-    slug: "longevity-peptides",
-    brandName: "Tirosane",
-    name: "Longevity Peptide Protocol",
-    tag: "Longevity · TIDL Pen",
-    description:
-      "Peptide therapy to support recovery, sleep, and metabolic health under physician supervision.",
-    dosage: "Protocol-based dosing",
-    monthlyPrice: 349,
-    goal: "longevity",
-    image: SITE_IMAGES.products.penSecondary,
-    outcomes: ["Deeper sleep", "Faster recovery", "Metabolic support"],
-  },
-  {
-    slug: "trt-hormonal",
-    brandName: "TIDL Cycle",
-    name: "Testosterone Replacement Therapy",
-    tag: "Hormonal health · Protocol",
-    description:
-      "TRT built around your labs and lifestyle. Ongoing monitoring by a licensed provider.",
-    dosage: "Lab-guided dosing",
-    monthlyPrice: 199,
-    goal: "hormonal-health",
-    image: SITE_IMAGES.products.pillPink,
-    outcomes: ["Restored energy", "Strength and drive", "Lab-guided dosing"],
-  },
-  {
-    slug: "performance-recovery",
-    brandName: "TIDL Core",
-    name: "Performance & Recovery Program",
-    tag: "Performance · Protocol",
-    description:
-      "Targeted peptide and metabolic support for athletic performance and faster recovery.",
-    dosage: "Custom protocol",
-    monthlyPrice: 279,
-    goal: "performance",
-    image: SITE_IMAGES.products.pillProtocol,
-    outcomes: ["Faster bounce-back", "Train harder", "Consistent recovery"],
-  },
 ];
 
 const GOAL_FALLBACK: Record<GoalId, ProductSlug> = {
   "weight-loss": "glp-1-weight-loss",
   "metabolic-health": "glp-1-weight-loss",
-  longevity: "longevity-peptides",
-  "hormonal-health": "trt-hormonal",
-  performance: "performance-recovery",
-  recovery: "performance-recovery",
+  longevity: "glp-1-weight-loss",
+  "hormonal-health": "glp-1-weight-loss",
+  performance: "glp-1-weight-loss",
+  recovery: "glp-1-weight-loss",
 };
 
 export const GENERIC_FALLBACK_PRODUCT: Product = {
