@@ -42,9 +42,13 @@ export type PrxCheckoutRequest = {
 };
 
 export type PrxCheckoutResult = {
-  patient: unknown;
-  order: unknown;
-  patientId?: string | number;
+  intake: unknown;
+  path: string;
+  encounterId?: string;
+  encounterNumber?: string;
+  patientChartId?: string;
+  orderId?: string;
+  idempotencyKey: string;
 };
 
 export async function submitPrxCheckout(body: PrxCheckoutRequest, idempotencyKey: string) {

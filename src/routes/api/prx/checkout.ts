@@ -1,11 +1,18 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { createPrxClient } from "@/lib/prescribe-rx/client";
+import {
+  getPrxEncounterTypeSlug,
+  getPrxProductTypeSlug,
+  isPrxSandbox,
+} from "@/lib/prescribe-rx/env";
 import { PrxApiError } from "@/lib/prescribe-rx/types";
 import {
-  mapCheckoutToOrderPayload,
-  mapQuizToPatientPayload,
-  type PrxCheckoutBody,
-} from "@/server/prx/mappers";
+  extractEncounterId,
+  extractEncounterNumber,
+  extractOrderId,
+  extractPatientChartId,
+} from "@/server/prx/extract";
+import { mapCheckoutToUnifiedIntakePayload, type PrxCheckoutBody } from "@/server/prx/mappers";
 import {
   getIdempotencyKey,
   handlePrxRouteError,
@@ -14,13 +21,7 @@ import {
   readJsonBody,
 } from "@/server/prx/respond";
 
-function extractPatientId(patient: unknown): string | number | undefined {
-  if (patient == null || typeof patient !== "object") return undefined;
-  const record = patient as Record<string, unknown>;
-  const id = record.id ?? record.patient_id ?? record.patientId;
-  if (typeof id === "string" || typeof id === "number") return id;
-  return undefined;
-}
+const UNIFIED_INTAKE_PATH = "/telehealth/intake/unified";
 
 export const Route = createFileRoute("/api/prx/checkout")({
   server: {
@@ -34,47 +35,38 @@ export const Route = createFileRoute("/api/prx/checkout")({
 
           const idempotencyKey = getIdempotencyKey(request) ?? body.idempotencyKey ?? crypto.randomUUID();
           const prx = createPrxClient();
-          const patientPayload = mapQuizToPatientPayload(body.quiz, body.checkout);
 
-          let patient: unknown;
+          const intakePayload = mapCheckoutToUnifiedIntakePayload(body, {
+            idempotencyKey,
+            sandbox: isPrxSandbox(),
+            encounterTypeSlug: getPrxEncounterTypeSlug(),
+            productTypeSlug: getPrxProductTypeSlug(body.product.slug),
+          });
+
+          let intake: unknown;
           try {
-            patient = await prx.post("/patients", patientPayload);
-          } catch (error) {
-            if (error instanceof PrxApiError) {
-              return jsonError("Failed to create patient in PrescribeRx", error.status, error.body);
-            }
-            throw error;
-          }
-
-          const patientId = extractPatientId(patient);
-          const orderPayload = mapCheckoutToOrderPayload(patient, body, patientId);
-
-          let order: unknown;
-          try {
-            order = await prx.post("/orders", orderPayload, {
+            intake = await prx.post(UNIFIED_INTAKE_PATH, intakePayload, {
               headers: { "Idempotency-Key": idempotencyKey },
             });
           } catch (error) {
             if (error instanceof PrxApiError) {
-              if (error.status === 404 || error.status === 405) {
-                return jsonOk(
-                  {
-                    patient,
-                    patientId,
-                    order: null,
-                    orderSubmissionSkipped: true,
-                    note: "Patient saved in PrescribeRx. Order creation is not available on this sandbox endpoint yet.",
-                    idempotencyKey,
-                  },
-                  { status: 201 },
-                );
-              }
-              return jsonError("Failed to create order in PrescribeRx", error.status, error.body);
+              return jsonError("Failed to submit unified intake to PrescribeRx", error.status, error.body);
             }
             throw error;
           }
 
-          return jsonOk({ patient, order, patientId, idempotencyKey }, { status: 201 });
+          return jsonOk(
+            {
+              intake,
+              path: UNIFIED_INTAKE_PATH,
+              encounterId: extractEncounterId(intake),
+              encounterNumber: extractEncounterNumber(intake),
+              patientChartId: extractPatientChartId(intake),
+              orderId: extractOrderId(intake),
+              idempotencyKey,
+            },
+            { status: 201 },
+          );
         } catch (error) {
           return handlePrxRouteError(error);
         }

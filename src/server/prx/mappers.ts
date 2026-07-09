@@ -9,75 +9,132 @@ export type PrxCheckoutBody = {
   idempotencyKey?: string;
 };
 
+export type UnifiedIntakeOptions = {
+  idempotencyKey: string;
+  sandbox: boolean;
+  encounterTypeSlug: string;
+  productTypeSlug: string;
+};
+
 export function mapQuizToPatientPayload(
   quiz: QuizFormData,
   checkout?: Partial<CheckoutFormData>,
 ) {
-  const heightInchesTotal =
-    quiz.heightFeet != null && quiz.heightInches != null
-      ? quiz.heightFeet * 12 + quiz.heightInches
-      : null;
+  const dob = quiz.age != null ? approximateDobFromAge(quiz.age) : undefined;
 
   return {
-    email: quiz.email,
-    phone: checkout?.phone || quiz.phone,
     first_name: checkout?.firstName,
     last_name: checkout?.lastName,
-    dob: quiz.age != null ? approximateDobFromAge(quiz.age) : undefined,
-    sex: quiz.sex,
-    height_inches: heightInchesTotal,
-    weight_lbs: quiz.weightLbs,
-    goal: quiz.goal,
-    product_slug: quiz.productSlug,
-    health_conditions: quiz.healthConditions,
-    taking_medications: quiz.takingMedications,
-    has_allergies: quiz.hasAllergies,
-    exercise: quiz.exercise,
-    sleep: quiz.sleep,
-    eating_habits: quiz.eatingHabits,
-    used_glp1_before: quiz.usedGlp1Before,
-    previous_weight_loss_meds: quiz.previousWeightLossMeds,
-    physician_notice_acknowledged: quiz.physicianNoticeAcknowledged,
-    shipping: checkout
-      ? {
-          address_line1: checkout.addressLine1,
-          address_line2: checkout.addressLine2 || undefined,
-          city: checkout.city,
-          state: checkout.state,
-          zip: checkout.zip,
-        }
-      : undefined,
-    intake_source: "tidl_quiz",
+    email: quiz.email,
+    date_of_birth: dob,
+    phone: checkout?.phone || quiz.phone,
+    gender: quiz.sex ?? undefined,
   };
 }
 
-export function mapCheckoutToOrderPayload(
-  patient: unknown,
-  body: PrxCheckoutBody,
-  patientId?: string | number,
-) {
+export function mapCheckoutToPatientAddressPayload(checkout: CheckoutFormData) {
   return {
-    patient_id: patientId,
-    patient,
-    product_slug: body.product.slug,
-    product_name: body.product.name,
-    dosage: body.product.dosage,
-    goal: body.product.goal,
-    monthly_price: body.product.monthlyPrice,
-    payment_method: body.checkout.paymentMethod,
-    shipping: {
-      first_name: body.checkout.firstName,
-      last_name: body.checkout.lastName,
-      address_line1: body.checkout.addressLine1,
-      address_line2: body.checkout.addressLine2 || undefined,
-      city: body.checkout.city,
-      state: body.checkout.state,
-      zip: body.checkout.zip,
-      phone: body.checkout.phone,
-    },
-    quiz_snapshot: body.quiz,
-    source: "tidl_checkout",
+    street: checkout.addressLine1,
+    street2: checkout.addressLine2 || undefined,
+    city: checkout.city,
+    state: checkout.state.slice(0, 2).toUpperCase(),
+    zip: checkout.zip,
+    country: "US",
   };
+}
+
+/** POST /telehealth/intake/unified — Flow 1 from PRX Top-5 Integration Flows. */
+export function mapCheckoutToUnifiedIntakePayload(
+  body: PrxCheckoutBody,
+  options: UnifiedIntakeOptions,
+) {
+  const patient = mapQuizToPatientPayload(body.quiz, body.checkout);
+  const vitals = mapQuizToVitals(body.quiz);
+  const answers = mapQuizToIntakeAnswers(body.quiz, body.product.goal);
+
+  const consents = mapQuizToConsents(body.quiz);
+
+  return {
+    ...(options.sandbox ? { is_sandbox: true } : {}),
+    encounter_type_slug: options.encounterTypeSlug,
+    patient: {
+      first_name: patient.first_name,
+      last_name: patient.last_name,
+      email: patient.email,
+      date_of_birth: patient.date_of_birth,
+      phone: patient.phone,
+      ...(patient.gender ? { gender: patient.gender } : {}),
+      shipping_address: mapCheckoutToPatientAddressPayload(body.checkout),
+      billing_same_as_shipping: true,
+    },
+    ...(vitals ? { vitals } : {}),
+    ...(Object.keys(answers).length > 0 ? { answers } : {}),
+    products: [
+      {
+        product_type_slug: options.productTypeSlug,
+        quantity: 1,
+      },
+    ],
+    payment: mapCheckoutToPaymentPayload(body, options.idempotencyKey),
+    ...(consents ? { consents } : {}),
+  };
+}
+
+function mapQuizToVitals(quiz: QuizFormData) {
+  const heightInches =
+    quiz.heightFeet != null && quiz.heightInches != null
+      ? quiz.heightFeet * 12 + quiz.heightInches
+      : undefined;
+
+  if (heightInches == null && quiz.weightLbs == null) return undefined;
+
+  return {
+    ...(heightInches != null ? { height_inches: heightInches } : {}),
+    ...(quiz.weightLbs != null ? { weight_lbs: quiz.weightLbs } : {}),
+  };
+}
+
+function mapQuizToIntakeAnswers(quiz: QuizFormData, goal: Product["goal"] | null) {
+  const answers: Record<string, unknown> = {};
+
+  if (quiz.weightLbs != null) answers.current_weight_lbs = quiz.weightLbs;
+  if (goal) answers.weight_goal = goal;
+  if (quiz.exercise) answers.exercise_level = quiz.exercise;
+  if (quiz.sleep) answers.sleep_quality = quiz.sleep;
+  if (quiz.eatingHabits) answers.eating_habits = quiz.eatingHabits;
+  if (quiz.healthConditions.length > 0) answers.health_conditions = quiz.healthConditions;
+  if (quiz.takingMedications != null) answers.taking_medications = quiz.takingMedications;
+  if (quiz.hasAllergies != null) answers.has_allergies = quiz.hasAllergies;
+  if (quiz.usedGlp1Before != null) answers.used_glp1_before = quiz.usedGlp1Before;
+  if (quiz.previousWeightLossMeds != null) {
+    answers.previous_weight_loss_meds = quiz.previousWeightLossMeds;
+  }
+
+  return answers;
+}
+
+function mapCheckoutToPaymentPayload(body: PrxCheckoutBody, transactionId: string) {
+  return {
+    mode: "reference_captured" as const,
+    gateway: body.checkout.paymentMethod === "hsa_fsa" ? "hsa_fsa" : "stripe",
+    transaction: {
+      transaction_id: transactionId,
+      amount: body.product.monthlyPrice,
+    },
+  };
+}
+
+function mapQuizToConsents(quiz: QuizFormData) {
+  if (!quiz.physicianNoticeAcknowledged) return undefined;
+
+  return [
+    {
+      consent_type: 6,
+      consent_text:
+        "I consent to telehealth services and understand a licensed physician will review my assessment.",
+      signed_at: new Date().toISOString(),
+    },
+  ];
 }
 
 function approximateDobFromAge(age: number): string {

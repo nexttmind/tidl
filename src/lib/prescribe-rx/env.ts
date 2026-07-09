@@ -63,3 +63,30 @@ export function isPrxConfigured(): boolean {
     readEnv("PRX_API_TOKEN") ?? readEnv("PRX_TOKEN_CLIENT") ?? readEnv(ROLE_ENV_KEYS.client),
   );
 }
+
+/** Encounter type slug for POST /telehealth/intake/unified (e.g. weight-management). */
+export function getPrxEncounterTypeSlug(): string {
+  return readEnv("PRX_ENCOUNTER_TYPE_SLUG") ?? "weight-management";
+}
+
+const PRODUCT_TYPE_SLUG_ENV_KEYS: Record<string, string> = {
+  "glp-1-weight-loss": "PRX_GLP1_PRODUCT_TYPE_SLUG",
+};
+
+const DEFAULT_PRODUCT_TYPE_SLUGS: Record<string, string> = {
+  "glp-1-weight-loss": "tirzepatide",
+};
+
+/** PRX product_type_slug for unified intake (e.g. tirzepatide). */
+export function getPrxProductTypeSlug(productSlug: string): string {
+  const envKey = PRODUCT_TYPE_SLUG_ENV_KEYS[productSlug] ?? "PRX_DEFAULT_PRODUCT_TYPE_SLUG";
+  return readEnv(envKey) ?? DEFAULT_PRODUCT_TYPE_SLUGS[productSlug] ?? "tirzepatide";
+}
+
+/** True on demo sandbox unless PRX_SANDBOX=false. */
+export function isPrxSandbox(): boolean {
+  const flag = readEnv("PRX_SANDBOX");
+  if (flag === "false" || flag === "0") return false;
+  const baseUrl = readEnv("PRX_API_BASE_URL") ?? "https://demo.prescribe-rx.com/api/v1";
+  return baseUrl.includes("demo.prescribe-rx.com");
+}
