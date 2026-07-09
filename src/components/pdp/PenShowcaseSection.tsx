@@ -5,26 +5,20 @@ export function PenShowcaseSection() {
   const { penImage, penShowcase } = usePdpData();
 
   const [penVisible, setPenVisible] = useState(false);
-  const [statsVisible, setStatsVisible] = useState(false);
-  const [counters, setCounters] = useState<[number, number, number, number]>([0, 0, 0, 0]);
   const [isVideoOpen, setIsVideoOpen] = useState(false);
 
   const penGridRef = useRef<HTMLDivElement>(null);
-  const penStatsRef = useRef<HTMLDivElement>(null);
   const penStageRef = useRef<HTMLDivElement>(null);
   const penFloatRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!penShowcase) return;
     const gridEl = penGridRef.current;
-    const statsEl = penStatsRef.current;
-    if (!gridEl || !statsEl) return;
+    if (!gridEl) return;
 
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduce) {
       setPenVisible(true);
-      setStatsVisible(true);
-      setCounters(penShowcase.stats.map((stat) => stat.target) as [number, number, number, number]);
       return;
     }
 
@@ -33,7 +27,6 @@ export function PenShowcaseSection() {
         entries.forEach((entry) => {
           if (!entry.isIntersecting) return;
           if (entry.target === gridEl) setPenVisible(true);
-          if (entry.target === statsEl) setStatsVisible(true);
           io.unobserve(entry.target);
         });
       },
@@ -41,29 +34,8 @@ export function PenShowcaseSection() {
     );
 
     io.observe(gridEl);
-    io.observe(statsEl);
     return () => io.disconnect();
   }, [penShowcase]);
-
-  useEffect(() => {
-    if (!penShowcase || !statsVisible) return;
-    const targets = penShowcase.stats.map((stat) => stat.target);
-    const dur = 1100;
-    const t0 = performance.now();
-    let rafId: number;
-
-    function step(now: number) {
-      const k = Math.min(1, (now - t0) / dur);
-      const ease = 1 - Math.pow(1 - k, 3);
-      setCounters(
-        targets.map((target) => Math.round(target * ease)) as [number, number, number, number],
-      );
-      if (k < 1) rafId = requestAnimationFrame(step);
-    }
-
-    rafId = requestAnimationFrame(step);
-    return () => cancelAnimationFrame(rafId);
-  }, [penShowcase, statsVisible]);
 
   useEffect(() => {
     const float = penFloatRef.current;
@@ -162,19 +134,6 @@ export function PenShowcaseSection() {
               </div>
             ))}
           </div>
-        </div>
-
-        <div className={`tdlp5-stats${statsVisible ? " tdlp5-on" : ""}`} ref={penStatsRef}>
-          {penShowcase.stats.map((stat, index) => (
-            <div className="tdlp5-stat" key={stat.tag}>
-              <div className="tdlp5-snum">
-                <span>{counters[index]}</span>
-                {stat.suffix ? <em>{stat.suffix}</em> : null}
-              </div>
-              <div className="tdlp5-stag">{stat.tag}</div>
-              <div className="tdlp5-ssub">{stat.sub}</div>
-            </div>
-          ))}
         </div>
 
         <div className="tdlp5-grain" />
