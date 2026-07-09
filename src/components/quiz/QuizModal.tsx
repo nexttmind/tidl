@@ -9,13 +9,14 @@ import { useQuizModal } from "@/providers/quiz-modal-provider";
 import { QuizFlow } from "./QuizFlow";
 import "./quiz.css";
 
-const TEXT_STEPS = new Set([2, 7]);
 const AUTO_ADVANCE_MS: Record<number, number> = {
   1: 340,
+  2: 700,
   3: 340,
   4: 340,
   5: 340,
   6: 340,
+  7: 700,
 };
 
 export function QuizModal() {
@@ -73,6 +74,8 @@ export function QuizModal() {
 
   if (!mounted) return null;
 
+  const isResultsStep = quiz.currentStep === 8;
+
   return createPortal(
     <>
       <div
@@ -81,54 +84,76 @@ export function QuizModal() {
         aria-hidden={!isOpen}
       />
       <div
-        className={`quiz-modal-sheet quiz-root ${isOpen ? "is-open" : ""}`}
-        role="dialog"
-        aria-modal="true"
-        aria-label="Medical intake assessment"
-        onWheel={(e) => e.stopPropagation()}
-        onTouchMove={(e) => e.stopPropagation()}
+        className={`quiz-modal-stage ${isOpen ? "is-open" : ""}`}
+        aria-hidden={!isOpen}
       >
-        <div className="flex items-center justify-between border-b border-[var(--quiz-border)] bg-[var(--quiz-surface)] px-5 py-4">
+        <div
+          className={`quiz-modal-sheet quiz-root ${isOpen ? "is-open" : ""}${
+            isResultsStep ? " quiz-modal-sheet--results" : ""
+          }`}
+          role="dialog"
+          aria-modal="true"
+          aria-label="Medical intake assessment"
+          onWheel={(e) => e.stopPropagation()}
+          onTouchMove={(e) => e.stopPropagation()}
+          onClick={(e) => e.stopPropagation()}
+        >
           <button
             type="button"
-            className="text-sm text-[var(--quiz-muted)]"
-            onClick={quiz.canGoBack ? quiz.goBack : closeModal}
+            className="quiz-modal-close-fab"
+            onClick={closeModal}
+            aria-label="Close assessment"
           >
-            {quiz.canGoBack ? "Back" : "Close"}
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M6 6l8 8M14 6l-8 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+            </svg>
           </button>
-          <span className="text-sm font-medium">Medical intake</span>
-          <span className="w-10" />
-        </div>
-        <div className="px-5 py-3">
-          <div className="quiz-progress-track">
-            <div className="quiz-progress-fill" style={{ width: `${quiz.progress}%` }} />
+
+          <div className="quiz-modal-progress">
+            <div className="quiz-progress-track">
+              <div className="quiz-progress-fill" style={{ width: `${quiz.progress}%` }} />
+            </div>
           </div>
-        </div>
-        <div ref={contentRef} className="quiz-modal-content">
-          {quiz.hydrated ? <QuizFlow quiz={quiz} /> : null}
-        </div>
-        <div className="border-t border-[var(--quiz-border)] bg-[var(--quiz-surface)] px-5 py-4">
-          {quiz.currentStep === 8 ? (
+
+          <div className="quiz-modal-header">
             <button
               type="button"
-              className="tidl-btn"
-              onClick={() => {
-                quiz.completeAndCheckout();
-                closeModal();
-                navigate({ to: "/checkout" });
-              }}
+              className="quiz-modal-header-btn"
+              onClick={quiz.canGoBack ? quiz.goBack : undefined}
+              disabled={!quiz.canGoBack}
+              aria-label={quiz.canGoBack ? "Go back" : undefined}
             >
-              Get my plan →
+              {quiz.canGoBack ? (
+                <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                  <path d="M12.5 5 7.5 10l5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                </svg>
+              ) : null}
             </button>
-          ) : TEXT_STEPS.has(quiz.currentStep) ? (
-            <button type="button" className="tidl-btn" onClick={() => quiz.goNext()}>
-              Continue
-            </button>
-          ) : (
-            <p className="text-center text-xs text-[var(--quiz-muted-warm)]">
-              Select an option to continue
-            </p>
-          )}
+            <span className="quiz-modal-step-counter">
+              {quiz.currentStep} / {quiz.totalSteps}
+            </span>
+            <span className="quiz-modal-header-spacer" aria-hidden="true" />
+          </div>
+
+          <div ref={contentRef} className="quiz-modal-content">
+            {quiz.hydrated ? <QuizFlow quiz={quiz} hideStepLabel /> : null}
+          </div>
+
+          {isResultsStep ? (
+            <div className="quiz-modal-footer">
+              <button
+                type="button"
+                className="tidl-btn"
+                onClick={() => {
+                  quiz.completeAndCheckout();
+                  closeModal();
+                  navigate({ to: "/checkout" });
+                }}
+              >
+                Get my plan →
+              </button>
+            </div>
+          ) : null}
         </div>
       </div>
     </>,

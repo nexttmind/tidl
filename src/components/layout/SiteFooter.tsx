@@ -4,16 +4,16 @@ import { TidlWordmark } from "@/components/brand/TidlWordmark";
 import { SITE_IMAGES, SOCIAL_ICONS } from "@/lib/site-assets";
 
 const TREATMENT_LINKS = [
-  { to: "/products/glp-1-weight-loss" as const, label: "Weight Loss" },
-  { href: "/#services", label: "Longevity" },
-  { href: "/#services", label: "Hormonal Health" },
-  { href: "/#services", label: "Metabolic Care" },
-  { href: "/#services", label: "Performance" },
-  { href: "/#services", label: "Recovery" },
+  { href: "/category/weight-loss", label: "Weight Loss" },
+  { href: "/category/longevity", label: "Longevity" },
+  { href: "/category/testosterone", label: "Hormonal Health" },
+  { href: "/category/weight-loss", label: "Metabolic Care" },
+  { href: "/category/longevity", label: "Performance" },
+  { href: "/category/longevity", label: "Recovery" },
 ] as const;
 
 const COMPANY_LINKS = [
-  { href: "/#howItWorks", label: "How It Works" },
+  { href: "/#products", label: "Products" },
   { href: "/#faq", label: "FAQs" },
   { href: "/#services", label: "Find Your Treatment" },
   { href: "/#askTidl", label: "AI Discovery" },
@@ -42,7 +42,17 @@ function FooterLink({ href, label }: { href: string; label: string }) {
   );
 }
 
-function FooterRouterLink({ to, label }: { to: "/products/glp-1-weight-loss"; label: string }) {
+function FooterRouterLink({
+  to,
+  label,
+}: {
+  to:
+    | "/products/glp-1-weight-loss"
+    | "/products/trt-hormonal"
+    | "/products/longevity-peptides"
+    | "/products/performance-recovery";
+  label: string;
+}) {
   return (
     <div className="footer-link-wrap">
       <Link to={to} className="footer-link">
@@ -66,7 +76,7 @@ export function SiteFooter({ onGetStarted }: SiteFooterProps) {
   };
 
   return (
-    <div className="footer-wrapper">
+    <div className="footer-wrapper" data-site-header-theme="dark">
       <section className="footer container-full">
         <div className="container-fluid">
           <div className="footer-content">
@@ -87,8 +97,8 @@ export function SiteFooter({ onGetStarted }: SiteFooterProps) {
                     >
                       <div className="button-outside-01">
                         <div className="button-inside">
-                          <div className="button-text-01">Get started</div>
-                          <div className="button-text-01">Take Quiz</div>
+                          <div className="button-text-01">Get Started</div>
+                          <div className="button-text-01">Get Started</div>
                         </div>
                       </div>
                     </a>
@@ -114,13 +124,9 @@ export function SiteFooter({ onGetStarted }: SiteFooterProps) {
                   <div className="footer-body">
                     <div className="title-small">Treatments</div>
                     <div className="footer-body-links">
-                      {TREATMENT_LINKS.map((item) =>
-                        "to" in item ? (
-                          <FooterRouterLink key={item.label} to={item.to} label={item.label} />
-                        ) : (
-                          <FooterLink key={item.label} href={item.href} label={item.label} />
-                        ),
-                      )}
+                      {TREATMENT_LINKS.map((item) => (
+                        <FooterLink key={item.label} href={item.href} label={item.label} />
+                      ))}
                     </div>
                   </div>
 
@@ -145,8 +151,9 @@ export function SiteFooter({ onGetStarted }: SiteFooterProps) {
 
                 <div className="footer-subscriber-box">
                   <div className="footer-subscriber-head">
-                    <Link to="/" className="footer-logo-link w-inline-block" aria-label="TIDL home">
-                      <TidlWordmark variant="dark" size="footer" />
+                    <Link to="/" className="footer-logo-link footer-logo-brand" aria-label="TIDL home">
+                      <img src="/tidl_logo.png" alt="" className="footer-logo-mark" loading="lazy" />
+                      <TidlWordmark variant="light" size="footer" />
                     </Link>
                     <div className="footer-subscriber-text p1-regular">
                       Health insights, treatment updates, and offers, straight to your inbox.
@@ -196,9 +203,10 @@ export function SiteFooter({ onGetStarted }: SiteFooterProps) {
 
       <img
         src={SITE_IMAGES.footer.decorative}
+        srcSet={SITE_IMAGES.footer.decorativeSrcSet}
         loading="lazy"
         sizes="(max-width: 3149px) 100vw, 3149px"
-        alt=""
+        alt="TIDL Health"
         className="footer-btm-img"
       />
     </div>

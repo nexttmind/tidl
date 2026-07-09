@@ -7,7 +7,7 @@ type PdpCtaBandProps = {
 
 export function PdpCtaBand({ onStart }: PdpCtaBandProps) {
   return (
-    <section className="pdp-cta-section" id="get-started">
+    <section className="pdp-cta-section" id="get-started" data-pdp-header-theme="light">
       <Reveal>
         <div className="pdp-cta-band">
           <div className="pdp-cta-band-inner">

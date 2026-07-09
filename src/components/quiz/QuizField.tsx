@@ -4,13 +4,15 @@ import { cn } from "@/lib/utils";
 export function QuizStepIntro({
   title,
   description,
+  centered = false,
 }: {
   title: string;
   description?: string;
+  centered?: boolean;
 }) {
   return (
-    <div className="mb-6">
-      <h2 className="text-2xl font-medium tracking-tight">{title}</h2>
+    <div className={cn("mb-6", centered && "quiz-step-intro--centered")}>
+      <h2 className="quiz-step-title">{title}</h2>
       {description ? (
         <p className="mt-2 text-sm text-[var(--quiz-muted)]">{description}</p>
       ) : null}
@@ -55,7 +57,8 @@ export function QuizOptionCard({
       className={cn("quiz-option-card w-full", selected && "is-selected")}
       onClick={onClick}
     >
-      {children}
+      <span className="quiz-option-card-label">{children}</span>
+      <span className="quiz-option-radio" aria-hidden="true" />
     </button>
   );
 }
@@ -89,10 +92,12 @@ export function QuizYesNo({
   value,
   onChange,
   label,
+  error,
 }: {
   value: boolean | null;
   onChange: (value: boolean) => void;
   label: string;
+  error?: string;
 }) {
   return (
     <div className="mb-4">
@@ -113,6 +118,7 @@ export function QuizYesNo({
           No
         </button>
       </div>
+      {error ? <span className="mt-1 block text-xs text-red-600">{error}</span> : null}
     </div>
   );
 }

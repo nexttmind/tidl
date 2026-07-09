@@ -34,7 +34,7 @@ export const HIW_STEPS: HiWStep[] = [
   {
     id: 0,
     timelineLabel: "Take the Quiz",
-    headline: "Take the quiz.",
+    headline: "Take the quiz. Five minutes.",
     body:
       "Answer a few questions about your health and performance goals. Five minutes on your phone, and it doubles as your medical intake, so there is nothing to fill out twice.",
     image: SITE_IMAGES.howItWorks[0],
@@ -60,7 +60,7 @@ export const HIW_STEPS: HiWStep[] = [
   {
     id: 1,
     timelineLabel: "Licensed Review",
-    headline: "From licensed pharmacies to your door.",
+    headline: "Licensed review. Real doctors.",
     body:
       "Prescribed by licensed providers, filled by US pharmacies, and shipped in discreet, temperature-safe packaging. Clinical rigor without the clinic.",
     image: SITE_IMAGES.howItWorks[1],
@@ -86,7 +86,7 @@ export const HIW_STEPS: HiWStep[] = [
   {
     id: 2,
     timelineLabel: "Delivery & Support",
-    headline: "Real change, tracked over time.",
+    headline: "Delivered. Supported. On your terms.",
     body:
       "Consistent, physician-guided treatment that supports steady progress you can measure, week after week.",
     image: SITE_IMAGES.howItWorks[2],

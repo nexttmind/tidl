@@ -3,6 +3,7 @@
 @import "tw-animate-css";
 @import "./styles/typography.css";
 @import "./styles/imagery.css";
+@import "./components/layout/site-header.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -211,6 +212,31 @@
 
 .pdp-footer-zone .footer-wrapper {
   background-color: rgb(14, 14, 14) !important;
+}
+
+.footer-logo-link.footer-logo-brand {
+  display: inline-flex !important;
+  flex-flow: row nowrap !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 12px;
+  width: auto !important;
+  height: auto !important;
+  max-width: none !important;
+  text-decoration: none;
+}
+
+.footer-logo-brand .tidl-wordmark {
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+.footer-logo-mark {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  display: block;
+  object-fit: contain;
 }
 
 /* No script/decorative fonts on editorial labels */

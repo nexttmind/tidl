@@ -231,7 +231,7 @@ export function CtaSection({ onGetStarted }: { onGetStarted?: () => void }) {
   }, []);
 
   return (
-    <section ref={ref} id="cta-section" className="relative overflow-hidden bg-background">
+    <section ref={ref} id="cta-section" className="relative overflow-hidden bg-background" data-site-header-theme="light">
       <div className="mx-auto grid min-h-[85vh] max-w-7xl grid-cols-1 items-center gap-12 px-5 py-16 sm:gap-16 sm:px-8 sm:py-24 lg:grid-cols-[1.05fr_1fr] lg:px-12">
         <div className="order-2 flex max-w-xl flex-col gap-6 sm:gap-8 lg:order-1">
           <Headline active={active} />

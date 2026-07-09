@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { motion, useInView, useReducedMotion } from "framer-motion";
-import { OUTCOME_PHRASES } from "./data/glp1-pdp-data";
+import { usePdpData } from "./PdpDataProvider";
 import { settle } from "./pdp-ui";
 
 function OutcomePhrase({ phrase, index }: { phrase: string; index: number }) {
@@ -45,6 +45,7 @@ function OutcomePhrase({ phrase, index }: { phrase: string; index: number }) {
 }
 
 export function PdpOutcomeSection() {
+  const { outcomePhrases } = usePdpData();
   const headRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const noteRef = useRef<HTMLParagraphElement>(null);
@@ -55,7 +56,7 @@ export function PdpOutcomeSection() {
   const titleWords = "Who this is for".split(" ");
 
   return (
-    <section className="pdp-outcome-full" id="outcome">
+    <section className="pdp-outcome-full" id="outcome" data-pdp-header-theme="light">
       <div className="pdp-outcome-full-inner">
         <div className="pdp-outcome-full-head" ref={headRef}>
           <motion.span
@@ -92,7 +93,7 @@ export function PdpOutcomeSection() {
         </div>
 
         <div className="pdp-outcome-full-list">
-          {OUTCOME_PHRASES.map((phrase, index) => (
+          {outcomePhrases.map((phrase, index) => (
             <OutcomePhrase key={phrase} phrase={phrase} index={index} />
           ))}
         </div>

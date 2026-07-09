@@ -2,12 +2,13 @@ import { useState, useEffect, useRef, useCallback, type MouseEvent } from 'react
 import { Link } from '@tanstack/react-router';
 import { useQuizModal } from '@/providers/quiz-modal-provider';
 import { lockPageScroll, unlockPageScroll } from '@/lib/age-gate';
+import { SiteHeader } from '@/components/layout/SiteHeader';
+import { useSiteHeaderState } from '@/hooks/useSiteHeaderState';
 import './home.css';
 import { CtaSection } from './cta/CtaSection';
-import { ServicesClosing } from './ServicesClosing';
-import { HowItWorksSection } from './how-it-works/HowItWorksSection';
+import { ServicesSection } from './ServicesSection';
+import { ProductsCatalogSection } from './products-catalog/ProductsCatalogSection';
 import { SiteFooter } from '@/components/layout/SiteFooter';
-import { TidlWordmark } from '@/components/brand/TidlWordmark';
 import { PatientAvatar } from '@/components/brand/PatientAvatar';
 import { SITE_IMAGES } from '@/lib/site-assets';
 import { TESTIMONIALS } from '@/lib/testimonials';
@@ -113,14 +114,6 @@ const TICKER_ITEMS = [
   { t: "Recovery" },
 ];
 
-function ArrowRight() {
-  return (
-    <svg width="100%" height="100%" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M3.75 9H14.25" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-      <path d="M9 3.75L14.25 9L9 14.25" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-    </svg>
-  );
-}
 
 function FaqIcon() {
   return (
@@ -140,6 +133,18 @@ export default function HomePage() {
     [openModal],
   );
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const { pinned: headerPinned, theme: headerTheme, transparent: headerTransparent } =
+    useSiteHeaderState({ defaultTheme: 'dark' });
+
+  const homeNavLinks = [
+    { href: '#services', label: 'Treatments' },
+    { href: '#products', label: 'Products' },
+    { href: '#journey', label: 'About' },
+    { href: '#askTidl', label: 'Learn' },
+    { href: '#stories', label: 'Stories' },
+    { href: '#faq', label: 'FAQ' },
+    { to: '/products/glp-1-weight-loss', label: 'GLP-1 Weight Loss' },
+  ];
 
   useEffect(() => {
     if (!mobileNavOpen) return;
@@ -399,10 +404,6 @@ export default function HomePage() {
     }, 900);
   }, []);
 
-  const openAskTidl = useCallback(() => {
-    document.getElementById('askTidl')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    window.setTimeout(() => askInputRef.current?.focus(), 450);
-  }, []);
 
   const handleFaqToggle = (id: number) => {
     setFaqOpen((prev) => (prev === id ? null : id));
@@ -460,187 +461,31 @@ export default function HomePage() {
 
   return (
     <div className="body">
-      {/* ===== Announcement Bar ===== */}
-      <div className="tdl-bar" id="tdlBar" style={{ display: 'block', visibility: 'visible', opacity: 1 }}>
-        <div className="tdl-bar-inner">
-          <span className="tdl-msg">TIDL is now a telehealth platform. Care that delivers results.</span>
-          <a className="tdl-link" href="#journey">
-            Learn more
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="24" height="24">
-              <path d="M5 12h14M13 6l6 6-6 6"/>
-            </svg>
-          </a>
+      <div className="site-chrome-stage">
+        <div className="tdl-bar" id="tdlBar" style={{ display: 'block', visibility: 'visible', opacity: 1 }}>
+          <div className="tdl-bar-inner">
+            <span className="tdl-msg">TIDL is now a telehealth platform. Care that delivers results.</span>
+            <a className="tdl-link" href="#journey">
+              Learn more
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="24" height="24">
+                <path d="M5 12h14M13 6l6 6-6 6"/>
+              </svg>
+            </a>
+          </div>
         </div>
-      </div>
 
-      <div className="page-wrapper">
-        <div className="main-wrapper">
-          <div className="hero-wrapper-01">
-            {/* ===== Navbar ===== */}
-            <div id="navbar" className="navbar-wrap">
-              <div className="navbar">
-                <div className="nabvar-info">
-                  <a href="/" className="nav-logo _02 w-inline-block" aria-label="TIDL home">
-                    <TidlWordmark variant="light" />
-                  </a>
-                  <div className="navbar-info-left">
-                    <div className="nav-dropdown _01 w-dropdown">
-                      <div className="navitem-toggle w-dropdown-toggle">
-                        <a href="#services" className="nav-items-wrap light w-inline-block">
-                          <div className="nav-item">Treatments</div>
-                        </a>
-                      </div>
-                    </div>
-                    <div className="nav-dropdown _02 w-dropdown">
-                      <div className="navitem-toggle w-dropdown-toggle">
-                        <a href="#howItWorks" className="nav-items-wrap light w-inline-block">
-                          <div className="nav-item">How it works</div>
-                        </a>
-                      </div>
-                    </div>
-                    <div className="nav-dropdown _03 w-dropdown">
-                      <div className="navitem-toggle w-dropdown-toggle">
-                        <a href="#journey" className="nav-items-wrap light w-inline-block">
-                          <div className="nav-item">About</div>
-                        </a>
-                      </div>
-                    </div>
-                    <div className="nav-dropdown w-dropdown">
-                      <div className="navitem-toggle w-dropdown-toggle">
-                        <a href="#askTidl" className="nav-items-wrap light w-inline-block">
-                          <div className="nav-item">Learn</div>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="navbar-middle">
-                  <a href="/" className="nav-logo w-inline-block" aria-label="TIDL home">
-                    <TidlWordmark variant="light" />
-                  </a>
-                </div>
-
-                <div className="navbar-right">
-                  <div className="navbar-right-btns">
-                    <a href="#" onClick={openQuiz} className="button-03 light w-inline-block">
-                      <div className="button-outside-wrap">
-                        <div className="btn-text-outside-03">
-                          <div className="btn-text-inside-03">
-                            <div className="button-text-03">Get Started</div>
-                            <div className="button-text-03">Get Started</div>
-                          </div>
-                        </div>
-                        <div className="btn-icon-outside-03">
-                          <div className="btn-icon-inside-03">
-                            <div className="btn-icon-03 w-embed"><ArrowRight /></div>
-                            <div className="btn-icon-03 w-embed"><ArrowRight /></div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="button-line-02 light"></div>
-                    </a>
-                  </div>
-                  <button
-                    type="button"
-                    className="search-icon-wrap light"
-                    aria-label="Ask TIDL"
-                    onClick={openAskTidl}
-                  >
-                    <div className="search-ico w-embed">
-                      <svg width="100%" height="100%" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M8.25 14.25C11.5637 14.25 14.25 11.5637 14.25 8.25C14.25 4.93629 11.5637 2.25 8.25 2.25C4.93629 2.25 2.25 4.93629 2.25 8.25C2.25 11.5637 4.93629 14.25 8.25 14.25Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                        <path d="M15.7469 15.7469L12.4844 12.4844" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    </div>
-                  </button>
-                </div>
-
-                <button
-                  className="nav-toggle-btn-wrap"
-                  onClick={() => setMobileNavOpen(true)}
-                  aria-label="Open menu"
-                >
-                  <div className="nav-toogle-btn menu light w-embed">
-                    <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M18.5791 15.289C19.1022 15.2891 19.5263 15.6924 19.5264 16.1894C19.5264 16.6865 19.1022 17.0897 18.5791 17.0898H5.94727C5.4241 17.0898 5 16.6865 5 16.1894C5.00004 15.6924 5.42412 15.2891 5.94727 15.289H18.5791ZM18.5791 10.4892C19.1021 10.4893 19.5261 10.8918 19.5264 11.3886C19.5264 11.8857 19.1022 12.2889 18.5791 12.289H5.94727C5.4241 12.289 5 11.8857 5 11.3886C5.00027 10.8918 5.42426 10.4893 5.94727 10.4892H18.5791ZM18.5791 5.68844C19.1022 5.68852 19.5264 6.09178 19.5264 6.58883C19.5263 7.08583 19.1022 7.48914 18.5791 7.48922H5.94727C5.42412 7.48917 5.00005 7.08585 5 6.58883C5 6.09177 5.4241 5.68849 5.94727 5.68844H18.5791Z" fill="currentColor"/>
-                    </svg>
-                  </div>
-                </button>
-
-                {/* Mobile menu */}
-                <div className={`menu-wrap _02${mobileNavOpen ? ' open' : ''}`}>
-                  <div className="menu-inside-info">
-                    <a href="/" className="nav-logo _03 w-inline-block" aria-label="TIDL home">
-                      <TidlWordmark variant="dark" />
-                    </a>
-                    <button className="nav-toggle-btn-wrap" onClick={() => setMobileNavOpen(false)} aria-label="Close menu">
-                      <div className="nav-toogle-btn close w-embed">
-                        <svg width="100%" height="100%" viewBox="0 0 24 23" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M16.219 6.51595C16.589 6.14639 17.1741 6.13164 17.5256 6.48275C17.8771 6.83382 17.8623 7.41787 17.4924 7.78743L13.6624 11.6126L17.4924 15.4378C17.8624 15.8073 17.877 16.3914 17.5256 16.7425C17.1741 17.0936 16.589 17.0789 16.219 16.7093L12.3899 12.8841L8.56079 16.7093C8.19082 17.0789 7.60565 17.0936 7.25415 16.7425C6.90281 16.3914 6.91744 15.8073 7.28735 15.4378L11.1165 11.6126L7.28735 7.78743C6.91756 7.41788 6.90275 6.83381 7.25415 6.48275C7.60565 6.13164 8.19082 6.14639 8.56079 6.51595L12.3899 10.3402L16.219 6.51595Z" fill="currentColor"/>
-                        </svg>
-                      </div>
-                    </button>
-                  </div>
-                  <div className="menu-title-wrap">
-                    <div className="menu-title">Pages</div>
-                  </div>
-                  <div className="menu-top">
-                    <div className="menu-body _01">
-                      <div className="menu-body-item">
-                        {[
-                          { href: '#navbar', label: 'Top' },
-                          { href: '#services', label: 'Treatments' },
-                          { href: '#howItWorks', label: 'How It Works' },
-                          { href: '#askTidl', label: 'Ask TIDL' },
-                          { href: '#faq', label: 'FAQ' },
-                          { href: '/quiz', label: 'Quiz' },
-                        ].map(({ href, label }) => (
-                          <a key={label} href={href} className="dropdown-text-outside w-inline-block">
-                            <div className="dropdown-inside-texts">
-                              <div className="dropdown-inside-text">{label}</div>
-                              <div className="dropdown-inside-text">{label}</div>
-                            </div>
-                          </a>
-                        ))}
-                      </div>
-                      <div className="menu-body-item">
-                        {[
-                          { href: '#tdlp5', label: 'The TIDL Pen' },
-                          { href: '#stories', label: 'Testimonials' },
-                          { href: '#journey', label: 'Journey' },
-                          { href: '#families', label: 'Families' },
-                          { href: '/terms', label: 'Terms' },
-                          { href: '/privacy', label: 'Privacy' },
-                        ].map(({ href, label }) => (
-                          <a key={label} href={href} className="dropdown-text-outside w-inline-block">
-                            <div className="dropdown-inside-texts">
-                              <div className="dropdown-inside-text">{label}</div>
-                              <div className="dropdown-inside-text">{label}</div>
-                            </div>
-                          </a>
-                        ))}
-                      </div>
-                      <div className="menu-body-item">
-                        {[
-                          { href: '#cta', label: 'Get Started' },
-                          { href: '/checkout', label: 'Checkout' },
-                          { href: '/confirmation', label: 'Confirmation' },
-                          { href: '/account', label: 'Account' },
-                        ].map(({ href, label }) => (
-                          <a key={label} href={href} className="dropdown-text-outside w-inline-block">
-                            <div className="dropdown-inside-texts">
-                              <div className="dropdown-inside-text">{label}</div>
-                              <div className="dropdown-inside-text">{label}</div>
-                            </div>
-                          </a>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+        <div className="page-wrapper">
+          <div className="main-wrapper">
+            <div className="hero-wrapper-01" data-site-header-theme="dark">
+              <SiteHeader
+                navLinks={homeNavLinks}
+                menuOpen={mobileNavOpen}
+                pinned={headerPinned}
+                transparent={headerTransparent}
+                theme={headerTheme}
+                onToggleMenu={() => setMobileNavOpen((open) => !open)}
+                onCloseMenu={() => setMobileNavOpen(false)}
+              />
 
           {/* ===== Hero Section ===== */}
           <section className="hero-01 container-full">
@@ -721,144 +566,17 @@ export default function HomePage() {
             className="service-v1-overlay"
           />
         </div>
-
-        {/* ===== Services Section ===== */}
-        <section className="services container-full" id="services">
-          <div className="container-fluid">
-            <div className="services-content">
-              <h2 
-                data-w-id="3072fecc-9b21-d07c-8a0f-122ed0f2114c"
-                className="services-title-02 heading-01"
-              >
-                Pick your goal.
-              </h2>
-              <div className="service-list">
-                {/* Weight Loss */}
-                <div 
-                  data-w-id="3072fecc-9b21-d07c-8a0f-122ed0f2114f"
-                  className="service-item"
-                >
-                  <div className="services-item-thumb _02">
-                    <img
-                      src={SITE_IMAGES.services.weightLoss}
-                      loading="lazy"
-                      sizes="(max-width: 1728px) 100vw, 1728px"
-                      alt="service ico"
-                      className="service-thumb-img"
-                    />
-                    <div className="service-item-thumb-text">Weight loss</div>
-                  </div>
-                  <div className="service-item-body">
-                    <div className="service-item-text p2-regular">GLP-1 treatment dosed for you by a doctor. No mixing, no guesswork, no yo-yo.</div>
-                    <div className="service-item-btns">
-                      <Link to="/products/glp-1-weight-loss" className="button-03 w-inline-block">
-                        <div className="button-outside-wrap">
-                          <div className="btn-text-outside-03">
-                            <div className="btn-text-inside-03">
-                              <div className="button-text-03">Explore</div>
-                              <div className="button-text-03">Explore</div>
-                            </div>
-                          </div>
-                          <div className="btn-icon-outside-03">
-                            <div className="btn-icon-inside-03">
-                              <div className="btn-icon-03 w-embed"><ArrowRight /></div>
-                              <div className="btn-icon-03 w-embed"><ArrowRight /></div>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="button-line-02"></div>
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Testosterone */}
-                <div 
-                  data-w-id="3072fecc-9b21-d07c-8a0f-122ed0f21164"
-                  className="service-item"
-                >
-                  <div className="services-item-thumb _02">
-                    <img
-                      src={SITE_IMAGES.services.testosterone}
-                      loading="lazy"
-                      sizes="(max-width: 1728px) 100vw, 1728px"
-                      alt="service img"
-                      className="service-thumb-img"
-                    />
-                    <div className="service-item-thumb-text">Testosterone</div>
-                  </div>
-                  <div className="service-item-body">
-                    <div className="service-item-text p2-regular">Energy, strength, drive, focus. TRT built around your labs and your life.</div>
-                    <div className="service-item-btns">
-                      <a href="#" className="button-03 w-inline-block">
-                        <div className="button-outside-wrap">
-                          <div className="btn-text-outside-03">
-                            <div className="btn-text-inside-03">
-                    <div className="button-text-03">Explore</div>
-                              <div className="button-text-03">Explore</div>
-                            </div>
-                          </div>
-                          <div className="btn-icon-outside-03">
-                            <div className="btn-icon-inside-03">
-                              <div className="btn-icon-03 w-embed"><ArrowRight /></div>
-                              <div className="btn-icon-03 w-embed"><ArrowRight /></div>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="button-line-02"></div>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Longevity */}
-                <div 
-                  id="w-node-_3072fecc-9b21-d07c-8a0f-122ed0f21179-9ec3f5ff"
-                  data-w-id="3072fecc-9b21-d07c-8a0f-122ed0f21179"
-                  className="service-item"
-                >
-                  <div className="services-item-thumb _02">
-                    <img
-                      src={SITE_IMAGES.services.longevity}
-                      loading="lazy"
-                      sizes="(max-width: 1728px) 100vw, 1728px"
-                      alt="service img"
-                      className="service-thumb-img"
-                    />
-                    <div className="service-item-thumb-text">Longevity</div>
-                  </div>
-                  <div className="service-item-body">
-                    <div className="service-item-text p2-regular">Peptide protocols to recover faster, sleep deeper, and stay sharp</div>
-                    <div className="service-item-btns">
-                      <a href="#" className="button-03 w-inline-block">
-                        <div className="button-outside-wrap">
-                          <div className="btn-text-outside-03">
-                            <div className="btn-text-inside-03">
-                              <div className="button-text-03">Explore</div>
-                              <div className="button-text-03">Explore</div>
-                            </div>
-                          </div>
-                          <div className="btn-icon-outside-03">
-                            <div className="btn-icon-inside-03">
-                              <div className="btn-icon-03 w-embed"><ArrowRight /></div>
-                              <div className="btn-icon-03 w-embed"><ArrowRight /></div>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="button-line-02"></div>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <ServicesClosing />
-            </div>
           </div>
-        </section>
+        </div>
+      </div>
+
+      <div className="page-wrapper">
+        <div className="main-wrapper">
+
+        <ServicesSection />
 
         {/* ===== TIDL Pen Section ===== */}
-        <section className="tdlp5-sec" id="tdlp5">
+        <section className="tdlp5-sec" id="tdlp5" data-site-header-theme="dark">
           <div className="tdlp5-head">
             <div className="tdlp5-kick">The TIDL Pen</div>
             <h2 className="tdlp5-h2">GLP-1, pre-dosed.<br /><em>Just click.</em></h2>
@@ -947,8 +665,10 @@ export default function HomePage() {
           <div className="tdlp5-grain"></div>
         </section>
 
+        <ProductsCatalogSection />
+
         {/* ===== Stories / Testimonials Section ===== */}
-        <section className="stories-03 container-full" id="stories">
+        <section className="stories-03 container-full" id="stories" data-site-header-theme="light">
           <div className="container-fluid for-works">
             <div className="stories-content-03">
               <h2 className="stories-title-03 heading-01">Real patients. Measurable results.</h2>
@@ -974,7 +694,7 @@ export default function HomePage() {
         </section>
 
         {/* ===== Journey Section ===== */}
-        <section className="journey container-full" id="journey">
+        <section className="journey container-full" id="journey" data-site-header-theme="light">
           <div className="container-fluid">
             <div className="journey-content-fixed">
               <div className="journey-content">
@@ -1026,6 +746,15 @@ export default function HomePage() {
                     </div>
                   </div>
 
+                  <div className="journey-mobile-chips" aria-label="TIDL treatment areas">
+                    {TICKER_ITEMS.map((item) => (
+                      <div className="journey-mobile-chip" key={item.t}>
+                        <span className="journey-mobile-chip-ico">{tickerIcons[item.t]}</span>
+                        <span className="journey-mobile-chip-label">{item.t}</span>
+                      </div>
+                    ))}
+                  </div>
+
                   <div className="journey-infos hide">
                     <div className="journey-info-item _01">
                       <div className="journey-info-item-shadow"></div>
@@ -1069,7 +798,7 @@ export default function HomePage() {
         </section>
 
         {/* ===== Families Section ===== */}
-        <section className="families container-full" id="families">
+        <section className="families container-full" id="families" data-site-header-theme="dark">
           <div className="container-fluid">
             <div className="families-content">
               <div className="families-head">
@@ -1131,10 +860,8 @@ export default function HomePage() {
           />
         </section>
 
-        <HowItWorksSection onGetStarted={() => openQuiz()} />
-
         {/* ===== Ask TIDL Section ===== */}
-        <section className="ask-tidl-wrap">
+        <section className="ask-tidl-wrap" data-site-header-theme="light">
         <div className="ask-tidl" id="askTidl">
           <h2 className="ask-h">Ask TIDL anything</h2>
           <p className="ask-sub">
@@ -1204,7 +931,7 @@ export default function HomePage() {
         </section>
 
         {/* ===== FAQ Section ===== */}
-        <section className="tdlfaq-sec" id="faq">
+        <section className="tdlfaq-sec" id="faq" data-site-header-theme="light">
           <div className="tdlfaq-head">
             <h2 className="tdlfaq-h2">Frequently asked questions</h2>
           </div>
@@ -1232,11 +959,23 @@ export default function HomePage() {
                 key={item.id}
                 className={`tdlfaq-item${faqOpen === item.id ? ' open' : ''}`}
               >
-                <button className="tdlfaq-q" onClick={() => handleFaqToggle(item.id)}>
+                <button
+                  type="button"
+                  className={`tdlfaq-q${faqOpen === item.id ? ' open' : ''}`}
+                  id={`tdlfaq-q-${item.id}`}
+                  aria-expanded={faqOpen === item.id}
+                  aria-controls={`tdlfaq-a-${item.id}`}
+                  onClick={() => handleFaqToggle(item.id)}
+                >
                   <span className="tdlfaq-qt">{item.q}</span>
                   <span className="tdlfaq-ic"><FaqIcon /></span>
                 </button>
-                <div className="tdlfaq-a">
+                <div
+                  className="tdlfaq-a"
+                  id={`tdlfaq-a-${item.id}`}
+                  role="region"
+                  aria-labelledby={`tdlfaq-q-${item.id}`}
+                >
                   <div className="tdlfaq-aw">
                     <p className="tdlfaq-at">{item.a}</p>
                   </div>

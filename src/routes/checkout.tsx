@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { CheckoutForm } from "@/components/checkout/CheckoutForm";
 import { CheckoutLayout } from "@/components/checkout/CheckoutLayout";
 import { OrderSummary } from "@/components/checkout/OrderSummary";
+import { FunnelPageShell } from "@/components/layout/FunnelPageShell";
 import { useIsMounted } from "@/hooks/use-is-mounted";
 import { isQuizComplete, readQuizState } from "@/lib/quiz-storage";
 import { useQuizModal } from "@/providers/quiz-modal-provider";
@@ -16,7 +17,11 @@ function CheckoutPage() {
   const { openModal } = useQuizModal();
 
   if (!mounted) {
-    return <div className="tidl-funnel tidl-funnel-page min-h-screen" aria-hidden />;
+    return (
+      <FunnelPageShell className="min-h-screen">
+        <div aria-hidden />
+      </FunnelPageShell>
+    );
   }
 
   const stored = readQuizState();
@@ -24,7 +29,7 @@ function CheckoutPage() {
 
   if (!complete || !stored) {
     return (
-      <div className="tidl-funnel tidl-funnel-page flex min-h-screen items-center justify-center px-5">
+      <FunnelPageShell className="flex min-h-screen items-center justify-center px-5">
         <div className="max-w-md text-center">
           <h1 className="text-2xl font-medium">Complete your assessment first</h1>
           <p className="mt-3 text-sm text-[var(--quiz-muted)]">
@@ -41,7 +46,7 @@ function CheckoutPage() {
             </Link>
           </p>
         </div>
-      </div>
+      </FunnelPageShell>
     );
   }
 

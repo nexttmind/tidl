@@ -52,11 +52,13 @@ export function StepHealthHistory({ quiz }: { quiz: QuizController }) {
         label="Are you currently taking any medications?"
         value={quiz.data.takingMedications}
         onChange={(v) => quiz.updateData({ takingMedications: v })}
+        error={quiz.errors.takingMedications}
       />
       <QuizYesNo
         label="Do you have any medication allergies?"
         value={quiz.data.hasAllergies}
         onChange={(v) => quiz.updateData({ hasAllergies: v })}
+        error={quiz.errors.hasAllergies}
       />
     </div>
   );

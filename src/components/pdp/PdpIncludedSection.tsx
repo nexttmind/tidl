@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { motion, useInView, useReducedMotion } from "framer-motion";
-import { INCLUDED_PHRASES } from "./data/glp1-pdp-data";
+import { usePdpData } from "./PdpDataProvider";
 import { Reveal, settle } from "./pdp-ui";
 
 function IncludedLine({ phrase, index }: { phrase: string; index: number }) {
@@ -37,8 +37,10 @@ function IncludedLine({ phrase, index }: { phrase: string; index: number }) {
 }
 
 export function PdpIncludedSection() {
+  const { includedPhrases } = usePdpData();
+
   return (
-    <section className="pdp-included-full" id="included">
+    <section className="pdp-included-full" id="included" data-pdp-header-theme="light">
       <div className="pdp-included-full-inner">
         <Reveal className="pdp-included-full-head">
           <span className="pdp-kicker">Full care package</span>
@@ -50,7 +52,7 @@ export function PdpIncludedSection() {
 
         <div className="pdp-included-full-stage">
           <div className="pdp-included-full-track">
-            {INCLUDED_PHRASES.map((phrase, index) => (
+            {includedPhrases.map((phrase, index) => (
               <IncludedLine key={phrase} phrase={phrase} index={index} />
             ))}
           </div>

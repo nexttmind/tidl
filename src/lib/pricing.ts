@@ -2,7 +2,7 @@ import type { OrderPricing } from "@/types/order";
 import type { Product } from "./products";
 
 const CONSULTATION_FEE = 49;
-const SHIPPING_FEE = 0;
+const SHIPPING_FEE = 15;
 const TAX_RATE = 0.08;
 
 export function calculateOrderPricing(product: Product): OrderPricing {

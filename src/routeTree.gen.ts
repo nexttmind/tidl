@@ -14,7 +14,11 @@ import { Route as ConfirmationRouteImport } from './routes/confirmation'
 import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AccountIndexRouteImport } from './routes/account/index'
+import { Route as ProductsTrtHormonalRouteImport } from './routes/products/trt-hormonal'
+import { Route as ProductsPerformanceRecoveryRouteImport } from './routes/products/performance-recovery'
+import { Route as ProductsLongevityPeptidesRouteImport } from './routes/products/longevity-peptides'
 import { Route as ProductsGlp1WeightLossRouteImport } from './routes/products/glp-1-weight-loss'
+import { Route as CategorySlugRouteImport } from './routes/category/$slug'
 
 const QuizRoute = QuizRouteImport.update({
   id: '/quiz',
@@ -41,9 +45,31 @@ const AccountIndexRoute = AccountIndexRouteImport.update({
   path: '/account/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProductsTrtHormonalRoute = ProductsTrtHormonalRouteImport.update({
+  id: '/products/trt-hormonal',
+  path: '/products/trt-hormonal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductsPerformanceRecoveryRoute =
+  ProductsPerformanceRecoveryRouteImport.update({
+    id: '/products/performance-recovery',
+    path: '/products/performance-recovery',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const ProductsLongevityPeptidesRoute =
+  ProductsLongevityPeptidesRouteImport.update({
+    id: '/products/longevity-peptides',
+    path: '/products/longevity-peptides',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const ProductsGlp1WeightLossRoute = ProductsGlp1WeightLossRouteImport.update({
   id: '/products/glp-1-weight-loss',
   path: '/products/glp-1-weight-loss',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CategorySlugRoute = CategorySlugRouteImport.update({
+  id: '/category/$slug',
+  path: '/category/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -52,7 +78,11 @@ export interface FileRoutesByFullPath {
   '/checkout': typeof CheckoutRoute
   '/confirmation': typeof ConfirmationRoute
   '/quiz': typeof QuizRoute
+  '/category/$slug': typeof CategorySlugRoute
   '/products/glp-1-weight-loss': typeof ProductsGlp1WeightLossRoute
+  '/products/longevity-peptides': typeof ProductsLongevityPeptidesRoute
+  '/products/performance-recovery': typeof ProductsPerformanceRecoveryRoute
+  '/products/trt-hormonal': typeof ProductsTrtHormonalRoute
   '/account/': typeof AccountIndexRoute
 }
 export interface FileRoutesByTo {
@@ -60,7 +90,11 @@ export interface FileRoutesByTo {
   '/checkout': typeof CheckoutRoute
   '/confirmation': typeof ConfirmationRoute
   '/quiz': typeof QuizRoute
+  '/category/$slug': typeof CategorySlugRoute
   '/products/glp-1-weight-loss': typeof ProductsGlp1WeightLossRoute
+  '/products/longevity-peptides': typeof ProductsLongevityPeptidesRoute
+  '/products/performance-recovery': typeof ProductsPerformanceRecoveryRoute
+  '/products/trt-hormonal': typeof ProductsTrtHormonalRoute
   '/account': typeof AccountIndexRoute
 }
 export interface FileRoutesById {
@@ -69,7 +103,11 @@ export interface FileRoutesById {
   '/checkout': typeof CheckoutRoute
   '/confirmation': typeof ConfirmationRoute
   '/quiz': typeof QuizRoute
+  '/category/$slug': typeof CategorySlugRoute
   '/products/glp-1-weight-loss': typeof ProductsGlp1WeightLossRoute
+  '/products/longevity-peptides': typeof ProductsLongevityPeptidesRoute
+  '/products/performance-recovery': typeof ProductsPerformanceRecoveryRoute
+  '/products/trt-hormonal': typeof ProductsTrtHormonalRoute
   '/account/': typeof AccountIndexRoute
 }
 export interface FileRouteTypes {
@@ -79,7 +117,11 @@ export interface FileRouteTypes {
     | '/checkout'
     | '/confirmation'
     | '/quiz'
+    | '/category/$slug'
     | '/products/glp-1-weight-loss'
+    | '/products/longevity-peptides'
+    | '/products/performance-recovery'
+    | '/products/trt-hormonal'
     | '/account/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -87,7 +129,11 @@ export interface FileRouteTypes {
     | '/checkout'
     | '/confirmation'
     | '/quiz'
+    | '/category/$slug'
     | '/products/glp-1-weight-loss'
+    | '/products/longevity-peptides'
+    | '/products/performance-recovery'
+    | '/products/trt-hormonal'
     | '/account'
   id:
     | '__root__'
@@ -95,7 +141,11 @@ export interface FileRouteTypes {
     | '/checkout'
     | '/confirmation'
     | '/quiz'
+    | '/category/$slug'
     | '/products/glp-1-weight-loss'
+    | '/products/longevity-peptides'
+    | '/products/performance-recovery'
+    | '/products/trt-hormonal'
     | '/account/'
   fileRoutesById: FileRoutesById
 }
@@ -104,7 +154,11 @@ export interface RootRouteChildren {
   CheckoutRoute: typeof CheckoutRoute
   ConfirmationRoute: typeof ConfirmationRoute
   QuizRoute: typeof QuizRoute
+  CategorySlugRoute: typeof CategorySlugRoute
   ProductsGlp1WeightLossRoute: typeof ProductsGlp1WeightLossRoute
+  ProductsLongevityPeptidesRoute: typeof ProductsLongevityPeptidesRoute
+  ProductsPerformanceRecoveryRoute: typeof ProductsPerformanceRecoveryRoute
+  ProductsTrtHormonalRoute: typeof ProductsTrtHormonalRoute
   AccountIndexRoute: typeof AccountIndexRoute
 }
 
@@ -145,11 +199,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AccountIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/products/trt-hormonal': {
+      id: '/products/trt-hormonal'
+      path: '/products/trt-hormonal'
+      fullPath: '/products/trt-hormonal'
+      preLoaderRoute: typeof ProductsTrtHormonalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/products/performance-recovery': {
+      id: '/products/performance-recovery'
+      path: '/products/performance-recovery'
+      fullPath: '/products/performance-recovery'
+      preLoaderRoute: typeof ProductsPerformanceRecoveryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/products/longevity-peptides': {
+      id: '/products/longevity-peptides'
+      path: '/products/longevity-peptides'
+      fullPath: '/products/longevity-peptides'
+      preLoaderRoute: typeof ProductsLongevityPeptidesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/products/glp-1-weight-loss': {
       id: '/products/glp-1-weight-loss'
       path: '/products/glp-1-weight-loss'
       fullPath: '/products/glp-1-weight-loss'
       preLoaderRoute: typeof ProductsGlp1WeightLossRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/category/$slug': {
+      id: '/category/$slug'
+      path: '/category/$slug'
+      fullPath: '/category/$slug'
+      preLoaderRoute: typeof CategorySlugRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -160,7 +242,11 @@ const rootRouteChildren: RootRouteChildren = {
   CheckoutRoute: CheckoutRoute,
   ConfirmationRoute: ConfirmationRoute,
   QuizRoute: QuizRoute,
+  CategorySlugRoute: CategorySlugRoute,
   ProductsGlp1WeightLossRoute: ProductsGlp1WeightLossRoute,
+  ProductsLongevityPeptidesRoute: ProductsLongevityPeptidesRoute,
+  ProductsPerformanceRecoveryRoute: ProductsPerformanceRecoveryRoute,
+  ProductsTrtHormonalRoute: ProductsTrtHormonalRoute,
   AccountIndexRoute: AccountIndexRoute,
 }
 export const routeTree = rootRouteImport

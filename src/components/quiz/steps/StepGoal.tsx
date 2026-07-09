@@ -8,6 +8,7 @@ export function StepGoal({ quiz }: { quiz: QuizController }) {
       <QuizStepIntro
         title="What is your primary goal?"
         description="We'll match you with a physician-reviewed treatment plan."
+        centered
       />
       <div className="grid gap-2">
         {GOAL_IDS.map((goal) => (

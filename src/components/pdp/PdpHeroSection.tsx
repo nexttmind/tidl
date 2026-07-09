@@ -1,34 +1,117 @@
-import { useEffect, useState, type MouseEvent } from "react";
-import { animated, useTrail } from "@react-spring/web";
-import { motion } from "framer-motion";
-import { HERO_IMAGES, HERO_STATS, PEN_IMAGE } from "./data/glp1-pdp-data";
-import { PdpButton } from "./pdp-ui";
+import { useEffect, useRef, useState, type MouseEvent } from "react";
+import { Link } from "@tanstack/react-router";
+import { motion, useReducedMotion } from "framer-motion";
+import {
+  CATALOG_PRODUCTS,
+  PRODUCT_PATHS,
+  getCatalogProduct,
+} from "@/lib/product-catalog";
+import { formatCurrency } from "@/lib/pricing";
+import type { ProductSlug } from "@/types/quiz";
+import { usePdpData } from "./PdpDataProvider";
 
-function HeroHeadline({ active }: { active: boolean }) {
-  const words = "Lose the weight. Keep it off.".split(" ");
-  const trail = useTrail(words.length, {
-    from: { opacity: 0, y: 22, blur: 10 },
-    to: active ? { opacity: 1, y: 0, blur: 0 } : { opacity: 0, y: 22, blur: 10 },
-    config: { mass: 1, tension: 210, friction: 22 },
-  });
+const PRODUCT_ORDER = CATALOG_PRODUCTS.map((product) => product.slug);
+
+function splitTitle(shortName: string): [string, string] {
+  const ampersandIdx = shortName.indexOf(" & ");
+  if (ampersandIdx > 0) {
+    return [shortName.slice(0, ampersandIdx), shortName.slice(ampersandIdx + 1)];
+  }
+
+  const parts = shortName.split(" ");
+  if (parts.length <= 2) {
+    return [parts[0] ?? shortName, parts.slice(1).join(" ")];
+  }
+
+  const mid = Math.ceil(parts.length / 2);
+  return [parts.slice(0, mid).join(" "), parts.slice(mid).join(" ")];
+}
+
+function productNeighbors(slug: ProductSlug) {
+  const index = PRODUCT_ORDER.indexOf(slug);
+  const total = PRODUCT_ORDER.length;
+  return {
+    prev: PRODUCT_ORDER[(index - 1 + total) % total],
+    next: PRODUCT_ORDER[(index + 1) % total],
+  };
+}
+
+function HeroAccordion({
+  description,
+  included,
+  protocol,
+}: {
+  description: string;
+  included: readonly string[];
+  protocol: readonly { label: string; detail: string }[];
+}) {
+  const [openId, setOpenId] = useState<"description" | "included" | "protocol">("protocol");
+
+  const items = [
+    { id: "description" as const, label: "Description", body: description },
+    {
+      id: "included" as const,
+      label: "What's included",
+      body: included.join(" · "),
+    },
+    {
+      id: "protocol" as const,
+      label: "Protocol",
+      body: protocol.map((item) => `${item.label}: ${item.detail}`).join(" "),
+    },
+  ];
 
   return (
-    <h1 className="pdp-hero-title">
-      {trail.map((style, i) => (
-        <animated.span
-          key={i}
-          className="inline-block will-change-transform"
-          style={{
-            opacity: style.opacity,
-            transform: style.y.to((v) => `translateY(${v}px)`),
-            filter: style.blur.to((v) => `blur(${v}px)`),
-          }}
-        >
-          {words[i]}
-          {i < words.length - 1 ? "\u00A0" : ""}
-        </animated.span>
-      ))}
-    </h1>
+    <div className="pdp-hero-accordion">
+      {items.map((item) => {
+        const isOpen = openId === item.id;
+        return (
+          <div key={item.id} className={`pdp-hero-accordion-item${isOpen ? " is-open" : ""}`}>
+            <button
+              type="button"
+              className="pdp-hero-accordion-trigger"
+              aria-expanded={isOpen}
+              onClick={() => setOpenId(item.id)}
+            >
+              <span>{item.label}</span>
+              <span className="pdp-hero-accordion-icon" aria-hidden="true">
+                {isOpen ? "−" : "+"}
+              </span>
+            </button>
+            {isOpen ? <p className="pdp-hero-accordion-body">{item.body}</p> : null}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+function SocialBubble({
+  name,
+  message,
+  tone,
+  className,
+}: {
+  name: string;
+  message: string;
+  tone: "purchase" | "like";
+  className?: string;
+}) {
+  const initial = name.replace(/[^A-Za-z]/g, "").charAt(0).toUpperCase() || "T";
+
+  return (
+    <div className={`pdp-hero-social${className ? ` ${className}` : ""}`}>
+      <span className="pdp-hero-social-avatar" aria-hidden="true">
+        {initial}
+      </span>
+      <div className="pdp-hero-social-copy">
+        <strong>{name}</strong>
+        <span>{message}</span>
+      </div>
+      <span className={`pdp-hero-social-badge pdp-hero-social-badge--${tone}`} aria-hidden="true">
+        {tone === "like" ? "♥" : "✓"}
+      </span>
+    </div>
   );
 }
 
@@ -38,78 +121,206 @@ type PdpHeroSectionProps = {
 };
 
 export function PdpHeroSection({ heroRef, onStart }: PdpHeroSectionProps) {
-  const [active, setActive] = useState(false);
+  const reduceMotion = useReducedMotion();
+  const { slug, heroProduct, heroImage, penImage, productForm, includedPhrases, reviews } =
+    usePdpData();
+  const catalog = getCatalogProduct(slug);
+  const productImage = productForm === "pen" ? penImage : heroImage;
+  const productAlt = catalog
+    ? `${catalog.shortName} by TIDL`
+    : `${heroProduct.name} prescription protocol`;
+
+  const [titleLine1, titleLine2] = splitTitle(catalog?.shortName ?? heroProduct.name);
+  const { prev, next } = productNeighbors(slug);
+
+  const stageRef = useRef<HTMLDivElement>(null);
+  const floatRef = useRef<HTMLDivElement>(null);
+
+  const socialA = reviews[0];
+  const socialB = reviews[1] ?? reviews[0];
 
   useEffect(() => {
-    setActive(true);
-  }, []);
+    const float = floatRef.current;
+    const stage = stageRef.current;
+    if (!float || !stage || reduceMotion) return;
+
+    let ticking = false;
+    const handleScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const rect = stage.getBoundingClientRect();
+        const vh = window.innerHeight || 1;
+        const progress = Math.max(-1, Math.min(1, (rect.top + rect.height / 2 - vh / 2) / (vh / 2)));
+        float.style.transform = `translateY(${progress * -14}px)`;
+        ticking = false;
+      });
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [reduceMotion]);
 
   return (
-    <section className="pdp-hero" id="hero" ref={heroRef}>
-      <div className="pdp-hero-glow pdp-hero-glow--a" aria-hidden="true" />
-      <div className="pdp-hero-glow pdp-hero-glow--b" aria-hidden="true" />
-
+    <section
+      className="pdp-hero pdp-hero--editorial"
+      id="hero"
+      ref={heroRef}
+      data-pdp-header-theme="light"
+    >
       <div className="pdp-hero-shell">
-        <div className="pdp-hero-inner">
-          <div className="pdp-hero-copy">
-            <div className="pdp-hero-badges">
-              <span className="pdp-pill">GLP-1 Weight Loss</span>
-              <span className="pdp-pill pdp-pill--soft">Doctor-prescribed</span>
-            </div>
+        <div className="pdp-hero-editorial">
+          <motion.div
+            className="pdp-hero-editorial-copy"
+            initial={reduceMotion ? false : { opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <p className="pdp-hero-editorial-kicker">{heroProduct.descriptor}</p>
 
-            <HeroHeadline active={active} />
+            <h1 className="pdp-hero-editorial-title">
+              <span className="pdp-hero-editorial-title-row">
+                <span className="pdp-hero-editorial-accent-ring">TIDL</span>
+                <span>{titleLine1}</span>
+              </span>
+              {titleLine2 ? (
+                <span className="pdp-hero-editorial-title-row pdp-hero-editorial-title-row--second">
+                  <span>{titleLine2}</span>
+                  <span className="pdp-hero-editorial-bolt" aria-hidden="true">
+                    <svg viewBox="0 0 20 20" fill="none">
+                      <circle cx="10" cy="10" r="9" fill="currentColor" />
+                      <path
+                        d="M11.2 5.5 8.4 10.2h2.4l-1.2 4.3 3.6-5.2H10.6L11.2 5.5Z"
+                        fill="#171310"
+                      />
+                    </svg>
+                  </span>
+                </span>
+              ) : null}
+            </h1>
 
-            <p className="pdp-hero-sub">
-              Doctor-prescribed GLP-1 in the pre-dosed TIDL Pen. A modern care path from intake to delivery —
-              built to feel premium, private, and simple.
+            <p className="pdp-hero-editorial-price">
+              {formatCurrency(heroProduct.startingPrice)}
+              <span>/mo</span>
             </p>
 
-            <div className="pdp-hero-actions">
-              <PdpButton label="Start your intake" onClick={onStart} />
-              <a href="#how-pen-works" className="pdp-btn-secondary">
-                See how the pen works
-              </a>
+            <p className="pdp-hero-editorial-lead">{catalog?.summary ?? heroProduct.summary}</p>
+
+            <div className="pdp-hero-editorial-actions">
+              <button type="button" className="pdp-hero-editorial-cta" onClick={onStart}>
+                <span className="pdp-hero-editorial-cta-icon" aria-hidden="true">
+                  ✓
+                </span>
+                {heroProduct.ctaLabel}
+              </button>
+              <span className="pdp-hero-editorial-rating" aria-label={`${heroProduct.rating} out of 5 stars`}>
+                <span>{heroProduct.rating}</span>
+                <small>{heroProduct.reviewCount} reviews</small>
+              </span>
+            </div>
+          </motion.div>
+
+          <div className="pdp-hero-editorial-stage" ref={stageRef}>
+            <div className="pdp-hero-editorial-arch" aria-hidden="true" />
+            <div className="pdp-hero-editorial-orb pdp-hero-editorial-orb--a" aria-hidden="true" />
+            <div className="pdp-hero-editorial-orb pdp-hero-editorial-orb--b" aria-hidden="true" />
+            <svg className="pdp-hero-editorial-swirl" viewBox="0 0 200 320" aria-hidden="true">
+              <path
+                d="M102 18c-42 18-58 62-34 92 20 24 58 18 72-8 10-18 4-42-18-52"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.4"
+                strokeLinecap="round"
+              />
+              <path
+                d="M88 250c28-10 46-34 38-58-8-24-36-34-58-20-18 12-22 38-6 54"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.2"
+                strokeLinecap="round"
+              />
+            </svg>
+
+            <div
+              className={`pdp-hero-editorial-product${
+                productForm === "pill" ? " pdp-hero-editorial-product--pill" : ""
+              }`}
+              ref={floatRef}
+            >
+              <motion.img
+                src={productImage}
+                alt={productAlt}
+                className={`pdp-hero-editorial-product-img${
+                  productForm === "pill" ? " pdp-hero-editorial-product-img--pill" : ""
+                }`}
+                initial={reduceMotion ? false : { opacity: 0, y: 28, scale: 0.96 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+                loading="eager"
+                fetchPriority="high"
+                decoding="async"
+              />
+              <span className="pdp-hero-editorial-scroll-hint" aria-hidden="true">
+                <svg viewBox="0 0 20 20" fill="none">
+                  <circle cx="10" cy="10" r="9" stroke="currentColor" strokeWidth="1.2" />
+                  <path d="M10 7v6M7 11l3 3 3-3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+                </svg>
+              </span>
             </div>
 
-            <div className="pdp-hero-stats">
-              {HERO_STATS.map((stat) => (
-                <div className="pdp-hero-stat" key={stat.label}>
-                  <strong>{stat.value}</strong>
-                  <span>{stat.label}</span>
-                </div>
-              ))}
-            </div>
+            {socialA ? (
+              <SocialBubble
+                className="pdp-hero-social--left"
+                name={socialA.name}
+                message="has just started this plan"
+                tone="purchase"
+              />
+            ) : null}
+            {socialB ? (
+              <SocialBubble
+                className="pdp-hero-social--right"
+                name={socialB.name}
+                message="rated this treatment highly"
+                tone="like"
+              />
+            ) : null}
           </div>
 
-          <div className="pdp-hero-visual">
-            <div className="pdp-hero-blade" aria-hidden="true" />
-
-            <motion.div
-              className="pdp-hero-card pdp-hero-card--photo"
-              initial={{ opacity: 0, scale: 0.96 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <img src={HERO_IMAGES.lifestyle} alt="" loading="eager" className="pdp-hero-card-img" />
-              <div className="pdp-hero-card-caption">Real care. Real results.</div>
-            </motion.div>
-
-            <div className="pdp-hero-pen-stage" aria-hidden="true">
-              <div className="pdp-hero-levit">
-                <img className="pdp-hero-pen" src={PEN_IMAGE} alt="" />
-              </div>
+          <motion.aside
+            className="pdp-hero-editorial-side"
+            initial={reduceMotion ? false : { opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <div className="pdp-hero-editorial-nav">
+              <Link
+                to={PRODUCT_PATHS[prev]}
+                className="pdp-hero-editorial-nav-btn"
+                aria-label="Previous product"
+              >
+                <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                  <path d="M12.5 5 7.5 10l5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                </svg>
+              </Link>
+              <Link
+                to={PRODUCT_PATHS[next]}
+                className="pdp-hero-editorial-nav-btn"
+                aria-label="Next product"
+              >
+                <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                  <path d="M7.5 5 12.5 10l-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                </svg>
+              </Link>
             </div>
 
-            <motion.div
-              className="pdp-hero-card pdp-hero-card--mini"
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <img src={HERO_IMAGES.packaging} alt="" loading="lazy" className="pdp-hero-card-img" />
-              <div className="pdp-hero-card-caption">Discreet delivery</div>
-            </motion.div>
-          </div>
+            <HeroAccordion
+              description={heroProduct.summary}
+              included={includedPhrases}
+              protocol={heroProduct.specs}
+            />
+
+            <p className="pdp-hero-editorial-note">{heroProduct.trustNote}</p>
+          </motion.aside>
         </div>
       </div>
     </section>

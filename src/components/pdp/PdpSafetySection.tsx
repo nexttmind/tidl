@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { motion, useInView, useReducedMotion } from "framer-motion";
-import { PEN_IMAGE, SAFETY_PILLARS } from "./data/glp1-pdp-data";
+import { usePdpData } from "./PdpDataProvider";
 import { Reveal, settle } from "./pdp-ui";
 
 function SafetyCard({
@@ -40,6 +40,8 @@ function SafetyCard({
 }
 
 export function PdpSafetySection() {
+  const { safetyPillars, penImage, productForm } = usePdpData();
+  const isPill = productForm === "pill";
   const titleRef = useRef<HTMLHeadingElement>(null);
   const visualRef = useRef<HTMLDivElement>(null);
   const titleInView = useInView(titleRef, { once: true, amount: 0.65 });
@@ -48,7 +50,7 @@ export function PdpSafetySection() {
   const title = "Built like a real medical brand".split(" ");
 
   return (
-    <section className="pdp-safety-full" id="safety">
+    <section className="pdp-safety-full" id="safety" data-pdp-header-theme="light">
       <div className="pdp-safety-full-inner">
         <Reveal className="pdp-safety-full-head">
           <span className="pdp-kicker">Safety & trust</span>
@@ -81,7 +83,7 @@ export function PdpSafetySection() {
 
           <div className="pdp-safety-full-body">
             <div className="pdp-safety-full-side pdp-safety-full-side--left">
-              {SAFETY_PILLARS.slice(0, 2).map((pillar, index) => (
+              {safetyPillars.slice(0, 2).map((pillar, index) => (
                 <SafetyCard
                   key={pillar.id}
                   num={pillar.num}
@@ -95,19 +97,19 @@ export function PdpSafetySection() {
 
             <motion.div
               ref={visualRef}
-              className="pdp-safety-full-visual"
+              className={`pdp-safety-full-visual${isPill ? " pdp-safety-full-visual--pill" : ""}`}
               initial={reduceMotion ? false : { opacity: 0, scale: 0.92, y: 20 }}
               animate={visualInView ? { opacity: 1, scale: 1, y: 0 } : {}}
               transition={{ duration: 0.75, ease: settle }}
             >
               <div className="pdp-safety-full-visual-glow" aria-hidden="true" />
-              <div className="pdp-safety-pen-float">
-                <img src={PEN_IMAGE} alt="" loading="lazy" />
+              <div className={`pdp-safety-pen-float${isPill ? " pdp-safety-pen-float--pill" : ""}`}>
+                <img src={penImage} alt="" loading="lazy" />
               </div>
             </motion.div>
 
             <div className="pdp-safety-full-side pdp-safety-full-side--right">
-              {SAFETY_PILLARS.slice(2).map((pillar, index) => (
+              {safetyPillars.slice(2).map((pillar, index) => (
                 <SafetyCard
                   key={pillar.id}
                   num={pillar.num}

@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { z } from "zod";
 import { StatusTimeline } from "@/components/checkout/StatusTimeline";
+import { FunnelPageShell } from "@/components/layout/FunnelPageShell";
 import { useIsMounted } from "@/hooks/use-is-mounted";
 import { formatCurrency } from "@/lib/pricing";
 import { getOrderById } from "@/lib/order-storage";
@@ -21,26 +22,30 @@ function ConfirmationPage() {
   const { orderId } = Route.useSearch();
 
   if (!mounted) {
-    return <div className="tidl-funnel tidl-funnel-page min-h-screen" aria-hidden />;
+    return (
+      <FunnelPageShell className="min-h-screen">
+        <div aria-hidden />
+      </FunnelPageShell>
+    );
   }
 
   const order: Order | null = orderId ? getOrderById(orderId) : null;
 
   if (!order) {
     return (
-      <div className="tidl-funnel tidl-funnel-page flex min-h-screen items-center justify-center px-5">
+      <FunnelPageShell className="flex min-h-screen items-center justify-center px-5">
         <div className="text-center">
           <h1 className="text-xl font-medium">Order not found</h1>
           <Link to="/" className="mt-4 inline-block text-sm text-[var(--quiz-bronze)] underline">
             Return home
           </Link>
         </div>
-      </div>
+      </FunnelPageShell>
     );
   }
 
   return (
-    <div className="tidl-funnel tidl-funnel-page px-5 py-12">
+    <FunnelPageShell className="px-5 py-12">
       <div className="mx-auto max-w-lg">
         <h1 className="text-2xl font-medium tracking-tight">
           Thank you. Your physician review has begun.
@@ -62,6 +67,6 @@ function ConfirmationPage() {
           View account
         </Link>
       </div>
-    </div>
+    </FunnelPageShell>
   );
 }

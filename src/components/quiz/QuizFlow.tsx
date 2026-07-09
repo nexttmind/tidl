@@ -33,7 +33,13 @@ function StepContent({ quiz }: { quiz: QuizController }) {
   }
 }
 
-export function QuizFlow({ quiz }: { quiz: QuizController }) {
+export function QuizFlow({
+  quiz,
+  hideStepLabel = false,
+}: {
+  quiz: QuizController;
+  hideStepLabel?: boolean;
+}) {
   const [phase, setPhase] = useState<"entering" | "exiting" | "idle">("idle");
   const [displayStep, setDisplayStep] = useState(quiz.currentStep);
   const prevStep = useRef(quiz.currentStep);
@@ -53,9 +59,11 @@ export function QuizFlow({ quiz }: { quiz: QuizController }) {
 
   return (
     <div>
-      <p className="mb-4 text-xs uppercase tracking-widest text-[var(--quiz-muted)]">
-        Step {displayStep} of {quiz.totalSteps} · {STEP_LABELS[displayStep]}
-      </p>
+      {!hideStepLabel ? (
+        <p className="mb-4 text-xs uppercase tracking-widest text-[var(--quiz-muted)]">
+          Step {displayStep} of {quiz.totalSteps} · {STEP_LABELS[displayStep]}
+        </p>
+      ) : null}
       <div
         className={`quiz-step ${
           phase === "exiting" ? "is-exiting" : phase === "entering" ? "is-entering" : ""

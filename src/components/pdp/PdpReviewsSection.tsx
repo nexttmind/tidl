@@ -1,13 +1,18 @@
-import { REVIEWS, REVIEW_STATS } from "./data/glp1-pdp-data";
-import { PatientAvatar, TestimonialContextPhoto } from "@/components/brand/PatientAvatar";
+import { usePdpData } from "./PdpDataProvider";
+import { TestimonialContextPhoto } from "@/components/brand/PatientAvatar";
 import { Reveal } from "./pdp-ui";
 
+function isOutcomeMetric(result: string) {
+  return !/verified/i.test(result);
+}
+
 export function PdpReviewsSection() {
-  const featured = REVIEWS.find((r) => r.featured) ?? REVIEWS[0];
-  const others = REVIEWS.filter((r) => !r.featured);
+  const { reviews, reviewStats } = usePdpData();
+  const featured = reviews.find((r) => r.featured) ?? reviews[0];
+  const others = reviews.filter((r) => !r.featured);
 
   return (
-    <section className="pdp-section pdp-section--reviews" id="reviews">
+    <section className="pdp-section pdp-section--reviews" id="reviews" data-pdp-header-theme="dark">
       <div className="pdp-section-shell pdp-section-shell--dark">
         <div className="pdp-section-inner">
           <Reveal>
@@ -19,7 +24,7 @@ export function PdpReviewsSection() {
           </Reveal>
 
           <div className="pdp-review-stats">
-            {REVIEW_STATS.map((stat, index) => (
+            {reviewStats.map((stat, index) => (
               <Reveal key={stat.label} delay={index * 0.06}>
                 <div className="pdp-review-stat">
                   <strong>{stat.value}</strong>
@@ -56,19 +61,29 @@ export function PdpReviewsSection() {
               {others.map((story, index) => (
                 <Reveal key={story.name} delay={0.08 + index * 0.08}>
                   <article className="pdp-review-card">
-                    <div className="pdp-review-card-photo">
-                      <PatientAvatar name={story.name} size="card" />
-                    </div>
                     <div className="pdp-review-card-body">
-                      <div className="pdp-review-stars" aria-label="Rated 5 out of 5">
-                        ★★★★★
+                      <div className="pdp-review-card-meta">
+                        <div className="pdp-review-stars" aria-label="Rated 5 out of 5">
+                          ★★★★★
+                        </div>
+                        {isOutcomeMetric(story.result) ? (
+                          <span className="pdp-review-outcome">{story.result}</span>
+                        ) : (
+                          <span className="pdp-review-condition-tag">{story.condition}</span>
+                        )}
                       </div>
-                      <p>{story.quote}</p>
-                      <footer>
-                        <strong>{story.name}</strong>
-                        <span>
-                          {story.condition} · {story.result}
+                      <p className="pdp-review-card-quote">{story.quote}</p>
+                      <footer className="pdp-review-card-footer">
+                        <span className="pdp-review-verified">
+                          <svg viewBox="0 0 16 16" aria-hidden="true" className="pdp-review-verified-icon">
+                            <path
+                              d="M6.2 11.1 3.4 8.3l-.9.9 3.7 3.7 7.4-7.4-.9-.9-6.5 6.5Z"
+                              fill="currentColor"
+                            />
+                          </svg>
+                          Verified patient
                         </span>
+                        <span className="pdp-review-condition">{story.condition}</span>
                       </footer>
                     </div>
                   </article>

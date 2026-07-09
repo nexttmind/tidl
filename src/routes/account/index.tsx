@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { StatusTimeline } from "@/components/checkout/StatusTimeline";
+import { FunnelPageShell } from "@/components/layout/FunnelPageShell";
 import { useIsMounted } from "@/hooks/use-is-mounted";
 import { formatCurrency } from "@/lib/pricing";
 import { getLatestOrderForUser } from "@/lib/order-storage";
@@ -17,27 +18,31 @@ function AccountPage() {
   const { openModal } = useQuizModal();
 
   if (!mounted || !authHydrated) {
-    return <div className="tidl-funnel tidl-funnel-page min-h-screen" aria-hidden />;
+    return (
+      <FunnelPageShell className="min-h-screen">
+        <div aria-hidden />
+      </FunnelPageShell>
+    );
   }
 
   const order = user ? getLatestOrderForUser(user.id) : null;
 
   if (!user) {
     return (
-      <div className="tidl-funnel tidl-funnel-page flex min-h-screen items-center justify-center px-5">
+      <FunnelPageShell className="flex min-h-screen items-center justify-center px-5">
         <div className="text-center">
           <h1 className="text-xl font-medium">Sign in to view your account</h1>
           <button type="button" onClick={() => openModal()} className="tidl-btn mt-6">
             Start assessment
           </button>
         </div>
-      </div>
+      </FunnelPageShell>
     );
   }
 
   if (!order) {
     return (
-      <div className="tidl-funnel tidl-funnel-page flex min-h-screen items-center justify-center px-5">
+      <FunnelPageShell className="flex min-h-screen items-center justify-center px-5">
         <div className="max-w-md text-center">
           <h1 className="text-xl font-medium">Welcome, {user.firstName}</h1>
           <p className="mt-3 text-sm text-[var(--quiz-muted)]">
@@ -47,12 +52,12 @@ function AccountPage() {
             Take the assessment
           </button>
         </div>
-      </div>
+      </FunnelPageShell>
     );
   }
 
   return (
-    <div className="tidl-funnel tidl-funnel-page px-5 py-10">
+    <FunnelPageShell className="px-5 py-10">
       <div className="mx-auto max-w-2xl">
         <div className="mb-6 flex items-center justify-between">
           <h1 className="text-2xl font-medium">Your care</h1>
@@ -80,6 +85,6 @@ function AccountPage() {
           </p>
         ) : null}
       </div>
-    </div>
+    </FunnelPageShell>
   );
 }

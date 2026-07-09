@@ -12,11 +12,13 @@ export function StepTreatmentHistory({ quiz }: { quiz: QuizController }) {
         label="Have you used GLP-1 medications before?"
         value={quiz.data.usedGlp1Before}
         onChange={(v) => quiz.updateData({ usedGlp1Before: v })}
+        error={quiz.errors.usedGlp1Before}
       />
       <QuizYesNo
         label="Have you tried other prescription weight-loss medications?"
         value={quiz.data.previousWeightLossMeds}
         onChange={(v) => quiz.updateData({ previousWeightLossMeds: v })}
+        error={quiz.errors.previousWeightLossMeds}
       />
     </div>
   );

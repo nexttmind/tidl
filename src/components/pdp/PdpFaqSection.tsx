@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { PDP_FAQ_ITEMS } from "./data/glp1-pdp-data";
+import { usePdpData } from "./PdpDataProvider";
 import { Reveal } from "./pdp-ui";
 
 function FaqChevron() {
@@ -12,10 +12,11 @@ function FaqChevron() {
 }
 
 export function PdpFaqSection() {
+  const { faqItems } = usePdpData();
   const [openId, setOpenId] = useState<number | null>(null);
 
   return (
-    <section className="pdp-faq" id="faq">
+    <section className="pdp-faq" id="faq" data-pdp-header-theme="light">
       <div className="pdp-faq-inner">
         <div className="pdp-faq-layout">
           <Reveal className="pdp-faq-intro">
@@ -26,12 +27,14 @@ export function PdpFaqSection() {
           </Reveal>
 
           <div className="pdp-faq-list">
-            {PDP_FAQ_ITEMS.map((item) => (
+            {faqItems.map((item) => (
               <div key={item.id} className={`pdp-faq-item${openId === item.id ? " open" : ""}`}>
                 <button
                   type="button"
                   className="pdp-faq-q"
+                  id={`pdp-faq-q-${item.id}`}
                   aria-expanded={openId === item.id}
+                  aria-controls={`pdp-faq-a-${item.id}`}
                   onClick={() => setOpenId((prev) => (prev === item.id ? null : item.id))}
                 >
                   <span className="pdp-faq-qt">{item.q}</span>
@@ -39,7 +42,7 @@ export function PdpFaqSection() {
                     <FaqChevron />
                   </span>
                 </button>
-                <div className="pdp-faq-a">
+                <div className="pdp-faq-a" id={`pdp-faq-a-${item.id}`} role="region" aria-labelledby={`pdp-faq-q-${item.id}`}>
                   <div className="pdp-faq-aw">
                     <p className="pdp-faq-at">{item.a}</p>
                   </div>

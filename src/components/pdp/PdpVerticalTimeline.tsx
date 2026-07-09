@@ -1,9 +1,11 @@
 import { useRef } from "react";
 import { motion, useInView, useReducedMotion, useScroll, useTransform } from "framer-motion";
-import { VERTICAL_TIMELINE } from "./data/glp1-pdp-data";
+import { usePdpData } from "./PdpDataProvider";
 import { Reveal, settle } from "./pdp-ui";
 
-function TimelineStepRow({ step, index }: { step: (typeof VERTICAL_TIMELINE)[number]; index: number }) {
+import type { TimelineStep } from "./data/types";
+
+function TimelineStepRow({ step, index }: { step: TimelineStep; index: number }) {
   const rowRef = useRef<HTMLElement>(null);
   const inView = useInView(rowRef, { amount: 0.55, margin: "-12% 0px -12% 0px" });
   const reduceMotion = useReducedMotion();
@@ -42,6 +44,7 @@ function TimelineStepRow({ step, index }: { step: (typeof VERTICAL_TIMELINE)[num
 }
 
 export function PdpVerticalTimeline() {
+  const { verticalTimeline } = usePdpData();
   const sectionRef = useRef<HTMLElement>(null);
   const reduceMotion = useReducedMotion();
 
@@ -53,7 +56,7 @@ export function PdpVerticalTimeline() {
   const lineScale = useTransform(scrollYProgress, [0, 1], [0.05, 1]);
 
   return (
-    <section className="pdp-section pdp-section--timeline" id="journey" ref={sectionRef}>
+    <section className="pdp-section pdp-section--timeline" id="journey" ref={sectionRef} data-pdp-header-theme="light">
       <div className="pdp-vtimeline-wrap">
         <Reveal>
           <span className="pdp-kicker">Your care path</span>
@@ -69,7 +72,7 @@ export function PdpVerticalTimeline() {
           </div>
 
           <div className="pdp-vtimeline-steps">
-            {VERTICAL_TIMELINE.map((step, index) => (
+            {verticalTimeline.map((step, index) => (
               <TimelineStepRow key={step.step} step={step} index={index} />
             ))}
           </div>
