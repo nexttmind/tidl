@@ -12,6 +12,7 @@
   background: #ffffff;
   color: var(--pdp-ink);
   padding-bottom: 88px;
+  overflow-x: clip;
 }
 
 .pdp-section,
