@@ -58,27 +58,33 @@ export function ServicesSection() {
                     ))}
                   </ul>
                   <div className="service-item-btns">
-                    <Link to={card.explorePath} className="button-03 w-inline-block">
-                      <div className="button-outside-wrap">
-                        <div className="btn-text-outside-03">
-                          <div className="btn-text-inside-03">
-                            <div className="button-text-03">Explore</div>
-                            <div className="button-text-03">Explore</div>
-                          </div>
-                        </div>
-                        <div className="btn-icon-outside-03">
-                          <div className="btn-icon-inside-03">
-                            <div className="btn-icon-03 w-embed">
-                              <ArrowRight />
-                            </div>
-                            <div className="btn-icon-03 w-embed">
-                              <ArrowRight />
+                    {card.comingSoon ? (
+                      <span className="service-item-coming-soon" aria-disabled="true">
+                        Coming soon
+                      </span>
+                    ) : (
+                      <Link to={card.explorePath} className="button-03 w-inline-block">
+                        <div className="button-outside-wrap">
+                          <div className="btn-text-outside-03">
+                            <div className="btn-text-inside-03">
+                              <div className="button-text-03">Explore</div>
+                              <div className="button-text-03">Explore</div>
                             </div>
                           </div>
+                          <div className="btn-icon-outside-03">
+                            <div className="btn-icon-inside-03">
+                              <div className="btn-icon-03 w-embed">
+                                <ArrowRight />
+                              </div>
+                              <div className="btn-icon-03 w-embed">
+                                <ArrowRight />
+                              </div>
+                            </div>
+                          </div>
                         </div>
-                      </div>
-                      <div className="button-line-02"></div>
-                    </Link>
+                        <div className="button-line-02"></div>
+                      </Link>
+                    )}
                   </div>
                 </div>
               </div>

@@ -17,7 +17,7 @@
   min-height: 100dvh;
   background: var(--checkout-bg);
   color: var(--checkout-ink);
-  font-family: "HelveticaNowDisplay", "Helvetica Now Display", -apple-system, sans-serif;
+  font-family: var(--font-body);
 }
 
 .checkout-shell {

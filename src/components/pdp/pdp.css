@@ -108,7 +108,7 @@
 
 .pdp-kicker {
   display: inline-block;
-  font-family: "Helvetica Neue", Helvetica, Arial, ui-sans-serif, system-ui, sans-serif;
+  font-family: var(--font-body);
   font-size: 11px;
   letter-spacing: 0.24em;
   text-transform: uppercase;

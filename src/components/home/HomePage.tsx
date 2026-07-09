@@ -7,10 +7,10 @@ import { useSiteHeaderState } from '@/hooks/useSiteHeaderState';
 import './home.css';
 import { CtaSection } from './cta/CtaSection';
 import { ServicesSection } from './ServicesSection';
+import { StoriesSection } from './StoriesSection';
+import { JourneySection } from './JourneySection';
 import { SiteFooter } from '@/components/layout/SiteFooter';
-import { PatientAvatar } from '@/components/brand/PatientAvatar';
 import { SITE_IMAGES } from '@/lib/site-assets';
-import { TESTIMONIALS } from '@/lib/testimonials';
 
 const ANSWERS: Record<string, string> = {
   "What is the TIDL Pen?":
@@ -103,16 +103,6 @@ const FAQ_DATA: FaqItem[] = [
     a: "Yes. You're in control of your plan, and pausing or cancelling doesn't require a phone call or a negotiation. Talk to your provider first if you're mid-treatment, since some medications shouldn't stop abruptly.",
   },
 ];
-
-const TICKER_ITEMS = [
-  { t: "Weight loss" },
-  { t: "Testosterone" },
-  { t: "Longevity" },
-  { t: "Peptide therapy" },
-  { t: "NAD+ therapy" },
-  { t: "Recovery" },
-];
-
 
 function FaqIcon() {
   return (
@@ -208,14 +198,10 @@ export default function HomePage() {
   const [faqTab, setFaqTab] = useState('all');
   const [faqOpen, setFaqOpen] = useState<number | null>(null);
 
-  const [isPenVideoOpen, setIsPenVideoOpen] = useState(false);
-
   const penGridRef = useRef<HTMLDivElement>(null);
   const penStatsRef = useRef<HTMLDivElement>(null);
   const penStageRef = useRef<HTMLDivElement>(null);
   const penFloatRef = useRef<HTMLDivElement>(null);
-  const tickerRef = useRef<HTMLDivElement>(null);
-  const tickerTrackRef = useRef<HTMLDivElement>(null);
   const ansTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const ansTyperRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const askInputRef = useRef<HTMLInputElement>(null);
@@ -319,50 +305,6 @@ export default function HomePage() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Ticker animation
-  useEffect(() => {
-    const el = tickerRef.current;
-    const track = tickerTrackRef.current;
-    if (!el || !track) return;
-
-    const cardH = 64 + 14;
-    const unit = TICKER_ITEMS.length * cardH;
-    let y = -unit;
-    const speed = 0.35;
-    let center: HTMLElement | null = null;
-    let rafId: number;
-
-    function frame() {
-      y -= speed;
-      if (y <= -unit * 2) y += unit;
-      track.style.transform = `translateY(${y}px)`;
-
-      const mid = el.clientHeight / 2;
-      let best = Infinity;
-      let bi: HTMLElement | null = null;
-
-      const items = Array.from(track.children) as HTMLElement[];
-      for (const item of items) {
-        const r = item.getBoundingClientRect();
-        const er = el.getBoundingClientRect();
-        const c = r.top - er.top + r.height / 2;
-        const dist = Math.abs(c - mid);
-        if (dist < best) { best = dist; bi = item; }
-      }
-
-      if (bi !== center) {
-        if (center) center.classList.remove('active');
-        center = bi;
-        if (center) center.classList.add('active');
-      }
-
-      rafId = requestAnimationFrame(frame);
-    }
-
-    rafId = requestAnimationFrame(frame);
-    return () => cancelAnimationFrame(rafId);
-  }, []);
-
   // Cleanup ask timers on unmount
   useEffect(() => {
     return () => {
@@ -370,15 +312,6 @@ export default function HomePage() {
       if (ansTyperRef.current) clearInterval(ansTyperRef.current);
     };
   }, []);
-
-  useEffect(() => {
-    if (!isPenVideoOpen) return;
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') setIsPenVideoOpen(false);
-    };
-    window.addEventListener('keydown', onKeyDown);
-    return () => window.removeEventListener('keydown', onKeyDown);
-  }, [isPenVideoOpen]);
 
   const handleAsk = useCallback((q: string) => {
     const trimmed = q.trim();
@@ -416,47 +349,6 @@ export default function HomePage() {
   const visibleFaq = faqTab === 'all'
     ? FAQ_DATA
     : FAQ_DATA.filter((item) => item.cat === faqTab);
-
-  // Tripled ticker items for seamless loop
-  const tickerLoop = [...TICKER_ITEMS, ...TICKER_ITEMS, ...TICKER_ITEMS];
-
-  const tickerIcons: Record<string, React.ReactNode> = {
-    "Weight loss": (
-      <svg viewBox="0 0 24 24">
-        <path d="M12 3v3M12 18v3M3 12h3M18 12h3M6 6l2 2M16 16l2 2M6 18l2-2M16 8l2-2"/>
-      </svg>
-    ),
-    "Testosterone": (
-      <svg viewBox="0 0 24 24">
-        <path d="M13 3l-6 8h5l-2 10 8-11h-5l2-7z"/>
-      </svg>
-    ),
-    "Longevity": (
-      <svg viewBox="0 0 24 24">
-        <path d="M12 21c5-3 8-7 8-11a4 4 0 0 0-8-1 4 4 0 0 0-8 1c0 4 3 8 8 11z"/>
-      </svg>
-    ),
-    "Peptide therapy": (
-      <svg viewBox="0 0 24 24">
-        <circle cx="7" cy="8" r="2.5"/>
-        <circle cx="17" cy="8" r="2.5"/>
-        <circle cx="12" cy="16" r="2.5"/>
-        <path d="M9 9l2 5M15 9l-2 5"/>
-      </svg>
-    ),
-    "NAD+ therapy": (
-      <svg viewBox="0 0 24 24">
-        <circle cx="12" cy="12" r="8"/>
-        <path d="M12 8v8M8 12h8"/>
-      </svg>
-    ),
-    "Recovery": (
-      <svg viewBox="0 0 24 24">
-        <path d="M4 12a8 8 0 1 1 8 8"/>
-        <path d="M12 8v4l3 2"/>
-      </svg>
-    ),
-  };
 
   return (
     <div className="body">
@@ -613,19 +505,6 @@ export default function HomePage() {
                     src={SITE_IMAGES.pen}
                     alt="The TIDL Pen"
                   />
-                  <button
-                    type="button"
-                    className="tdlp5-play"
-                    aria-label="Play how to use the pen video"
-                    onClick={() => setIsPenVideoOpen(true)}
-                  >
-                    <span className="tdlp5-play-icon" aria-hidden="true">
-                      <svg viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M8.5 6.8a1 1 0 0 1 1.5-.86l8.2 5.2a1 1 0 0 1 0 1.72l-8.2 5.2A1 1 0 0 1 8.5 17.2V6.8Z" />
-                      </svg>
-                    </span>
-                    <span className="tdlp5-play-label">See how to use the pen</span>
-                  </button>
                 </div>
               </div>
             </div>
@@ -670,135 +549,9 @@ export default function HomePage() {
           <div className="tdlp5-grain"></div>
         </section>
 
-        {/* ===== Stories / Testimonials Section ===== */}
-        <section className="stories-03 container-full" id="stories" data-site-header-theme="light">
-          <div className="container-fluid for-works">
-            <div className="stories-content-03">
-              <h2 className="stories-title-03 heading-01">Real patients. Measurable results.</h2>
-              <div className="stories-grid">
-                {TESTIMONIALS.map((story) => (
-                  <article className="stories-card" key={story.name}>
-                    <div className="stories-card-head">
-                      <PatientAvatar name={story.name} size="sm" />
-                      <div className="stories-card-meta">
-                        <div className="stories-card-name">{story.name}</div>
-                        <div className="stories-card-condition">{story.condition}</div>
-                        <div className="stories-card-rating" aria-label="Rated 5 out of 5">
-                          {'★★★★★'}
-                        </div>
-                      </div>
-                    </div>
-                    <p className="stories-card-quote">{story.quote}</p>
-                  </article>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
+        <StoriesSection />
 
-        {/* ===== Journey Section ===== */}
-        <section className="journey container-full" id="journey" data-site-header-theme="light">
-          <div className="container-fluid">
-            <div className="journey-content-fixed">
-              <div className="journey-content">
-                <div className="circle-img-outer">
-                  <div className="circle-img-wrap">
-                    <img src={SITE_IMAGES.journey.circle} loading="lazy" alt="" className="circle-img"/>
-                  </div>
-                </div>
-                <div className="circle-info-outer">
-                  <div className="circle-info-img-wrap">
-                    <img
-                      src={SITE_IMAGES.journey.center}
-                      loading="lazy"
-                      sizes="(max-width: 3840px) 100vw, 3840px"
-                      alt=""
-                      className="circle-info-img"
-                    />
-                  </div>
-                </div>
-                <div className="journey-content-inside">
-                  <h2 className="journey-title heading-01">Medicine built<br/>for performance</h2>
-                  <div className="journey-text p2-regular">
-                    Board-certified providers across weight, hormones, and recovery. Clinical rigor with an athletic standard of results.
-                  </div>
-                  <div className="journey-bnts">
-                    <a href="#" onClick={openQuiz} className="button-01 button-03 w-inline-block">
-                      <div className="button-outside-01">
-                        <div className="button-inside">
-                          <div className="button-text-01">Get Started</div>
-                          <div className="button-text-01">Get Started</div>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-                </div>
-
-                <div className="journey-info-wrap">
-                  {/* Treatments Ticker */}
-                  <div className="tidl-ticker" id="tidlTicker" ref={tickerRef}>
-                    <div className="track" ref={tickerTrackRef}>
-                      {tickerLoop.map((item, idx) => (
-                        <div className="item" key={idx}>
-                          <span className="ico">
-                            {tickerIcons[item.t]}
-                          </span>
-                          <span className="label">{item.t}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="journey-mobile-chips" aria-label="TIDL treatment areas">
-                    {TICKER_ITEMS.map((item) => (
-                      <div className="journey-mobile-chip" key={item.t}>
-                        <span className="journey-mobile-chip-ico">{tickerIcons[item.t]}</span>
-                        <span className="journey-mobile-chip-label">{item.t}</span>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="journey-infos hide">
-                    <div className="journey-info-item _01">
-                      <div className="journey-info-item-shadow"></div>
-                      <div className="journey-info-text">Fertility</div>
-                    </div>
-                    <div className="journey-info-item _02">
-                      <div className="journey-info-item-shadow"></div>
-                      <div className="journey-info-text">Gynecology</div>
-                    </div>
-                    <div className="journey-info-item _03">
-                      <div className="journey-info-item-shadow"></div>
-                      <div className="journey-info-text">Gynecology</div>
-                    </div>
-                    <div className="journey-info-item _04">
-                      <div className="journey-info-item-shadow"></div>
-                      <div className="journey-info-text">Gynecology</div>
-                    </div>
-                    <div className="journey-info-item _05">
-                      <div className="journey-info-item-shadow"></div>
-                      <div className="journey-info-text">Gynecology</div>
-                    </div>
-                    <img src="https://cdn.prod.website-files.com/6a484773bf274d9b9ec3f5b9/6a484775bf274d9b9ec3f7a0_Frame%201707480203.png" loading="lazy" alt="" className="journey-overlay"/>
-                  </div>
-
-                  {/* Decorative circle replaces Lottie */}
-                  <div className="lottie-animation-2">
-                    <svg viewBox="0 0 100 100" width="100" height="100" aria-hidden="true">
-                      <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(243,195,0,0.3)" strokeWidth="1.5"/>
-                      <circle cx="50" cy="50" r="28" fill="none" stroke="rgba(243,195,0,0.15)" strokeWidth="1"/>
-                    </svg>
-                  </div>
-
-                  <div className="center-pointers">
-                    <img src="https://cdn.prod.website-files.com/6a484773bf274d9b9ec3f5b9/6a484775bf274d9b9ec3f7b9_Polygon%201.svg" loading="lazy" alt="" className="center-point"/>
-                    <img src="https://cdn.prod.website-files.com/6a484773bf274d9b9ec3f5b9/6a484775bf274d9b9ec3f7b8_Polygon%203.svg" loading="lazy" alt="" className="center-point"/>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        <JourneySection onGetStarted={openQuiz} />
 
         {/* ===== Families Section ===== */}
         <section className="families container-full" id="families" data-site-header-theme="dark">
@@ -1001,33 +754,6 @@ export default function HomePage() {
       </div>
 
       <SiteFooter onGetStarted={openQuiz} />
-        {isPenVideoOpen && (
-          <div
-            className="tdlp5-video-modal"
-            role="dialog"
-            aria-modal="true"
-            aria-label="How to use the TIDL Pen video"
-            onClick={() => setIsPenVideoOpen(false)}
-          >
-            <div className="tdlp5-video-dialog" onClick={(e) => e.stopPropagation()}>
-              <button
-                type="button"
-                className="tdlp5-video-close"
-                aria-label="Close video"
-                onClick={() => setIsPenVideoOpen(false)}
-              >
-                ×
-              </button>
-              <iframe
-                src="https://www.youtube.com/embed/q-ktd4nEi3w?autoplay=1&rel=0"
-                title="How to use the TIDL Pen"
-                loading="lazy"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
-            </div>
-          </div>
-        )}
     </div>
   );
 }

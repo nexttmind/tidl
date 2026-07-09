@@ -1,12 +1,11 @@
 /*
- * TIDL typography system (A2)
- * Body: Helvetica Neue stack (regular/medium)
- * Display: Barlow Condensed (bold, athletic headline voice)
+ * TIDL typography system
+ * Helvetica Neue stack for body, headings, hero, and wordmark.
  */
 
 :root {
   --font-body: "Helvetica Neue", Helvetica, Arial, ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Barlow Condensed", "Helvetica Now Display", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-display: "Helvetica Neue", Helvetica, Arial, ui-sans-serif, system-ui, sans-serif;
   --font-weight-body: 400;
   --font-weight-body-medium: 500;
   --font-weight-heading: 700;

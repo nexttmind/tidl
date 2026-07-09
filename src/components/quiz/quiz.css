@@ -19,7 +19,7 @@
   --quiz-btn-text: #ffffff;
   --quiz-surface: #f7f5f1;
   --quiz-sub-bg: #1a1510;
-  font-family: "HelveticaNowDisplay", "Helvetica Now Display", -apple-system, sans-serif;
+  font-family: var(--font-body);
   color: var(--quiz-ink);
 }
 

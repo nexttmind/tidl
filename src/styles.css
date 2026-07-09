@@ -246,7 +246,7 @@
 .hiw-kicker,
 .tdlp5-kick,
 .services-closing-kicker {
-  font-family: "Helvetica Neue", Helvetica, Arial, ui-sans-serif, system-ui, sans-serif !important;
+  font-family: var(--font-body) !important;
   font-style: normal !important;
   font-variant: normal !important;
   text-transform: uppercase !important;

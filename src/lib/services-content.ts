@@ -9,6 +9,7 @@ export type ServiceCardContent = {
   summary: string;
   bullets: readonly string[];
   badge?: string;
+  comingSoon?: boolean;
   explorePath: `/category/${CategorySlug}`;
 };
 
@@ -44,6 +45,7 @@ export const SERVICE_CARDS: ServiceCardContent[] = [
       "Doctor in your state prescribes when appropriate",
       "Discreet delivery from licensed US pharmacies",
     ],
+    comingSoon: true,
     explorePath: CATEGORY_PATHS.testosterone,
   },
   {
@@ -57,6 +59,7 @@ export const SERVICE_CARDS: ServiceCardContent[] = [
       "Pen or prescription format based on your plan",
       "Message your care team without clinic visits",
     ],
+    comingSoon: true,
     explorePath: CATEGORY_PATHS.longevity,
   },
 ];
