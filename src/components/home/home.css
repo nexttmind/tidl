@@ -2111,6 +2111,158 @@
   }
 }
 
+/* ===== Testimonial auto-play animations ===== */
+
+/* Header entrance */
+@keyframes tstHeadIn {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.tst-head {
+  animation: tstHeadIn 0.72s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.tst-eyebrow {
+  animation: tstHeadIn 0.7s 0.06s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.tst-title {
+  animation: tstHeadIn 0.7s 0.12s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.tst-lead {
+  animation: tstHeadIn 0.7s 0.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Active card: subtle scale-up + gold glow */
+.tst-card {
+  transform-origin: center bottom;
+  will-change: transform, box-shadow;
+}
+
+.tst-card--active {
+  border-color: rgba(243, 195, 0, 0.42);
+  box-shadow:
+    0 0 0 1.5px rgba(243, 195, 0, 0.32),
+    0 8px 40px -12px rgba(243, 195, 0, 0.28),
+    0 18px 48px -18px rgba(23, 19, 16, 0.18);
+  transform: scale(1.018);
+  z-index: 2;
+}
+
+/* Photo shimmer sweep on active card */
+.tst-card-shimmer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+  animation: tstShimmer 1.1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  background: linear-gradient(
+    105deg,
+    rgba(255, 255, 255, 0) 30%,
+    rgba(255, 255, 255, 0.45) 50%,
+    rgba(255, 255, 255, 0) 70%
+  );
+}
+
+@keyframes tstShimmer {
+  0%   { transform: translateX(-120%); opacity: 0.9; }
+  100% { transform: translateX(120%);  opacity: 0; }
+}
+
+/* Text fade+slide in on enter */
+@keyframes tstTextIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.tst-text-enter {
+  animation: tstTextIn 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Active card body: warm tint */
+.tst-card-body--active {
+  background: linear-gradient(180deg, rgba(255, 248, 220, 0.35) 0%, rgba(255, 255, 255, 0) 60%);
+}
+
+/* Progress ring dot */
+.tst-dot {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+
+.tst-dot-ring {
+  position: absolute;
+  inset: -6px;
+  width: calc(100% + 12px);
+  height: calc(100% + 12px);
+  pointer-events: none;
+  animation: tstRingIn 0.3s ease both;
+}
+
+@keyframes tstRingIn {
+  from { opacity: 0; transform: scale(0.6); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* Proof bar entrance */
+@keyframes tstProofIn {
+  from { opacity: 0; transform: translateY(18px) scaleX(0.96); }
+  to   { opacity: 1; transform: translateY(0)    scaleX(1); }
+}
+
+.tst-proof-bar {
+  animation: tstProofIn 0.7s 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Proof values count-up feel: just a pop in */
+@keyframes tstValPop {
+  0%   { transform: scale(0.85); opacity: 0; }
+  70%  { transform: scale(1.06); }
+  100% { transform: scale(1);    opacity: 1; }
+}
+
+.tst-proof-val {
+  animation: tstValPop 0.55s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.tst-proof-item:nth-child(1) .tst-proof-val { animation-delay: 0.35s; }
+.tst-proof-item:nth-child(3) .tst-proof-val { animation-delay: 0.48s; }
+.tst-proof-item:nth-child(5) .tst-proof-val { animation-delay: 0.61s; }
+
+/* Carousel cards stagger entrance */
+@keyframes tstCardIn {
+  from { opacity: 0; transform: translateY(32px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.tst-card:nth-child(1) { animation: tstCardIn 0.6s 0.38s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.tst-card:nth-child(2) { animation: tstCardIn 0.6s 0.48s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.tst-card:nth-child(3) { animation: tstCardIn 0.6s 0.56s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.tst-card:nth-child(4) { animation: tstCardIn 0.6s 0.62s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.tst-card:nth-child(5) { animation: tstCardIn 0.6s 0.68s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+/* Accessibility: disable all animations */
+@media (prefers-reduced-motion: reduce) {
+  .tst-head,
+  .tst-eyebrow,
+  .tst-title,
+  .tst-lead,
+  .tst-proof-bar,
+  .tst-proof-val,
+  .tst-card,
+  .tst-card-shimmer,
+  .tst-dot-ring,
+  .tst-text-enter {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
 /* ===== Pen Video Overlay ===== */
 .tdlp5-play {
   position: absolute;

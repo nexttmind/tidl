@@ -1,5 +1,13 @@
-import { useState, useRef } from "react";
+import {
+  useState,
+  useRef,
+  useEffect,
+  useCallback,
+} from "react";
 import { TESTIMONIALS } from "@/lib/testimonials";
+
+/* ─── auto-play interval in ms ─── */
+const INTERVAL = 4500;
 
 function StarRating() {
   return (
@@ -24,7 +32,37 @@ function QuoteMarkIcon() {
   );
 }
 
-// Extend with more testimonials for carousel visual richness
+/* animated ring on active dot ─── SVG */
+function ProgressRing({ progress }: { progress: number }) {
+  const r = 10;
+  const circ = 2 * Math.PI * r;
+  return (
+    <svg
+      className="tst-dot-ring"
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+    >
+      <circle
+        cx="12" cy="12" r={r}
+        fill="none"
+        stroke="rgba(243,195,0,0.22)"
+        strokeWidth="2"
+      />
+      <circle
+        cx="12" cy="12" r={r}
+        fill="none"
+        stroke="rgb(243,195,0)"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeDasharray={circ}
+        strokeDashoffset={circ - circ * progress}
+        style={{ transform: "rotate(-90deg)", transformOrigin: "center" }}
+      />
+    </svg>
+  );
+}
+
+/* ─── data ─── */
 const ALL_STORIES = [
   ...TESTIMONIALS,
   {
@@ -46,46 +84,117 @@ const ALL_STORIES = [
     contextImage: TESTIMONIALS[2].contextImage,
   },
 ];
+const TOTAL = ALL_STORIES.length;
 
 export function StoriesSection() {
-  const trackRef = useRef<HTMLDivElement>(null);
-  const [activeIdx, setActiveIdx] = useState(0);
-  const total = ALL_STORIES.length;
+  const trackRef   = useRef<HTMLDivElement>(null);
+  const timerRef   = useRef<ReturnType<typeof setInterval> | null>(null);
+  const startRef   = useRef<number>(Date.now());
+  const pausedRef  = useRef(false);
 
-  const scrollToIdx = (idx: number) => {
-    const clamped = Math.max(0, Math.min(total - 1, idx));
+  const [activeIdx, setActiveIdx]   = useState(0);
+  const [progress, setProgress]     = useState(0);   // 0–1 ring fill
+  const [entering, setEntering]     = useState(false); // triggers text anim
+
+  /* ─── scroll track to index ─── */
+  const scrollToIdx = useCallback((idx: number) => {
+    const clamped = ((idx % TOTAL) + TOTAL) % TOTAL;
     setActiveIdx(clamped);
+    setEntering(true);
+    setTimeout(() => setEntering(false), 60);
+
     const track = trackRef.current;
     if (!track) return;
     const card = track.children[clamped] as HTMLElement;
     if (card) {
       track.scrollTo({ left: card.offsetLeft - track.offsetLeft, behavior: "smooth" });
     }
+  }, []);
+
+  /* ─── auto-play timer ─── */
+  const restartTimer = useCallback(() => {
+    if (timerRef.current) clearInterval(timerRef.current);
+    startRef.current = Date.now();
+    setProgress(0);
+
+    timerRef.current = setInterval(() => {
+      if (pausedRef.current) return;
+      const elapsed = Date.now() - startRef.current;
+      const p = Math.min(elapsed / INTERVAL, 1);
+      setProgress(p);
+      if (p >= 1) {
+        setActiveIdx(prev => {
+          const next = (prev + 1) % TOTAL;
+          // scroll without resetting timer inside state setter
+          requestAnimationFrame(() => {
+            const track = trackRef.current;
+            if (!track) return;
+            const card = track.children[next] as HTMLElement;
+            if (card) track.scrollTo({ left: card.offsetLeft - track.offsetLeft, behavior: "smooth" });
+          });
+          return next;
+        });
+        setEntering(true);
+        setTimeout(() => setEntering(false), 60);
+        startRef.current = Date.now();
+        setProgress(0);
+      }
+    }, 30);
+  }, []);
+
+  useEffect(() => {
+    restartTimer();
+    return () => { if (timerRef.current) clearInterval(timerRef.current); };
+  }, [restartTimer]);
+
+  /* ─── pause on hover ─── */
+  const handleMouseEnter = () => { pausedRef.current = true; };
+  const handleMouseLeave = () => {
+    pausedRef.current = false;
+    startRef.current = Date.now() - progress * INTERVAL; // resume from where we left off
   };
 
+  /* ─── manual nav: restart timer ─── */
+  const handleNav = (idx: number) => {
+    scrollToIdx(idx);
+    restartTimer();
+  };
+
+  /* ─── detect scroll from touch ─── */
   const handleTrackScroll = () => {
     const track = trackRef.current;
     if (!track) return;
-    const scrollLeft = track.scrollLeft;
     const cardWidth = (track.children[0] as HTMLElement)?.offsetWidth ?? 1;
-    const gap = 24;
-    const idx = Math.round(scrollLeft / (cardWidth + gap));
-    setActiveIdx(Math.max(0, Math.min(total - 1, idx)));
+    const idx = Math.round(track.scrollLeft / (cardWidth + 24));
+    const clamped = Math.max(0, Math.min(TOTAL - 1, idx));
+    if (clamped !== activeIdx) {
+      setActiveIdx(clamped);
+      restartTimer();
+    }
   };
 
   return (
-    <section className="tst-sec" id="stories" data-site-header-theme="light">
+    <section
+      className="tst-sec"
+      id="stories"
+      data-site-header-theme="light"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
       <div className="tst-inner">
-        {/* Header */}
+
+        {/* ── Animated header ── */}
         <div className="tst-head">
           <div className="tst-eyebrow">Patient stories</div>
-          <h2 className="tst-title">Real patients.<br />Measurable results.</h2>
+          <h2 className="tst-title">
+            Real patients.<br />Measurable results.
+          </h2>
           <p className="tst-lead">
             Thousands of patients, one licensed care team. Here's what they're saying.
           </p>
         </div>
 
-        {/* Aggregate social proof bar */}
+        {/* ── Social proof bar ── */}
         <div className="tst-proof-bar">
           <div className="tst-proof-item">
             <span className="tst-proof-val">4.9</span>
@@ -104,74 +213,80 @@ export function StoriesSection() {
           </div>
         </div>
 
-        {/* Carousel track */}
+        {/* ── Carousel ── */}
         <div className="tst-carousel-wrap">
           <div
             className="tst-track"
             ref={trackRef}
             onScroll={handleTrackScroll}
           >
-            {ALL_STORIES.map((story, index) => (
-              <article
-                className={`tst-card${index === activeIdx ? " tst-card--active" : ""}`}
-                key={`${story.name}-${index}`}
-              >
-                {/* Photo */}
-                <div className="tst-card-photo-wrap">
-                  <img
-                    src={story.contextImage}
-                    alt=""
-                    className="tst-card-photo"
-                    loading="lazy"
-                  />
-                  <div className="tst-card-badge">{story.result}</div>
-                </div>
+            {ALL_STORIES.map((story, index) => {
+              const isActive = index === activeIdx;
+              return (
+                <article
+                  className={`tst-card${isActive ? " tst-card--active" : ""}`}
+                  key={`${story.name}-${index}`}
+                  onClick={() => handleNav(index)}
+                >
+                  {/* Photo */}
+                  <div className="tst-card-photo-wrap">
+                    <img
+                      src={story.contextImage}
+                      alt=""
+                      className="tst-card-photo"
+                      loading="lazy"
+                    />
+                    <div className="tst-card-badge">{story.result}</div>
+                    {/* shimmer overlay on active */}
+                    {isActive && <div className="tst-card-shimmer" aria-hidden="true" />}
+                  </div>
 
-                {/* Body */}
-                <div className="tst-card-body">
-                  <QuoteMarkIcon />
-                  <StarRating />
-                  <blockquote className="tst-card-quote">
-                    {story.quote}
-                  </blockquote>
-                  <footer className="tst-card-footer">
-                    <div className="tst-card-author">
-                      <strong>{story.name}</strong>
-                      <span>{story.condition}</span>
-                    </div>
-                    <div className="tst-card-verified">
-                      <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                        <circle cx="8" cy="8" r="7.5" stroke="currentColor" strokeOpacity="0.35" />
-                        <path
-                          d="M5 8.5l2 2 4-4"
-                          stroke="currentColor"
-                          strokeWidth="1.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                      Verified patient
-                    </div>
-                  </footer>
-                </div>
-              </article>
-            ))}
+                  {/* Body */}
+                  <div className={`tst-card-body${isActive ? " tst-card-body--active" : ""}`}>
+                    <QuoteMarkIcon />
+                    <StarRating />
+                    <blockquote
+                      className={`tst-card-quote${isActive && entering ? " tst-text-enter" : ""}`}
+                    >
+                      {story.quote}
+                    </blockquote>
+                    <footer className="tst-card-footer">
+                      <div className="tst-card-author">
+                        <strong>{story.name}</strong>
+                        <span>{story.condition}</span>
+                      </div>
+                      <div className="tst-card-verified">
+                        <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                          <circle cx="8" cy="8" r="7.5" stroke="currentColor" strokeOpacity="0.35" />
+                          <path
+                            d="M5 8.5l2 2 4-4"
+                            stroke="currentColor"
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                        Verified patient
+                      </div>
+                    </footer>
+                  </div>
+                </article>
+              );
+            })}
           </div>
 
-          {/* Navigation arrows */}
+          {/* ── Nav: arrows + progress dots ── */}
           <div className="tst-nav">
             <button
               className="tst-arrow"
               aria-label="Previous testimonial"
-              onClick={() => scrollToIdx(activeIdx - 1)}
-              disabled={activeIdx === 0}
+              onClick={() => handleNav(activeIdx - 1)}
             >
               <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M10 12L6 8l4-4" />
               </svg>
             </button>
 
-            {/* Dots */}
             <div className="tst-dots" role="tablist">
               {ALL_STORIES.map((_, i) => (
                 <button
@@ -180,16 +295,17 @@ export function StoriesSection() {
                   aria-selected={i === activeIdx}
                   aria-label={`Go to testimonial ${i + 1}`}
                   className={`tst-dot${i === activeIdx ? " tst-dot--active" : ""}`}
-                  onClick={() => scrollToIdx(i)}
-                />
+                  onClick={() => handleNav(i)}
+                >
+                  {i === activeIdx && <ProgressRing progress={progress} />}
+                </button>
               ))}
             </div>
 
             <button
               className="tst-arrow"
               aria-label="Next testimonial"
-              onClick={() => scrollToIdx(activeIdx + 1)}
-              disabled={activeIdx === total - 1}
+              onClick={() => handleNav(activeIdx + 1)}
             >
               <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M6 4l4 4-4 4" />
