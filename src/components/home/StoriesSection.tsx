@@ -1,24 +1,26 @@
-import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { TESTIMONIALS, type Testimonial } from "@/lib/testimonials";
 import { STORIES_SECTION, TESTIMONIAL_NOTES } from "@/lib/stories-content";
 
 const settle = [0.22, 1, 0.36, 1] as const;
 
-const MARQUEE_ROWS = [
-  {
-    items: TESTIMONIALS,
-    direction: "left" as const,
-    speed: 48,
-    label: "Patient reviews row one",
-  },
-  {
-    items: [...TESTIMONIALS].reverse(),
-    direction: "right" as const,
-    speed: 54,
-    label: "Patient reviews row two",
-  },
-];
+function buildMarqueeRows(items: Testimonial[]) {
+  return [
+    {
+      items,
+      direction: "left" as const,
+      speed: 48,
+      label: "Patient reviews row one",
+    },
+    {
+      items: [...items].reverse(),
+      direction: "right" as const,
+      speed: 54,
+      label: "Patient reviews row two",
+    },
+  ];
+}
 
 function buildLoopItems(items: Testimonial[]): Testimonial[] {
   if (items.length === 0) return [];
@@ -37,11 +39,11 @@ function StarRating() {
   );
 }
 
-function SectionTitle() {
+function SectionTitle({ title }: { title: string }) {
   const ref = useRef<HTMLHeadingElement>(null);
   const [active, setActive] = useState(false);
   const [loopMotion, setLoopMotion] = useState(true);
-  const chars = STORIES_SECTION.title.split("");
+  const chars = title.split("");
 
   useEffect(() => {
     const el = ref.current;
@@ -69,7 +71,7 @@ function SectionTitle() {
   }, []);
 
   return (
-    <h2 ref={ref} className="tst-title-reveal heading-01" aria-label={STORIES_SECTION.title}>
+    <h2 ref={ref} className="tst-title-reveal heading-01" aria-label={title}>
       <span className="tst-title-reveal-inner">
         {chars.map((char, i) => (
           <motion.span
@@ -258,18 +260,28 @@ function MarqueeRow({
   );
 }
 
-export function StoriesSection() {
+export function StoriesSection({
+  items = TESTIMONIALS,
+  id = "stories",
+  title = STORIES_SECTION.title,
+}: {
+  items?: Testimonial[];
+  id?: string;
+  title?: string;
+} = {}) {
+  const rows = useMemo(() => buildMarqueeRows(items), [items]);
+
   return (
-    <section className="tst-sec" id="stories" data-site-header-theme="light">
+    <section className="tst-sec" id={id} data-site-header-theme="light">
       <div className="tst-inner">
         <header className="tst-head">
-          <SectionTitle />
+          <SectionTitle title={title} />
         </header>
       </div>
 
       <div className="tst-marquee-shell">
         <div className="tst-marquee">
-          {MARQUEE_ROWS.map((row) => (
+          {rows.map((row) => (
             <MarqueeRow
               key={row.label}
               items={row.items}

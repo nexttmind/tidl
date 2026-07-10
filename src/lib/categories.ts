@@ -2,7 +2,14 @@ import type { ProductSlug } from "@/types/quiz";
 import { SITE_IMAGES } from "@/lib/site-assets";
 import { TRUST_PILLARS, TRUST_STATS } from "@/lib/trust-content";
 
-export const CATEGORY_SLUGS = ["weight-loss", "testosterone", "longevity"] as const;
+export const CATEGORY_SLUGS = [
+  "weight-loss",
+  "metabolic-health",
+  "testosterone",
+  "longevity",
+  "performance",
+  "recovery",
+] as const;
 export type CategorySlug = (typeof CATEGORY_SLUGS)[number];
 
 export type CategoryEducationBlock = {
@@ -470,6 +477,297 @@ export const CATEGORIES: Record<CategorySlug, CategoryDefinition> = {
     metaTitle: "Longevity & Recovery | Tidl Health",
     metaDescription:
       "Learn how TIDL longevity and performance programs support recovery, sleep, and metabolic health.",
+    trustStats: TRUST_STATS,
+    trustPillars: TRUST_PILLARS,
+  },
+  "metabolic-health": {
+    slug: "metabolic-health",
+    navLabel: "Metabolic",
+    title: "Metabolic Health",
+    kicker: "Metabolic care",
+    headline: "Steady energy. Better metabolic balance.",
+    lead:
+      "Physician-guided metabolic support for glucose balance, energy, and sustainable body composition — without gray-market guesswork.",
+    extendedLead:
+      "Metabolic health sits at the center of weight, energy, and long-term wellness. TIDL connects you with a licensed provider who reviews your intake and recommends treatment only when medically appropriate.",
+    heroImage: SITE_IMAGES.services.weightLoss,
+    productSlugs: [],
+    pillars: [
+      {
+        title: "Provider-first protocols",
+        body: "Every plan starts with a licensed review of your history and goals.",
+      },
+      {
+        title: "Legitimate pharmacy fulfillment",
+        body: "Medication ships from licensed US pharmacies in discreet packaging.",
+      },
+      {
+        title: "Progress you can track",
+        body: "Check in with your care team and adjust as your body responds.",
+      },
+    ],
+    educationTitle: "What metabolic care looks like with TIDL",
+    educationBlocks: [
+      {
+        title: "Why metabolic health matters",
+        body: "Energy, appetite, and body composition are tightly linked. A provider-led plan looks at the whole picture, not a single number.",
+      },
+      {
+        title: "How TIDL approaches it",
+        body: "Your intake doubles as medical history. A licensed provider decides whether treatment is appropriate and what format fits.",
+      },
+      {
+        title: "What happens next",
+        body: "If prescribed, medication ships discreetly and your care team stays available for questions and follow-up.",
+      },
+    ],
+    howItWorks: [
+      {
+        step: "01",
+        label: "Take the intake",
+        detail: "Share goals, history, and lifestyle in about five minutes.",
+        duration: "~5 min",
+      },
+      {
+        step: "02",
+        label: "Doctor review",
+        detail: "A licensed provider reviews your full intake before prescribing.",
+        duration: "Same day",
+      },
+      {
+        step: "03",
+        label: "Personalized plan",
+        detail: "Treatment matched to your metabolic goals when appropriate.",
+        duration: "Personalized",
+      },
+      {
+        step: "04",
+        label: "Discreet delivery",
+        detail: "Shipped from a licensed US pharmacy in plain packaging.",
+        duration: "2–5 days",
+      },
+      {
+        step: "05",
+        label: "Ongoing support",
+        detail: "Message your care team and reorder when you are ready.",
+        duration: "Always on",
+      },
+    ],
+    faqItems: [
+      {
+        id: 1,
+        q: "Is metabolic care available now?",
+        a: "This hub is launching soon. Start the intake today and we will match you when protocols go live. Weight-loss GLP-1 care is available now.",
+      },
+      {
+        id: 2,
+        q: "Will a real doctor review my case?",
+        a: "Yes. Every TIDL treatment is prescribed by a licensed provider in your state after medical review.",
+      },
+      {
+        id: 3,
+        q: "Can I start with weight-loss care instead?",
+        a: "Yes. GLP-1 weight-loss care is live now if that better matches your goals.",
+      },
+    ],
+    ctaLabel: "Start metabolic intake",
+    metaTitle: "Metabolic Health | Tidl Health",
+    metaDescription:
+      "Physician-guided metabolic health care from TIDL. Intake, provider review, and discreet pharmacy delivery.",
+    trustStats: TRUST_STATS,
+    trustPillars: TRUST_PILLARS,
+  },
+  performance: {
+    slug: "performance",
+    navLabel: "Performance",
+    title: "Performance",
+    kicker: "Performance care",
+    headline: "Train harder. Recover smarter.",
+    lead:
+      "Clinically supervised performance protocols for strength, drive, and recovery — real prescriptions, not gray-market shortcuts.",
+    extendedLead:
+      "Performance care at TIDL is physician-supervised. A licensed provider reviews your goals and history, then recommends treatment only when it is medically appropriate for you.",
+    heroImage: SITE_IMAGES.services.testosterone,
+    productSlugs: [],
+    pillars: [
+      {
+        title: "Legitimate medical path",
+        body: "Licensed providers and US pharmacies — never gray-market product.",
+      },
+      {
+        title: "Goal-matched protocols",
+        body: "Plans built around training, recovery, and how you actually perform.",
+      },
+      {
+        title: "Discreet delivery",
+        body: "Plain packaging from licensed pharmacies with ongoing telehealth support.",
+      },
+    ],
+    educationTitle: "Performance care with medical oversight",
+    educationBlocks: [
+      {
+        title: "What this hub covers",
+        body: "Strength, drive, and recovery protocols under physician supervision — designed for people who want results without compromising safety.",
+      },
+      {
+        title: "Why medical review matters",
+        body: "Performance treatments are prescription-only. A licensed provider decides what is appropriate based on your intake and health history.",
+      },
+      {
+        title: "How fulfillment works",
+        body: "When prescribed, medication ships from a licensed US pharmacy. Your care team stays available for follow-up.",
+      },
+    ],
+    howItWorks: [
+      {
+        step: "01",
+        label: "Share your goals",
+        detail: "Complete a short intake covering training, recovery, and health history.",
+        duration: "~5 min",
+      },
+      {
+        step: "02",
+        label: "Provider review",
+        detail: "A licensed doctor reviews your case before any prescription.",
+        duration: "Same day",
+      },
+      {
+        step: "03",
+        label: "Personalized Rx",
+        detail: "Protocol matched to your goals when medically appropriate.",
+        duration: "Tailored",
+      },
+      {
+        step: "04",
+        label: "Discreet delivery",
+        detail: "Shipped from a licensed US pharmacy in plain packaging.",
+        duration: "2–5 days",
+      },
+      {
+        step: "05",
+        label: "Ongoing support",
+        detail: "Message your care team and adjust as your training evolves.",
+        duration: "Ongoing",
+      },
+    ],
+    faqItems: [
+      {
+        id: 1,
+        q: "Is performance care live yet?",
+        a: "This hub is coming soon. Start the intake now to be matched at launch. Weight-loss GLP-1 care is available today.",
+      },
+      {
+        id: 2,
+        q: "Is this the same as gray-market peptides?",
+        a: "No. TIDL only uses licensed providers and licensed US pharmacies. That legitimacy is the core of the offer.",
+      },
+      {
+        id: 3,
+        q: "Who reviews my intake?",
+        a: "A licensed telemedicine provider in your state reviews every intake before prescribing.",
+      },
+    ],
+    ctaLabel: "Start performance intake",
+    metaTitle: "Performance Care | Tidl Health",
+    metaDescription:
+      "Physician-supervised performance protocols from TIDL with licensed providers and discreet US pharmacy delivery.",
+    trustStats: TRUST_STATS,
+    trustPillars: TRUST_PILLARS,
+  },
+  recovery: {
+    slug: "recovery",
+    navLabel: "Recovery",
+    title: "Recovery",
+    kicker: "Recovery care",
+    headline: "Sleep better. Repair faster.",
+    lead:
+      "Physician-guided recovery protocols for sleep, repair, and bounce-back — with the same medical standards as every TIDL treatment.",
+    extendedLead:
+      "Recovery is where progress sticks. TIDL recovery care starts with your intake, continues with licensed provider review, and ships only when a prescription is medically appropriate.",
+    heroImage: SITE_IMAGES.services.longevity,
+    productSlugs: [],
+    pillars: [
+      {
+        title: "Sleep and repair focus",
+        body: "Protocols aimed at recovery quality, not stimulant shortcuts.",
+      },
+      {
+        title: "Licensed oversight",
+        body: "Every plan reviewed by a doctor licensed in your state.",
+      },
+      {
+        title: "Care that continues",
+        body: "Message your team, reorder simply, and adjust as needs change.",
+      },
+    ],
+    educationTitle: "Recovery care with TIDL",
+    educationBlocks: [
+      {
+        title: "What recovery care supports",
+        body: "Sleep quality, post-training repair, and bounce-back under physician supervision.",
+      },
+      {
+        title: "How prescribing works",
+        body: "Your intake is reviewed by a licensed provider. Treatment is prescribed only when appropriate.",
+      },
+      {
+        title: "Delivery and follow-up",
+        body: "Medication ships discreetly from a licensed US pharmacy, with care messaging available after.",
+      },
+    ],
+    howItWorks: [
+      {
+        step: "01",
+        label: "Take the intake",
+        detail: "Share sleep, stress, training, and health history in minutes.",
+        duration: "~5 min",
+      },
+      {
+        step: "02",
+        label: "Doctor review",
+        detail: "A licensed provider reviews your case before prescribing.",
+        duration: "Same day",
+      },
+      {
+        step: "03",
+        label: "Recovery protocol",
+        detail: "Plan matched to your repair and sleep goals when appropriate.",
+        duration: "Personalized",
+      },
+      {
+        step: "04",
+        label: "Discreet delivery",
+        detail: "Shipped from a licensed US pharmacy in plain packaging.",
+        duration: "2–5 days",
+      },
+      {
+        step: "05",
+        label: "Ongoing support",
+        detail: "Check in with your care team as recovery needs evolve.",
+        duration: "Always on",
+      },
+    ],
+    faqItems: [
+      {
+        id: 1,
+        q: "Is recovery care available now?",
+        a: "This hub is launching soon. Complete the intake to be matched at launch. GLP-1 weight-loss care is live today.",
+      },
+      {
+        id: 2,
+        q: "Do I still see a real doctor?",
+        a: "Yes. Any medical treatment at TIDL requires licensed provider review and a real prescription.",
+      },
+      {
+        id: 3,
+        q: "Is shipping discreet?",
+        a: "Yes. Orders ship in plain packaging with no indication of contents on the outer box.",
+      },
+    ],
+    ctaLabel: "Start recovery intake",
+    metaTitle: "Recovery Care | Tidl Health",
+    metaDescription:
+      "Physician-guided recovery protocols from TIDL for sleep, repair, and bounce-back with discreet pharmacy delivery.",
     trustStats: TRUST_STATS,
     trustPillars: TRUST_PILLARS,
   },

@@ -5,8 +5,11 @@ import { SITE_IMAGES, SOCIAL_ICONS } from "@/lib/site-assets";
 
 const TREATMENT_LINKS = [
   { href: "/category/weight-loss", label: "Weight Loss" },
+  { href: "/category/metabolic-health", label: "Metabolic" },
   { href: "/category/testosterone", label: "Testosterone" },
   { href: "/category/longevity", label: "Longevity" },
+  { href: "/category/performance", label: "Performance" },
+  { href: "/category/recovery", label: "Recovery" },
   { href: "/products/glp-1-weight-loss", label: "GLP-1 Program" },
 ] as const;
 

@@ -48,6 +48,9 @@ export const PRODUCT_PATHS: Record<ProductSlug, `/products/${ProductSlug}`> = {
 
 export const CATEGORY_PATHS: Record<CategorySlug, `/category/${CategorySlug}`> = {
   "weight-loss": "/category/weight-loss",
+  "metabolic-health": "/category/metabolic-health",
   testosterone: "/category/testosterone",
   longevity: "/category/longevity",
+  performance: "/category/performance",
+  recovery: "/category/recovery",
 };
