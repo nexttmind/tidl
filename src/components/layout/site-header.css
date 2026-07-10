@@ -68,15 +68,51 @@
   backdrop-filter: blur(14px);
 }
 
+.site-header-menu-btn,
+.site-header-drawer-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: #171310;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.site-header-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.site-header-search-btn {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.site-header-search-btn:focus-visible {
+  outline: 2px solid rgb(243, 195, 0);
+  outline-offset: 2px;
+  border-radius: 999px;
+}
+
+.site-header.is-dark .site-header-search-btn,
 .site-header.is-dark .site-header-menu-btn,
 .site-header.is-dark .site-header-drawer-close {
   color: #ffffff;
 }
 
+.site-header.is-transparent.is-light .site-header-search-btn,
 .site-header.is-transparent.is-light .site-header-menu-btn {
   color: #171310;
 }
 
+.site-header.is-transparent.is-dark .site-header-search-btn,
 .site-header.is-transparent.is-dark .site-header-menu-btn {
   color: #ffffff;
 }

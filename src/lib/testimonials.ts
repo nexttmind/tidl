@@ -7,6 +7,7 @@ export type Testimonial = {
   result: string;
   role: string;
   featured?: boolean;
+  portraitImage: string;
   contextImage: string;
 };
 
@@ -14,29 +15,32 @@ export const TESTIMONIALS: Testimonial[] = [
   {
     name: "Sarah M.",
     quote:
-      "I'd been putting this off for years because I thought it would be complicated. It wasn't. The quiz took five minutes, a doctor reviewed everything, and my treatment showed up a few days later. Down 18 pounds and finally feeling like myself again.",
+      "Five-minute quiz, doctor review, treatment at my door. Down 18 pounds in 14 weeks — finally feeling like myself again.",
     condition: "Weight Loss",
-    result: "−18 lbs",
+    result: "−18 lbs in 14 weeks*",
     role: "Verified Patient",
     featured: true,
+    portraitImage: SITE_IMAGES.testimonialPortraits.woman,
     contextImage: SITE_IMAGES.testimonialContext[0],
   },
   {
     name: "James R.",
     quote:
-      "What sold me was how discreet and simple it was. No waiting rooms, no awkward conversations. The care team actually answers when I message them, and reordering takes one tap. Genuinely the easiest health decision I've made.",
+      "No waiting rooms, no awkward visits. The care team responds, reordering takes one tap. Genuinely the easiest health decision I've made.",
     condition: "GLP-1 Care",
-    result: "3 months in",
+    result: "−14 lbs in 10 weeks*",
     role: "Verified Patient",
+    portraitImage: SITE_IMAGES.testimonialPortraits.man,
     contextImage: SITE_IMAGES.testimonialContext[1],
   },
   {
     name: "Daniel K.",
     quote:
-      "I was skeptical about doing this online, but everything felt legitimate from the start. Real doctors, a real pharmacy, clear instructions with the pen. Three months in and the results speak for themselves.",
+      "Felt legitimate from day one — real doctors, real pharmacy, clear pen instructions. Three months in and the results speak for themselves.",
     condition: "Metabolic Health",
-    result: "Verified patient",
+    result: "−11 lbs in 12 weeks*",
     role: "Verified Patient",
+    portraitImage: SITE_IMAGES.testimonialPortraits.man,
     contextImage: SITE_IMAGES.testimonialContext[2],
   },
 ];
@@ -45,11 +49,12 @@ export const GLP1_TESTIMONIALS: Testimonial[] = [
   {
     name: "Sarah M.",
     quote:
-      "I'd been putting this off for years because I thought it would be complicated. It wasn't. The quiz took five minutes, a doctor reviewed everything, and my treatment showed up a few days later. Down 18 pounds and finally feeling like myself again.",
+      "Five-minute quiz, doctor review, treatment at my door. Down 18 pounds in 14 weeks — finally feeling like myself again.",
     condition: "Weight Loss",
-    result: "−18 lbs",
+    result: "−18 lbs in 14 weeks*",
     role: "Verified Patient",
     featured: true,
+    portraitImage: SITE_IMAGES.testimonialPortraits.woman,
     contextImage: SITE_IMAGES.testimonialContext[0],
   },
   {
@@ -59,6 +64,7 @@ export const GLP1_TESTIMONIALS: Testimonial[] = [
     condition: "GLP-1 Weight Loss",
     result: "−12 lbs",
     role: "Verified Patient",
+    portraitImage: SITE_IMAGES.testimonialPortraits.man,
     contextImage: SITE_IMAGES.testimonialContext[1],
   },
   {
@@ -68,6 +74,7 @@ export const GLP1_TESTIMONIALS: Testimonial[] = [
     condition: "GLP-1 Care",
     result: "4 months in",
     role: "Verified Patient",
+    portraitImage: SITE_IMAGES.testimonialPortraits.woman,
     contextImage: SITE_IMAGES.testimonialContext[2],
   },
 ];

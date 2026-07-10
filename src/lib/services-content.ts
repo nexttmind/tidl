@@ -10,13 +10,14 @@ export type ServiceCardContent = {
   bullets: readonly string[];
   badge?: string;
   comingSoon?: boolean;
+  comingSoonNote?: string;
+  waitlistHref?: string;
+  exploreLabel?: string;
   explorePath: `/category/${CategorySlug}`;
 };
 
 export const SERVICES_INTRO = {
   kicker: "Prescription care, delivered",
-  lead:
-    "Every TIDL program starts with a licensed provider in your state. Treatment ships from a US pharmacy in discreet packaging. No clinic visits, no surprise billing, no mixing medications at your kitchen counter.",
 } as const;
 
 export const SERVICE_CARDS: ServiceCardContent[] = [
@@ -28,10 +29,11 @@ export const SERVICE_CARDS: ServiceCardContent[] = [
       "GLP-1 treatment dosed for you by a doctor. Steady progress without crash diets, yo-yo cycles, or measuring at home.",
     bullets: [
       "Pre-dosed TIDL Pen, dose set to your Rx",
-      "Licensed provider reviews every intake",
+      "Provider reviews every intake",
       "Weekly routine: click, inject, track progress",
     ],
     badge: "Includes TIDL Pen",
+    exploreLabel: "See Pricing & Plans",
     explorePath: CATEGORY_PATHS["weight-loss"],
   },
   {
@@ -43,9 +45,11 @@ export const SERVICE_CARDS: ServiceCardContent[] = [
     bullets: [
       "Lab-guided dosing and ongoing monitoring",
       "Doctor in your state prescribes when appropriate",
-      "Discreet delivery from licensed US pharmacies",
+      "Shipped from a US pharmacy in plain packaging",
     ],
     comingSoon: true,
+    comingSoonNote: "TRT and Longevity are next. Weight loss is live now.",
+    waitlistHref: "#cta",
     explorePath: CATEGORY_PATHS.testosterone,
   },
   {
@@ -55,11 +59,13 @@ export const SERVICE_CARDS: ServiceCardContent[] = [
     summary:
       "Peptide and metabolic protocols under physician supervision. Built for recovery, sleep, and long-term performance.",
     bullets: [
-      "Personalized peptide and recovery protocols",
+      "Peptide, NAD+, and recovery protocols under supervision",
       "Pen or prescription format based on your plan",
-      "Message your care team without clinic visits",
+      "Message your care team anytime",
     ],
     comingSoon: true,
+    comingSoonNote: "TRT and Longevity are next. Weight loss is live now.",
+    waitlistHref: "#cta",
     explorePath: CATEGORY_PATHS.longevity,
   },
 ];

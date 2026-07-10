@@ -6,13 +6,8 @@ const settle = [0.22, 1, 0.36, 1] as const;
 const KICKER = "One standard of care";
 
 const PHRASES = [
-  { text: "Not trends.", highlight: false },
-  { text: "Not shortcuts.", highlight: false },
-  { text: "Real medicine.", highlight: true },
-  {
-    text: "Prescribed by a licensed provider, shipped from a US pharmacy, built to perform.",
-    highlight: false,
-  },
+  { text: "Built around one thing:", highlight: false },
+  { text: "it works.", highlight: true },
 ] as const;
 
 function KickerReveal({ active }: { active: boolean }) {

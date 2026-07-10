@@ -90,8 +90,8 @@ export function SiteFooter({ onGetStarted }: SiteFooterProps) {
                     >
                       <div className="button-outside-01">
                         <div className="button-inside">
-                          <div className="button-text-01">Get Started</div>
-                          <div className="button-text-01">Get Started</div>
+                          <div className="button-text-01">Get My Plan</div>
+                          <div className="button-text-01">Get My Plan</div>
                         </div>
                       </div>
                     </a>

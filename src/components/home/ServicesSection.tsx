@@ -1,7 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { ServicesClosing } from "./ServicesClosing";
 import { SERVICE_CARDS, SERVICES_INTRO } from "@/lib/services-content";
-import { TRUST_PILLARS } from "@/lib/trust-content";
 
 function ArrowRight() {
   return (
@@ -22,7 +21,6 @@ export function ServicesSection() {
             <h2 data-w-id="3072fecc-9b21-d07c-8a0f-122ed0f2114c" className="services-title-02 heading-01">
               Pick your goal.
             </h2>
-            <p className="services-intro-lead">{SERVICES_INTRO.lead}</p>
           </header>
 
           <div className="service-list">
@@ -59,16 +57,26 @@ export function ServicesSection() {
                   </ul>
                   <div className="service-item-btns">
                     {card.comingSoon ? (
-                      <span className="service-item-coming-soon" aria-disabled="true">
-                        Coming soon
-                      </span>
+                      <div className="service-item-coming-soon-wrap">
+                        <span className="service-item-coming-soon" aria-disabled="true">
+                          Coming soon
+                        </span>
+                        {card.comingSoonNote ? (
+                          <p className="service-item-coming-soon-note">{card.comingSoonNote}</p>
+                        ) : null}
+                        {card.waitlistHref ? (
+                          <a href={card.waitlistHref} className="service-item-waitlist-link">
+                            Join the waitlist
+                          </a>
+                        ) : null}
+                      </div>
                     ) : (
                       <Link to={card.explorePath} className="button-03 w-inline-block">
                         <div className="button-outside-wrap">
                           <div className="btn-text-outside-03">
                             <div className="btn-text-inside-03">
-                              <div className="button-text-03">Explore</div>
-                              <div className="button-text-03">Explore</div>
+                              <div className="button-text-03">{card.exploreLabel ?? "Explore"}</div>
+                              <div className="button-text-03">{card.exploreLabel ?? "Explore"}</div>
                             </div>
                           </div>
                           <div className="btn-icon-outside-03">
@@ -88,16 +96,6 @@ export function ServicesSection() {
                   </div>
                 </div>
               </div>
-            ))}
-          </div>
-
-          <div className="services-trust-pillars">
-            {TRUST_PILLARS.map((pillar) => (
-              <article className="services-trust-pillar" key={pillar.id}>
-                <span className="services-trust-pillar-num">{pillar.num}</span>
-                <h3 className="services-trust-pillar-label">{pillar.label}</h3>
-                <p className="services-trust-pillar-detail">{pillar.detail}</p>
-              </article>
             ))}
           </div>
 

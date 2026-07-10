@@ -35,7 +35,7 @@ function Headline({ active }: { active: boolean }) {
   });
 
   return (
-    <h2 className="text-[2.25rem] font-bold leading-[1.08] tracking-[-0.03em] text-ink sm:text-[2.75rem] md:text-[3.2rem] lg:text-[3.4rem]">
+    <h2 className="cta-headline heading-01">
       {trail.map((style, i) => (
         <animated.span
           key={i}
@@ -56,13 +56,13 @@ function Headline({ active }: { active: boolean }) {
 
 const PHRASES = [
   "Take the five-minute quiz.",
-  "A licensed provider reviews your plan.",
-  "Your treatment is prepared and shipped discreetly to your door.",
+  "Your plan is reviewed and prepared.",
+  "Treatment ships to your door.",
 ];
 
 function BodyCopy({ active }: { active: boolean }) {
   return (
-    <p className="max-w-md text-base leading-relaxed text-ink-soft sm:text-lg">
+    <p className="cta-body p2-regular">
       {PHRASES.map((phrase, i) => (
         <motion.span
           key={phrase}
@@ -120,8 +120,8 @@ function TimelineStep({
         animate={active ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.4, delay: labelDelay, ease: settle }}
       >
-        <div className="text-xl font-bold text-gold-deep">{number}</div>
-        <div className="mt-0.5 text-sm text-ink-soft">{label}</div>
+        <div className="cta-step-num heading-05">{number}</div>
+        <div className="cta-step-label p2-regular">{label}</div>
       </motion.div>
     </div>
   );
@@ -188,8 +188,8 @@ function InfoCard({ active }: { active: boolean }) {
               <row.icon className="h-6 w-6" />
             </div>
             <div>
-              <div className="text-sm font-bold text-ink">{row.title}</div>
-              <div className="mt-0.5 text-[13px] leading-snug text-ink-soft">{row.sub}</div>
+              <div className="cta-card-title heading-05">{row.title}</div>
+              <div className="cta-card-sub p2-regular">{row.sub}</div>
             </div>
           </motion.div>
         ))}
@@ -270,7 +270,7 @@ export function CtaSection({ onGetStarted }: { onGetStarted?: () => void }) {
               onClick={onGetStarted}
               className="group inline-flex w-full items-center justify-center gap-3 rounded-xl bg-gold px-6 py-3.5 text-base font-medium text-primary-foreground transition-all duration-300 hover:-translate-y-0.5 hover:bg-gold-bright hover:shadow-[0_10px_24px_-8px_rgba(243,195,0,0.5)] sm:w-auto sm:gap-4 sm:px-10 sm:py-4 sm:text-lg"
             >
-              Get Started
+              Start My Plan
               <svg
                 viewBox="0 0 24 24"
                 fill="none"
@@ -285,11 +285,11 @@ export function CtaSection({ onGetStarted }: { onGetStarted?: () => void }) {
             </button>
           </motion.div>
 
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-ink-soft sm:gap-8 sm:text-sm">
-            {["Secure intake", "Licensed medical team", "Private delivery"].map((item, i) => (
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 sm:gap-8">
+            {["Secure intake", "Physician-reviewed", "Ships in days"].map((item, i) => (
               <motion.span
                 key={item}
-                className="flex items-center gap-2"
+                className="cta-trust p2-regular flex items-center gap-2"
                 initial={{ opacity: 0 }}
                 animate={active ? { opacity: 1 } : {}}
                 transition={{ duration: 0.5, delay: T.trust + i * 0.12 }}

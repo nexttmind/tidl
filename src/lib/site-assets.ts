@@ -1,5 +1,9 @@
 /** TIDL site imagery — gold-direction hf_20260705/06 shoot + shared assets */
 
+import testimonialPortraitMan from "@/assets/testimonial-portrait-man.png";
+import testimonialPortraitWoman from "@/assets/testimonial-portrait-woman.png";
+import tidlPenWithLabel from "@/assets/TIDL_Pen-Rendering_WITH-LABEL.png";
+
 export const CDN = "https://cdn.prod.website-files.com/6a484773bf274d9b9ec3f5b9";
 
 const img = (path: string) => `${CDN}/${path}`;
@@ -30,10 +34,15 @@ export const SITE_IMAGES = {
     testosterone: img("6a4a95a92a6dee9e17ed919e_hf_20260705_173015_06ec6b8c-b985-4bab-80b1-41afe144db92.png"),
     longevity: img("6a4bd7ba829cdf371074ee74_hf_20260706_160923_8f107d2e-39e5-41c3-8290-18fd580d714a.png"),
   },
-  pen: img("6a4ae82cb673463b10de0cad_hf_20260705_223658_ef5718c4-2d19-4e28-9a03-7f8e1555a580%20(1).png"),
+  /**
+   * Labeled TIDL Pen product cutout.
+   * Used with the Webflow pen-stage treatment (levitate / blade / aura / shadow) —
+   * not as a framed lifestyle photo.
+   */
+  pen: tidlPenWithLabel,
   products: {
-    penPrimary: img("6a4ae82cb673463b10de0cad_hf_20260705_223658_ef5718c4-2d19-4e28-9a03-7f8e1555a580%20(1).png"),
-    penSecondary: "/image2.png",
+    penPrimary: tidlPenWithLabel,
+    penSecondary: tidlPenWithLabel,
     pillPink: "/product 3 3d pink.png",
     pillProtocol: "/WhatsApp_Image_2026-06-17_at_1.36.29_AM__1_-removebg-preview.png",
   },
@@ -75,6 +84,10 @@ export const SITE_IMAGES = {
     img("6a4bbd9950fd69347716fcab_hf_20260706_142630_ecfd4adf-10ef-4ea0-804d-21e9849d1aa8.png"),
     img("6a4aa74d68be0cc0c1e6ff78_hf_20260705_183156_8357ac89-69ac-4055-a74d-07ea368560c8.png"),
   ],
+  testimonialPortraits: {
+    man: testimonialPortraitMan,
+    woman: testimonialPortraitWoman,
+  },
 } as const;
 
 export const SOCIAL_ICONS = {

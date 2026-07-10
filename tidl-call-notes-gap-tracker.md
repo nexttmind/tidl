@@ -1,4 +1,4 @@
-﻿# TIDL — Full Gap Tracker (Call Notes + Mobile Skill + Current Build)
+# TIDL — Full Gap Tracker (Call Notes + Mobile Skill + Current Build)
 
 > **Purpose:** Single source of truth for everything stakeholders asked for vs what exists in the repo today.  
 > **Status:** All tracker items marked complete as of 2026-07-09. Historical rows kept for reference.  
@@ -98,12 +98,11 @@
 | 4 | Services | `#services` | Upper funnel Γ£ô |
 | 5 | Services closing | `ServicesClosing.tsx` | Added post-call (premium bridge) |
 | 6 | TIDL Pen | `#tdlp5` | Upper funnel Γ£ô |
-| 7 | Testimonials | `#stories` | **Social proof pulled up** Γ£ô |
+| 7 | Ask TIDL (AI) | `#askTidl` | **Prominent placement after Pen** (A6) |
 | 8 | Journey | `#journey` | Depth / credibility |
 | 9 | Families | `#families` | Depth / product story |
-| 10 | How TIDL Works | `#howItWorks` | Depth / process (premium rebuild) |
-| 11 | Ask TIDL (AI) | `#askTidl` | Discovery (prominence = A6, not A4) |
-| 12 | FAQ | `#faq` | Bottom accordion Γ£ô |
+| 10 | Testimonials | `#stories` | Social proof after narrative blocks |
+| 11 | FAQ | `#faq` | Bottom accordion ✓ |
 | 13 | Final CTA | `CtaSection.tsx` | Conversion close |
 | 14 | Footer | `SiteFooter.tsx` | Standard |
 
@@ -145,7 +144,7 @@
 | Item | Status | Notes |
 |------|--------|-------|
 | Live LLM / knowledge-base API | `[x]` | **A8.8** — still `ANSWERS` mock map in `HomePage.tsx` |
-| Move full Ask TIDL section higher (e.g. after testimonials) | `[x]` | Optional — header access may be enough |
+| Move full Ask TIDL section higher (e.g. after testimonials) | `[x]` | **Shipped:** `#askTidl` now follows Pen (position 7) |
 
 ---
 

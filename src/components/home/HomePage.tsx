@@ -9,30 +9,11 @@ import { CtaSection } from './cta/CtaSection';
 import { ServicesSection } from './ServicesSection';
 import { StoriesSection } from './StoriesSection';
 import { JourneySection } from './JourneySection';
+import { AskTidlSection, type AskTidlSectionHandle } from './AskTidlSection';
 import { SiteFooter } from '@/components/layout/SiteFooter';
 import { SITE_IMAGES } from '@/lib/site-assets';
-
-const ANSWERS: Record<string, string> = {
-  "What is the TIDL Pen?":
-    "The TIDL Pen is our pre-dosed GLP-1 treatment. The dose is already measured, so there's no mixing and no guesswork. Just click and go. It's prescribed by a licensed provider and shipped from a licensed US pharmacy.",
-  "Am I a fit for GLP-1?":
-    "That's exactly what the quiz is for. It takes about five minutes and doubles as your medical intake. A licensed provider reviews your answers and prescribes only if it's right for you.",
-  "How does TRT work?":
-    "TRT restores testosterone to a healthy range under a doctor's care, which can support energy, strength, drive, and focus. Your provider personalizes the dose and monitors your progress.",
-  "What are peptides?":
-    "Peptides are short chains of amino acids your body already uses as signals. Peptide therapy uses specific ones, prescribed by a provider, to support goals like recovery, longevity, and metabolic health.",
-};
-
-const ASK_FALLBACK =
-  "In the full experience, TIDL AI answers from our clinical knowledge base, and anything medical goes to your licensed provider. Take the quiz to get started.";
-
-const PLACEHOLDER_QS = [
-  "What is the TIDL Pen?",
-  "Am I a fit for GLP-1?",
-  "How fast is delivery?",
-  "What are peptides?",
-  "Can I use HSA or FSA?",
-];
+import { GLP1_PEN_SHOWCASE } from '@/components/pdp/data/pen-showcase-content';
+import { HERO_COPY } from '@/lib/homepage-content';
 
 interface FaqItem {
   id: number;
@@ -42,12 +23,6 @@ interface FaqItem {
 }
 
 const FAQ_DATA: FaqItem[] = [
-  {
-    id: 1,
-    cat: 'start',
-    q: 'Is TIDL legitimate and safe?',
-    a: "Yes. TIDL is a telehealth platform that connects you with licensed medical providers. Every treatment is prescribed by a doctor licensed in your state and filled by a licensed US pharmacy. You're never buying medication off a shelf. You're getting care built around your health.",
-  },
   {
     id: 2,
     cat: 'start',
@@ -128,8 +103,8 @@ export default function HomePage() {
   const homeNavLinks = [
     { href: '#services', label: 'Treatments' },
     { href: '#tdlp5', label: 'The Pen' },
+    { href: '#askTidl', label: 'Ask TIDL' },
     { href: '#journey', label: 'About' },
-    { href: '#askTidl', label: 'Learn' },
     { href: '#stories', label: 'Stories' },
     { href: '#faq', label: 'FAQ' },
     { to: '/products/glp-1-weight-loss', label: 'GLP-1 Program' },
@@ -142,6 +117,7 @@ export default function HomePage() {
   }, [mobileNavOpen]);
 
   const [penVisible, setPenVisible] = useState(false);
+  const [isPenVideoOpen, setIsPenVideoOpen] = useState(false);
 
   // Initialize Webflow animations
   useEffect(() => {
@@ -186,51 +162,13 @@ export default function HomePage() {
     };
   }, []);
 
-  const [askInput, setAskInput] = useState('');
-  const [askFocused, setAskFocused] = useState(false);
-  const [askOpen, setAskOpen] = useState(false);
-  const [askTyping, setAskTyping] = useState(false);
-  const [askDisplayed, setAskDisplayed] = useState('');
-  const [askPlaceholder, setAskPlaceholder] = useState('');
-
   const [faqTab, setFaqTab] = useState('all');
   const [faqOpen, setFaqOpen] = useState<number | null>(null);
 
   const penGridRef = useRef<HTMLDivElement>(null);
   const penStageRef = useRef<HTMLDivElement>(null);
   const penFloatRef = useRef<HTMLDivElement>(null);
-  const ansTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const ansTyperRef = useRef<ReturnType<typeof setInterval> | null>(null);
-  const askInputRef = useRef<HTMLInputElement>(null);
-
-  // Placeholder typewriter for Ask TIDL
-  useEffect(() => {
-    let qi = 0, ci = 0, del = false;
-    let timeoutId: ReturnType<typeof setTimeout>;
-
-    function type() {
-      const q = PLACEHOLDER_QS[qi];
-      setAskPlaceholder(q.slice(0, ci));
-      if (!del) {
-        ci++;
-        if (ci > q.length) {
-          del = true;
-          timeoutId = setTimeout(type, 1700);
-          return;
-        }
-      } else {
-        ci--;
-        if (ci === 0) {
-          del = false;
-          qi = (qi + 1) % PLACEHOLDER_QS.length;
-        }
-      }
-      timeoutId = setTimeout(type, del ? 24 : 44);
-    }
-
-    timeoutId = setTimeout(type, 44);
-    return () => clearTimeout(timeoutId);
-  }, []);
+  const askTidlRef = useRef<AskTidlSectionHandle>(null);
 
   // TIDL Pen IntersectionObserver
   useEffect(() => {
@@ -275,37 +213,22 @@ export default function HomePage() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Cleanup ask timers on unmount
   useEffect(() => {
-    return () => {
-      if (ansTimerRef.current) clearTimeout(ansTimerRef.current);
-      if (ansTyperRef.current) clearInterval(ansTyperRef.current);
+    if (!isPenVideoOpen) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setIsPenVideoOpen(false);
     };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [isPenVideoOpen]);
+
+  const openAskTidl = useCallback(() => {
+    setMobileNavOpen(false);
+    const target = document.getElementById('askTidl');
+    if (!target) return;
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    window.setTimeout(() => askTidlRef.current?.focusInput(), 420);
   }, []);
-
-  const handleAsk = useCallback((q: string) => {
-    const trimmed = q.trim();
-    if (!trimmed) return;
-
-    setAskOpen(true);
-    setAskTyping(true);
-    setAskDisplayed('');
-
-    if (ansTimerRef.current) clearTimeout(ansTimerRef.current);
-    if (ansTyperRef.current) clearInterval(ansTyperRef.current);
-
-    ansTimerRef.current = setTimeout(() => {
-      setAskTyping(false);
-      const full = ANSWERS[trimmed] || ASK_FALLBACK;
-      let i = 0;
-      ansTyperRef.current = setInterval(() => {
-        i++;
-        setAskDisplayed(full.slice(0, i));
-        if (i >= full.length && ansTyperRef.current) clearInterval(ansTyperRef.current);
-      }, 12);
-    }, 900);
-  }, []);
-
 
   const handleFaqToggle = (id: number) => {
     setFaqOpen((prev) => (prev === id ? null : id));
@@ -346,6 +269,7 @@ export default function HomePage() {
                 theme={headerTheme}
                 onToggleMenu={() => setMobileNavOpen((open) => !open)}
                 onCloseMenu={() => setMobileNavOpen(false)}
+                onSearchClick={openAskTidl}
               />
 
           {/* ===== Hero Section ===== */}
@@ -365,7 +289,7 @@ export default function HomePage() {
                     }}
                     suppressHydrationWarning
                   >
-                    Lose the weight. Keep it off. Feel like you again.
+                    {HERO_COPY.headline}
                   </h1>
                   <div className="hero-inside-textsinside">
                     <div 
@@ -380,7 +304,7 @@ export default function HomePage() {
                       }}
                       suppressHydrationWarning
                     >
-                      Doctor-prescribed GLP-1, TRT, and peptide treatments. Online in 5 minutes, delivered to your door.
+                      {HERO_COPY.subhead}
                     </div>
                     <div 
                       data-w-id="3072fecc-9b21-d07c-8a0f-122ed0f21145"
@@ -397,8 +321,8 @@ export default function HomePage() {
                       <a href="#" onClick={openQuiz} className="button-01 button-03 w-inline-block">
                         <div className="button-outside-01">
                           <div className="button-inside">
-                            <div className="button-text-01">Get Started</div>
-                            <div className="button-text-01">Get Started</div>
+                            <div className="button-text-01">{HERO_COPY.cta}</div>
+                            <div className="button-text-01">{HERO_COPY.cta}</div>
                           </div>
                         </div>
                       </a>
@@ -475,6 +399,21 @@ export default function HomePage() {
                     src={SITE_IMAGES.pen}
                     alt="The TIDL Pen"
                   />
+                  {GLP1_PEN_SHOWCASE.videoEmbedUrl ? (
+                    <button
+                      type="button"
+                      className="tdlp5-play"
+                      aria-label="Play how to use the pen video"
+                      onClick={() => setIsPenVideoOpen(true)}
+                    >
+                      <span className="tdlp5-play-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M8.5 6.8a1 1 0 0 1 1.5-.86l8.2 5.2a1 1 0 0 1 0 1.72l-8.2 5.2A1 1 0 0 1 8.5 17.2V6.8Z" />
+                        </svg>
+                      </span>
+                      <span className="tdlp5-play-label">See how to use the pen</span>
+                    </button>
+                  ) : null}
                 </div>
               </div>
             </div>
@@ -483,20 +422,59 @@ export default function HomePage() {
               <div className="tdlp5-feat">
                 <div className="tdlp5-fnum">03</div>
                 <div className="tdlp5-flab">Sealed and dispensed to you</div>
-                <div className="tdlp5-fsub">Labeled with your name by a licensed US pharmacy.</div>
+                <div className="tdlp5-fsub">Labeled with your name at the pharmacy.</div>
               </div>
               <div className="tdlp5-feat">
                 <div className="tdlp5-fnum">04</div>
                 <div className="tdlp5-flab">Cold-chain shipped</div>
-                <div className="tdlp5-fsub">Temperature-safe, discreet packaging to your door.</div>
+                <div className="tdlp5-fsub">Temperature-safe packaging to your door.</div>
               </div>
             </div>
+          </div>
+
+          <div className="tdlp5-cta">
+            <a href="#" onClick={openQuiz} className="button-01 button-03 w-inline-block">
+              <div className="button-outside-01">
+                <div className="button-inside">
+                  <div className="button-text-01">See If You Qualify</div>
+                  <div className="button-text-01">See If You Qualify</div>
+                </div>
+              </div>
+            </a>
           </div>
 
           <div className="tdlp5-grain"></div>
         </section>
 
-        <StoriesSection />
+        {isPenVideoOpen && GLP1_PEN_SHOWCASE.videoEmbedUrl ? (
+          <div
+            className="tdlp5-video-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-label={GLP1_PEN_SHOWCASE.videoTitle ?? 'How to use the TIDL Pen video'}
+            onClick={() => setIsPenVideoOpen(false)}
+          >
+            <div className="tdlp5-video-dialog" onClick={(e) => e.stopPropagation()}>
+              <button
+                type="button"
+                className="tdlp5-video-close"
+                aria-label="Close video"
+                onClick={() => setIsPenVideoOpen(false)}
+              >
+                ×
+              </button>
+              <iframe
+                src={GLP1_PEN_SHOWCASE.videoEmbedUrl}
+                title={GLP1_PEN_SHOWCASE.videoTitle ?? 'How to use the TIDL Pen'}
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+          </div>
+        ) : null}
+
+        <AskTidlSection ref={askTidlRef} />
 
         <JourneySection onGetStarted={openQuiz} />
 
@@ -506,13 +484,13 @@ export default function HomePage() {
             <div className="families-content">
               <div className="families-head">
                 <h2 className="families-title heading-01">The strongest version of you is a quiz away.</h2>
-                <p className="paragraph-2">Doctor-prescribed GLP-1, TRT, and peptide care, delivered to your door. One five-minute quiz, reviewed by a licensed provider. No waiting rooms, no guesswork.</p>
+                <p className="paragraph-2">Doctor-prescribed GLP-1, TRT, and peptide care. One five-minute quiz — no waiting rooms, no guesswork.</p>
                 <div className="families-btns">
                   <a href="#" onClick={openQuiz} className="button-01 button-03 w-inline-block">
                     <div className="button-outside-01">
                       <div className="button-inside">
-                        <div className="button-text-01">Get Started</div>
-                        <div className="button-text-01">Get Started</div>
+                        <div className="button-text-01">Start My Quiz</div>
+                        <div className="button-text-01">Start My Quiz</div>
                       </div>
                     </div>
                   </a>
@@ -528,8 +506,8 @@ export default function HomePage() {
                     <a href="#" onClick={openQuiz} className="button-01 button-03 w-inline-block">
                       <div className="button-outside-01">
                         <div className="button-inside">
-                          <div className="button-text-01">Get Started</div>
-                          <div className="button-text-01">Get Started</div>
+                          <div className="button-text-01">Start My Quiz</div>
+                          <div className="button-text-01">Start My Quiz</div>
                         </div>
                       </div>
                     </a>
@@ -544,7 +522,7 @@ export default function HomePage() {
                 </div>
                 <div className="families-card-another">
                   <div className="families-card _02">
-                    <div className="families-card-text-02 heading-03">From licensed pharmacy to your door. No clinic visits.</div>
+                    <div className="families-card-text-02 heading-03">Shipped from a US pharmacy. Plain packaging.</div>
                   </div>
                   <div className="families-card _03">
                     <img src="https://cdn.prod.website-files.com/6a484773bf274d9b9ec3f5b9/6a484775bf274d9b9ec3f6e0_barchirt.svg" loading="lazy" alt="" className="families-card-bar-03"/>
@@ -563,75 +541,7 @@ export default function HomePage() {
           />
         </section>
 
-        {/* ===== Ask TIDL Section ===== */}
-        <section className="ask-tidl-wrap" data-site-header-theme="light">
-        <div className="ask-tidl" id="askTidl">
-          <h2 className="ask-h">Ask TIDL anything</h2>
-          <p className="ask-sub">
-            Instant answers about treatments and performance goals, from our clinical knowledge base.<br/>
-            A licensed doctor handles anything medical.
-          </p>
-
-          <div className={`ask-field${askFocused ? ' focus' : ''}`} id="askBar">
-            <input
-              ref={askInputRef}
-              className="ask-in"
-              id="askIn"
-              type="text"
-              aria-label="Ask TIDL anything"
-              placeholder={askPlaceholder}
-              value={askInput}
-              onChange={(e) => setAskInput(e.target.value)}
-              onFocus={() => setAskFocused(true)}
-              onBlur={() => setAskFocused(false)}
-              onKeyDown={(e) => { if (e.key === 'Enter') handleAsk(askInput); }}
-            />
-            <button
-              className="ask-go"
-              id="askGo"
-              aria-label="Ask"
-              onClick={() => handleAsk(askInput)}
-            >
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M5 12h14M13 6l6 6-6 6"/>
-              </svg>
-            </button>
-            <span className="ask-line"></span>
-          </div>
-
-          <div className="ask-chips" id="askChips">
-            {[
-              "What is the TIDL Pen?",
-              "Am I a fit for GLP-1?",
-              "How does TRT work?",
-              "What are peptides?",
-            ].map((q, i) => (
-              <span key={q} style={{ display: 'contents' }}>
-                {i > 0 && <span className="ask-dot">·</span>}
-                <button
-                  className="ask-chip"
-                  onClick={() => { setAskInput(q); handleAsk(q); }}
-                >
-                  {q}
-                </button>
-              </span>
-            ))}
-          </div>
-
-          <div className={`ask-ans${askOpen ? ' open' : ''}`} id="askAns" aria-live="polite">
-            <div className="ask-quote">
-              <div className={`ask-dots${askTyping ? ' on' : ''}`} id="askDots">
-                <span></span><span></span><span></span>
-              </div>
-              <p className={`ask-text${!askTyping && askDisplayed ? ' on' : ''}`} id="askText">
-                {askDisplayed}
-              </p>
-            </div>
-          </div>
-
-          <p className="ask-note">TIDL AI shares general information. Your doctor makes every medical decision.</p>
-        </div>
-        </section>
+        <StoriesSection />
 
         {/* ===== FAQ Section ===== */}
         <section className="tdlfaq-sec" id="faq" data-site-header-theme="light">

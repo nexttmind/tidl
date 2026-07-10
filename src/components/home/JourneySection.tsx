@@ -15,7 +15,6 @@ export const JOURNEY_TICKER_ITEMS = [
   { t: "Testosterone" },
   { t: "Longevity" },
   { t: "Peptide therapy" },
-  { t: "NAD+ therapy" },
   { t: "Recovery" },
 ] as const;
 
@@ -41,12 +40,6 @@ export const JOURNEY_TICKER_ICONS: Record<string, ReactNode> = {
       <circle cx="17" cy="8" r="2.5" />
       <circle cx="12" cy="16" r="2.5" />
       <path d="M9 9l2 5M15 9l-2 5" />
-    </svg>
-  ),
-  "NAD+ therapy": (
-    <svg viewBox="0 0 24 24">
-      <circle cx="12" cy="12" r="8" />
-      <path d="M12 8v8M8 12h8" />
     </svg>
   ),
   Recovery: (

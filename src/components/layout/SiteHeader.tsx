@@ -18,6 +18,7 @@ type SiteHeaderProps = {
   onToggleMenu: () => void;
   onCloseMenu: () => void;
   menuItems?: SiteNavLink[];
+  onSearchClick?: () => void;
 };
 
 function MenuIcon() {
@@ -29,6 +30,15 @@ function MenuIcon() {
         strokeWidth="1.75"
         strokeLinecap="round"
       />
+    </svg>
+  );
+}
+
+function SearchIcon() {
+  return (
+    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+      <circle cx="8" cy="8" r="5.75" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M12.5 12.5L16 16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
     </svg>
   );
 }
@@ -98,6 +108,7 @@ export function SiteHeader({
   onToggleMenu,
   onCloseMenu,
   menuItems,
+  onSearchClick,
 }: SiteHeaderProps) {
   const headerRef = useRef<HTMLElement>(null);
   const [spacerHeight, setSpacerHeight] = useState(0);
@@ -144,15 +155,27 @@ export function SiteHeader({
             <TidlWordmark variant="dark" className="site-header-wordmark" />
           </Link>
 
-          <button
-            type="button"
-            className="site-header-menu-btn"
-            aria-label={menuOpen ? "Close menu" : "Open menu"}
-            aria-expanded={menuOpen}
-            onClick={onToggleMenu}
-          >
-            {menuOpen ? <CloseIcon /> : <MenuIcon />}
-          </button>
+          <div className="site-header-actions">
+            {onSearchClick ? (
+              <button
+                type="button"
+                className="site-header-search-btn"
+                aria-label="Open Ask TIDL"
+                onClick={onSearchClick}
+              >
+                <SearchIcon />
+              </button>
+            ) : null}
+            <button
+              type="button"
+              className="site-header-menu-btn"
+              aria-label={menuOpen ? "Close menu" : "Open menu"}
+              aria-expanded={menuOpen}
+              onClick={onToggleMenu}
+            >
+              {menuOpen ? <CloseIcon /> : <MenuIcon />}
+            </button>
+          </div>
         </div>
 
         <button
