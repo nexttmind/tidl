@@ -1,4 +1,4 @@
-import type { CheckoutFormData, Order, OrderPricing } from "@/types/order";
+import type { CheckoutFormData, Order, OrderPricing, PrxOrderReference } from "@/types/order";
 import type { QuizFormData } from "@/types/quiz";
 import type { Product } from "./products";
 
@@ -36,6 +36,7 @@ export function createOrder(params: {
   checkout: CheckoutFormData;
   product: Product;
   pricing: OrderPricing;
+  prx?: PrxOrderReference;
 }): Order {
   const now = new Date().toISOString();
   const order: Order = {
@@ -63,6 +64,7 @@ export function createOrder(params: {
     trackingNumber: null,
     estimatedDelivery: addDays(5),
     nextRefillDate: addDays(28),
+    ...(params.prx ? { prx: params.prx } : {}),
     createdAt: now,
     updatedAt: now,
   };

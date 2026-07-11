@@ -683,3 +683,37 @@
   text-decoration: underline;
   text-underline-offset: 2px;
 }
+
+.checkout-prx-ref-list {
+  margin: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.checkout-prx-ref-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: var(--checkout-muted-surface);
+  border: 1px solid var(--checkout-border);
+}
+
+.checkout-prx-ref-row dt {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--checkout-muted);
+}
+
+.checkout-prx-ref-row dd {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--checkout-ink);
+}

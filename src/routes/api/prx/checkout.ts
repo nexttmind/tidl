@@ -11,6 +11,7 @@ import {
   extractEncounterNumber,
   extractOrderId,
   extractPatientChartId,
+  extractPatientNumber,
 } from "@/server/prx/extract";
 import { mapCheckoutToUnifiedIntakePayload, type PrxCheckoutBody } from "@/server/prx/mappers";
 import {
@@ -72,6 +73,7 @@ export const Route = createFileRoute("/api/prx/checkout")({
               path: UNIFIED_INTAKE_PATH,
               encounterId: extractEncounterId(intake),
               encounterNumber: extractEncounterNumber(intake),
+              patientNumber: extractPatientNumber(intake),
               patientChartId: extractPatientChartId(intake),
               orderId: extractOrderId(intake),
               idempotencyKey,

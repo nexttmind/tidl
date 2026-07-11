@@ -55,6 +55,7 @@ export type PrxCheckoutResult = {
   path: string;
   encounterId?: string;
   encounterNumber?: string;
+  patientNumber?: string;
   patientChartId?: string;
   orderId?: string;
   idempotencyKey: string;

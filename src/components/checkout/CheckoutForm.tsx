@@ -98,8 +98,9 @@ export function CheckoutForm() {
       userId = registered.id;
     }
 
+    let prxResult;
     try {
-      await submitPrxCheckout(
+      prxResult = await submitPrxCheckout(
         {
           quiz: quizData,
           checkout: values,
@@ -128,6 +129,12 @@ export function CheckoutForm() {
       checkout: values,
       product,
       pricing,
+      prx: {
+        encounterNumber: prxResult.encounterNumber,
+        patientNumber: prxResult.patientNumber,
+        encounterId: prxResult.encounterId,
+        patientChartId: prxResult.patientChartId,
+      },
     });
 
     clearQuizState();

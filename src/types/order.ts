@@ -47,6 +47,13 @@ export interface CheckoutFormData {
   termsAccepted: boolean;
 }
 
+export interface PrxOrderReference {
+  encounterNumber?: string;
+  patientNumber?: string;
+  encounterId?: string;
+  patientChartId?: string;
+}
+
 export interface Order {
   id: string;
   userId: string;
@@ -63,6 +70,7 @@ export interface Order {
   trackingNumber: string | null;
   estimatedDelivery: string;
   nextRefillDate: string;
+  prx?: PrxOrderReference;
   createdAt: string;
   updatedAt: string;
 }

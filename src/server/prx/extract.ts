@@ -7,7 +7,12 @@ export function unwrapPrxEntity(payload: unknown): Record<string, unknown> | nul
     if (current == null || typeof current !== "object") return null;
     const record = current as Record<string, unknown>;
 
-    if ("patient_chart_id" in record || "id" in record || "order_number" in record) {
+    if (
+      "patient_chart_id" in record ||
+      "encounter_number" in record ||
+      "id" in record ||
+      "order_number" in record
+    ) {
       return record;
     }
 
@@ -48,5 +53,12 @@ export function extractEncounterNumber(intake: unknown): string | undefined {
   const record = unwrapPrxEntity(intake);
   if (!record) return undefined;
   const number = record.encounter_number;
+  return typeof number === "string" ? number : undefined;
+}
+
+export function extractPatientNumber(intake: unknown): string | undefined {
+  const record = unwrapPrxEntity(intake);
+  if (!record) return undefined;
+  const number = record.patient_number;
   return typeof number === "string" ? number : undefined;
 }

@@ -2842,3 +2842,57 @@
       0 0 0 2px rgba(243, 195, 0, 0.18);
   }
 }
+
+/* ===== Included — full bleed typography ===== */
+
+.pdp-included-full {
+  padding: 88px 5% 100px;
+  background: transparent;
+}
+
+.pdp-included-full-inner {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.pdp-included-full-head {
+  max-width: 720px;
+  margin-bottom: 56px;
+}
+
+.pdp-included-full-title {
+  font-size: clamp(2rem, 4.5vw, 3.25rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin: 0 0 16px;
+}
+
+.pdp-included-full-lead {
+  margin: 0;
+  max-width: 38rem;
+  color: var(--pdp-muted);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.pdp-included-full-stage {
+  position: relative;
+  min-height: clamp(320px, 52vh, 520px);
+  display: flex;
+  align-items: center;
+}
+
+.pdp-included-full-track {
+  width: 100%;
+  display: grid;
+  gap: clamp(8px, 2vh, 18px);
+}
+
+.pdp-included-line {
+  margin: 0;
+  font-size: clamp(2.4rem, 7vw, 5.5rem);
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+  font-weight: 600;
+  will-change: transform, opacity, color;
+}

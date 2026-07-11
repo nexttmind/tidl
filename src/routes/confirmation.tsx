@@ -83,6 +83,32 @@ function ConfirmationPage() {
           </div>
         </div>
 
+        {order.prx?.encounterNumber || order.prx?.patientNumber ? (
+          <div className="checkout-card checkout-prx-ref" style={{ marginBottom: 16 }}>
+            <h3 className="checkout-card-title" style={{ margin: "0 0 8px" }}>
+              PrescribeRx reference
+            </h3>
+            <p className="checkout-card-sub" style={{ margin: "0 0 16px" }}>
+              Use these numbers to find your intake in the TIDL Sandbox admin under Encounters and
+              Patients.
+            </p>
+            <dl className="checkout-prx-ref-list">
+              {order.prx.encounterNumber ? (
+                <div className="checkout-prx-ref-row">
+                  <dt>Encounter #</dt>
+                  <dd>{order.prx.encounterNumber}</dd>
+                </div>
+              ) : null}
+              {order.prx.patientNumber ? (
+                <div className="checkout-prx-ref-row">
+                  <dt>Patient #</dt>
+                  <dd>{order.prx.patientNumber}</dd>
+                </div>
+              ) : null}
+            </dl>
+          </div>
+        ) : null}
+
         <div className="checkout-card">
           <h3 className="checkout-card-title" style={{ margin: "0 0 16px" }}>
             Care timeline
