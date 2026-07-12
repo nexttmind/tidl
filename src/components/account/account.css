@@ -80,6 +80,120 @@
   color: #9a948a;
 }
 
+.account-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.account-card-head .account-card-title {
+  margin: 0;
+}
+
+.account-live-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 10px 5px 9px;
+  border-radius: 999px;
+  background: rgba(16, 122, 87, 0.1);
+  color: #0f7a52;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.account-live-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: #12a06a;
+  box-shadow: 0 0 0 0 rgba(18, 160, 106, 0.5);
+  animation: account-live-pulse 1.8s ease-out infinite;
+}
+
+@keyframes account-live-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(18, 160, 106, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(18, 160, 106, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(18, 160, 106, 0);
+  }
+}
+
+.account-prx-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.account-prx-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  border: 1px solid #e8e6e2;
+  border-radius: 14px;
+  background: #fbfaf8;
+}
+
+.account-prx-item.is-highlight {
+  border-color: rgba(243, 195, 0, 0.6);
+  background: rgba(243, 195, 0, 0.08);
+}
+
+.account-prx-item-main {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.account-prx-item-main strong {
+  font-size: 14px;
+  font-weight: 600;
+  color: #171310;
+}
+
+.account-prx-item-meta {
+  font-size: 12px;
+  color: #9a948a;
+  font-variant-numeric: tabular-nums;
+}
+
+.account-prx-status {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #171310;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.account-prx-status-sub {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #9a948a;
+}
+
+.account-prx-status--shipped,
+.account-prx-status--delivered {
+  color: #0f7a52;
+}
+
 .account-product {
   display: flex;
   gap: 16px;

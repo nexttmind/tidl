@@ -9,7 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as QuizRouteImport } from './routes/quiz'
+import { Route as QuizSandboxRouteImport } from './routes/quiz-sandbox'
 import { Route as ConfirmationRouteImport } from './routes/confirmation'
 import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as AuthRouteImport } from './routes/auth'
@@ -18,19 +18,27 @@ import { Route as AccountIndexRouteImport } from './routes/account/index'
 import { Route as ProductsGlp1WeightLossRouteImport } from './routes/products/glp-1-weight-loss'
 import { Route as CategorySlugRouteImport } from './routes/category/$slug'
 import { Route as ApiWebhooksPrescribeRxRouteImport } from './routes/api/webhooks/prescribe-rx'
+import { Route as ApiPrxWebhooksRouteImport } from './routes/api/prx/webhooks'
 import { Route as ApiPrxProductsRouteImport } from './routes/api/prx/products'
 import { Route as ApiPrxPatientsRouteImport } from './routes/api/prx/patients'
 import { Route as ApiPrxOrdersRouteImport } from './routes/api/prx/orders'
 import { Route as ApiPrxMeRouteImport } from './routes/api/prx/me'
+import { Route as ApiPrxIntakeDynamicRouteImport } from './routes/api/prx/intake-dynamic'
 import { Route as ApiPrxIntakeRouteImport } from './routes/api/prx/intake'
 import { Route as ApiPrxHealthRouteImport } from './routes/api/prx/health'
+import { Route as ApiPrxEncountersRouteImport } from './routes/api/prx/encounters'
+import { Route as ApiPrxEncounterTypesRouteImport } from './routes/api/prx/encounter-types'
 import { Route as ApiPrxCheckoutRouteImport } from './routes/api/prx/checkout'
 import { Route as ApiPrxCatalogRouteImport } from './routes/api/prx/catalog'
+import { Route as ApiPrxWebhooksEventTypesRouteImport } from './routes/api/prx/webhooks.event-types'
 import { Route as ApiPrxOrdersOrderIdRouteImport } from './routes/api/prx/orders.$orderId'
+import { Route as ApiPrxEncountersEncounterIdRouteImport } from './routes/api/prx/encounters.$encounterId'
+import { Route as ApiPrxAuthMeRouteImport } from './routes/api/prx/auth.me'
+import { Route as ApiPrxEncounterTypesEncounterTypeIdSchemaRouteImport } from './routes/api/prx/encounter-types.$encounterTypeId.schema'
 
-const QuizRoute = QuizRouteImport.update({
-  id: '/quiz',
-  path: '/quiz',
+const QuizSandboxRoute = QuizSandboxRouteImport.update({
+  id: '/quiz-sandbox',
+  path: '/quiz-sandbox',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ConfirmationRoute = ConfirmationRouteImport.update({
@@ -73,6 +81,11 @@ const ApiWebhooksPrescribeRxRoute = ApiWebhooksPrescribeRxRouteImport.update({
   path: '/api/webhooks/prescribe-rx',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPrxWebhooksRoute = ApiPrxWebhooksRouteImport.update({
+  id: '/api/prx/webhooks',
+  path: '/api/prx/webhooks',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiPrxProductsRoute = ApiPrxProductsRouteImport.update({
   id: '/api/prx/products',
   path: '/api/prx/products',
@@ -93,6 +106,11 @@ const ApiPrxMeRoute = ApiPrxMeRouteImport.update({
   path: '/api/prx/me',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPrxIntakeDynamicRoute = ApiPrxIntakeDynamicRouteImport.update({
+  id: '/api/prx/intake-dynamic',
+  path: '/api/prx/intake-dynamic',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiPrxIntakeRoute = ApiPrxIntakeRouteImport.update({
   id: '/api/prx/intake',
   path: '/api/prx/intake',
@@ -101,6 +119,16 @@ const ApiPrxIntakeRoute = ApiPrxIntakeRouteImport.update({
 const ApiPrxHealthRoute = ApiPrxHealthRouteImport.update({
   id: '/api/prx/health',
   path: '/api/prx/health',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPrxEncountersRoute = ApiPrxEncountersRouteImport.update({
+  id: '/api/prx/encounters',
+  path: '/api/prx/encounters',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPrxEncounterTypesRoute = ApiPrxEncounterTypesRouteImport.update({
+  id: '/api/prx/encounter-types',
+  path: '/api/prx/encounter-types',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiPrxCheckoutRoute = ApiPrxCheckoutRouteImport.update({
@@ -113,51 +141,90 @@ const ApiPrxCatalogRoute = ApiPrxCatalogRouteImport.update({
   path: '/api/prx/catalog',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPrxWebhooksEventTypesRoute =
+  ApiPrxWebhooksEventTypesRouteImport.update({
+    id: '/event-types',
+    path: '/event-types',
+    getParentRoute: () => ApiPrxWebhooksRoute,
+  } as any)
 const ApiPrxOrdersOrderIdRoute = ApiPrxOrdersOrderIdRouteImport.update({
   id: '/$orderId',
   path: '/$orderId',
   getParentRoute: () => ApiPrxOrdersRoute,
 } as any)
+const ApiPrxEncountersEncounterIdRoute =
+  ApiPrxEncountersEncounterIdRouteImport.update({
+    id: '/$encounterId',
+    path: '/$encounterId',
+    getParentRoute: () => ApiPrxEncountersRoute,
+  } as any)
+const ApiPrxAuthMeRoute = ApiPrxAuthMeRouteImport.update({
+  id: '/api/prx/auth/me',
+  path: '/api/prx/auth/me',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPrxEncounterTypesEncounterTypeIdSchemaRoute =
+  ApiPrxEncounterTypesEncounterTypeIdSchemaRouteImport.update({
+    id: '/$encounterTypeId/schema',
+    path: '/$encounterTypeId/schema',
+    getParentRoute: () => ApiPrxEncounterTypesRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/checkout': typeof CheckoutRoute
   '/confirmation': typeof ConfirmationRoute
-  '/quiz': typeof QuizRoute
+  '/quiz-sandbox': typeof QuizSandboxRoute
   '/category/$slug': typeof CategorySlugRoute
   '/products/glp-1-weight-loss': typeof ProductsGlp1WeightLossRoute
   '/account/': typeof AccountIndexRoute
   '/api/prx/catalog': typeof ApiPrxCatalogRoute
   '/api/prx/checkout': typeof ApiPrxCheckoutRoute
+  '/api/prx/encounter-types': typeof ApiPrxEncounterTypesRouteWithChildren
+  '/api/prx/encounters': typeof ApiPrxEncountersRouteWithChildren
   '/api/prx/health': typeof ApiPrxHealthRoute
   '/api/prx/intake': typeof ApiPrxIntakeRoute
+  '/api/prx/intake-dynamic': typeof ApiPrxIntakeDynamicRoute
   '/api/prx/me': typeof ApiPrxMeRoute
   '/api/prx/orders': typeof ApiPrxOrdersRouteWithChildren
   '/api/prx/patients': typeof ApiPrxPatientsRoute
   '/api/prx/products': typeof ApiPrxProductsRoute
+  '/api/prx/webhooks': typeof ApiPrxWebhooksRouteWithChildren
   '/api/webhooks/prescribe-rx': typeof ApiWebhooksPrescribeRxRoute
+  '/api/prx/auth/me': typeof ApiPrxAuthMeRoute
+  '/api/prx/encounters/$encounterId': typeof ApiPrxEncountersEncounterIdRoute
   '/api/prx/orders/$orderId': typeof ApiPrxOrdersOrderIdRoute
+  '/api/prx/webhooks/event-types': typeof ApiPrxWebhooksEventTypesRoute
+  '/api/prx/encounter-types/$encounterTypeId/schema': typeof ApiPrxEncounterTypesEncounterTypeIdSchemaRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/checkout': typeof CheckoutRoute
   '/confirmation': typeof ConfirmationRoute
-  '/quiz': typeof QuizRoute
+  '/quiz-sandbox': typeof QuizSandboxRoute
   '/category/$slug': typeof CategorySlugRoute
   '/products/glp-1-weight-loss': typeof ProductsGlp1WeightLossRoute
   '/account': typeof AccountIndexRoute
   '/api/prx/catalog': typeof ApiPrxCatalogRoute
   '/api/prx/checkout': typeof ApiPrxCheckoutRoute
+  '/api/prx/encounter-types': typeof ApiPrxEncounterTypesRouteWithChildren
+  '/api/prx/encounters': typeof ApiPrxEncountersRouteWithChildren
   '/api/prx/health': typeof ApiPrxHealthRoute
   '/api/prx/intake': typeof ApiPrxIntakeRoute
+  '/api/prx/intake-dynamic': typeof ApiPrxIntakeDynamicRoute
   '/api/prx/me': typeof ApiPrxMeRoute
   '/api/prx/orders': typeof ApiPrxOrdersRouteWithChildren
   '/api/prx/patients': typeof ApiPrxPatientsRoute
   '/api/prx/products': typeof ApiPrxProductsRoute
+  '/api/prx/webhooks': typeof ApiPrxWebhooksRouteWithChildren
   '/api/webhooks/prescribe-rx': typeof ApiWebhooksPrescribeRxRoute
+  '/api/prx/auth/me': typeof ApiPrxAuthMeRoute
+  '/api/prx/encounters/$encounterId': typeof ApiPrxEncountersEncounterIdRoute
   '/api/prx/orders/$orderId': typeof ApiPrxOrdersOrderIdRoute
+  '/api/prx/webhooks/event-types': typeof ApiPrxWebhooksEventTypesRoute
+  '/api/prx/encounter-types/$encounterTypeId/schema': typeof ApiPrxEncounterTypesEncounterTypeIdSchemaRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -165,20 +232,28 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/checkout': typeof CheckoutRoute
   '/confirmation': typeof ConfirmationRoute
-  '/quiz': typeof QuizRoute
+  '/quiz-sandbox': typeof QuizSandboxRoute
   '/category/$slug': typeof CategorySlugRoute
   '/products/glp-1-weight-loss': typeof ProductsGlp1WeightLossRoute
   '/account/': typeof AccountIndexRoute
   '/api/prx/catalog': typeof ApiPrxCatalogRoute
   '/api/prx/checkout': typeof ApiPrxCheckoutRoute
+  '/api/prx/encounter-types': typeof ApiPrxEncounterTypesRouteWithChildren
+  '/api/prx/encounters': typeof ApiPrxEncountersRouteWithChildren
   '/api/prx/health': typeof ApiPrxHealthRoute
   '/api/prx/intake': typeof ApiPrxIntakeRoute
+  '/api/prx/intake-dynamic': typeof ApiPrxIntakeDynamicRoute
   '/api/prx/me': typeof ApiPrxMeRoute
   '/api/prx/orders': typeof ApiPrxOrdersRouteWithChildren
   '/api/prx/patients': typeof ApiPrxPatientsRoute
   '/api/prx/products': typeof ApiPrxProductsRoute
+  '/api/prx/webhooks': typeof ApiPrxWebhooksRouteWithChildren
   '/api/webhooks/prescribe-rx': typeof ApiWebhooksPrescribeRxRoute
+  '/api/prx/auth/me': typeof ApiPrxAuthMeRoute
+  '/api/prx/encounters/$encounterId': typeof ApiPrxEncountersEncounterIdRoute
   '/api/prx/orders/$orderId': typeof ApiPrxOrdersOrderIdRoute
+  '/api/prx/webhooks/event-types': typeof ApiPrxWebhooksEventTypesRoute
+  '/api/prx/encounter-types/$encounterTypeId/schema': typeof ApiPrxEncounterTypesEncounterTypeIdSchemaRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -187,60 +262,84 @@ export interface FileRouteTypes {
     | '/auth'
     | '/checkout'
     | '/confirmation'
-    | '/quiz'
+    | '/quiz-sandbox'
     | '/category/$slug'
     | '/products/glp-1-weight-loss'
     | '/account/'
     | '/api/prx/catalog'
     | '/api/prx/checkout'
+    | '/api/prx/encounter-types'
+    | '/api/prx/encounters'
     | '/api/prx/health'
     | '/api/prx/intake'
+    | '/api/prx/intake-dynamic'
     | '/api/prx/me'
     | '/api/prx/orders'
     | '/api/prx/patients'
     | '/api/prx/products'
+    | '/api/prx/webhooks'
     | '/api/webhooks/prescribe-rx'
+    | '/api/prx/auth/me'
+    | '/api/prx/encounters/$encounterId'
     | '/api/prx/orders/$orderId'
+    | '/api/prx/webhooks/event-types'
+    | '/api/prx/encounter-types/$encounterTypeId/schema'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/auth'
     | '/checkout'
     | '/confirmation'
-    | '/quiz'
+    | '/quiz-sandbox'
     | '/category/$slug'
     | '/products/glp-1-weight-loss'
     | '/account'
     | '/api/prx/catalog'
     | '/api/prx/checkout'
+    | '/api/prx/encounter-types'
+    | '/api/prx/encounters'
     | '/api/prx/health'
     | '/api/prx/intake'
+    | '/api/prx/intake-dynamic'
     | '/api/prx/me'
     | '/api/prx/orders'
     | '/api/prx/patients'
     | '/api/prx/products'
+    | '/api/prx/webhooks'
     | '/api/webhooks/prescribe-rx'
+    | '/api/prx/auth/me'
+    | '/api/prx/encounters/$encounterId'
     | '/api/prx/orders/$orderId'
+    | '/api/prx/webhooks/event-types'
+    | '/api/prx/encounter-types/$encounterTypeId/schema'
   id:
     | '__root__'
     | '/'
     | '/auth'
     | '/checkout'
     | '/confirmation'
-    | '/quiz'
+    | '/quiz-sandbox'
     | '/category/$slug'
     | '/products/glp-1-weight-loss'
     | '/account/'
     | '/api/prx/catalog'
     | '/api/prx/checkout'
+    | '/api/prx/encounter-types'
+    | '/api/prx/encounters'
     | '/api/prx/health'
     | '/api/prx/intake'
+    | '/api/prx/intake-dynamic'
     | '/api/prx/me'
     | '/api/prx/orders'
     | '/api/prx/patients'
     | '/api/prx/products'
+    | '/api/prx/webhooks'
     | '/api/webhooks/prescribe-rx'
+    | '/api/prx/auth/me'
+    | '/api/prx/encounters/$encounterId'
     | '/api/prx/orders/$orderId'
+    | '/api/prx/webhooks/event-types'
+    | '/api/prx/encounter-types/$encounterTypeId/schema'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -248,28 +347,33 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRoute
   CheckoutRoute: typeof CheckoutRoute
   ConfirmationRoute: typeof ConfirmationRoute
-  QuizRoute: typeof QuizRoute
+  QuizSandboxRoute: typeof QuizSandboxRoute
   CategorySlugRoute: typeof CategorySlugRoute
   ProductsGlp1WeightLossRoute: typeof ProductsGlp1WeightLossRoute
   AccountIndexRoute: typeof AccountIndexRoute
   ApiPrxCatalogRoute: typeof ApiPrxCatalogRoute
   ApiPrxCheckoutRoute: typeof ApiPrxCheckoutRoute
+  ApiPrxEncounterTypesRoute: typeof ApiPrxEncounterTypesRouteWithChildren
+  ApiPrxEncountersRoute: typeof ApiPrxEncountersRouteWithChildren
   ApiPrxHealthRoute: typeof ApiPrxHealthRoute
   ApiPrxIntakeRoute: typeof ApiPrxIntakeRoute
+  ApiPrxIntakeDynamicRoute: typeof ApiPrxIntakeDynamicRoute
   ApiPrxMeRoute: typeof ApiPrxMeRoute
   ApiPrxOrdersRoute: typeof ApiPrxOrdersRouteWithChildren
   ApiPrxPatientsRoute: typeof ApiPrxPatientsRoute
   ApiPrxProductsRoute: typeof ApiPrxProductsRoute
+  ApiPrxWebhooksRoute: typeof ApiPrxWebhooksRouteWithChildren
   ApiWebhooksPrescribeRxRoute: typeof ApiWebhooksPrescribeRxRoute
+  ApiPrxAuthMeRoute: typeof ApiPrxAuthMeRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/quiz': {
-      id: '/quiz'
-      path: '/quiz'
-      fullPath: '/quiz'
-      preLoaderRoute: typeof QuizRouteImport
+    '/quiz-sandbox': {
+      id: '/quiz-sandbox'
+      path: '/quiz-sandbox'
+      fullPath: '/quiz-sandbox'
+      preLoaderRoute: typeof QuizSandboxRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/confirmation': {
@@ -328,6 +432,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiWebhooksPrescribeRxRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/prx/webhooks': {
+      id: '/api/prx/webhooks'
+      path: '/api/prx/webhooks'
+      fullPath: '/api/prx/webhooks'
+      preLoaderRoute: typeof ApiPrxWebhooksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/prx/products': {
       id: '/api/prx/products'
       path: '/api/prx/products'
@@ -356,6 +467,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPrxMeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/prx/intake-dynamic': {
+      id: '/api/prx/intake-dynamic'
+      path: '/api/prx/intake-dynamic'
+      fullPath: '/api/prx/intake-dynamic'
+      preLoaderRoute: typeof ApiPrxIntakeDynamicRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/prx/intake': {
       id: '/api/prx/intake'
       path: '/api/prx/intake'
@@ -368,6 +486,20 @@ declare module '@tanstack/react-router' {
       path: '/api/prx/health'
       fullPath: '/api/prx/health'
       preLoaderRoute: typeof ApiPrxHealthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/prx/encounters': {
+      id: '/api/prx/encounters'
+      path: '/api/prx/encounters'
+      fullPath: '/api/prx/encounters'
+      preLoaderRoute: typeof ApiPrxEncountersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/prx/encounter-types': {
+      id: '/api/prx/encounter-types'
+      path: '/api/prx/encounter-types'
+      fullPath: '/api/prx/encounter-types'
+      preLoaderRoute: typeof ApiPrxEncounterTypesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/prx/checkout': {
@@ -384,6 +516,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPrxCatalogRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/prx/webhooks/event-types': {
+      id: '/api/prx/webhooks/event-types'
+      path: '/event-types'
+      fullPath: '/api/prx/webhooks/event-types'
+      preLoaderRoute: typeof ApiPrxWebhooksEventTypesRouteImport
+      parentRoute: typeof ApiPrxWebhooksRoute
+    }
     '/api/prx/orders/$orderId': {
       id: '/api/prx/orders/$orderId'
       path: '/$orderId'
@@ -391,8 +530,52 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPrxOrdersOrderIdRouteImport
       parentRoute: typeof ApiPrxOrdersRoute
     }
+    '/api/prx/encounters/$encounterId': {
+      id: '/api/prx/encounters/$encounterId'
+      path: '/$encounterId'
+      fullPath: '/api/prx/encounters/$encounterId'
+      preLoaderRoute: typeof ApiPrxEncountersEncounterIdRouteImport
+      parentRoute: typeof ApiPrxEncountersRoute
+    }
+    '/api/prx/auth/me': {
+      id: '/api/prx/auth/me'
+      path: '/api/prx/auth/me'
+      fullPath: '/api/prx/auth/me'
+      preLoaderRoute: typeof ApiPrxAuthMeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/prx/encounter-types/$encounterTypeId/schema': {
+      id: '/api/prx/encounter-types/$encounterTypeId/schema'
+      path: '/$encounterTypeId/schema'
+      fullPath: '/api/prx/encounter-types/$encounterTypeId/schema'
+      preLoaderRoute: typeof ApiPrxEncounterTypesEncounterTypeIdSchemaRouteImport
+      parentRoute: typeof ApiPrxEncounterTypesRoute
+    }
   }
 }
+
+interface ApiPrxEncounterTypesRouteChildren {
+  ApiPrxEncounterTypesEncounterTypeIdSchemaRoute: typeof ApiPrxEncounterTypesEncounterTypeIdSchemaRoute
+}
+
+const ApiPrxEncounterTypesRouteChildren: ApiPrxEncounterTypesRouteChildren = {
+  ApiPrxEncounterTypesEncounterTypeIdSchemaRoute:
+    ApiPrxEncounterTypesEncounterTypeIdSchemaRoute,
+}
+
+const ApiPrxEncounterTypesRouteWithChildren =
+  ApiPrxEncounterTypesRoute._addFileChildren(ApiPrxEncounterTypesRouteChildren)
+
+interface ApiPrxEncountersRouteChildren {
+  ApiPrxEncountersEncounterIdRoute: typeof ApiPrxEncountersEncounterIdRoute
+}
+
+const ApiPrxEncountersRouteChildren: ApiPrxEncountersRouteChildren = {
+  ApiPrxEncountersEncounterIdRoute: ApiPrxEncountersEncounterIdRoute,
+}
+
+const ApiPrxEncountersRouteWithChildren =
+  ApiPrxEncountersRoute._addFileChildren(ApiPrxEncountersRouteChildren)
 
 interface ApiPrxOrdersRouteChildren {
   ApiPrxOrdersOrderIdRoute: typeof ApiPrxOrdersOrderIdRoute
@@ -406,24 +589,41 @@ const ApiPrxOrdersRouteWithChildren = ApiPrxOrdersRoute._addFileChildren(
   ApiPrxOrdersRouteChildren,
 )
 
+interface ApiPrxWebhooksRouteChildren {
+  ApiPrxWebhooksEventTypesRoute: typeof ApiPrxWebhooksEventTypesRoute
+}
+
+const ApiPrxWebhooksRouteChildren: ApiPrxWebhooksRouteChildren = {
+  ApiPrxWebhooksEventTypesRoute: ApiPrxWebhooksEventTypesRoute,
+}
+
+const ApiPrxWebhooksRouteWithChildren = ApiPrxWebhooksRoute._addFileChildren(
+  ApiPrxWebhooksRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthRoute: AuthRoute,
   CheckoutRoute: CheckoutRoute,
   ConfirmationRoute: ConfirmationRoute,
-  QuizRoute: QuizRoute,
+  QuizSandboxRoute: QuizSandboxRoute,
   CategorySlugRoute: CategorySlugRoute,
   ProductsGlp1WeightLossRoute: ProductsGlp1WeightLossRoute,
   AccountIndexRoute: AccountIndexRoute,
   ApiPrxCatalogRoute: ApiPrxCatalogRoute,
   ApiPrxCheckoutRoute: ApiPrxCheckoutRoute,
+  ApiPrxEncounterTypesRoute: ApiPrxEncounterTypesRouteWithChildren,
+  ApiPrxEncountersRoute: ApiPrxEncountersRouteWithChildren,
   ApiPrxHealthRoute: ApiPrxHealthRoute,
   ApiPrxIntakeRoute: ApiPrxIntakeRoute,
+  ApiPrxIntakeDynamicRoute: ApiPrxIntakeDynamicRoute,
   ApiPrxMeRoute: ApiPrxMeRoute,
   ApiPrxOrdersRoute: ApiPrxOrdersRouteWithChildren,
   ApiPrxPatientsRoute: ApiPrxPatientsRoute,
   ApiPrxProductsRoute: ApiPrxProductsRoute,
+  ApiPrxWebhooksRoute: ApiPrxWebhooksRouteWithChildren,
   ApiWebhooksPrescribeRxRoute: ApiWebhooksPrescribeRxRoute,
+  ApiPrxAuthMeRoute: ApiPrxAuthMeRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

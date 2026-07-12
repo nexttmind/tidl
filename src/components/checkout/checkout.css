@@ -176,6 +176,41 @@
   color: var(--checkout-muted);
 }
 
+.checkout-live-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 11px 5px 9px;
+  border-radius: 999px;
+  background: rgba(16, 122, 87, 0.1);
+  color: #0f7a52;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+.checkout-live-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: #12a06a;
+  box-shadow: 0 0 0 0 rgba(18, 160, 106, 0.5);
+  animation: checkout-live-pulse 1.8s ease-out infinite;
+}
+
+@keyframes checkout-live-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(18, 160, 106, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(18, 160, 106, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(18, 160, 106, 0);
+  }
+}
+
 .checkout-card-badge {
   display: inline-flex;
   align-items: center;

@@ -5,9 +5,11 @@ import { SiteHeader } from "@/components/layout/SiteHeader";
 import { FUNNEL_NAV_LINKS } from "@/components/layout/site-nav";
 import { useSiteHeaderState } from "@/hooks/useSiteHeaderState";
 import { useIsMounted } from "@/hooks/use-is-mounted";
+import { usePrxEncounterStatus } from "@/hooks/use-prx-encounter-status";
 import { formatCurrency } from "@/lib/pricing";
 import { getRecommendedTreatment } from "@/lib/products";
 import { getOrderById } from "@/lib/order-storage";
+import { prxStatusLabel, prxStatusToOrderStatus } from "@/lib/prescribe-rx";
 import type { Order } from "@/types/order";
 import "@/components/checkout/checkout.css";
 
@@ -25,14 +27,20 @@ function ConfirmationPage() {
   const { orderId } = Route.useSearch();
   const { pinned, theme, transparent } = useSiteHeaderState({ defaultTheme: "light" });
 
+  const order: Order | null = mounted && orderId ? getOrderById(orderId) : null;
+  const { encounter, error: statusError } = usePrxEncounterStatus(order?.prx?.encounterId ?? null);
+
   if (!mounted) {
     return <div className="checkout-page" aria-hidden />;
   }
 
-  const order: Order | null = orderId ? getOrderById(orderId) : null;
   const product = order
     ? getRecommendedTreatment(order.quizSnapshot.goal, order.quizSnapshot.productSlug)
     : null;
+
+  // Prefer the live PRX status when we have an encounter; fall back to local.
+  const timelineStatus = encounter ? prxStatusToOrderStatus(encounter.status) : order?.status;
+  const liveLabel = encounter ? prxStatusLabel(encounter) : null;
 
   if (!order) {
     return (
@@ -110,10 +118,31 @@ function ConfirmationPage() {
         ) : null}
 
         <div className="checkout-card">
-          <h3 className="checkout-card-title" style={{ margin: "0 0 16px" }}>
-            Care timeline
-          </h3>
-          <StatusTimeline status={order.status} />
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              gap: 12,
+              margin: "0 0 16px",
+            }}
+          >
+            <h3 className="checkout-card-title" style={{ margin: 0 }}>
+              Care timeline
+            </h3>
+            {liveLabel ? (
+              <span className="checkout-live-status" title="Live from PrescribeRx">
+                <span className="checkout-live-dot" aria-hidden="true" />
+                {liveLabel}
+              </span>
+            ) : null}
+          </div>
+          <StatusTimeline status={timelineStatus ?? order.status} />
+          {statusError ? (
+            <p className="checkout-card-sub" style={{ margin: "12px 0 0", color: "#9a3412" }}>
+              Live status is temporarily unavailable — showing your last saved step.
+            </p>
+          ) : null}
         </div>
 
         <Link to="/account" className="checkout-submit" style={{ marginTop: 24, textDecoration: "none" }}>

@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { CheckoutForm } from "@/components/checkout/CheckoutForm";
 import { CheckoutLayout } from "@/components/checkout/CheckoutLayout";
 import { OrderSummary } from "@/components/checkout/OrderSummary";
@@ -34,12 +34,6 @@ function CheckoutPage() {
             <button type="button" onClick={() => openModal()} className="checkout-submit" style={{ marginTop: 24 }}>
               Start assessment
             </button>
-            <p className="checkout-gate-lead" style={{ marginTop: 16 }}>
-              or{" "}
-              <Link to="/quiz" className="checkout-gate-link">
-                continue on full page
-              </Link>
-            </p>
           </div>
         </div>
       </div>

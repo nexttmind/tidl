@@ -99,6 +99,11 @@ export function getPrxProductTypeSlug(productSlug: string): string {
   return readEnv(envKey) ?? DEFAULT_PRODUCT_TYPE_SLUGS[productSlug] ?? "tirzepatide";
 }
 
+/** Signing secret for verifying inbound PRX webhook deliveries (set per subscription in the PRX portal). */
+export function getPrxWebhookSecret(): string | undefined {
+  return readEnv("PRX_WEBHOOK_SECRET");
+}
+
 /** True on demo sandbox unless PRX_SANDBOX=false. */
 export function isPrxSandbox(): boolean {
   const flag = readEnv("PRX_SANDBOX");

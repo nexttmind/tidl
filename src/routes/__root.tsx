@@ -14,7 +14,7 @@ import { AuthProvider } from "../providers/auth-provider";
 import { QuizModalProvider } from "../providers/quiz-modal-provider";
 import { AgeGate } from "../components/age-gate/AgeGate";
 import { LenisScroll } from "../components/lenis/LenisScroll";
-import { QuizModal } from "../components/quiz/QuizModal";
+import { DynamicQuizModal } from "../components/quiz/dynamic/DynamicQuizModal";
 import { isAgeGateConfirmed } from "../lib/age-gate";
 
 function NotFoundComponent() {
@@ -119,7 +119,7 @@ function AppProviders({ children }: { children: ReactNode }) {
         ) : null}
         <LenisScroll />
         {children}
-        <QuizModal />
+        <DynamicQuizModal />
       </QuizModalProvider>
     </AuthProvider>
   );

@@ -1,14 +1,17 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState, type ReactNode } from "react";
+import { PrxActivityCard } from "@/components/account/PrxActivityCard";
 import { StatusTimeline } from "@/components/checkout/StatusTimeline";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { FUNNEL_NAV_LINKS } from "@/components/layout/site-nav";
 import { useSiteHeaderState } from "@/hooks/useSiteHeaderState";
 import { useIsMounted } from "@/hooks/use-is-mounted";
+import { usePrxEncounterStatus } from "@/hooks/use-prx-encounter-status";
 import { lockPageScroll, unlockPageScroll } from "@/lib/age-gate";
 import { formatCurrency } from "@/lib/pricing";
 import { getRecommendedTreatment } from "@/lib/products";
 import { getLatestOrderForUser } from "@/lib/order-storage";
+import { prxStatusToOrderStatus } from "@/lib/prescribe-rx";
 import { useAuth } from "@/providers/auth-provider";
 import { useQuizModal } from "@/providers/quiz-modal-provider";
 import "@/components/checkout/checkout.css";
@@ -49,6 +52,9 @@ function AccountPage() {
   const { user, hydrated: authHydrated } = useAuth();
   const { openModal } = useQuizModal();
 
+  const order = mounted && authHydrated && user ? getLatestOrderForUser(user.id) : null;
+  const { encounter } = usePrxEncounterStatus(order?.prx?.encounterId ?? null);
+
   if (!mounted || !authHydrated) {
     return (
       <AccountPageShell>
@@ -56,8 +62,6 @@ function AccountPage() {
       </AccountPageShell>
     );
   }
-
-  const order = user ? getLatestOrderForUser(user.id) : null;
 
   if (!user) {
     return (
@@ -147,8 +151,12 @@ function AccountPage() {
 
         <div className="account-card">
           <h3 className="account-card-title">Care timeline</h3>
-          <StatusTimeline status={order.status} />
+          <StatusTimeline
+            status={encounter ? prxStatusToOrderStatus(encounter.status) : order.status}
+          />
         </div>
+
+        <PrxActivityCard highlightEncounterId={order.prx?.encounterId} />
 
         <Link to="/" className="account-cta" style={{ marginTop: 24 }}>
           Back to home

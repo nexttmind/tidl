@@ -52,7 +52,7 @@ export function mapCheckoutToUnifiedIntakePayload(
   const vitals = mapQuizToVitals(body.quiz);
   const answers = mapQuizToIntakeAnswers(body.quiz, body.product.goal);
 
-  const consents = mapQuizToConsents(body.quiz);
+  const consents = mapQuizToConsents(body.quiz, body.checkout);
 
   return {
     ...(options.sandbox ? { is_sandbox: true } : {}),
@@ -124,8 +124,9 @@ function mapCheckoutToPaymentPayload(body: PrxCheckoutBody, transactionId: strin
   };
 }
 
-function mapQuizToConsents(quiz: QuizFormData) {
-  if (!quiz.physicianNoticeAcknowledged) return undefined;
+function mapQuizToConsents(quiz: QuizFormData, checkout?: Partial<CheckoutFormData>) {
+  // Either acknowledgement (assessment notice or checkout terms) records consent.
+  if (!quiz.physicianNoticeAcknowledged && !checkout?.termsAccepted) return undefined;
 
   return [
     {
