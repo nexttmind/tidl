@@ -76,9 +76,9 @@ The TIDL website now has a **server-side bridge** to the PrescribeRx sandbox. Th
 | `/api/prx/orders/:orderId` | GET | `/orders/:id` | Single order |
 | `/api/prx/checkout` | POST | `/patients` + `/orders` | One-step checkout submit |
 | `/api/prx/intake` | POST | intake candidates → `/patients` fallback | Quiz progress sync |
-| `/api/webhooks/prescribe-rx` | POST | — | Inbound PRX status webhooks |
+| `/api/prx/webhooks` | POST | — | Inbound PRX status webhooks (HMAC-verified) |
 
-**Route files:** `src/routes/api/prx/*.ts`, `src/routes/api/webhooks/prescribe-rx.ts`
+**Route files:** `src/routes/api/prx/*.ts`
 
 ---
 
@@ -170,7 +170,7 @@ If checkout errors, check the browser Network tab for `/api/prx/checkout` respon
 2. **Fix checkout payloads** — align mappers in `src/server/prx/mappers.ts` with PRX schema
 3. **Order status sync** — webhooks update `/account` instead of localStorage-only status
 4. **Patient portal link** — SSO or deep-link to PRX-branded TIDL portal
-5. **Deploy webhooks** — expose `https://your-domain.com/api/webhooks/prescribe-rx` (ngrok for local testing)
+5. **Deploy webhooks** — expose `https://your-domain.com/api/prx/webhooks` (ngrok for local testing)
 
 ---
 

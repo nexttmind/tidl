@@ -17,7 +17,6 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AccountIndexRouteImport } from './routes/account/index'
 import { Route as ProductsGlp1WeightLossRouteImport } from './routes/products/glp-1-weight-loss'
 import { Route as CategorySlugRouteImport } from './routes/category/$slug'
-import { Route as ApiWebhooksPrescribeRxRouteImport } from './routes/api/webhooks/prescribe-rx'
 import { Route as ApiPrxWebhooksRouteImport } from './routes/api/prx/webhooks'
 import { Route as ApiPrxProductsRouteImport } from './routes/api/prx/products'
 import { Route as ApiPrxPatientsRouteImport } from './routes/api/prx/patients'
@@ -74,11 +73,6 @@ const ProductsGlp1WeightLossRoute = ProductsGlp1WeightLossRouteImport.update({
 const CategorySlugRoute = CategorySlugRouteImport.update({
   id: '/category/$slug',
   path: '/category/$slug',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ApiWebhooksPrescribeRxRoute = ApiWebhooksPrescribeRxRouteImport.update({
-  id: '/api/webhooks/prescribe-rx',
-  path: '/api/webhooks/prescribe-rx',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ApiPrxWebhooksRoute = ApiPrxWebhooksRouteImport.update({
@@ -191,7 +185,6 @@ export interface FileRoutesByFullPath {
   '/api/prx/patients': typeof ApiPrxPatientsRoute
   '/api/prx/products': typeof ApiPrxProductsRoute
   '/api/prx/webhooks': typeof ApiPrxWebhooksRouteWithChildren
-  '/api/webhooks/prescribe-rx': typeof ApiWebhooksPrescribeRxRoute
   '/api/prx/auth/me': typeof ApiPrxAuthMeRoute
   '/api/prx/encounters/$encounterId': typeof ApiPrxEncountersEncounterIdRoute
   '/api/prx/orders/$orderId': typeof ApiPrxOrdersOrderIdRoute
@@ -219,7 +212,6 @@ export interface FileRoutesByTo {
   '/api/prx/patients': typeof ApiPrxPatientsRoute
   '/api/prx/products': typeof ApiPrxProductsRoute
   '/api/prx/webhooks': typeof ApiPrxWebhooksRouteWithChildren
-  '/api/webhooks/prescribe-rx': typeof ApiWebhooksPrescribeRxRoute
   '/api/prx/auth/me': typeof ApiPrxAuthMeRoute
   '/api/prx/encounters/$encounterId': typeof ApiPrxEncountersEncounterIdRoute
   '/api/prx/orders/$orderId': typeof ApiPrxOrdersOrderIdRoute
@@ -248,7 +240,6 @@ export interface FileRoutesById {
   '/api/prx/patients': typeof ApiPrxPatientsRoute
   '/api/prx/products': typeof ApiPrxProductsRoute
   '/api/prx/webhooks': typeof ApiPrxWebhooksRouteWithChildren
-  '/api/webhooks/prescribe-rx': typeof ApiWebhooksPrescribeRxRoute
   '/api/prx/auth/me': typeof ApiPrxAuthMeRoute
   '/api/prx/encounters/$encounterId': typeof ApiPrxEncountersEncounterIdRoute
   '/api/prx/orders/$orderId': typeof ApiPrxOrdersOrderIdRoute
@@ -278,7 +269,6 @@ export interface FileRouteTypes {
     | '/api/prx/patients'
     | '/api/prx/products'
     | '/api/prx/webhooks'
-    | '/api/webhooks/prescribe-rx'
     | '/api/prx/auth/me'
     | '/api/prx/encounters/$encounterId'
     | '/api/prx/orders/$orderId'
@@ -306,7 +296,6 @@ export interface FileRouteTypes {
     | '/api/prx/patients'
     | '/api/prx/products'
     | '/api/prx/webhooks'
-    | '/api/webhooks/prescribe-rx'
     | '/api/prx/auth/me'
     | '/api/prx/encounters/$encounterId'
     | '/api/prx/orders/$orderId'
@@ -334,7 +323,6 @@ export interface FileRouteTypes {
     | '/api/prx/patients'
     | '/api/prx/products'
     | '/api/prx/webhooks'
-    | '/api/webhooks/prescribe-rx'
     | '/api/prx/auth/me'
     | '/api/prx/encounters/$encounterId'
     | '/api/prx/orders/$orderId'
@@ -363,7 +351,6 @@ export interface RootRouteChildren {
   ApiPrxPatientsRoute: typeof ApiPrxPatientsRoute
   ApiPrxProductsRoute: typeof ApiPrxProductsRoute
   ApiPrxWebhooksRoute: typeof ApiPrxWebhooksRouteWithChildren
-  ApiWebhooksPrescribeRxRoute: typeof ApiWebhooksPrescribeRxRoute
   ApiPrxAuthMeRoute: typeof ApiPrxAuthMeRoute
 }
 
@@ -423,13 +410,6 @@ declare module '@tanstack/react-router' {
       path: '/category/$slug'
       fullPath: '/category/$slug'
       preLoaderRoute: typeof CategorySlugRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/api/webhooks/prescribe-rx': {
-      id: '/api/webhooks/prescribe-rx'
-      path: '/api/webhooks/prescribe-rx'
-      fullPath: '/api/webhooks/prescribe-rx'
-      preLoaderRoute: typeof ApiWebhooksPrescribeRxRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/api/prx/webhooks': {
@@ -622,7 +602,6 @@ const rootRouteChildren: RootRouteChildren = {
   ApiPrxPatientsRoute: ApiPrxPatientsRoute,
   ApiPrxProductsRoute: ApiPrxProductsRoute,
   ApiPrxWebhooksRoute: ApiPrxWebhooksRouteWithChildren,
-  ApiWebhooksPrescribeRxRoute: ApiWebhooksPrescribeRxRoute,
   ApiPrxAuthMeRoute: ApiPrxAuthMeRoute,
 }
 export const routeTree = rootRouteImport

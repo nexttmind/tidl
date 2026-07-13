@@ -110,7 +110,7 @@ stays private:
 | `/api/prx/patients` | `/patients` | list patients |
 | `/api/prx/orders` | `/orders` | list orders |
 | `/api/prx/checkout` | `/telehealth/intake/unified` | **main checkout** |
-| `/api/webhooks/prescribe-rx` | — | receive PRX status updates |
+| `/api/prx/webhooks` | — | receive PRX status updates |
 
 **Health check (proof it's connected):**
 `https://tidltest.netlify.app/api/prx/health` → returns `healthy: true`
@@ -355,7 +355,7 @@ Provider prescribes (in PRX portal)
         ↓
 PRX creates an Order
         ↓
-PRX sends a webhook → /api/webhooks/prescribe-rx
+PRX sends a webhook → /api/prx/webhooks
         ↓
 TIDL updates order status
         ↓

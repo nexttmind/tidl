@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { getPrxWebhookSecret } from "@/lib/prescribe-rx/env";
 import { jsonError, jsonOk } from "@/server/prx/respond";
 import { getRecentWebhooks, recordWebhook } from "@/server/prx/webhook-store";
-import { verifyPrxWebhookSignature } from "@/server/prx/webhook-verify";
+import { readPrxSignatureHeader, verifyPrxWebhookSignature } from "@/server/prx/webhook-verify";
 
 /**
  * Inbound webhook receiver for PrescribeRx.
@@ -23,9 +23,7 @@ export const Route = createFileRoute("/api/prx/webhooks")({
       POST: async ({ request }) => {
         // Signature is computed over the raw body, so read text (not .json()).
         const rawBody = await request.text();
-        const signature =
-          request.headers.get("X-PrescribeRx-Signature") ??
-          request.headers.get("x-prescriberx-signature");
+        const signature = readPrxSignatureHeader(request.headers);
 
         const secret = getPrxWebhookSecret();
         const verified = secret
@@ -45,9 +43,11 @@ export const Route = createFileRoute("/api/prx/webhooks")({
         }
 
         let event = request.headers.get("X-PrescribeRx-Event") ?? "unknown";
-        if (payload && typeof payload === "object" && "event" in payload) {
-          const maybeEvent = (payload as { event: unknown }).event;
-          if (typeof maybeEvent === "string" && maybeEvent.length > 0) event = maybeEvent;
+        if (payload && typeof payload === "object") {
+          const record = payload as Record<string, unknown>;
+          // PRX uses `event`; tolerate `type`/`status` from other shapes.
+          const candidate = record.event ?? record.type ?? record.status;
+          if (typeof candidate === "string" && candidate.length > 0) event = candidate;
         }
 
         recordWebhook({
