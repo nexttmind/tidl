@@ -169,7 +169,7 @@ Webhooks use a **signing secret**, not the bearer API token.
 | Step | Action |
 |------|--------|
 | 1 | PRX admin → **Webhooks** → add endpoint |
-| 2 | URL: `https://<your-host>/api/webhooks/prescribe-rx` |
+| 2 | URL: `https://<your-host>/api/prx/webhooks` |
 | 3 | Copy signing secret → `PRX_WEBHOOK_SECRET` |
 | 4 | Local dev: expose via ngrok or Cloudflare tunnel |
 
