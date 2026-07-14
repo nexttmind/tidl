@@ -1,9 +1,10 @@
 import { SITE_IMAGES } from "@/lib/site-assets";
 import { getProductBySlug } from "@/lib/products";
-import type { ProductSlug } from "@/types/quiz";
+import { PEPTIDE_DEFS, peptideToCatalogProduct } from "@/lib/peptides";
+import { PRODUCT_SLUGS, type ProductSlug } from "@/types/quiz";
 import type { CategorySlug } from "@/lib/categories";
 
-export type ProductForm = "pen" | "pill";
+export type ProductForm = "pen" | "pill" | "vial";
 
 export type CatalogProduct = {
   slug: ProductSlug;
@@ -16,18 +17,21 @@ export type CatalogProduct = {
   highlights: readonly string[];
 };
 
+const GLP1_CATALOG_PRODUCT: CatalogProduct = {
+  slug: "glp-1-weight-loss",
+  categorySlug: "weight-loss",
+  form: "pen",
+  shortName: "GLP-1 Weight Loss",
+  headline: "Lose weight. Keep it off. Pre-dosed pen.",
+  summary:
+    "Doctor-prescribed GLP-1 in the TIDL Pen. Your dose is set to your prescription. No mixing, no guesswork.",
+  image: SITE_IMAGES.products.penPrimary,
+  highlights: ["TIDL Pen delivery", "Licensed provider review", "Discreet shipping"],
+};
+
 export const CATALOG_PRODUCTS: CatalogProduct[] = [
-  {
-    slug: "glp-1-weight-loss",
-    categorySlug: "weight-loss",
-    form: "pen",
-    shortName: "GLP-1 Weight Loss",
-    headline: "Lose weight. Keep it off. Pre-dosed pen.",
-    summary:
-      "Doctor-prescribed GLP-1 in the TIDL Pen. Your dose is set to your prescription. No mixing, no guesswork.",
-    image: SITE_IMAGES.products.penPrimary,
-    highlights: ["TIDL Pen delivery", "Licensed provider review", "Discreet shipping"],
-  },
+  GLP1_CATALOG_PRODUCT,
+  ...PEPTIDE_DEFS.map(peptideToCatalogProduct),
 ];
 
 export function getCatalogProduct(slug: ProductSlug): CatalogProduct | undefined {
@@ -42,9 +46,9 @@ export function getCatalogPrice(slug: ProductSlug): number {
   return getProductBySlug(slug)?.monthlyPrice ?? 0;
 }
 
-export const PRODUCT_PATHS: Record<ProductSlug, `/products/${ProductSlug}`> = {
-  "glp-1-weight-loss": "/products/glp-1-weight-loss",
-};
+export const PRODUCT_PATHS = Object.fromEntries(
+  PRODUCT_SLUGS.map((slug) => [slug, `/products/${slug}`]),
+) as Record<ProductSlug, `/products/${ProductSlug}`>;
 
 export const CATEGORY_PATHS: Record<CategorySlug, `/category/${CategorySlug}`> = {
   "weight-loss": "/category/weight-loss",

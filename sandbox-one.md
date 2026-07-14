@@ -376,6 +376,58 @@ just the webhook + the patient portal to display the result.
 
 ---
 
+## 12b. Peptide products — PDP pages wired to the sandbox catalog
+
+The **peptides are the real products** (the pen is just a delivery device shipped
+with orders). We pulled the live sandbox catalog and built **10 peptide PDP
+pages** at `/products/<slug>`, plus the flagship GLP-1 page.
+
+**The 10 peptides now live on the site:**
+
+| Product | Category | PRX encounter | Route |
+|---------|----------|---------------|-------|
+| Retatrutide | Weight loss | `glp-1-screening` | `/products/retatrutide` |
+| BPC-157 | Recovery | `peptide-assessment` | `/products/bpc-157` |
+| TB-500 | Recovery | `peptide-assessment` | `/products/tb-500` |
+| Wolverine (BPC-157/TB-500) | Recovery | `peptide-assessment` | `/products/wolverine` |
+| CJC-1295 / Ipamorelin | Performance | `peptide-assessment` | `/products/cjc-1295-ipamorelin` |
+| Tesamorelin | Performance | `peptide-assessment` | `/products/tesamorelin` |
+| MOTS-C | Metabolic | `peptide-assessment` | `/products/mots-c` |
+| NAD+ | Longevity | `peptide-assessment` | `/products/nad-plus` |
+| GHK-Cu | Longevity | `peptide-assessment` | `/products/ghk-cu` |
+| Sermorelin | Longevity | `peptide-assessment` | `/products/sermorelin` |
+
+- Data source: `src/lib/peptides.ts` (single file — edit copy/price/mapping here).
+- Category pages (`/category/*`) now list their peptides.
+- The **home page stays marketing** (the pen); peptides live on PDPs only.
+
+**Sandbox facts we confirmed pulling the catalog:**
+- The catalog has **120 products** (real peptide names), scoped to **TIDL Sandbox**.
+- **Prices are placeholders** (~$10 for almost everything in sandbox), so PDPs use
+  our own marketing prices for now; real prices can come live from `/catalog` later.
+- Image URLs from the catalog are **signed and expire in ~1 hour**, so PDPs use
+  our own site images instead of the catalog image links.
+
+### Two checkout caveats for peptides (need PRX to confirm)
+
+These do **not** affect the GLP-1 flow (which works), but peptide **checkout**
+has two open items:
+
+1. **`product_type_slug` is a best guess.** The catalog only exposes a
+   `product_type_id` (UUID), not a slug. We mapped each peptide to a sensible
+   slug (e.g. `bpc-157`) that's **env-overridable**, but PRX should confirm the
+   exact slugs so peptide orders attach to the right product.
+2. **`peptide-assessment` requires an ID photo (`id_front`).** The peptide
+   encounter's required fields include a government ID upload, which our current
+   checkout doesn't collect. Until we add ID upload (or PRX relaxes it for
+   sandbox), peptide checkout may be rejected. GLP-1 screening does **not**
+   require this.
+
+> Bottom line: the peptide **PDP marketing pages are fully live**; peptide
+> **checkout** needs PRX to confirm product slugs and clarify the ID-photo rule.
+
+---
+
 ## 13. Summary in one line
 
 **TIDL checkout → `POST /telehealth/intake/unified` → Patient + Encounter in

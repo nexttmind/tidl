@@ -1,5 +1,6 @@
 import { SITE_IMAGES } from "@/lib/site-assets";
 import { GLP1_TESTIMONIALS } from "@/lib/testimonials";
+import { buildGlp1Marketing } from "@/lib/pdp-marketing";
 import type { PdpPageContent } from "./types";
 import { GLP1_PEN_SHOWCASE } from "./pen-showcase-content";
 
@@ -91,6 +92,7 @@ export const GLP1_PDP_CONTENT: PdpPageContent = {
   slug: "glp-1-weight-loss",
   goal: "weight-loss",
   productForm: "pen",
+  marketing: buildGlp1Marketing(),
   heroImage: SITE_IMAGES.pen,
   penImage: SITE_IMAGES.pen,
   showPenShowcase: true,

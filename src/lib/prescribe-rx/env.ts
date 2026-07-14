@@ -1,4 +1,5 @@
 import type { PrxConfig, PrxRole } from "./types";
+import { PEPTIDE_PRX_SLUGS } from "@/lib/peptides";
 
 /** Legacy per-role keys — optional overrides if PRX ever issues separate tokens in production. */
 const ROLE_ENV_KEYS: Record<PrxRole, string> = {
@@ -80,6 +81,9 @@ export function getPrxEncounterTypeSlug(productSlug?: string): string {
     if (fromEnv) return fromEnv;
     const mapped = DEFAULT_ENCOUNTER_TYPE_SLUGS[productSlug];
     if (mapped) return mapped;
+    // Peptides (and Retatrutide) carry their own encounter slug.
+    const peptide = PEPTIDE_PRX_SLUGS[productSlug];
+    if (peptide) return peptide.encounter;
   }
 
   return readEnv("PRX_ENCOUNTER_TYPE_SLUG") ?? "glp-1-screening";
@@ -96,7 +100,12 @@ const DEFAULT_PRODUCT_TYPE_SLUGS: Record<string, string> = {
 /** PRX product_type_slug for unified intake (e.g. tirzepatide). */
 export function getPrxProductTypeSlug(productSlug: string): string {
   const envKey = PRODUCT_TYPE_SLUG_ENV_KEYS[productSlug] ?? "PRX_DEFAULT_PRODUCT_TYPE_SLUG";
-  return readEnv(envKey) ?? DEFAULT_PRODUCT_TYPE_SLUGS[productSlug] ?? "tirzepatide";
+  return (
+    readEnv(envKey) ??
+    DEFAULT_PRODUCT_TYPE_SLUGS[productSlug] ??
+    PEPTIDE_PRX_SLUGS[productSlug]?.product ??
+    "tirzepatide"
+  );
 }
 
 /** Signing secret for verifying inbound PRX webhook deliveries (set per subscription in the PRX portal). */

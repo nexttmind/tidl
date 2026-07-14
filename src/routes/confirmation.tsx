@@ -117,6 +117,17 @@ function ConfirmationPage() {
           </div>
         ) : null}
 
+        <div className="checkout-card" style={{ marginBottom: 16 }}>
+          <h3 className="checkout-card-title" style={{ margin: "0 0 8px" }}>
+            What happens next
+          </h3>
+          <p className="checkout-card-sub" style={{ margin: 0 }}>
+            A licensed provider reviews your intake. You will get a welcome message once care is
+            active, and when your order ships you will receive a short pen how-to. Track status below
+            or in your <Link to="/account">account</Link>.
+          </p>
+        </div>
+
         <div className="checkout-card">
           <div
             style={{

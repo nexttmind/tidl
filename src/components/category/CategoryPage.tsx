@@ -14,15 +14,21 @@ import { SiteHeader } from "@/components/layout/SiteHeader";
 import { useSiteHeaderState } from "@/hooks/useSiteHeaderState";
 import { getCatalogProduct, getCatalogPrice } from "@/lib/product-catalog";
 import {
+  resolveDisplayMonthlyPrice,
+  useLiveCatalog,
+} from "@/lib/prescribe-rx/use-live-catalog";
+import {
   CATEGORIES,
   CATEGORY_SLUGS,
   getCategory,
   type CategorySlug,
 } from "@/lib/categories";
+import { CATEGORY_BUNDLES } from "@/lib/category-bundles";
 import { CATEGORY_GOAL_MAP } from "@/lib/category-recommendations";
 import { getGoalFromProduct } from "@/lib/products";
 import type { GoalId, ProductSlug } from "@/types/quiz";
 import { CategoryAmbient } from "./CategoryAmbient";
+import { CategoryBundleSection } from "./CategoryBundle";
 import { CategoryHero } from "./CategoryHero";
 import { CategoryPenProgram } from "./CategoryPenProgram";
 import { CategoryProductCard } from "./CategoryProductCard";
@@ -110,6 +116,7 @@ function SectionHead({
 
 export function CategoryPage({ slug }: CategoryPageProps) {
   const category = getCategory(slug);
+  const { map: liveCatalog } = useLiveCatalog();
   const { openModal } = useQuizModal();
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const [heroLive, setHeroLive] = useState(false);
@@ -362,25 +369,43 @@ export function CategoryPage({ slug }: CategoryPageProps) {
 
               {products.length > 0 ? (
                 <div className="cat-product-showcase">
-                  {products.map((product, index) =>
-                    product.form === "pen" ? (
+                  {products.map((product, index) => {
+                    const live = liveCatalog[product.slug];
+                    const marketingPrice = getCatalogPrice(product.slug);
+                    const displayProduct = live?.image
+                      ? { ...product, image: live.image }
+                      : product;
+                    const displayPrice = resolveDisplayMonthlyPrice(marketingPrice, live?.price);
+                    const sandboxOverlay = live?.fromSandbox
+                      ? {
+                          catalogName: live.name,
+                          sku: live.sku,
+                          shortDescription: live.shortDescription,
+                          strength: live.handBox.strength,
+                          formLabel: live.handBox.formLabel,
+                          sandboxPrice: live.price,
+                          variantCount: live.variants.length,
+                        }
+                      : undefined;
+                    return product.form === "pen" ? (
                       <CategoryPenProgram
                         key={product.slug}
-                        product={product}
-                        price={getCatalogPrice(product.slug)}
+                        product={displayProduct}
+                        price={displayPrice}
                         workflow={category.howItWorks}
                         onStartIntake={(productSlug) => openQuiz(productSlug)()}
                       />
                     ) : (
                       <CategoryProductCard
                         key={product.slug}
-                        product={product}
-                        price={getCatalogPrice(product.slug)}
+                        product={displayProduct}
+                        price={displayPrice}
                         index={index}
+                        sandbox={sandboxOverlay}
                         onStartIntake={(productSlug) => openQuiz(productSlug)()}
                       />
-                    ),
-                  )}
+                    );
+                  })}
                 </div>
               ) : (
                 <motion.div
@@ -392,14 +417,20 @@ export function CategoryPage({ slug }: CategoryPageProps) {
                 >
                   <motion.div className="cat-empty-orb" aria-hidden="true" variants={reveal} />
                   <motion.h3 className="cat-empty-title" variants={reveal}>
-                    Programs launching soon
+                    {slug === "testosterone"
+                      ? "TRT pathway ready in sandbox"
+                      : "Programs launching soon"}
                   </motion.h3>
                   <motion.p className="cat-empty-lead" variants={reveal}>
-                    {category.title} care is being prepared with the same physician oversight and discreet
-                    delivery you expect from TIDL. Start your intake now—we will match you when your program is live.
+                    {slug === "testosterone"
+                      ? "PrescribeRx already has Male TRT Consult (labs required) and catalog TRT SKUs. Start intake now — a licensed provider reviews labs and symptoms before any prescription."
+                      : `${category.title} care is being prepared with the same physician oversight and discreet delivery you expect from TIDL. Start your intake now—we will match you when your program is live.`}
                   </motion.p>
                   <motion.div className="cat-empty-suggestions" variants={reveal}>
-                    {["Take the intake quiz", "Ask TIDL a question", "Explore how it works"].map((label) => (
+                    {(slug === "testosterone"
+                      ? ["Male TRT consult", "Labs-guided review", "Licensed US pharmacy"]
+                      : ["Take the intake quiz", "Ask TIDL a question", "Explore how it works"]
+                    ).map((label) => (
                       <span key={label} className="cat-suggest-pill cat-suggest-pill--static">
                         {label}
                       </span>
@@ -419,6 +450,11 @@ export function CategoryPage({ slug }: CategoryPageProps) {
               )}
             </div>
           </section>
+
+          <CategoryBundleSection
+            bundle={CATEGORY_BUNDLES[slug]}
+            onStartIntake={(productSlug) => openQuiz(productSlug)()}
+          />
 
           <section className="cat-safety" id="cat-safety" data-site-header-theme="dark">
             <div className="cat-safety-inner">

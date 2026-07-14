@@ -10,11 +10,23 @@ import {
 import { registerFromQuiz } from "@/lib/auth-storage";
 import { createOrder } from "@/lib/order-storage";
 import { clearQuizState, readQuizState } from "@/lib/quiz-storage";
-import { calculateOrderPricing } from "@/lib/pricing";
+import { calculateOrderPricing, CHECKOUT_DEMO_ZERO, formatCurrency } from "@/lib/pricing";
 import { getRecommendedTreatment } from "@/lib/products";
 import { submitPrxCheckout } from "@/lib/prescribe-rx/browse-api";
+import { PEPTIDE_PRX_SLUGS } from "@/lib/peptides";
 import { useAuth } from "@/providers/auth-provider";
 import "./checkout.css";
+
+const MAX_ID_BYTES = 6 * 1024 * 1024;
+
+function readFileAsDataUrl(file: File): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(reader.result as string);
+    reader.onerror = () => reject(reader.error ?? new Error("Could not read file"));
+    reader.readAsDataURL(file);
+  });
+}
 
 function LocationIcon() {
   return (
@@ -47,6 +59,17 @@ function ClipboardIcon() {
   );
 }
 
+function IdIcon() {
+  return (
+    <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <rect x="2.5" y="4.5" width="15" height="11" rx="1.8" stroke="currentColor" strokeWidth="1.3" />
+      <circle cx="7.5" cy="9.5" r="1.8" stroke="currentColor" strokeWidth="1.2" />
+      <path d="M4.8 13.5c.4-1.3 1.5-2 2.7-2s2.3.7 2.7 2" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+      <path d="M12.5 8.5h3M12.5 11h2.2" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+    </svg>
+  );
+}
+
 function LockSmallIcon() {
   return (
     <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
@@ -62,6 +85,38 @@ export function CheckoutForm() {
   const stored = readQuizState();
   const quizData = stored?.data;
   const [submitError, setSubmitError] = useState<string | null>(null);
+
+  const selectedProduct = quizData
+    ? getRecommendedTreatment(quizData.goal, quizData.productSlug)
+    : undefined;
+  const requiresId =
+    !!selectedProduct &&
+    PEPTIDE_PRX_SLUGS[selectedProduct.slug]?.encounter === "peptide-assessment";
+
+  const [idFront, setIdFront] = useState<string | null>(null);
+  const [idFileName, setIdFileName] = useState<string | null>(null);
+  const [idError, setIdError] = useState<string | null>(null);
+
+  async function handleIdChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setIdError(null);
+    if (!file.type.startsWith("image/")) {
+      setIdError("Please upload an image of your ID (JPG or PNG).");
+      return;
+    }
+    if (file.size > MAX_ID_BYTES) {
+      setIdError("That file is too large. Please upload an image under 6MB.");
+      return;
+    }
+    try {
+      const dataUrl = await readFileAsDataUrl(file);
+      setIdFront(dataUrl);
+      setIdFileName(file.name);
+    } catch {
+      setIdError("Could not read that file. Please try another image.");
+    }
+  }
 
   const {
     register,
@@ -84,6 +139,11 @@ export function CheckoutForm() {
 
     const product = getRecommendedTreatment(quizData.goal, quizData.productSlug);
     const pricing = calculateOrderPricing(product);
+
+    if (requiresId && !idFront) {
+      setIdError("A photo of your government ID is required for this treatment.");
+      return;
+    }
 
     let userId = user?.id;
     if (!userId) {
@@ -111,6 +171,7 @@ export function CheckoutForm() {
             dosage: product.dosage,
             goal: product.goal,
           },
+          idFront: idFront ?? undefined,
         },
         crypto.randomUUID(),
       );
@@ -208,17 +269,31 @@ export function CheckoutForm() {
             </span>
             <div>
               <h2 className="checkout-card-title">Payment</h2>
-              <p className="checkout-card-sub">All transactions are securely encrypted</p>
+              <p className="checkout-card-sub">
+                {CHECKOUT_DEMO_ZERO
+                  ? "PrescribeRx sandbox · $0 reference capture (no real charge)"
+                  : "All transactions are securely encrypted"}
+              </p>
             </div>
           </div>
         </div>
+
+        {CHECKOUT_DEMO_ZERO ? (
+          <p className="checkout-demo-banner" role="status">
+            Demo: we record payment with PrescribeRx as{" "}
+            <code>reference_captured</code> for $0. Enter the sandbox test card below (or any valid
+            format) — nothing is charged.
+          </p>
+        ) : null}
 
         <div className="checkout-pay-options">
           <label className="checkout-pay-option">
             <input type="radio" value="card" {...register("paymentMethod")} />
             <div>
               <span className="checkout-pay-option-label">Credit or debit card</span>
-              <span className="checkout-pay-option-hint">Visa, Mastercard, Amex</span>
+              <span className="checkout-pay-option-hint">
+                {CHECKOUT_DEMO_ZERO ? "Sandbox test card OK" : "Visa, Mastercard, Amex"}
+              </span>
             </div>
           </label>
           <label className="checkout-pay-option">
@@ -238,7 +313,7 @@ export function CheckoutForm() {
                   className="checkout-input"
                   autoComplete="cc-number"
                   inputMode="numeric"
-                  placeholder="1234 5678 9012 3456"
+                  placeholder={CHECKOUT_DEMO_ZERO ? "4111 1111 1111 1111" : "1234 5678 9012 3456"}
                   {...register("cardNumber")}
                 />
                 <span className="checkout-card-brands" aria-hidden="true">
@@ -254,7 +329,7 @@ export function CheckoutForm() {
                 <input
                   className="checkout-input"
                   autoComplete="cc-exp"
-                  placeholder="MM/YY"
+                  placeholder={CHECKOUT_DEMO_ZERO ? "12/30" : "MM/YY"}
                   {...register("cardExpiry")}
                 />
               </Field>
@@ -263,7 +338,7 @@ export function CheckoutForm() {
                   className="checkout-input"
                   autoComplete="cc-csc"
                   inputMode="numeric"
-                  placeholder="123"
+                  placeholder={CHECKOUT_DEMO_ZERO ? "123" : "123"}
                   {...register("cardCvc")}
                 />
               </Field>
@@ -271,10 +346,63 @@ export function CheckoutForm() {
           </>
         ) : (
           <p className="checkout-card-sub" style={{ margin: 0 }}>
-            Use your HSA or FSA card details at checkout. Eligibility may vary by plan administrator.
+            {CHECKOUT_DEMO_ZERO
+              ? "HSA/FSA selection still records a $0 PrescribeRx sandbox payment for this demo."
+              : "Use your HSA or FSA card details at checkout. Eligibility may vary by plan administrator."}
           </p>
         )}
       </section>
+
+      {requiresId ? (
+        <section className="checkout-card">
+          <div className="checkout-card-head">
+            <div className="checkout-card-title-wrap">
+              <span className="checkout-card-icon">
+                <IdIcon />
+              </span>
+              <div>
+                <h2 className="checkout-card-title">Identity verification</h2>
+                <p className="checkout-card-sub">
+                  Required by your prescribing provider for this treatment
+                </p>
+              </div>
+            </div>
+            <span className="checkout-card-badge">HIPAA secure</span>
+          </div>
+
+          <p className="checkout-card-sub" style={{ marginTop: 0 }}>
+            Upload a clear photo of your government-issued ID (driver's license or passport).
+            Your provider uses this to verify your identity before prescribing.
+          </p>
+
+          <label className={`checkout-id-drop${idFront ? " checkout-id-drop--filled" : ""}`}>
+            <input
+              type="file"
+              accept="image/*"
+              capture="environment"
+              onChange={handleIdChange}
+              className="checkout-id-input"
+            />
+            <span className="checkout-id-drop-icon" aria-hidden="true">
+              <IdIcon />
+            </span>
+            <span className="checkout-id-drop-copy">
+              {idFront ? (
+                <>
+                  <strong>ID uploaded</strong>
+                  <span>{idFileName} · tap to replace</span>
+                </>
+              ) : (
+                <>
+                  <strong>Tap to upload your ID</strong>
+                  <span>JPG or PNG, up to 6MB</span>
+                </>
+              )}
+            </span>
+          </label>
+          {idError ? <p className="checkout-error">{idError}</p> : null}
+        </section>
+      ) : null}
 
       <section className="checkout-card">
         <div className="checkout-card-head">
@@ -324,12 +452,18 @@ export function CheckoutForm() {
       {submitError ? <p className="checkout-error">{submitError}</p> : null}
 
       <button type="submit" disabled={isSubmitting} className="checkout-submit">
-        {isSubmitting ? "Processing..." : "Complete order"}
+        {isSubmitting
+          ? "Processing..."
+          : CHECKOUT_DEMO_ZERO
+            ? `Complete demo order · ${formatCurrency(0)}`
+            : "Complete order"}
       </button>
 
       <p className="checkout-secure">
         <LockSmallIcon />
-        Your information is securely encrypted
+        {CHECKOUT_DEMO_ZERO
+          ? "Demo · PrescribeRx sandbox payment recorded · no real charge"
+          : "Your information is securely encrypted"}
       </p>
     </form>
   );

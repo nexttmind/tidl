@@ -1312,6 +1312,14 @@
   padding: 8%;
 }
 
+/* Peptide vials: contain + ~50% scale so they read like the pen, not a full-bleed photo */
+.cat-product-card--vial .cat-product-media img {
+  object-fit: contain;
+  padding: 18%;
+  transform: scale(0.72);
+  transform-origin: center center;
+}
+
 .cat-product-copy {
   position: relative;
   z-index: 1;
@@ -1378,6 +1386,20 @@
   font-size: 0.88rem;
   font-weight: 500;
   color: rgba(23, 19, 16, 0.45);
+}
+
+.cat-product-sku {
+  margin: 4px 0 0;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(23, 19, 16, 0.45);
+}
+
+.cat-product-sandbox-price {
+  margin: 6px 0 0;
+  font-size: 0.82rem;
+  color: rgba(23, 19, 16, 0.5);
 }
 
 .cat-product-actions {

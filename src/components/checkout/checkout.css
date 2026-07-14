@@ -604,6 +604,14 @@
   color: var(--checkout-subtle);
 }
 
+.checkout-product-sku {
+  display: block;
+  margin-top: 4px;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  color: var(--checkout-subtle);
+}
+
 .checkout-summary-lines {
   display: flex;
   flex-direction: column;
@@ -645,6 +653,27 @@
   font-size: 12px;
   line-height: 1.55;
   color: var(--checkout-subtle);
+}
+
+.checkout-demo-banner {
+  margin: 12px 0 0;
+  padding: 10px 12px;
+  border: 1px solid color-mix(in srgb, var(--checkout-ink) 12%, transparent);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--checkout-ink) 4%, transparent);
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--checkout-muted);
+}
+
+.checkout-demo-banner code {
+  font-size: 12px;
+}
+
+.checkout-price-list {
+  font-weight: 500;
+  color: var(--checkout-subtle);
+  text-decoration: line-through;
 }
 
 .checkout-trust-row {
@@ -751,4 +780,69 @@
   font-weight: 700;
   font-variant-numeric: tabular-nums;
   color: var(--checkout-ink);
+}
+
+/* Identity verification / ID upload */
+.checkout-id-drop {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px;
+  border: 1.5px dashed rgba(23, 19, 16, 0.28);
+  border-radius: 14px;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease;
+  background: rgba(23, 19, 16, 0.015);
+}
+
+.checkout-id-drop:hover {
+  border-color: rgba(23, 19, 16, 0.5);
+  background: rgba(23, 19, 16, 0.03);
+}
+
+.checkout-id-drop--filled {
+  border-style: solid;
+  border-color: rgba(56, 142, 92, 0.5);
+  background: rgba(56, 142, 92, 0.06);
+}
+
+.checkout-id-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.checkout-id-drop-icon {
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  background: rgba(23, 19, 16, 0.06);
+  color: #171310;
+}
+
+.checkout-id-drop-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.checkout-id-drop-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  line-height: 1.3;
+}
+
+.checkout-id-drop-copy strong {
+  font-size: 0.95rem;
+  color: #171310;
+}
+
+.checkout-id-drop-copy span {
+  font-size: 0.82rem;
+  color: rgba(23, 19, 16, 0.6);
 }

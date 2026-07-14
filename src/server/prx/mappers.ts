@@ -1,11 +1,14 @@
 import type { CheckoutFormData } from "@/types/order";
 import type { QuizFormData } from "@/types/quiz";
 import type { Product } from "@/lib/products";
+import { CHECKOUT_DEMO_ZERO } from "@/lib/pricing";
 
 export type PrxCheckoutBody = {
   quiz: QuizFormData;
   checkout: CheckoutFormData;
   product: Pick<Product, "slug" | "name" | "monthlyPrice" | "dosage" | "goal">;
+  /** Government ID front image as a data URL (required for peptide assessments). */
+  idFront?: string;
   idempotencyKey?: string;
 };
 
@@ -51,6 +54,9 @@ export function mapCheckoutToUnifiedIntakePayload(
   const patient = mapQuizToPatientPayload(body.quiz, body.checkout);
   const vitals = mapQuizToVitals(body.quiz);
   const answers = mapQuizToIntakeAnswers(body.quiz, body.product.goal);
+
+  // Peptide-assessment encounters require a government ID (field slug `id_front`).
+  if (body.idFront) answers.id_front = body.idFront;
 
   const consents = mapQuizToConsents(body.quiz, body.checkout);
 
@@ -114,12 +120,19 @@ function mapQuizToIntakeAnswers(quiz: QuizFormData, goal: Product["goal"] | null
 }
 
 function mapCheckoutToPaymentPayload(body: PrxCheckoutBody, transactionId: string) {
+  // Sales-org API tokens cannot use mode "authorize" (PRX-as-merchant / embed only).
+  // Record a sandbox payment against PrescribeRx: $0 for demo checkout, catalog price later.
+  const amount = CHECKOUT_DEMO_ZERO ? 0 : body.product.monthlyPrice;
+
   return {
     mode: "reference_captured" as const,
     gateway: body.checkout.paymentMethod === "hsa_fsa" ? "hsa_fsa" : "stripe",
     transaction: {
-      transaction_id: transactionId,
-      amount: body.product.monthlyPrice,
+      transaction_id: CHECKOUT_DEMO_ZERO
+        ? `demo-zero-${transactionId}`
+        : transactionId,
+      amount,
+      captured_at: new Date().toISOString(),
     },
   };
 }

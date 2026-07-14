@@ -5,6 +5,7 @@ import {
   CATALOG_PRODUCTS,
   PRODUCT_PATHS,
   getCatalogProduct,
+  type ProductForm,
 } from "@/lib/product-catalog";
 import { formatCurrency } from "@/lib/pricing";
 import type { ProductSlug } from "@/types/quiz";
@@ -128,7 +129,7 @@ function HeroPenSocialAnimation({
 }: {
   productImage: string;
   productAlt: string;
-  productForm: "pen" | "pill";
+  productForm: ProductForm;
   socialA?: { name: string; portraitImage?: string };
   socialB?: { name: string; portraitImage?: string };
   floatRef: React.RefObject<HTMLDivElement | null>;
@@ -141,7 +142,11 @@ function HeroPenSocialAnimation({
       <div className="pdp-hero-editorial-product-parallax" ref={floatRef}>
         <div
           className={`pdp-hero-editorial-product${
-            productForm === "pill" ? " pdp-hero-editorial-product--pill" : ""
+            productForm === "pill"
+              ? " pdp-hero-editorial-product--pill"
+              : productForm === "vial"
+                ? " pdp-hero-editorial-product--vial"
+                : ""
           }`}
         >
           <div className="pdp-hero-editorial-product-inner">
@@ -149,7 +154,11 @@ function HeroPenSocialAnimation({
               src={productImage}
               alt={productAlt}
               className={`pdp-hero-editorial-product-img${
-                productForm === "pill" ? " pdp-hero-editorial-product-img--pill" : ""
+                productForm === "pill"
+                  ? " pdp-hero-editorial-product-img--pill"
+                  : productForm === "vial"
+                    ? " pdp-hero-editorial-product-img--vial"
+                    : ""
               }`}
               initial={reduceMotion ? false : { opacity: 0, y: 28, scale: 0.96 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}

@@ -11,4 +11,4 @@ export const HERO_COPY = {
 } as const;
 
 export const TESTIMONIAL_DISCLAIMER =
-  "*Individual results vary. Reflects Sarah's specific treatment plan and is not a guarantee of your results.";
+  "*Individual results vary. Reflects one patient's treatment plan and is not a guarantee of your results.";
