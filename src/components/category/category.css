@@ -2,21 +2,25 @@
 
 :root {
   --cat-ink: #171310;
-  --cat-ivory: #fcfbf8;
-  --cat-gold: rgb(243, 195, 0);
-  --cat-gold-dim: rgb(190, 152, 0);
-  --cat-glass: rgba(255, 255, 255, 0.72);
+  --cat-ivory: #ffffff;
+  --cat-gold: #f3c300;
+  --cat-gold-dim: #d4a800;
+  --cat-glass: rgba(255, 255, 255, 0.86);
   --cat-radius-xl: 40px;
   --cat-radius-lg: 36px;
   --cat-radius-md: 28px;
-  /* Match site typography.css — Helvetica Neue only */
-  --cat-sans: var(--font-body, "Helvetica Neue", Helvetica, Arial, sans-serif);
-  --cat-display: var(--font-display, "Helvetica Neue", Helvetica, Arial, sans-serif);
+  --cat-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --cat-display: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .cat-page {
   background: var(--cat-ivory);
   color: var(--cat-ink);
+  font-family: var(--cat-sans);
+}
+
+.cat-page,
+.cat-page * {
   font-family: var(--cat-sans);
 }
 
@@ -43,7 +47,9 @@
 .cat-hero-surface {
   position: relative;
   overflow: hidden;
-  background: linear-gradient(180deg, #ffffff 0%, #faf8f4 100%);
+  background:
+    radial-gradient(ellipse 70% 55% at 80% 12%, rgba(243, 195, 0, 0.22), transparent 60%),
+    linear-gradient(165deg, #fff8d6 0%, #ffffff 42%, #ffffff 100%);
   border-radius: 44px 44px 0 0;
 }
 

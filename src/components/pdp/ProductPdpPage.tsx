@@ -12,8 +12,8 @@ import { useLiveCatalog, resolveDisplayMonthlyPrice } from "@/lib/prescribe-rx/u
 import { mergeSandboxIntoPdp } from "@/lib/prescribe-rx/merge-sandbox-pdp";
 import { getPdpContent } from "./data/pdp-data-registry";
 import { PdpDataProvider } from "./PdpDataProvider";
-import { PenShowcaseSection } from "./PenShowcaseSection";
 import { PdpHeroSection } from "./PdpHeroSection";
+import { PdpMotivationMarquee } from "./PdpMotivationMarquee";
 import { PdpTransformationSection } from "./PdpTransformationSection";
 import { PdpVerticalTimeline } from "./PdpVerticalTimeline";
 import { PdpReviewsSection } from "./PdpReviewsSection";
@@ -23,10 +23,10 @@ import { PdpFaqSection } from "./PdpFaqSection";
 import { PdpOutcomeSection } from "./PdpOutcomeSection";
 import { PdpIncludedSection } from "./PdpIncludedSection";
 import { PdpBeforeAfterSection } from "./PdpBeforeAfterSection";
-import { PdpSandboxFactsSection } from "./PdpSandboxFactsSection";
 import { PdpButton, Reveal } from "./pdp-ui";
 import "../home/home.css";
 import "./pdp.css";
+import "./pdp-redesign.css";
 
 type ProductPdpPageProps = {
   slug: ProductSlug;
@@ -38,19 +38,17 @@ function ProductPdpPageInner({ slug }: ProductPdpPageProps) {
   const { map: liveCatalog } = useLiveCatalog();
   const live = liveCatalog[slug];
 
-  // Every product-facing field on peptide PDPs is overwritten from the sandbox catalog.
+  // Overlay vial image (+ useful long description when present). Keep curated name/price/copy.
   const pdp = mergeSandboxIntoPdp(basePdp, live);
 
-  const product = live
-    ? {
-        ...baseProduct,
-        name: live.name,
-        // Keep marketing list price as the offer; sandbox ~$10 placeholders stay in facts only.
-        monthlyPrice: resolveDisplayMonthlyPrice(baseProduct.monthlyPrice, live.price),
-        image: pdp.productForm !== "pen" ? live.image : baseProduct.image,
-        description: live.shortDescription ?? live.description ?? baseProduct.description,
-      }
-    : baseProduct;
+  const product = {
+    ...baseProduct,
+    name: basePdp.heroProduct.name,
+    monthlyPrice: resolveDisplayMonthlyPrice(baseProduct.monthlyPrice, live?.price),
+    image: pdp.heroImage,
+    description: pdp.heroProduct.summary,
+    dosage: baseProduct.dosage,
+  };
 
   const { openModal } = useQuizModal();
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
@@ -87,11 +85,12 @@ function ProductPdpPageInner({ slug }: ProductPdpPageProps) {
   }, []);
 
   const navLinks = [
+    { href: "#hero", label: "Product" },
+    { href: "#transform", label: "Your story" },
+    { href: "#life-shift", label: "Before / After" },
     { href: "#journey", label: "Your path" },
-    ...(pdp.showPenShowcase ? [{ href: "#how-pen-works", label: "The Pen" }] : []),
-    ...(pdp.showPenShowcase ? [{ href: "#life-shift", label: "Before / After" }] : []),
-    { href: "#safety", label: "Safety" },
     { href: "#included", label: "What's included" },
+    { href: "#pricing", label: "Pricing" },
     { href: "#reviews", label: "Reviews" },
     { href: "#faq", label: "FAQ" },
   ];
@@ -132,36 +131,36 @@ function ProductPdpPageInner({ slug }: ProductPdpPageProps) {
           </div>
         </div>
 
-        <PdpOutcomeSection />
+        <PdpMotivationMarquee />
 
         <PdpTransformationSection onStart={openQuiz} />
 
-        <PdpVerticalTimeline />
-
-        {pdp.showPenShowcase ? <PenShowcaseSection /> : null}
-
         <PdpBeforeAfterSection onStart={openQuiz} />
+
+        <PdpOutcomeSection />
+
+        <PdpVerticalTimeline />
 
         <PdpIncludedSection />
 
-        <PdpSandboxFactsSection />
-
-        <section className="pdp-section" id="pricing" data-pdp-header-theme="light">
+        <section className="pdp-section pdp-pricing-v2" id="pricing" data-pdp-header-theme="light">
           <div className="pdp-section-shell">
             <div className="pdp-section-inner">
               <Reveal>
                 <div className="pdp-pricing">
-                  <span className="pdp-kicker">{product.name}</span>
-                  <p className="pdp-price">{formatCurrency(product.monthlyPrice)}/month</p>
+                  <span className="pdp-kicker">Simple pricing</span>
+                  <h2 className="pdp-pricing-title">{product.name}</h2>
+                  <p className="pdp-price">{formatCurrency(product.monthlyPrice)}<span>/month</span></p>
                   <p className="pdp-price-sub">{product.description}</p>
                   <p className="pdp-price-dosage">{product.dosage}</p>
                   <p className="pdp-price-sub">
-                    Includes provider review, prescription, and discreet delivery. Pricing may vary based on your treatment plan.
+                    Includes provider review, prescription, TIDL Pen + how-to, and discreet delivery. Pricing may vary based on your treatment plan.
                   </p>
                   <div className="pdp-price-includes">
                     <span>Doctor review</span>
                     <span>Prescription</span>
-                    {pdp.showPenShowcase ? <span>Pre-dosed pen</span> : <span>Personalized plan</span>}
+                    <span>TIDL Pen + how-to</span>
+                    <span>Personalized plan</span>
                     <span>Ongoing care</span>
                   </div>
                   <PdpButton label="Choose this plan" onClick={openQuiz} />

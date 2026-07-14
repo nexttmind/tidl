@@ -431,9 +431,6 @@ export default function HomePage() {
                   <span className="tdlp5-more-line" aria-hidden="true" />
                 </Link>
               </div>
-              <div className="tdlp5-blade"></div>
-              <div className="tdlp5-blade core"></div>
-              <div className="tdlp5-aura"></div>
               <div className="tdlp5-shadow"></div>
               <div className="tdlp5-imgwrap" id="tdlp5Float" ref={penFloatRef}>
                 <div className="tdlp5-levit">

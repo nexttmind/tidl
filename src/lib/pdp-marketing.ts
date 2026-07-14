@@ -14,18 +14,18 @@ const GOAL_MARKETING: Record<
 > = {
   "weight-loss": {
     emotionalSub:
-      "You've tried the diets, the apps, the willpower. It was never about willpower. It's about the right medicine, prescribed for your body.",
+      "You've tried the diets, the apps, the willpower. It was never about willpower. It's about the right medicine, prescribed for your body — so you can finally recognize yourself again. Start today. Feel the shift.",
     painPoints: [
-      "Tired of hiding in the back of every photo",
-      "Tired of the scale that never moves",
-      "Tired of starting over every Monday",
-      "Tired of feeling like your body is working against you",
+      "You're done being defined by the scale",
+      "You're done sitting out dating",
+      "You're done feeling rejected before you walk in",
+      "You're done starting over every Monday",
     ],
     dream:
-      "Imagine catching your reflection and smiling. Buying the outfit you actually want. Feeling light, confident, and finally in control.",
-    motivationHeadline: "You deserve to feel like yourself again.",
+      "Imagine catching your reflection and actually smiling. Buying the outfit you want. Walking into a room without scanning for the nearest exit. Feeling like her — light, confident, unstoppable.",
+    motivationHeadline: "This is your turning point.",
     motivationSub:
-      "Thousands started exactly where you are. One quiz, one licensed provider, one plan built for you.",
+      "Thousands started exactly where you are. One quiz. One licensed provider. One plan built for your body — medicine, pen, and how-to included. Not another diet you'll quit.",
   },
   "metabolic-health": {
     emotionalSub:
@@ -136,12 +136,12 @@ export function buildGoalMarketing(
   };
 }
 
-/** GLP-1 flagship helper — BA images still sandbox peptide-derived. */
+/** GLP-1 flagship helper — patient transformation assets. */
 export function buildGlp1Marketing(): PdpMarketing {
   return buildGoalMarketing(
     "weight-loss",
-    "This time, the weight actually stays off.",
+    "You're done disappearing in your own life.",
     "GLP-1",
-    ["/peptides/ba/glp-1-weight-loss-before.png", "/peptides/ba/glp-1-weight-loss-after.png"],
+    ["/pdp/patient-before.png", "/pdp/AFTER.png"],
   );
 }

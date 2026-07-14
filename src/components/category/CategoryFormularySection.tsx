@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, type ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowUpRight, Check } from "lucide-react";
 import { useQuizModal } from "@/providers/quiz-modal-provider";
@@ -28,14 +28,36 @@ type ShelfItem = {
   outcomes: readonly string[];
   displayPrice: number;
   image: string;
-  strength: string;
+  dosage: string;
   formLabel: string;
-  productClass: string;
-  sku: string | null;
-  variantCount: number;
-  variantHints: string[];
   popular: boolean;
 };
+
+/** Typed PDP route — GLP-1 has a dedicated path; all others use /products/$slug. */
+function ProductPdpLink({
+  slug,
+  className,
+  children,
+  "aria-label": ariaLabel,
+}: {
+  slug: ProductSlug;
+  className?: string;
+  children: ReactNode;
+  "aria-label"?: string;
+}) {
+  if (slug === "glp-1-weight-loss") {
+    return (
+      <Link to="/products/glp-1-weight-loss" className={className} aria-label={ariaLabel}>
+        {children}
+      </Link>
+    );
+  }
+  return (
+    <Link to="/products/$slug" params={{ slug }} className={className} aria-label={ariaLabel}>
+      {children}
+    </Link>
+  );
+}
 
 function buildShelf(
   productSlugs: readonly ProductSlug[],
@@ -56,7 +78,14 @@ function buildShelf(
     const name =
       slug === "glp-1-weight-loss"
         ? "GLP-1 Weight Loss"
-        : (peptide?.productName ?? peptide?.compound ?? live?.live.name ?? catalog?.shortName ?? slug);
+        : (peptide?.productName ?? peptide?.compound ?? catalog?.shortName ?? slug);
+
+    const formLabel =
+      catalog?.form === "pen"
+        ? "TIDL Pen"
+        : live?.live.handBox.formLabel === "Multi-dose pen"
+          ? "TIDL Pen"
+          : "Peptide protocol";
 
     return [
       {
@@ -65,30 +94,20 @@ function buildShelf(
         compound,
         hook:
           slug === "glp-1-weight-loss"
-            ? "Steady, measurable weight loss — dose set in the TIDL Pen before it ships."
+            ? "Steady, measurable weight loss — pen + how-to included with every plan."
             : (peptide?.hook ??
-              live?.hook ??
               catalog?.headline ??
               "Physician-guided treatment built for measurable results."),
         description:
           slug === "glp-1-weight-loss"
             ? (catalog?.summary ??
               "Tirzepatide mimics gut hormones that curb appetite and support significant, sustainable fat loss — prescribed only after a licensed provider review.")
-            : (peptide?.summary ?? live?.live.shortDescription?.trim() ?? catalog?.summary ?? ""),
-        outcomes: (peptide?.outcomes ?? live?.outcomes ?? catalog?.highlights ?? []).slice(0, 3),
+            : (peptide?.summary ?? catalog?.summary ?? ""),
+        outcomes: (peptide?.outcomes ?? catalog?.highlights ?? []).slice(0, 3),
         displayPrice: live?.displayPrice ?? marketingPrice,
         image: resolvePeptideOnlyImage(slug) || live?.live.image || catalog?.image || "",
-        strength: live?.live.handBox.strength ?? peptide?.dosage ?? "Provider-set",
-        formLabel:
-          live?.live.handBox.formLabel ??
-          (catalog?.form === "pen" ? "TIDL Pen" : "Peptide protocol"),
-        productClass: live?.live.handBox.productClass ?? "Physician-guided",
-        sku: live?.live.sku ?? null,
-        variantCount: live?.live.variants.length ?? 0,
-        variantHints: (live?.live.variants ?? [])
-          .map((v) => v.formHint)
-          .filter((v, i, arr) => Boolean(v) && arr.indexOf(v) === i)
-          .slice(0, 3),
+        dosage: peptide?.dosage ?? "Personalized dosing",
+        formLabel,
         popular: slug === "glp-1-weight-loss" || slug === "wolverine",
       },
     ];
@@ -96,17 +115,16 @@ function buildShelf(
 }
 
 /**
- * Sales-first treatment shelf for a category — peptides lead with outcomes and CTAs.
+ * Sales-first treatment shelf — each card opens its PDP.
  */
 export function CategoryFormularySection({ category }: CategoryFormularySectionProps) {
   const { openModal } = useQuizModal();
-  const { featured, catalogCount, loading } = useHomeSandbox();
+  const { featured, loading } = useHomeSandbox();
 
   const products = useMemo(
     () => buildShelf(category.productSlugs, featured),
     [category.productSlugs, featured],
   );
-  const liveCount = products.filter((p) => p.sku).length;
   const goal = CATEGORY_GOAL_MAP[category.slug];
 
   return (
@@ -129,14 +147,9 @@ export function CategoryFormularySection({ category }: CategoryFormularySectionP
                 ? `${category.navLabel} protocol`
                 : `${category.navLabel} care pathway`}
             <span>
-              Outcome-led. Physician-prescribed.
-              {liveCount > 0
-                ? ` ${liveCount} live sandbox SKU${liveCount === 1 ? "" : "s"} on this pathway${
-                    catalogCount > 0 ? ` · ~${catalogCount} pharmacy SKUs total` : ""
-                  }.`
-                : loading
-                  ? " Syncing PrescribeRx sandbox…"
-                  : " Built to convert effort into results."}
+              {loading
+                ? "Loading your options…"
+                : "Outcome-led. Physician-prescribed. Tap a treatment to see full details."}
             </span>
           </h2>
         </header>
@@ -150,98 +163,77 @@ export function CategoryFormularySection({ category }: CategoryFormularySectionP
                   item.popular ? " is-popular" : ""
                 }`}
               >
-                <div className="cform-card-media" aria-hidden="true">
-                  <div className="cform-card-glow" />
-                  {item.image ? (
-                    <img src={item.image} alt="" className="cform-card-vial" loading="lazy" />
-                  ) : null}
-                  {item.popular ? <span className="cform-card-badge">Best seller</span> : null}
-                </div>
-
-                <div className="cform-card-copy">
-                  <p className="cform-card-index">
-                    <span>{item.compound}</span>
-                    <span aria-hidden="true">·</span>
-                    <span>{item.formLabel}</span>
-                  </p>
-                  <h3 className="cform-card-name">{item.name}</h3>
-                  {item.displayPrice > 0 ? (
-                    <p className="cform-card-price">
-                      <em>From</em>
-                      <b>{formatCurrency(item.displayPrice)}</b>
-                      <i>/mo</i>
-                    </p>
-                  ) : (
-                    <p className="cform-card-price">
-                      <em>Pricing</em>
-                      <b>After review</b>
-                    </p>
-                  )}
-                  <p className="cform-card-hook">{item.hook}</p>
-                  {item.description ? <p className="cform-card-desc">{item.description}</p> : null}
-
-                  {item.outcomes.length > 0 ? (
-                    <ul className="cform-card-outcomes">
-                      {item.outcomes.map((o) => (
-                        <li key={o}>
-                          <Check size={14} strokeWidth={2.4} aria-hidden="true" />
-                          <span>{o}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  ) : null}
-
-                  <dl className="cform-card-facts">
-                    <div>
-                      <dt>Strength</dt>
-                      <dd>{item.strength}</dd>
-                    </div>
-                    <div>
-                      <dt>Form</dt>
-                      <dd>{item.formLabel}</dd>
-                    </div>
-                    {item.sku ? (
-                      <div>
-                        <dt>SKU</dt>
-                        <dd>{item.sku}</dd>
-                      </div>
+                <ProductPdpLink
+                  slug={item.slug}
+                  className="cform-card-hit"
+                  aria-label={`View ${item.name} details`}
+                >
+                  <div className="cform-card-media" aria-hidden="true">
+                    <div className="cform-card-glow" />
+                    {item.image ? (
+                      <img src={item.image} alt="" className="cform-card-vial" loading="lazy" />
                     ) : null}
-                    <div>
-                      <dt>Class</dt>
-                      <dd>{item.productClass}</dd>
-                    </div>
-                    {item.variantCount > 1 ? (
-                      <div>
-                        <dt>Variants</dt>
-                        <dd>{item.variantCount} SKUs</dd>
-                      </div>
-                    ) : null}
-                  </dl>
-
-                  {item.variantHints.length > 0 ? (
-                    <p className="cform-card-variants">
-                      Also in sandbox: {item.variantHints.join(" · ")}
-                      {item.variantCount > item.variantHints.length ? " · …" : ""}
-                    </p>
-                  ) : null}
-
-                  <div className="cform-card-actions">
-                    <button
-                      type="button"
-                      className="cform-btn cform-btn--primary"
-                      onClick={() => openModal({ product: item.slug, goal })}
-                    >
-                      Start intake
-                      <ArrowUpRight size={16} strokeWidth={2.2} aria-hidden="true" />
-                    </button>
-                    <Link
-                      to="/products/$slug"
-                      params={{ slug: item.slug }}
-                      className="cform-btn cform-btn--ghost"
-                    >
-                      View details
-                    </Link>
+                    {item.popular ? <span className="cform-card-badge">Best seller</span> : null}
                   </div>
+
+                  <div className="cform-card-copy">
+                    <p className="cform-card-index">
+                      <span>{item.compound}</span>
+                      <span aria-hidden="true">·</span>
+                      <span>{item.formLabel}</span>
+                    </p>
+                    <h3 className="cform-card-name">{item.name}</h3>
+                    {item.displayPrice > 0 ? (
+                      <p className="cform-card-price">
+                        <em>From</em>
+                        <b>{formatCurrency(item.displayPrice)}</b>
+                        <i>/mo</i>
+                      </p>
+                    ) : (
+                      <p className="cform-card-price">
+                        <em>Pricing</em>
+                        <b>After review</b>
+                      </p>
+                    )}
+                    <p className="cform-card-hook">{item.hook}</p>
+                    {item.description ? <p className="cform-card-desc">{item.description}</p> : null}
+
+                    {item.outcomes.length > 0 ? (
+                      <ul className="cform-card-outcomes">
+                        {item.outcomes.map((o) => (
+                          <li key={o}>
+                            <Check size={14} strokeWidth={2.4} aria-hidden="true" />
+                            <span>{o}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : null}
+
+                    <dl className="cform-card-facts cform-card-facts--slim">
+                      <div>
+                        <dt>Protocol</dt>
+                        <dd>{item.dosage}</dd>
+                      </div>
+                      <div>
+                        <dt>Included</dt>
+                        <dd>Pen + how-to</dd>
+                      </div>
+                    </dl>
+                  </div>
+                </ProductPdpLink>
+
+                <div className="cform-card-actions">
+                  <ProductPdpLink slug={item.slug} className="cform-btn cform-btn--primary">
+                    View details
+                    <ArrowUpRight size={16} strokeWidth={2.2} aria-hidden="true" />
+                  </ProductPdpLink>
+                  <button
+                    type="button"
+                    className="cform-btn cform-btn--ghost"
+                    onClick={() => openModal({ product: item.slug, goal })}
+                  >
+                    Start intake
+                  </button>
                 </div>
               </article>
             ))}

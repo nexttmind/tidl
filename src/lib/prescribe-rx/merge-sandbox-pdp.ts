@@ -2,13 +2,28 @@ import type { PdpPageContent } from "@/components/pdp/data/types";
 import type { LiveProduct } from "@/lib/prescribe-rx/use-live-catalog";
 
 /**
+ * Prefer a live sandbox description only when it adds real patient-facing copy.
+ * Sandbox short_description often equals the pharmacy label / is empty — keep curated.
+ */
+function usableLiveCopy(live: LiveProduct, curated: string): string {
+  const candidates = [live.description, live.shortDescription]
+    .map((s) => s?.trim() ?? "")
+    .filter(Boolean);
+
+  for (const text of candidates) {
+    const sameAsName = text.toLowerCase() === live.name.trim().toLowerCase();
+    const tooShort = text.length < 40;
+    if (!sameAsName && !tooShort) return text;
+  }
+  return curated;
+}
+
+/**
  * Light overlay of the live sandbox product onto the static PDP shell.
  *
- * Only safe, customer-facing fields are overlaid — the product name, catalog
- * descriptor, summary, and vial image. Pricing stays curated (the sandbox is
- * full of $10 placeholders), and the raw sandbox facts (SKU, ids, wholesale
- * price, etc.) live only in the clearly-labeled `PdpSandboxFactsSection`, never
- * in the hero, "Protocol" specs, or "What's included" copy.
+ * Safe overlays: vial image (+ useful long description when present).
+ * Always keep curated: marketing name, descriptor, price, specs, perks, trust.
+ * Never surface SKU, UUIDs, wholesale, or $10 sandbox placeholders.
  */
 export function mergeSandboxIntoPdp(
   base: PdpPageContent,
@@ -16,14 +31,9 @@ export function mergeSandboxIntoPdp(
 ): PdpPageContent {
   if (!live) return base;
 
-  const box = live.handBox;
-  const summary =
-    live.description?.trim() ||
-    live.shortDescription?.trim() ||
-    base.heroProduct.summary;
-
   const usePeptideImage = base.productForm !== "pen";
   const image = usePeptideImage ? live.image : base.heroImage;
+  const summary = usableLiveCopy(live, base.heroProduct.summary);
 
   return {
     ...base,
@@ -31,11 +41,8 @@ export function mergeSandboxIntoPdp(
     penImage: usePeptideImage ? live.image : base.penImage,
     heroProduct: {
       ...base.heroProduct,
-      name: live.name,
-      descriptor: `${box.productClass} · ${box.formLabel}`,
       summary,
-      // Keep curated startingPrice, priceNote, specs, perks, and trustNote —
-      // the sandbox price is a $10 placeholder and must not surface here.
+      // Keep curated name, descriptor, startingPrice, priceNote, specs, perks, trustNote.
     },
   };
 }

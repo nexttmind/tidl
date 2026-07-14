@@ -1,95 +1,65 @@
 import { motion, useReducedMotion } from "framer-motion";
 import type { MouseEvent } from "react";
 import { usePdpData } from "./PdpDataProvider";
-import { PdpButton } from "./pdp-ui";
 
 type PdpTransformationSectionProps = {
   onStart: (e?: MouseEvent) => void;
 };
 
+/** Emotional story — headline, dream, portrait. Pain ticker lives in the marquee above. */
 export function PdpTransformationSection({ onStart }: PdpTransformationSectionProps) {
   const { marketing } = usePdpData();
   const reduce = useReducedMotion();
   if (!marketing) return null;
 
   return (
-    <section className="pdp-transform" id="transform" data-pdp-header-theme="dark">
-      {/* Emotional "this is you" block */}
-      <div className="pdp-transform-emotion">
+    <section className="pdp-manifesto" id="transform" data-pdp-header-theme="light">
+      <div className="pdp-manifesto-grid">
         <motion.div
-          className="pdp-transform-emotion-copy"
-          initial={reduce ? false : { opacity: 0, y: 24 }}
+          className="pdp-manifesto-copy"
+          initial={reduce ? false : { opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-12%" }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          viewport={{ once: true, margin: "-8%" }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         >
-          <span className="pdp-transform-kicker">This is you</span>
-          <h2 className="pdp-transform-headline">{marketing.emotionalHeadline}</h2>
-          <p className="pdp-transform-sub">{marketing.emotionalSub}</p>
+          <p className="pdp-manifesto-kicker">This is you</p>
+          <h2>{marketing.emotionalHeadline}</h2>
+          <p className="pdp-manifesto-sub">{marketing.emotionalSub}</p>
 
-          <ul className="pdp-transform-pains">
-            {marketing.painPoints.map((pain) => (
-              <li key={pain}>
-                <span className="pdp-transform-pain-mark" aria-hidden="true">
-                  ✕
-                </span>
-                {pain}
-              </li>
-            ))}
-          </ul>
+          <blockquote className="pdp-manifesto-dream">{marketing.dream}</blockquote>
 
-          <p className="pdp-transform-dream">{marketing.dream}</p>
-          <PdpButton label="See if you qualify" onClick={onStart} />
+          <button type="button" className="pdp-campaign-cta" onClick={onStart}>
+            Yes — that&apos;s me. Start my intake
+          </button>
         </motion.div>
+
+        <motion.figure
+          className="pdp-manifesto-portrait"
+          initial={reduce ? false : { opacity: 0, scale: 0.96 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, margin: "-8%" }}
+          transition={{ duration: 0.75, delay: 0.06, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <img src="/pdp/patient-aspire.png" alt="" loading="lazy" />
+          <figcaption>
+            <strong>Become her.</strong>
+            <span>One plan. One provider. Real change.</span>
+          </figcaption>
+        </motion.figure>
       </div>
 
-      {/* Before / after proof */}
-      <div className="pdp-transform-proof">
-        <div className="pdp-transform-proof-head">
-          <span className="pdp-transform-kicker">Real journeys</span>
-          <h3 className="pdp-transform-proof-title">Proof, not promises</h3>
-          <p className="pdp-transform-proof-note">
-            Physician-guided results. Individual results vary — your provider builds the plan that's right for you.
-          </p>
-        </div>
-
-        <div className="pdp-transform-ba-grid">
-          {marketing.beforeAfter.map((item, i) => (
-            <motion.figure
-              key={item.caption + i}
-              className="pdp-transform-ba"
-              initial={reduce ? false : { opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-8%" }}
-              transition={{ duration: 0.6, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <div className="pdp-transform-ba-media">
-                <img src={item.image} alt="" loading="lazy" />
-                <span className="pdp-transform-ba-tag pdp-transform-ba-tag--before">
-                  {item.beforeLabel}
-                </span>
-                <span className="pdp-transform-ba-tag pdp-transform-ba-tag--after">
-                  {item.afterLabel}
-                </span>
-                <span className="pdp-transform-ba-weeks">{item.weeks}</span>
-              </div>
-              <figcaption className="pdp-transform-ba-caption">{item.caption}</figcaption>
-            </motion.figure>
-          ))}
-        </div>
-      </div>
-
-      {/* Motivation band */}
       <motion.div
-        className="pdp-transform-band"
-        initial={reduce ? false : { opacity: 0, y: 20 }}
+        className="pdp-manifesto-band"
+        initial={reduce ? false : { opacity: 0, y: 18 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-10%" }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.55 }}
       >
-        <h3 className="pdp-transform-band-title">{marketing.motivationHeadline}</h3>
-        <p className="pdp-transform-band-sub">{marketing.motivationSub}</p>
-        <PdpButton label="Start my 5-minute quiz" onClick={onStart} />
+        <h3>{marketing.motivationHeadline}</h3>
+        <p>{marketing.motivationSub}</p>
+        <button type="button" className="pdp-campaign-cta pdp-campaign-cta--ink" onClick={onStart}>
+          Start my 5-minute quiz
+        </button>
       </motion.div>
     </section>
   );

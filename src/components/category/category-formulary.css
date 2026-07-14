@@ -2,22 +2,28 @@
 
 .cform {
   --cform-ink: #171310;
-  --cform-muted: rgba(23, 19, 16, 0.58);
+  --cform-muted: rgba(23, 19, 16, 0.64);
   --cform-line: rgba(23, 19, 16, 0.1);
-  --cform-gold: rgb(243, 195, 0);
-  --cform-gold-deep: rgb(190, 152, 0);
-  --cform-gold-soft: rgba(243, 195, 0, 0.14);
+  --cform-gold: #f3c300;
+  --cform-gold-deep: #d4a800;
+  --cform-gold-soft: rgba(243, 195, 0, 0.18);
   --cform-stage: #ffffff;
-  --cform-mist: #f7f5f1;
+  --cform-mist: #ffffff;
   position: relative;
   isolation: isolate;
   overflow: hidden;
   background:
-    radial-gradient(58% 48% at 8% 0%, rgba(243, 195, 0, 0.1), transparent 58%),
-    radial-gradient(42% 40% at 96% 8%, rgba(23, 19, 16, 0.04), transparent 55%),
-    linear-gradient(180deg, #ffffff 0%, #fbfaf7 52%, #ffffff 100%);
+    radial-gradient(58% 48% at 8% 0%, rgba(243, 195, 0, 0.22), transparent 58%),
+    radial-gradient(42% 40% at 96% 8%, rgba(243, 195, 0, 0.1), transparent 55%),
+    linear-gradient(180deg, #ffffff 0%, #fff9e8 48%, #ffffff 100%);
   color: var(--cform-ink);
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   padding: clamp(80px, 11vw, 132px) clamp(20px, 5vw, 72px);
+}
+
+.cform,
+.cform * {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .cform::before {
@@ -94,24 +100,46 @@
 
 .cform-card {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: clamp(20px, 2.6vw, 32px);
+  border-radius: 28px;
+  border: 1px solid rgba(23, 19, 16, 0.08);
+  background: linear-gradient(165deg, #ffffff 0%, #fffdf5 100%);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.9) inset,
+    0 24px 60px rgba(23, 19, 16, 0.06);
+  overflow: hidden;
+  transition:
+    border-color 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cform-card-hit {
   display: grid;
   grid-template-columns: minmax(240px, 0.4fr) minmax(0, 1fr);
   gap: clamp(24px, 3.5vw, 44px);
   align-items: stretch;
-  padding: clamp(20px, 2.6vw, 32px);
-  border-radius: 32px;
-  border: 1px solid rgba(23, 19, 16, 0.08);
-  background:
-    linear-gradient(165deg, rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0.88)),
-    var(--cform-mist);
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  min-width: 0;
+}
+
+.cform-card-hit:focus-visible {
+  outline: 2px solid var(--cform-gold);
+  outline-offset: 4px;
+  border-radius: 18px;
+}
+
+.cform-card:hover {
+  border-color: rgba(243, 195, 0, 0.55);
+  transform: translateY(-4px);
   box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.9) inset,
-    0 28px 70px rgba(23, 19, 16, 0.06);
-  overflow: hidden;
-  transition:
-    border-color 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    0 1px 0 rgba(255, 255, 255, 0.95) inset,
+    0 28px 70px rgba(243, 195, 0, 0.16);
 }
 
 .cform-card::before {
@@ -374,8 +402,8 @@
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin-top: auto;
-  padding-top: 2px;
+  margin-top: 0;
+  padding-top: 0;
 }
 
 .cform-btn {
@@ -464,7 +492,7 @@
 }
 
 @media (max-width: 860px) {
-  .cform-card {
+  .cform-card-hit {
     grid-template-columns: 1fr;
   }
 

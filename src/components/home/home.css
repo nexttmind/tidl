@@ -244,31 +244,10 @@
   align-items: center;
   justify-content: center;
 }
-.tdlp5-blade {
-  position: absolute;
-  left: 46%;
-  top: 42%;
-  width: 210px;
-  height: 100%;
-  z-index: 1;
-  transform: translate(-50%, -50%) rotate(22deg);
-  opacity: .42;
-  pointer-events: none;
-  /* Soft gradient stands in for animated blur — avoids per-frame filter repaints */
-  background: linear-gradient(180deg, transparent 4%, rgba(243,195,0,.28) 32%, rgba(255,217,80,.55) 50%, rgba(190,152,0,.28) 68%, transparent 96%);
-}
-.tdlp5-blade.core {
-  left: 47.5%;
-  width: 8px;
-  opacity: .7;
-  background: linear-gradient(180deg, transparent 4%, rgba(243,195,0,.45) 32%, rgba(255,217,80,.75) 50%, rgba(190,152,0,.4) 68%, transparent 96%);
-}
+.tdlp5-blade,
+.tdlp5-blade.core,
 .tdlp5-aura {
-  position: absolute;
-  inset: -14% -34%;
-  z-index: 1;
-  pointer-events: none;
-  background: radial-gradient(ellipse 52% 48% at 47% 40%, rgba(58,31,11,.5) 0%, rgba(38,21,9,.34) 38%, rgba(20,13,8,.18) 60%, rgba(11,10,8,0) 82%);
+  display: none;
 }
 .tdlp5-shadow {
   position: absolute;

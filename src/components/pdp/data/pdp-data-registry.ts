@@ -13,15 +13,20 @@ function withCatalogAssets(slug: ProductSlug, content: PdpPageContent): PdpPageC
   const catalog = getCatalogProduct(slug);
   if (!catalog) return content;
 
-  const isPen = catalog.form === "pen";
+  // PDP is peptide/product-forward — never show the pen showcase.
+  // Prefer the peptide vial image for GLP-1 instead of the pen asset.
+  const useVialImage = catalog.form === "pen" || slug === "glp-1-weight-loss";
+  const vialFallback = content.heroImage?.includes("/peptides/")
+    ? content.heroImage
+    : `/peptides/${slug}.png`;
 
   return {
     ...content,
-    productForm: catalog.form,
-    heroImage: catalog.image,
-    penImage: catalog.image,
-    showPenShowcase: isPen,
-    penShowcase: isPen ? content.penShowcase : undefined,
+    productForm: useVialImage ? "vial" : catalog.form,
+    heroImage: useVialImage ? vialFallback : catalog.image,
+    penImage: useVialImage ? vialFallback : catalog.image,
+    showPenShowcase: false,
+    penShowcase: undefined,
   };
 }
 

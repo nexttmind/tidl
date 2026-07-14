@@ -16,16 +16,16 @@ export interface Product {
 
 const GLP1_PRODUCT: Product = {
   slug: "glp-1-weight-loss",
-  brandName: "Lirosome",
-  name: "GLP-1 Weight Loss Program",
-  tag: "Weight loss · TIDL Pen",
+  brandName: "TIDL",
+  name: "TIDL GLP-1 Weight Loss",
+  tag: "Weight loss · Tirzepatide · TIDL Pen",
   description:
-    "Doctor-prescribed GLP-1 treatment with pre-dosed delivery. Personalized dosing based on your assessment.",
+    "Doctor-prescribed tirzepatide (GLP-1/GIP) for steady weight loss. Quieter food noise, lasting appetite control, and a clear weekly protocol — plus a TIDL Pen with how-to instructions.",
   dosage: "Personalized weekly dose",
   monthlyPrice: 299,
   goal: "weight-loss",
-  image: SITE_IMAGES.products.penPrimary,
-  outcomes: ["Steady weight loss", "Reduced appetite", "Simple weekly routine"],
+  image: "/peptides/glp-1-weight-loss.png",
+  outcomes: ["Steady weight loss", "Quieter food noise", "Pen + how-to included"],
 };
 
 // Peptide products are generated from src/lib/peptides.ts. The import is placed

@@ -54,26 +54,47 @@ export const PEPTIDE_DEFS: readonly PeptideDef[] = [
     category: "weight-loss",
     goal: "weight-loss",
     form: "vial",
-    tag: "Weight loss · Next-gen GLP-1",
+    tag: "Weight loss · Next-gen triple agonist",
     descriptor: "Triple-agonist injectable · Prescription only",
     monthlyPrice: 349,
     dosage: "Personalized weekly dose",
     hook: "The next generation of weight loss. When semaglutide and tirzepatide aren't enough.",
     summary:
-      "A triple-receptor agonist prescribed for significant weight loss when standard GLP-1s plateau. Physician-reviewed and dispensed from a US pharmacy.",
+      "Retatrutide is a next-gen triple-receptor agonist prescribed for significant appetite control and weight loss — especially when standard GLP-1s plateau. Physician-reviewed, US-pharmacy dispensed. Every plan includes a TIDL Pen with clear how-to instructions.",
     outcomes: [
       "Powerful appetite control",
-      "Faster, steeper weight loss",
-      "For GLP-1 plateaus",
-      "Doctor-guided dosing",
+      "Built for GLP-1 plateaus",
+      "Doctor-guided titration",
+      "Pen + how-to included",
     ],
     benefits: [
-      { title: "Triple-agonist power", detail: "Targets three metabolic pathways for stronger results than single-target GLP-1s." },
-      { title: "Built for plateaus", detail: "Prescribed when semaglutide or tirzepatide stop delivering." },
-      { title: "Personalized titration", detail: "Your provider ramps your dose safely to your response." },
+      {
+        title: "Triple-pathway power",
+        detail:
+          "Targets three metabolic pathways for stronger appetite suppression and weight-loss support than single-target GLP-1s.",
+      },
+      {
+        title: "Built for plateaus",
+        detail: "Prescribed when semaglutide or tirzepatide stop delivering the progress you need.",
+      },
+      {
+        title: "Personalized titration",
+        detail: "Your provider ramps your weekly dose safely based on your response and labs when needed.",
+      },
+      {
+        title: "Pen + how to use",
+        detail: "Every shipment includes a TIDL Pen and a clear how-to — dial, click, inject. No guessing.",
+      },
     ],
     faqExtra: [
-      { q: "How is retatrutide different from Ozempic/Mounjaro?", a: "Retatrutide acts on three receptors instead of one or two, which can drive greater appetite suppression and weight loss. It is prescribed only after provider review." },
+      {
+        q: "How is retatrutide different from Ozempic/Mounjaro?",
+        a: "Retatrutide acts on three receptors instead of one or two, which can drive greater appetite suppression and weight loss. It is prescribed only after provider review.",
+      },
+      {
+        q: "Do I get a pen with retatrutide?",
+        a: "Yes. Every TIDL peptide plan includes a pen and how-to instructions so you know exactly how to take your prescribed dose.",
+      },
     ],
     image: resolvePeptideOnlyImage("retatrutide"),
     prxEncounterSlug: "glp-1-screening",
@@ -438,13 +459,45 @@ export function peptideToCatalogProduct(def: PeptideDef): CatalogProduct {
     headline: def.hook,
     summary: def.summary,
     image: def.image,
-    highlights: ["Licensed provider review", "US pharmacy fulfillment", "Discreet shipping"],
+    highlights: [
+      "Licensed provider review",
+      "TIDL Pen + how-to",
+      "US pharmacy fulfillment",
+      "Discreet shipping",
+    ],
   };
 }
 
 export function peptideToPdpContent(def: PeptideDef): PdpPageContent {
   const box = getPeptideHandBox(def.slug);
-  const howItWorks = def.benefits.map((b) => `${b.title}: ${b.detail}`).join(" ");
+  const isWeightLoss = def.goal === "weight-loss";
+  const benefitSpecs = def.benefits.map((b) => ({
+    label: b.title,
+    detail: b.detail,
+  }));
+
+  const customerSpecs = isWeightLoss
+    ? [
+        ...benefitSpecs,
+        { label: "Weekly protocol", detail: def.dosage },
+        { label: "How to use the pen", detail: box.administration },
+        { label: "Storage", detail: box.storage },
+        {
+          label: "US pharmacy fill",
+          detail: "Licensed compounding & fulfillment after provider approval.",
+        },
+      ]
+    : [
+        { label: "What it does", detail: def.summary },
+        ...benefitSpecs,
+        { label: "Provider dose", detail: def.dosage },
+        { label: "How to use the pen", detail: box.administration },
+        { label: "Storage", detail: box.storage },
+        {
+          label: "US pharmacy fill",
+          detail: "Licensed compounding & fulfillment after provider approval.",
+        },
+      ];
 
   return {
     slug: def.slug,
@@ -456,56 +509,28 @@ export function peptideToPdpContent(def: PeptideDef): PdpPageContent {
     showPenShowcase: false,
     heroProduct: {
       name: def.productName,
-      descriptor: `${box.productClass} · ${box.formLabel}`,
-      summary: `${def.summary} Labeled as ${box.catalogName}. ${howItWorks}`,
+      descriptor: def.descriptor,
+      summary: def.summary,
       rating: 4.9,
-      reviewCount: "120+",
+      reviewCount: isWeightLoss ? "180+" : "120+",
       startingPrice: def.monthlyPrice,
-      priceNote: "Includes provider review, prescription & discreet delivery",
+      priceNote: "Includes provider review, prescription, pen & discreet delivery",
       perks: [
         { label: "Doctor prescription", detail: box.rxNote },
-        { label: "Free shipping", detail: "Discreet, unbranded packaging" },
-        { label: "US pharmacy", detail: "Dispensed by licensed pharmacies" },
+        { label: "TIDL Pen included", detail: "Clear how-to with every shipment" },
+        { label: "Discreet delivery", detail: "Plain packaging · cold-chain when needed" },
       ],
-      specs: [
-        { label: "Catalog name", detail: box.catalogName },
-        { label: "Product type", detail: box.productType },
-        { label: "Product class", detail: box.productClass },
-        { label: "Strength", detail: box.strength },
-        { label: "Concentration", detail: box.concentration },
-        { label: "Volume", detail: box.volume },
-        { label: "Form", detail: box.formLabel },
-        { label: "Label", detail: box.clinicalLabel },
-        { label: "How to use", detail: box.administration },
-        { label: "Storage", detail: box.storage },
-        { label: "Provider dose", detail: def.dosage },
-      ],
-      trustNote: "Individual results vary. Prescription required. Clinical / physician use only.",
+      specs: customerSpecs,
+      trustNote:
+        "Individual results vary. Prescription required. Your provider decides if treatment is right for you.",
       ctaLabel: "See if you qualify",
     },
     outcomePhrases: def.outcomes,
     includedPhrases: box.boxContents,
     includedItems: [
       {
-        id: "box",
-        num: "01",
-        title: "What's in your shipment",
-        detail: box.boxContents.join(" · "),
-        callsign: "BOX",
-        shortLabel: "Box",
-      },
-      {
-        id: "label",
-        num: "02",
-        title: box.catalogName,
-        detail: `${box.productType} · ${box.strength} · ${box.concentration} · ${box.volume} · ${box.formLabel}. ${box.clinicalLabel}.`,
-        callsign: "LABEL",
-        shortLabel: "Label",
-        accent: true,
-      },
-      {
         id: "provider",
-        num: "03",
+        num: "01",
         title: "Licensed provider review",
         detail: "A doctor in your state reviews your intake before anything is prescribed.",
         callsign: "REVIEW",
@@ -513,19 +538,37 @@ export function peptideToPdpContent(def: PeptideDef): PdpPageContent {
       },
       {
         id: "protocol",
-        num: "04",
-        title: "Personalized protocol",
-        detail: `Your ${def.compound} dose and cycle are set to your assessment — not a one-size protocol. ${box.administration}`,
+        num: "02",
+        title: isWeightLoss ? `Personalized ${def.compound} plan` : "Personalized protocol",
+        detail: `Your ${def.compound} dose is set to your assessment — not a one-size protocol.`,
         callsign: "PROTOCOL",
         shortLabel: "Protocol",
+        accent: true,
       },
       {
-        id: "pharmacy",
+        id: "pen",
+        num: "03",
+        title: "TIDL Pen + how to use",
+        detail:
+          "Every peptide plan ships with a pen and a clear how-to so you know exactly what to do each dose.",
+        callsign: "PEN",
+        shortLabel: "Pen",
+      },
+      {
+        id: "med",
+        num: "04",
+        title: "Pharmacy-grade medication",
+        detail: `Dispensed by a licensed US pharmacy. ${box.storage}`,
+        callsign: "MED",
+        shortLabel: "Meds",
+      },
+      {
+        id: "care",
         num: "05",
-        title: "Pharmacy-grade compound",
-        detail: `Dispensed by a licensed US pharmacy as ${box.formLabel}. ${box.storage}`,
-        callsign: "PHARMACY",
-        shortLabel: "Pharmacy",
+        title: "Ongoing care",
+        detail: "Message your care team anytime about treatment, side effects, or progress.",
+        callsign: "CARE",
+        shortLabel: "Care",
       },
     ],
     safetyPillars: SHARED_SAFETY_PILLARS,
@@ -546,8 +589,8 @@ export function peptideToPdpContent(def: PeptideDef): PdpPageContent {
       },
       {
         step: "03",
-        label: "Protocol set",
-        detail: `Your ${def.compound} protocol is set to your assessment and goals.`,
+        label: "Protocol + pen guide",
+        detail: `Your ${def.compound} plan is personalized. Your TIDL Pen arrives with clear how-to instructions.`,
         duration: "Personalized",
       },
       {
@@ -565,7 +608,13 @@ export function peptideToPdpContent(def: PeptideDef): PdpPageContent {
     ],
     faqItems: [
       ...SHARED_START_FAQ,
-      ...def.faqExtra.map((f, i) => ({ id: 100 + i, cat: "start", q: f.q, a: f.a })),
+      ...def.faqExtra.map((f, i) => ({ id: 100 + i, cat: "start" as const, q: f.q, a: f.a })),
+      {
+        id: 50,
+        cat: "treat" as const,
+        q: "Do I get a pen with this peptide?",
+        a: "Yes. Every TIDL peptide plan includes a pen and a step-by-step how-to. Your provider sets the dose — you follow the guide: prepare, dial, inject.",
+      },
       ...SHARED_DELIVERY_FAQ,
       ...SHARED_CARE_FAQ,
     ],

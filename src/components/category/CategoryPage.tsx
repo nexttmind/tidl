@@ -25,7 +25,6 @@ import { CategoryFaqSection } from "./CategoryFaqSection";
 import { CategoryFormularySection } from "./CategoryFormularySection";
 import { CategoryHero } from "./CategoryHero";
 import { CategoryHowSection } from "./CategoryHowSection";
-import { CategoryPenSection } from "./CategoryPenSection";
 import { CategoryWhySection } from "./CategoryWhySection";
 import { catReveal, catStagger } from "./category-motion";
 import "../home/home.css";
@@ -88,117 +87,107 @@ export function CategoryPage({ slug }: CategoryPageProps) {
 
   return (
     <div className="cat-page cat-page--sales">
-          <div className="cat-hero-stage site-chrome-stage">
-            <div className="tdl-bar" id="tdlBar">
-              <div className="tdl-bar-inner">
-                <span className="tdl-msg">Physician-guided care. Discreet delivery. Real results.</span>
-                <Link to="/" className="tdl-link">
-                  Home
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M5 12h14M13 6l6 6-6 6" />
-                  </svg>
-                </Link>
-              </div>
-            </div>
-
-            <div className="cat-hero-surface">
-              <CategoryAmbient live={heroLive} />
-
-              <SiteHeader
-                navLinks={navLinks.map((item) => ({ href: item.to, label: item.label }))}
-                menuOpen={mobileNavOpen}
-                pinned={headerPinned}
-                transparent={headerTransparent}
-                theme={headerTheme}
-                onToggleMenu={() => setMobileNavOpen((open) => !open)}
-                onCloseMenu={() => setMobileNavOpen(false)}
-              />
-
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={slug}
-                  initial={reduce ? false : { opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={reduce ? undefined : { opacity: 0, y: -8 }}
-                  transition={{ duration: 0.35 }}
-                >
-                  <CategoryHero
-                    category={category}
-                    slug={slug}
-                    onGetStarted={() => openQuiz()()}
-                  />
-                </motion.div>
-              </AnimatePresence>
-            </div>
+      <div className="cat-hero-stage site-chrome-stage">
+        <div className="tdl-bar" id="tdlBar">
+          <div className="tdl-bar-inner">
+            <span className="tdl-msg">Physician-guided care. Discreet delivery. Real results.</span>
+            <Link to="/" className="tdl-link">
+              Home
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg>
+            </Link>
           </div>
+        </div>
 
-          {/* 1. Treatments / peptides — primary sales surface */}
-          <CategoryFormularySection category={category} />
+        <div className="cat-hero-surface">
+          <CategoryAmbient live={heroLive} />
 
-          {/* 2. Pen differentiator — cinematic product insight */}
-          {category.penSpotlight ? (
-            <CategoryPenSection
-              category={category}
-              slug={slug}
-              onStartIntake={() => openQuiz()()}
-            />
-          ) : null}
-
-          {/* 3. Path to purchase — premium pathway */}
-          <CategoryHowSection
-            category={category}
-            steps={howSteps}
-            onStartIntake={() => openQuiz()()}
+          <SiteHeader
+            navLinks={navLinks.map((item) => ({ href: item.to, label: item.label }))}
+            menuOpen={mobileNavOpen}
+            pinned={headerPinned}
+            transparent={headerTransparent}
+            theme={headerTheme}
+            onToggleMenu={() => setMobileNavOpen((open) => !open)}
+            onCloseMenu={() => setMobileNavOpen(false)}
           />
 
-          {/* 4. Trust — cinematic clinical proof theater */}
-          <CategoryWhySection
-            category={category}
-            liveProducts={liveProducts}
-            pathways={pathways}
-            catalogCount={catalogCount}
-            sandboxLoading={sandboxLoading}
-            onStartIntake={() => openQuiz()()}
-          />
-
-          {/* 5. FAQ — home-style accordion */}
-          <CategoryFaqSection
-            category={category}
-            items={faqItems}
-            onStartIntake={() => openQuiz()()}
-          />
-
-          <section className="cat-cta-band" data-site-header-theme="light">
+          <AnimatePresence mode="wait">
             <motion.div
-              className="cat-cta-inner"
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              variants={catStagger}
+              key={slug}
+              initial={reduce ? false : { opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={reduce ? undefined : { opacity: 0, y: -8 }}
+              transition={{ duration: 0.35 }}
             >
-              <motion.h2 className="cat-cta-title" variants={reveal}>
-                Ready for {category.navLabel.toLowerCase()} that actually ships?
-              </motion.h2>
-              <motion.p className="cat-cta-lead" variants={reveal}>
-                Five-minute intake. Licensed provider review. Discreet pharmacy delivery.
-              </motion.p>
-              <motion.button
-                type="button"
-                className="cat-btn cat-btn--primary"
-                onClick={openQuiz()}
-                variants={reveal}
-                whileHover={reduce ? undefined : { scale: 1.02, y: -2 }}
-                whileTap={reduce ? undefined : { scale: 0.98 }}
-              >
-                {category.ctaLabel}
-              </motion.button>
+              <CategoryHero
+                category={category}
+                slug={slug}
+                onGetStarted={() => openQuiz()()}
+              />
             </motion.div>
-          </section>
+          </AnimatePresence>
+        </div>
+      </div>
 
-          <div data-site-header-theme="dark">
-            <SiteFooter onGetStarted={openQuiz()} />
-          </div>
+      {/* Treatments — each card opens its PDP */}
+      <CategoryFormularySection category={category} />
+
+      {/* Path to purchase */}
+      <CategoryHowSection
+        category={category}
+        steps={howSteps}
+        onStartIntake={() => openQuiz()()}
+      />
+
+      {/* Trust */}
+      <CategoryWhySection
+        category={category}
+        liveProducts={liveProducts}
+        pathways={pathways}
+        catalogCount={catalogCount}
+        sandboxLoading={sandboxLoading}
+        onStartIntake={() => openQuiz()()}
+      />
+
+      {/* FAQ */}
+      <CategoryFaqSection
+        category={category}
+        items={faqItems}
+        onStartIntake={() => openQuiz()()}
+      />
+
+      <section className="cat-cta-band" data-site-header-theme="light">
+        <motion.div
+          className="cat-cta-inner"
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          variants={catStagger}
+        >
+          <motion.h2 className="cat-cta-title" variants={reveal}>
+            Ready for {category.navLabel.toLowerCase()} that actually ships?
+          </motion.h2>
+          <motion.p className="cat-cta-lead" variants={reveal}>
+            Five-minute intake. Licensed provider review. Discreet pharmacy delivery.
+          </motion.p>
+          <motion.button
+            type="button"
+            className="cat-btn cat-btn--primary"
+            onClick={openQuiz()}
+            variants={reveal}
+            whileHover={reduce ? undefined : { scale: 1.02, y: -2 }}
+            whileTap={reduce ? undefined : { scale: 0.98 }}
+          >
+            {category.ctaLabel}
+          </motion.button>
+        </motion.div>
+      </section>
+
+      <div data-site-header-theme="dark">
+        <SiteFooter onGetStarted={openQuiz()} />
+      </div>
     </div>
   );
 }
-

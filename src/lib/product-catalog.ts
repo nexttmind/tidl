@@ -1,4 +1,3 @@
-import { SITE_IMAGES } from "@/lib/site-assets";
 import { getProductBySlug } from "@/lib/products";
 import { PEPTIDE_DEFS, peptideToCatalogProduct } from "@/lib/peptides";
 import { PRODUCT_SLUGS, type ProductSlug } from "@/types/quiz";
@@ -20,13 +19,18 @@ export type CatalogProduct = {
 const GLP1_CATALOG_PRODUCT: CatalogProduct = {
   slug: "glp-1-weight-loss",
   categorySlug: "weight-loss",
-  form: "pen",
+  form: "vial",
   shortName: "GLP-1 Weight Loss",
-  headline: "Lose weight. Keep it off. Pre-dosed pen.",
+  headline: "Lose weight. Keep it off. Doctor-guided.",
   summary:
-    "Doctor-prescribed GLP-1 in the TIDL Pen. Your dose is set to your prescription. No mixing, no guesswork.",
-  image: SITE_IMAGES.products.penPrimary,
-  highlights: ["TIDL Pen delivery", "Licensed provider review", "Discreet shipping"],
+    "Doctor-prescribed tirzepatide (GLP-1/GIP) for steady, measurable weight loss — quieter food noise, lasting appetite control, and a clear weekly protocol. Includes a TIDL Pen with how-to. Licensed provider review. Discreet US pharmacy delivery.",
+  image: "/peptides/glp-1-weight-loss.png",
+  highlights: [
+    "Licensed provider review",
+    "TIDL Pen + how-to",
+    "Personalized protocol",
+    "Discreet shipping",
+  ],
 };
 
 export const CATALOG_PRODUCTS: CatalogProduct[] = [

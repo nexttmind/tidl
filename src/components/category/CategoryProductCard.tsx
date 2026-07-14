@@ -5,10 +5,9 @@ import {
   useSpring,
   useTransform,
 } from "framer-motion";
-import type { MouseEvent } from "react";
+import type { MouseEvent, ReactNode } from "react";
 import type { CatalogProduct } from "@/lib/product-catalog";
 import { formatCurrency } from "@/lib/pricing";
-import { PRODUCT_PATHS } from "@/lib/product-catalog";
 import type { ProductSlug } from "@/types/quiz";
 import { catSpring } from "./category-motion";
 
@@ -17,17 +16,32 @@ type CategoryProductCardProps = {
   price: number;
   index: number;
   onStartIntake: (slug: ProductSlug) => void;
-  /** Live sandbox overlays when available. */
-  sandbox?: {
-    catalogName?: string | null;
-    sku?: string | null;
-    shortDescription?: string | null;
-    strength?: string | null;
-    formLabel?: string | null;
-    sandboxPrice?: number | null;
-    variantCount?: number;
-  };
 };
+
+function ProductPdpLink({
+  slug,
+  className,
+  children,
+  "aria-label": ariaLabel,
+}: {
+  slug: ProductSlug;
+  className?: string;
+  children: ReactNode;
+  "aria-label"?: string;
+}) {
+  if (slug === "glp-1-weight-loss") {
+    return (
+      <Link to="/products/glp-1-weight-loss" className={className} aria-label={ariaLabel}>
+        {children}
+      </Link>
+    );
+  }
+  return (
+    <Link to="/products/$slug" params={{ slug }} className={className} aria-label={ariaLabel}>
+      {children}
+    </Link>
+  );
+}
 
 function EyeIcon() {
   return (
@@ -51,7 +65,6 @@ export function CategoryProductCard({
   price,
   index,
   onStartIntake,
-  sandbox,
 }: CategoryProductCardProps) {
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
@@ -71,9 +84,6 @@ export function CategoryProductCard({
     mx.set(0);
     my.set(0);
   }
-
-  const displayName = sandbox?.catalogName?.trim() || product.shortName;
-  const summary = sandbox?.shortDescription?.trim() || product.summary;
 
   return (
     <motion.article
@@ -97,13 +107,13 @@ export function CategoryProductCard({
       </span>
 
       <div className="cat-product-actions-float" aria-label="Quick actions">
-        <Link
-          to={PRODUCT_PATHS[product.slug]}
+        <ProductPdpLink
+          slug={product.slug}
           className="cat-action-btn"
           aria-label={`View ${product.shortName}`}
         >
           <EyeIcon />
-        </Link>
+        </ProductPdpLink>
         <button
           type="button"
           className="cat-action-btn cat-action-btn--gold"
@@ -114,40 +124,31 @@ export function CategoryProductCard({
         </button>
       </div>
 
-      <motion.div className="cat-product-media" style={{ y: imgY }}>
-        <img src={product.image} alt="" loading="lazy" />
-      </motion.div>
+      <ProductPdpLink slug={product.slug} className="cat-product-card-body" aria-label={`View ${product.shortName}`}>
+        <motion.div className="cat-product-media" style={{ y: imgY }}>
+          <img src={product.image} alt="" loading="lazy" />
+        </motion.div>
 
-      <div className="cat-product-copy">
-        <p className="cat-product-eyebrow">{product.headline}</p>
-        <h3 className="cat-product-name">{displayName}</h3>
-        {sandbox?.sku ? <p className="cat-product-sku">SKU {sandbox.sku}</p> : null}
-        <p className="cat-product-summary">{summary}</p>
-        <ul className="cat-product-highlights">
-          {sandbox?.strength ? <li>{sandbox.strength}</li> : null}
-          {sandbox?.formLabel ? <li>{sandbox.formLabel}</li> : null}
-          {(sandbox?.variantCount ?? 0) > 1 ? (
-            <li>{sandbox!.variantCount} sandbox SKU variants</li>
-          ) : null}
-          {product.highlights.map((highlight) => (
-            <li key={highlight}>{highlight}</li>
-          ))}
-        </ul>
-        <p className="cat-product-price">
-          From {formatCurrency(price)}
-          <span>/month</span>
-        </p>
-        {sandbox?.sandboxPrice != null ? (
-          <p className="cat-product-sandbox-price">
-            Sandbox catalog: {formatCurrency(sandbox.sandboxPrice)}
+        <div className="cat-product-copy">
+          <p className="cat-product-eyebrow">{product.headline}</p>
+          <h3 className="cat-product-name">{product.shortName}</h3>
+          <p className="cat-product-summary">{product.summary}</p>
+          <ul className="cat-product-highlights">
+            {product.highlights.map((highlight) => (
+              <li key={highlight}>{highlight}</li>
+            ))}
+          </ul>
+          <p className="cat-product-price">
+            From {formatCurrency(price)}
+            <span>/month</span>
           </p>
-        ) : null}
-      </div>
+        </div>
+      </ProductPdpLink>
 
       <div className="cat-product-actions">
-        <Link to={PRODUCT_PATHS[product.slug]} className="cat-btn cat-btn--primary">
-          View program
-        </Link>
+        <ProductPdpLink slug={product.slug} className="cat-btn cat-btn--primary">
+          View details
+        </ProductPdpLink>
         <motion.button
           type="button"
           className="cat-btn cat-btn--ghost"
