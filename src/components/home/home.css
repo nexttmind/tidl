@@ -1938,9 +1938,8 @@
   text-transform: uppercase;
 }
 
-.service-item:nth-child(1) .service-item-thumb-text::before,
-.service-item:nth-child(2) .service-item-thumb-text::before,
-.service-item:nth-child(3) .service-item-thumb-text::before {
+.service-item .service-item-thumb-text::before {
+  content: var(--svc-index, "01") " / " var(--svc-total, "06");
   display: block;
   margin-bottom: 9px;
   font-size: 11px;
@@ -1948,10 +1947,6 @@
   letter-spacing: 0.24em;
   color: rgba(255, 255, 255, 0.75);
 }
-
-.service-item:nth-child(1) .service-item-thumb-text::before { content: "01 / 03"; }
-.service-item:nth-child(2) .service-item-thumb-text::before { content: "02 / 03"; }
-.service-item:nth-child(3) .service-item-thumb-text::before { content: "03 / 03"; }
 
 .service-thumb-img {
   width: 100%;
@@ -2106,7 +2101,7 @@
   }
 
   .service-item {
-    min-height: 640px;
+    min-height: 0;
     border-radius: 24px;
   }
 
@@ -2207,6 +2202,85 @@
   height: 6px;
   border-radius: 50%;
   background: rgb(243, 195, 0);
+}
+
+.service-item-products {
+  gap: 6px;
+  margin-top: 16px;
+}
+
+.service-item-products > li {
+  padding-left: 0;
+}
+
+.service-item-products > li::before {
+  display: none;
+}
+
+.service-item-product {
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+  padding: 8px 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  text-decoration: none;
+  color: inherit;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.service-item-product:hover {
+  background: rgba(243, 195, 0, 0.1);
+  border-color: rgba(243, 195, 0, 0.35);
+  transform: translateY(-1px);
+}
+
+.service-item-product img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.service-item-product-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.service-item-product-copy strong {
+  font-size: 0.86rem;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.service-item-product-copy em {
+  font-style: normal;
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.service-item-product-go {
+  color: rgb(243, 195, 0);
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.services-intro-status {
+  margin: 10px 0 0;
+  font-size: 0.85rem;
+  color: rgba(243, 195, 0, 0.85);
 }
 
 .services-trust-pillars {

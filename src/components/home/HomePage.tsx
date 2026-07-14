@@ -7,7 +7,6 @@ import { useSiteHeaderState } from '@/hooks/useSiteHeaderState';
 import './home.css';
 import { CtaSection } from './cta/CtaSection';
 import { ServicesSection } from './ServicesSection';
-import { BrowseDirectorySection } from './BrowseDirectorySection';
 import { SandboxPeptidesSection } from './SandboxPeptidesSection';
 import { StoriesSection } from './StoriesSection';
 import { JourneySection } from './JourneySection';
@@ -376,8 +375,6 @@ export default function HomePage() {
         <div className="main-wrapper">
 
         <ServicesSection />
-
-        <BrowseDirectorySection />
 
         <SandboxPeptidesSection />
 
