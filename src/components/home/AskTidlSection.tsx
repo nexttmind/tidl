@@ -2,6 +2,7 @@ import {
   forwardRef,
   useCallback,
   useEffect,
+  useId,
   useImperativeHandle,
   useRef,
   useState,
@@ -18,6 +19,124 @@ import {
 export type AskTidlSectionHandle = {
   focusInput: () => void;
 };
+
+const BOT_CYCLE_MS = 6000;
+const BOT_VISIBLE_START = 0.08 * BOT_CYCLE_MS;
+const BOT_VISIBLE_END = 0.55 * BOT_CYCLE_MS;
+
+function AskTidlBot({ reduce }: { reduce: boolean }) {
+  const reactId = useId().replace(/:/g, "");
+  const [waving, setWaving] = useState(false);
+
+  useEffect(() => {
+    if (reduce) return;
+
+    let waveOn: ReturnType<typeof setTimeout> | undefined;
+    let waveOff: ReturnType<typeof setTimeout> | undefined;
+
+    const runCycle = () => {
+      waveOn = setTimeout(() => setWaving(true), BOT_VISIBLE_START);
+      waveOff = setTimeout(() => setWaving(false), BOT_VISIBLE_END);
+    };
+
+    runCycle();
+    const interval = setInterval(runCycle, BOT_CYCLE_MS);
+
+    return () => {
+      clearInterval(interval);
+      if (waveOn) clearTimeout(waveOn);
+      if (waveOff) clearTimeout(waveOff);
+    };
+  }, [reduce]);
+
+  const g = (name: string) => `ask-bot-${name}-${reactId}`;
+
+  return (
+    <div
+      className={`ask-bot-wrap${waving ? " is-waving" : ""}${reduce ? " is-static" : ""}`}
+      id="askTidlBot"
+      aria-hidden="true"
+    >
+      <svg viewBox="0 0 52 64" fill="none">
+        <defs>
+          <linearGradient id={g("head")} x1="10" y1="12" x2="42" y2="36" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#2A2620" />
+            <stop offset="100%" stopColor="#0E0C08" />
+          </linearGradient>
+          <linearGradient id={g("body")} x1="13" y1="36" x2="39" y2="56" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stopColor="#FFD950" />
+            <stop offset="45%" stopColor="#F3C300" />
+            <stop offset="100%" stopColor="#BE9800" />
+          </linearGradient>
+          <linearGradient id={g("arm")} x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stopColor="#F3C300" />
+            <stop offset="100%" stopColor="#BE9800" />
+          </linearGradient>
+          <radialGradient id={g("eye")} cx="50%" cy="35%" r="65%">
+            <stop offset="0%" stopColor="#FFF7CC" />
+            <stop offset="55%" stopColor="#F3C300" />
+            <stop offset="100%" stopColor="#BE9800" />
+          </radialGradient>
+          <radialGradient id={g("core")} cx="50%" cy="40%" r="65%">
+            <stop offset="0%" stopColor="#FFFDF6" />
+            <stop offset="60%" stopColor="#F3C300" />
+            <stop offset="100%" stopColor="#BE9800" />
+          </radialGradient>
+          <radialGradient id={g("tip")} cx="50%" cy="40%" r="65%">
+            <stop offset="0%" stopColor="#FFF7CC" />
+            <stop offset="60%" stopColor="#F3C300" />
+            <stop offset="100%" stopColor="#BE9800" />
+          </radialGradient>
+          <filter id={g("soft")} x="-80%" y="-80%" width="260%" height="260%">
+            <feGaussianBlur stdDeviation="1.4" result="blur" />
+            <feMerge>
+              <feMergeNode in="blur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+          <filter id={g("drop")} x="-40%" y="-20%" width="180%" height="160%">
+            <feDropShadow dx="0" dy="2" stdDeviation="1.6" floodColor="#000000" floodOpacity="0.28" />
+          </filter>
+        </defs>
+
+        <ellipse cx="26" cy="60" rx="15" ry="3" fill="#000000" opacity="0.12" />
+
+        <g filter={`url(#${g("drop")})`}>
+          <line x1="26" y1="4" x2="26" y2="12" stroke="#BE9800" strokeWidth="2" />
+          <circle cx="26" cy="3.2" r="3.4" fill={`url(#${g("tip")})`} filter={`url(#${g("soft")})`} />
+
+          <rect x="10" y="12" width="32" height="24" rx="9" fill={`url(#${g("head")})`} />
+          <path
+            d="M14 16c4-2 10-3 16-2"
+            stroke="rgba(255,255,255,0.14)"
+            strokeWidth="3"
+            strokeLinecap="round"
+            fill="none"
+          />
+
+          <rect x="13.5" y="19" width="25" height="11" rx="5.5" fill="#0A0906" opacity="0.9" />
+          <circle cx="19.5" cy="24.5" r="3.6" fill={`url(#${g("eye")})`} filter={`url(#${g("soft")})`} />
+          <circle cx="32.5" cy="24.5" r="3.6" fill={`url(#${g("eye")})`} filter={`url(#${g("soft")})`} />
+
+          <rect x="13" y="36" width="26" height="20" rx="8" fill={`url(#${g("body")})`} />
+          <path
+            d="M16 39c4-1.4 16-1.4 20 0"
+            stroke="rgba(255,255,255,0.25)"
+            strokeWidth="1.6"
+            strokeLinecap="round"
+            fill="none"
+          />
+          <circle cx="26" cy="46" r="3.6" fill={`url(#${g("core")})`} filter={`url(#${g("soft")})`} />
+
+          <rect x="8" y="39" width="7" height="14" rx="3.5" fill={`url(#${g("arm")})`} />
+          <g className="ask-bot-arm">
+            <rect x="37" y="39" width="7" height="14" rx="3.5" fill={`url(#${g("arm")})`} />
+          </g>
+        </g>
+      </svg>
+    </div>
+  );
+}
 
 const ORBS = [
   { className: "ask-orb ask-orb--a", delay: 0 },
@@ -216,6 +335,8 @@ export const AskTidlSection = forwardRef<AskTidlSectionHandle>(function AskTidlS
           animate={inView ? { opacity: 1, y: 0 } : undefined}
           transition={{ duration: 0.75, delay: reduceMotion ? 0 : 0.1, ease: [0.22, 1, 0.36, 1] }}
         >
+          <AskTidlBot reduce={!!reduceMotion} />
+
           <div className="ask-panel">
             <div className="ask-panel-mesh" aria-hidden="true" />
 

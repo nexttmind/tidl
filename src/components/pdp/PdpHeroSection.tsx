@@ -90,11 +90,13 @@ function SocialBubble({
   name,
   message,
   tone,
+  portrait,
   className,
 }: {
   name: string;
   message: string;
   tone: "purchase" | "like";
+  portrait?: string;
   className?: string;
 }) {
   const initial = name.replace(/[^A-Za-z]/g, "").charAt(0).toUpperCase() || "T";
@@ -102,7 +104,7 @@ function SocialBubble({
   return (
     <div className={`pdp-hero-social${className ? ` ${className}` : ""}`}>
       <span className="pdp-hero-social-avatar" aria-hidden="true">
-        {initial}
+        {portrait ? <img src={portrait} alt="" /> : initial}
       </span>
       <div className="pdp-hero-social-copy">
         <strong>{name}</strong>
@@ -127,8 +129,8 @@ function HeroPenSocialAnimation({
   productImage: string;
   productAlt: string;
   productForm: "pen" | "pill";
-  socialA?: { name: string };
-  socialB?: { name: string };
+  socialA?: { name: string; portraitImage?: string };
+  socialB?: { name: string; portraitImage?: string };
   floatRef: React.RefObject<HTMLDivElement | null>;
   reduceMotion: boolean | null;
 }) {
@@ -175,7 +177,8 @@ function HeroPenSocialAnimation({
           <SocialBubble
             className="pdp-hero-social--left"
             name={socialA.name}
-            message="has just started this plan"
+            portrait={socialA.portraitImage}
+            message="just started this plan"
             tone="purchase"
           />
         </div>
@@ -189,7 +192,8 @@ function HeroPenSocialAnimation({
           <SocialBubble
             className="pdp-hero-social--right"
             name={socialB.name}
-            message="rated this treatment highly"
+            portrait={socialB.portraitImage}
+            message="rated this highly"
             tone="like"
           />
         </div>

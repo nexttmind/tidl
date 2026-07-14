@@ -205,9 +205,10 @@ function ReviewCard({ story }: { story: Testimonial }) {
       <span className="tst-marquee-card-ring" aria-hidden="true" />
       <span className="tst-marquee-card-ring tst-marquee-card-ring--trace" aria-hidden="true" />
 
-      <blockquote className="tst-marquee-quote">&ldquo;{story.quote}&rdquo;</blockquote>
-
-      <footer className="tst-marquee-footer">
+      <header className="tst-marquee-head">
+        <div className="tst-marquee-avatar" aria-hidden="true">
+          <img src={story.portraitImage} alt="" loading="lazy" />
+        </div>
         <div className="tst-marquee-author">
           <strong>{story.name}</strong>
           <span>{story.condition}</span>
@@ -227,7 +228,9 @@ function ReviewCard({ story }: { story: Testimonial }) {
             Verified
           </span>
         </div>
-      </footer>
+      </header>
+
+      <blockquote className="tst-marquee-quote">&ldquo;{story.quote}&rdquo;</blockquote>
     </article>
   );
 }
