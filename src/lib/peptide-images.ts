@@ -67,9 +67,18 @@ function parseForm(name: string): string {
   return "Multi-dose vial";
 }
 
+/** Bump when regenerating public/peptides assets so browsers drop stale PNGs. */
+const PEPTIDE_ASSET_VERSION = "studio-v1";
+
+function withAssetVersion(path: string): string {
+  const sep = path.includes("?") ? "&" : "?";
+  return `${path}${sep}v=${PEPTIDE_ASSET_VERSION}`;
+}
+
 /** Transparent PNG path for a featured product (from sandbox catalog, bg removed). */
 export function getPeptideImage(slug: string): string | undefined {
-  return MAP[slug]?.image;
+  const image = MAP[slug]?.image;
+  return image ? withAssetVersion(image) : undefined;
 }
 
 /** Full map of featured slug → cleaned local peptide images. */
@@ -84,10 +93,10 @@ export function getPeptideImageMap(): Record<string, PeptideImageEntry> {
  */
 export function resolvePeptideOnlyImage(slug: string): string {
   const direct = MAP[slug]?.image;
-  if (direct) return direct;
+  if (direct) return withAssetVersion(direct);
   const first = Object.values(MAP)[0]?.image;
-  if (first) return first;
-  return "/peptides/bpc-157.png";
+  if (first) return withAssetVersion(first);
+  return withAssetVersion("/peptides/bpc-157.png");
 }
 
 /**
