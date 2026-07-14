@@ -22,6 +22,7 @@ import { PdpCtaBand } from "./PdpCtaBand";
 import { PdpFaqSection } from "./PdpFaqSection";
 import { PdpOutcomeSection } from "./PdpOutcomeSection";
 import { PdpIncludedSection } from "./PdpIncludedSection";
+import { PdpBeforeAfterSection } from "./PdpBeforeAfterSection";
 import { PdpSandboxFactsSection } from "./PdpSandboxFactsSection";
 import { PdpButton, Reveal } from "./pdp-ui";
 import "../home/home.css";
@@ -88,6 +89,7 @@ function ProductPdpPageInner({ slug }: ProductPdpPageProps) {
   const navLinks = [
     { href: "#journey", label: "Your path" },
     ...(pdp.showPenShowcase ? [{ href: "#how-pen-works", label: "The Pen" }] : []),
+    ...(pdp.showPenShowcase ? [{ href: "#life-shift", label: "Before / After" }] : []),
     { href: "#safety", label: "Safety" },
     { href: "#included", label: "What's included" },
     { href: "#reviews", label: "Reviews" },
@@ -137,6 +139,8 @@ function ProductPdpPageInner({ slug }: ProductPdpPageProps) {
         <PdpVerticalTimeline />
 
         {pdp.showPenShowcase ? <PenShowcaseSection /> : null}
+
+        <PdpBeforeAfterSection onStart={openQuiz} />
 
         <PdpIncludedSection />
 

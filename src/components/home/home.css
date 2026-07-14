@@ -1,4 +1,4 @@
-/* ===== Announcement Bar ===== */
+﻿/* ===== Announcement Bar ===== */
 .tdl-bar {
   --ink: #171310;
   --cream: #ffffff;
@@ -601,15 +601,11 @@
 @media (prefers-reduced-motion: reduce) { .tidl-ticker .track { animation: none; } }
 @media (max-width: 767px) { .tidl-ticker { display: none; } }
 
-/* ===== Ask TIDL — white premium intelligence power section ===== */
+/* ===== Ask TIDL ΓÇö white premium intelligence power section ===== */
 .ask-tidl-wrap {
   position: relative;
   overflow: hidden;
-  background:
-    radial-gradient(ellipse 70% 48% at 50% -8%, rgba(243, 195, 0, 0.1) 0%, transparent 58%),
-    radial-gradient(ellipse 42% 36% at 100% 28%, rgba(200, 164, 90, 0.08) 0%, transparent 62%),
-    radial-gradient(ellipse 48% 40% at 0% 88%, rgba(243, 195, 0, 0.07) 0%, transparent 60%),
-    linear-gradient(180deg, #ffffff 0%, #fbfaf7 48%, #ffffff 100%);
+  background: #ffffff;
   scroll-margin-top: max(88px, env(safe-area-inset-top));
   --ask-gold: rgb(243, 195, 0);
   --ask-gold-soft: rgba(243, 195, 0, 0.16);
@@ -632,8 +628,8 @@
 
 .ask-ambient-wash {
   position: absolute;
-  filter: blur(48px);
-  opacity: 0.55;
+  filter: blur(56px);
+  opacity: 0.22;
 }
 
 .ask-ambient-wash--top {
@@ -641,7 +637,7 @@
   left: 18%;
   width: 64%;
   height: 42%;
-  background: radial-gradient(ellipse at center, rgba(243, 195, 0, 0.22) 0%, transparent 70%);
+  background: radial-gradient(ellipse at center, rgba(243, 195, 0, 0.14) 0%, transparent 70%);
   animation: askWashDrift 14s ease-in-out infinite;
 }
 
@@ -650,7 +646,7 @@
   right: -12%;
   width: 42%;
   height: 52%;
-  background: radial-gradient(ellipse at center, rgba(200, 164, 90, 0.18) 0%, transparent 72%);
+  background: radial-gradient(ellipse at center, rgba(243, 195, 0, 0.1) 0%, transparent 72%);
   animation: askWashDrift 18s ease-in-out infinite reverse;
 }
 
@@ -659,7 +655,7 @@
   left: 8%;
   width: 56%;
   height: 40%;
-  background: radial-gradient(ellipse at center, rgba(243, 195, 0, 0.14) 0%, transparent 70%);
+  background: radial-gradient(ellipse at center, rgba(243, 195, 0, 0.08) 0%, transparent 70%);
   animation: askWashDrift 16s ease-in-out infinite;
 }
 
@@ -735,8 +731,9 @@
   position: absolute;
   inset: auto 0 -20% 0;
   height: 46%;
-  background: linear-gradient(0deg, rgba(243, 195, 0, 0.07), transparent 70%);
-  animation: askRise 9s ease-in-out infinite;
+  /* No warm fill ΓÇö kept for structure/animation slot only */
+  background: transparent;
+  animation: none;
 }
 
 .ask-orb {
@@ -744,8 +741,8 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, #fff7cc, var(--ask-gold) 55%, transparent 72%);
-  box-shadow: 0 0 18px rgba(243, 195, 0, 0.45);
+  background: radial-gradient(circle at 30% 30%, #ffffff, var(--ask-gold) 55%, transparent 72%);
+  box-shadow: 0 0 18px rgba(243, 195, 0, 0.35);
   opacity: 0;
   animation: askOrbFloat 11s ease-in-out infinite;
 }
@@ -807,7 +804,7 @@
 }
 
 .ask-path--2 {
-  stroke: rgba(200, 164, 90, 0.28);
+  stroke: rgba(243, 195, 0, 0.28);
   animation-duration: 22s;
   animation-direction: reverse;
 }
@@ -878,7 +875,7 @@
   font-weight: 500;
   letter-spacing: 0.26em;
   text-transform: uppercase;
-  color: rgba(138, 109, 40, 0.9);
+  color: rgba(190, 152, 0, 0.95);
 }
 
 .ask-kicker-dot {
@@ -901,7 +898,7 @@
 
 .ask-h.heading-01 em {
   font-style: normal;
-  background: linear-gradient(120deg, #8a6d28 0%, var(--ask-gold) 45%, #c8a45a 100%);
+  background: linear-gradient(120deg, #be9800 0%, var(--ask-gold) 48%, #ffd950 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -913,17 +910,118 @@
   margin: 0 auto;
   width: 100%;
   position: relative;
+  /* Space above the panel so the robot can sit on the rim when risen */
+  padding-top: 52px;
+}
+
+/*
+  Robot sits BEHIND the live panel (z-index), rises UP onto the rim.
+  Rest (translateY 0) = perched on the container surface.
+  Down (translateY +%) = tucked behind the panel face ΓÇö then climbs up.
+*/
+.ask-bot-wrap {
+  position: absolute;
+  /* Final perch: feet just meet the panel's top edge */
+  top: calc(52px - 58px);
+  right: clamp(20px, 3.5vw, 36px);
+  width: 54px;
+  height: 64px;
+  z-index: 1;
+  pointer-events: none;
+  transform-origin: bottom center;
+  animation: ask-bot-cycle 6s ease-in-out infinite;
+}
+
+.ask-bot-wrap.is-static {
+  animation: none;
+  transform: translateY(0);
+}
+
+.ask-bot-wrap svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter: drop-shadow(0 10px 18px rgba(23, 19, 16, 0.18));
+}
+
+.ask-bot-arm {
+  transform-box: fill-box;
+  transform-origin: center top;
+  animation: ask-bot-wave 0.5s ease-in-out infinite;
+  animation-play-state: paused;
+}
+
+.ask-bot-wrap.is-waving .ask-bot-arm {
+  animation-play-state: running;
+}
+
+@keyframes ask-bot-cycle {
+  /* Tucked behind the panel */
+  0% {
+    transform: translateY(72%);
+  }
+  /* Climb onto the rim / surface */
+  10% {
+    transform: translateY(0);
+  }
+  /* Hold on the surface while waving */
+  55% {
+    transform: translateY(0);
+  }
+  /* Duck back down behind the container */
+  70% {
+    transform: translateY(72%);
+  }
+  100% {
+    transform: translateY(72%);
+  }
+}
+
+@keyframes ask-bot-wave {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-28deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ask-bot-wrap {
+    animation: none;
+    transform: translateY(0);
+  }
+
+  .ask-bot-arm {
+    animation: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .ask-tidl-stage {
+    padding-top: 44px;
+  }
+
+  .ask-bot-wrap {
+    top: calc(44px - 50px);
+    width: 46px;
+    height: 54px;
+    right: 12px;
+  }
 }
 
 .ask-panel {
   position: relative;
+  z-index: 2;
   overflow: hidden;
   isolation: isolate;
   padding: 0;
   border-radius: 42px;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(252, 250, 246, 0.96));
-  border: 1px solid rgba(227, 203, 132, 0.45);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.96));
+  border: 1px solid rgba(243, 195, 0, 0.42);
   backdrop-filter: blur(22px);
   -webkit-backdrop-filter: blur(22px);
   box-shadow:
@@ -942,7 +1040,7 @@
   height: 130%;
   z-index: -1;
   pointer-events: none;
-  background: radial-gradient(circle, rgba(243, 195, 0, 0.18), transparent 70%);
+  background: radial-gradient(circle, rgba(243, 195, 0, 0.08), transparent 70%);
   filter: blur(80px);
 }
 
@@ -978,12 +1076,12 @@
   opacity: 0.09;
   background-image:
     radial-gradient(circle at 18% 78%, rgba(243, 195, 0, 0.55) 0 1.5px, transparent 2px),
-    radial-gradient(circle at 34% 62%, rgba(200, 164, 90, 0.5) 0 1.2px, transparent 2px),
+    radial-gradient(circle at 34% 62%, rgba(243, 195, 0, 0.5) 0 1.2px, transparent 2px),
     radial-gradient(circle at 52% 84%, rgba(243, 195, 0, 0.45) 0 1.4px, transparent 2px),
-    radial-gradient(circle at 70% 68%, rgba(200, 164, 90, 0.4) 0 1.2px, transparent 2px),
+    radial-gradient(circle at 70% 68%, rgba(243, 195, 0, 0.4) 0 1.2px, transparent 2px),
     radial-gradient(circle at 86% 80%, rgba(243, 195, 0, 0.4) 0 1px, transparent 2px),
     linear-gradient(115deg, transparent 40%, rgba(243, 195, 0, 0.18) 40.5%, transparent 41%),
-    linear-gradient(155deg, transparent 55%, rgba(200, 164, 90, 0.16) 55.5%, transparent 56%),
+    linear-gradient(155deg, transparent 55%, rgba(243, 195, 0, 0.16) 55.5%, transparent 56%),
     linear-gradient(95deg, transparent 62%, rgba(243, 195, 0, 0.12) 62.5%, transparent 63%);
   background-position: bottom center;
   background-size: 100% 58%, 100% 58%, 100% 58%, 100% 58%, 100% 58%, 100% 100%, 100% 100%, 100% 100%;
@@ -1110,7 +1208,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(180deg, #f5d34e, #d8a400);
+  background: linear-gradient(180deg, #ffd950, #f3c300 55%, #be9800);
   color: #ffffff;
   box-shadow: 0 10px 25px rgba(243, 195, 0, 0.35);
   transition:
@@ -1218,7 +1316,7 @@
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #8a6d28;
+  color: rgb(190, 152, 0);
 }
 
 .ask-reply-q {
@@ -1501,7 +1599,7 @@
 
 /* ===== Webflow hover interactions (CSS fallback for IX2) ===== */
 
-/* Button 01 — dual text slide */
+/* Button 01 ΓÇö dual text slide */
 .button-outside-01 {
   overflow: hidden;
 }
@@ -1521,7 +1619,7 @@
   line-height: 22px;
 }
 
-/* Button 03 — text, icon, and underline slide */
+/* Button 03 ΓÇö text, icon, and underline slide */
 .btn-text-inside-03 {
   display: flex;
   flex-direction: column;
@@ -1563,7 +1661,7 @@
   transform: scaleX(1.2);
 }
 
-/* Mobile menu — dropdown link text slide */
+/* Mobile menu ΓÇö dropdown link text slide */
 .dropdown-inside-texts {
   display: flex;
   flex-direction: column;
@@ -1578,7 +1676,7 @@
   transform: translateY(-50%) !important;
 }
 
-/* Footer — underline expand on hover */
+/* Footer ΓÇö underline expand on hover */
 .footer-link-wrap {
   display: flex;
   flex-direction: column;
@@ -1840,9 +1938,8 @@
   text-transform: uppercase;
 }
 
-.service-item:nth-child(1) .service-item-thumb-text::before,
-.service-item:nth-child(2) .service-item-thumb-text::before,
-.service-item:nth-child(3) .service-item-thumb-text::before {
+.service-item .service-item-thumb-text::before {
+  content: var(--svc-index, "01") " / " var(--svc-total, "06");
   display: block;
   margin-bottom: 9px;
   font-size: 11px;
@@ -1850,10 +1947,6 @@
   letter-spacing: 0.24em;
   color: rgba(255, 255, 255, 0.75);
 }
-
-.service-item:nth-child(1) .service-item-thumb-text::before { content: "01 / 03"; }
-.service-item:nth-child(2) .service-item-thumb-text::before { content: "02 / 03"; }
-.service-item:nth-child(3) .service-item-thumb-text::before { content: "03 / 03"; }
 
 .service-thumb-img {
   width: 100%;
@@ -2008,7 +2101,7 @@
   }
 
   .service-item {
-    min-height: 640px;
+    min-height: 0;
     border-radius: 24px;
   }
 
@@ -2109,6 +2202,85 @@
   height: 6px;
   border-radius: 50%;
   background: rgb(243, 195, 0);
+}
+
+.service-item-products {
+  gap: 6px;
+  margin-top: 16px;
+}
+
+.service-item-products > li {
+  padding-left: 0;
+}
+
+.service-item-products > li::before {
+  display: none;
+}
+
+.service-item-product {
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+  padding: 8px 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  text-decoration: none;
+  color: inherit;
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.service-item-product:hover {
+  background: rgba(243, 195, 0, 0.1);
+  border-color: rgba(243, 195, 0, 0.35);
+  transform: translateY(-1px);
+}
+
+.service-item-product img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.service-item-product-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.service-item-product-copy strong {
+  font-size: 0.86rem;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.service-item-product-copy em {
+  font-style: normal;
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.service-item-product-go {
+  color: rgb(243, 195, 0);
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.services-intro-status {
+  margin: 10px 0 0;
+  font-size: 0.85rem;
+  color: rgba(243, 195, 0, 0.85);
 }
 
 .services-trust-pillars {
@@ -2323,7 +2495,7 @@
   }
 }
 
-/* Nav links — subtle fade */
+/* Nav links ΓÇö subtle fade */
 .nav-items-wrap {
   transition: opacity 0.35s ease;
 }
@@ -2392,7 +2564,7 @@
   padding-top: 0 !important;
 }
 
-/* ===== Testimonials — dual-row marquee ===== */
+/* ===== Testimonials ΓÇö dual-row marquee ===== */
 
 .tst-sec {
   background: #ffffff;
@@ -2703,6 +2875,7 @@
 
 .tst-marquee-author {
   min-width: 0;
+  flex: 1;
 }
 
 .tst-marquee-author strong {
