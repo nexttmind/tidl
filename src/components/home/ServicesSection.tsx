@@ -450,12 +450,24 @@ export function ServicesSection() {
             </div>
 
             <div className="svc-cab-scrollhint" aria-hidden="true">
-              <span className="svc-cab-scrollhint-track">
-                <span ref={hintProgressRef} className="svc-cab-scrollhint-fill" />
-              </span>
+              <div className="svc-cab-scrollhint-path">
+                <span className="svc-cab-scrollhint-track">
+                  <span ref={hintProgressRef} className="svc-cab-scrollhint-fill" />
+                </span>
+                <ol className="svc-cab-scrollhint-stops">
+                  {categories.map((c, i) => (
+                    <li
+                      key={c.slug}
+                      className={`svc-cab-scrollhint-stop${i < activeIdx ? " is-past" : ""}${i === activeIdx ? " is-active" : ""}`}
+                    >
+                      <span className="svc-cab-scrollhint-stop-dot" />
+                    </li>
+                  ))}
+                </ol>
+              </div>
               <span className="svc-cab-scrollhint-copy">
                 {nextLabel
-                  ? `Scroll · next ${nextLabel}`
+                  ? `Scroll · arriving at ${nextLabel}`
                   : `${activeIdx + 1} / ${categories.length} · end of pathways`}
               </span>
             </div>

@@ -7,7 +7,6 @@ import { useSiteHeaderState } from '@/hooks/useSiteHeaderState';
 import './home.css';
 import { CtaSection } from './cta/CtaSection';
 import { ServicesSection } from './ServicesSection';
-import { BrowseDirectorySection } from './BrowseDirectorySection';
 import { SandboxPeptidesSection } from './SandboxPeptidesSection';
 import { StoriesSection } from './StoriesSection';
 import { JourneySection } from './JourneySection';
@@ -108,7 +107,6 @@ export default function HomePage() {
   const homeNavLinks = [
     { href: '#services', label: 'Treatments' },
     { href: '#tdlp5', label: 'The Pen' },
-    { href: '#browse', label: 'Categories' },
     { href: '#sandbox-peptides', label: 'Peptides' },
     { href: '#journey', label: 'About' },
     { href: '#stories', label: 'Reviews' },
@@ -520,8 +518,6 @@ export default function HomePage() {
                         </div>
                       </div>
         ) : null}
-
-        <BrowseDirectorySection />
 
         <SandboxPeptidesSection />
 
