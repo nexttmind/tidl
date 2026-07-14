@@ -1,5 +1,11 @@
-import { calculateOrderPricing, formatCurrency } from "@/lib/pricing";
+import {
+  calculateOrderPricing,
+  CHECKOUT_DEMO_ZERO,
+  formatCurrency,
+  getCatalogListPrice,
+} from "@/lib/pricing";
 import { getRecommendedTreatment } from "@/lib/products";
+import { useLiveProduct } from "@/lib/prescribe-rx/use-live-catalog";
 import type { QuizFormData } from "@/types/quiz";
 import "./checkout.css";
 
@@ -49,6 +55,8 @@ function LockIcon() {
 export function OrderSummary({ quizData }: { quizData: QuizFormData }) {
   const product = getRecommendedTreatment(quizData.goal, quizData.productSlug);
   const pricing = calculateOrderPricing(product);
+  const listPrice = getCatalogListPrice(product);
+  const live = useLiveProduct(product.slug);
 
   return (
     <>
@@ -57,21 +65,47 @@ export function OrderSummary({ quizData }: { quizData: QuizFormData }) {
           Order summary
         </h2>
 
+        {CHECKOUT_DEMO_ZERO ? (
+          <p className="checkout-demo-banner" role="status">
+            Demo checkout — <strong>$0 due today</strong>. PDP list price stays{" "}
+            {formatCurrency(listPrice)}/mo. Payment is recorded in PrescribeRx sandbox as a $0
+            reference capture (no real charge).
+          </p>
+        ) : null}
+
         <div className="checkout-product-card" style={{ marginTop: 16 }}>
           <div className="checkout-product-visual">
-            <img src={product.image} alt="" loading="lazy" />
+            <img src={live?.image ?? product.image} alt="" loading="lazy" />
           </div>
           <div className="checkout-product-copy">
             <span className="checkout-product-brand">{product.brandName}</span>
-            <h3 className="checkout-product-name">{product.name}</h3>
+            <h3 className="checkout-product-name">{live?.name ?? product.name}</h3>
             <span className="checkout-product-tag">{product.tag}</span>
             <span className="checkout-product-dose">{product.dosage}</span>
+            {live?.sku ? (
+              <span className="checkout-product-sku">Sandbox SKU · {live.sku}</span>
+            ) : null}
+            {live?.id ? (
+              <span className="checkout-product-sku">Catalog ID · {live.id.slice(0, 8)}…</span>
+            ) : null}
           </div>
         </div>
 
         <div className="checkout-summary-lines">
           <div className="checkout-summary-line">
-            <span>Monthly treatment</span>
+            <span>Monthly treatment (PDP list)</span>
+            <strong className={CHECKOUT_DEMO_ZERO ? "checkout-price-list" : undefined}>
+              {formatCurrency(listPrice)}
+            </strong>
+          </div>
+          {live?.price != null ? (
+            <div className="checkout-summary-line">
+              <span>Sandbox catalog price</span>
+              <strong>{formatCurrency(live.price)}</strong>
+            </div>
+          ) : null}
+          <div className="checkout-summary-line">
+            <span>Charged today · treatment</span>
             <strong>{formatCurrency(pricing.treatmentMonthly)}</strong>
           </div>
           <div className="checkout-summary-line">
@@ -94,7 +128,9 @@ export function OrderSummary({ quizData }: { quizData: QuizFormData }) {
         </div>
 
         <p className="checkout-summary-note" style={{ marginTop: 14 }}>
-          A licensed physician reviews every assessment. Treatment is prescribed only when medically appropriate.
+          {CHECKOUT_DEMO_ZERO
+            ? "PrescribeRx payment record: mode reference_captured · amount $0 · is_sandbox. Test card OK: 4111 1111 1111 1111, any future expiry, any CVC."
+            : "A licensed physician reviews every assessment. Treatment is prescribed only when medically appropriate."}
         </p>
       </div>
 

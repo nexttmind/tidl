@@ -9,13 +9,16 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TermsRouteImport } from './routes/terms'
 import { Route as QuizSandboxRouteImport } from './routes/quiz-sandbox'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as ConfirmationRouteImport } from './routes/confirmation'
 import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AccountIndexRouteImport } from './routes/account/index'
 import { Route as ProductsGlp1WeightLossRouteImport } from './routes/products/glp-1-weight-loss'
+import { Route as ProductsSlugRouteImport } from './routes/products/$slug'
 import { Route as CategorySlugRouteImport } from './routes/category/$slug'
 import { Route as ApiPrxWebhooksRouteImport } from './routes/api/prx/webhooks'
 import { Route as ApiPrxProductsRouteImport } from './routes/api/prx/products'
@@ -35,9 +38,19 @@ import { Route as ApiPrxEncountersEncounterIdRouteImport } from './routes/api/pr
 import { Route as ApiPrxAuthMeRouteImport } from './routes/api/prx/auth.me'
 import { Route as ApiPrxEncounterTypesEncounterTypeIdSchemaRouteImport } from './routes/api/prx/encounter-types.$encounterTypeId.schema'
 
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const QuizSandboxRoute = QuizSandboxRouteImport.update({
   id: '/quiz-sandbox',
   path: '/quiz-sandbox',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ConfirmationRoute = ConfirmationRouteImport.update({
@@ -68,6 +81,11 @@ const AccountIndexRoute = AccountIndexRouteImport.update({
 const ProductsGlp1WeightLossRoute = ProductsGlp1WeightLossRouteImport.update({
   id: '/products/glp-1-weight-loss',
   path: '/products/glp-1-weight-loss',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductsSlugRoute = ProductsSlugRouteImport.update({
+  id: '/products/$slug',
+  path: '/products/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CategorySlugRoute = CategorySlugRouteImport.update({
@@ -169,8 +187,11 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/checkout': typeof CheckoutRoute
   '/confirmation': typeof ConfirmationRoute
+  '/privacy': typeof PrivacyRoute
   '/quiz-sandbox': typeof QuizSandboxRoute
+  '/terms': typeof TermsRoute
   '/category/$slug': typeof CategorySlugRoute
+  '/products/$slug': typeof ProductsSlugRoute
   '/products/glp-1-weight-loss': typeof ProductsGlp1WeightLossRoute
   '/account/': typeof AccountIndexRoute
   '/api/prx/catalog': typeof ApiPrxCatalogRoute
@@ -196,8 +217,11 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/checkout': typeof CheckoutRoute
   '/confirmation': typeof ConfirmationRoute
+  '/privacy': typeof PrivacyRoute
   '/quiz-sandbox': typeof QuizSandboxRoute
+  '/terms': typeof TermsRoute
   '/category/$slug': typeof CategorySlugRoute
+  '/products/$slug': typeof ProductsSlugRoute
   '/products/glp-1-weight-loss': typeof ProductsGlp1WeightLossRoute
   '/account': typeof AccountIndexRoute
   '/api/prx/catalog': typeof ApiPrxCatalogRoute
@@ -224,8 +248,11 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/checkout': typeof CheckoutRoute
   '/confirmation': typeof ConfirmationRoute
+  '/privacy': typeof PrivacyRoute
   '/quiz-sandbox': typeof QuizSandboxRoute
+  '/terms': typeof TermsRoute
   '/category/$slug': typeof CategorySlugRoute
+  '/products/$slug': typeof ProductsSlugRoute
   '/products/glp-1-weight-loss': typeof ProductsGlp1WeightLossRoute
   '/account/': typeof AccountIndexRoute
   '/api/prx/catalog': typeof ApiPrxCatalogRoute
@@ -253,8 +280,11 @@ export interface FileRouteTypes {
     | '/auth'
     | '/checkout'
     | '/confirmation'
+    | '/privacy'
     | '/quiz-sandbox'
+    | '/terms'
     | '/category/$slug'
+    | '/products/$slug'
     | '/products/glp-1-weight-loss'
     | '/account/'
     | '/api/prx/catalog'
@@ -280,8 +310,11 @@ export interface FileRouteTypes {
     | '/auth'
     | '/checkout'
     | '/confirmation'
+    | '/privacy'
     | '/quiz-sandbox'
+    | '/terms'
     | '/category/$slug'
+    | '/products/$slug'
     | '/products/glp-1-weight-loss'
     | '/account'
     | '/api/prx/catalog'
@@ -307,8 +340,11 @@ export interface FileRouteTypes {
     | '/auth'
     | '/checkout'
     | '/confirmation'
+    | '/privacy'
     | '/quiz-sandbox'
+    | '/terms'
     | '/category/$slug'
+    | '/products/$slug'
     | '/products/glp-1-weight-loss'
     | '/account/'
     | '/api/prx/catalog'
@@ -335,8 +371,11 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRoute
   CheckoutRoute: typeof CheckoutRoute
   ConfirmationRoute: typeof ConfirmationRoute
+  PrivacyRoute: typeof PrivacyRoute
   QuizSandboxRoute: typeof QuizSandboxRoute
+  TermsRoute: typeof TermsRoute
   CategorySlugRoute: typeof CategorySlugRoute
+  ProductsSlugRoute: typeof ProductsSlugRoute
   ProductsGlp1WeightLossRoute: typeof ProductsGlp1WeightLossRoute
   AccountIndexRoute: typeof AccountIndexRoute
   ApiPrxCatalogRoute: typeof ApiPrxCatalogRoute
@@ -356,11 +395,25 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/quiz-sandbox': {
       id: '/quiz-sandbox'
       path: '/quiz-sandbox'
       fullPath: '/quiz-sandbox'
       preLoaderRoute: typeof QuizSandboxRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/confirmation': {
@@ -403,6 +456,13 @@ declare module '@tanstack/react-router' {
       path: '/products/glp-1-weight-loss'
       fullPath: '/products/glp-1-weight-loss'
       preLoaderRoute: typeof ProductsGlp1WeightLossRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/products/$slug': {
+      id: '/products/$slug'
+      path: '/products/$slug'
+      fullPath: '/products/$slug'
+      preLoaderRoute: typeof ProductsSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/category/$slug': {
@@ -586,8 +646,11 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRoute,
   CheckoutRoute: CheckoutRoute,
   ConfirmationRoute: ConfirmationRoute,
+  PrivacyRoute: PrivacyRoute,
   QuizSandboxRoute: QuizSandboxRoute,
+  TermsRoute: TermsRoute,
   CategorySlugRoute: CategorySlugRoute,
+  ProductsSlugRoute: ProductsSlugRoute,
   ProductsGlp1WeightLossRoute: ProductsGlp1WeightLossRoute,
   AccountIndexRoute: AccountIndexRoute,
   ApiPrxCatalogRoute: ApiPrxCatalogRoute,

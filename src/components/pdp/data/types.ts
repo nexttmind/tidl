@@ -77,10 +77,32 @@ export type PenShowcaseContent = {
   videoEmbedUrl?: string;
 };
 
+export type PdpBeforeAfter = {
+  image: string;
+  beforeLabel: string;
+  afterLabel: string;
+  caption: string;
+  weeks: string;
+};
+
+export type PdpMarketing = {
+  /** Big aspirational headline — the emotional promise. */
+  emotionalHeadline: string;
+  emotionalSub: string;
+  /** "You're tired of…" pain points the visitor recognizes in themselves. */
+  painPoints: readonly string[];
+  /** "Imagine…" the future-self payoff. */
+  dream: string;
+  beforeAfter: readonly PdpBeforeAfter[];
+  motivationHeadline: string;
+  motivationSub: string;
+};
+
 export type PdpPageContent = {
   slug: ProductSlug;
   goal: GoalId;
   productForm: ProductForm;
+  marketing?: PdpMarketing;
   heroProduct: HeroProduct;
   heroImage: string;
   penImage: string;

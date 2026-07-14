@@ -8,10 +8,13 @@ import type { ProductSlug } from "@/types/quiz";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { useSiteHeaderState } from "@/hooks/useSiteHeaderState";
+import { useLiveCatalog, resolveDisplayMonthlyPrice } from "@/lib/prescribe-rx/use-live-catalog";
+import { mergeSandboxIntoPdp } from "@/lib/prescribe-rx/merge-sandbox-pdp";
 import { getPdpContent } from "./data/pdp-data-registry";
 import { PdpDataProvider } from "./PdpDataProvider";
 import { PenShowcaseSection } from "./PenShowcaseSection";
 import { PdpHeroSection } from "./PdpHeroSection";
+import { PdpTransformationSection } from "./PdpTransformationSection";
 import { PdpVerticalTimeline } from "./PdpVerticalTimeline";
 import { PdpReviewsSection } from "./PdpReviewsSection";
 import { PdpSafetySection } from "./PdpSafetySection";
@@ -19,6 +22,7 @@ import { PdpCtaBand } from "./PdpCtaBand";
 import { PdpFaqSection } from "./PdpFaqSection";
 import { PdpOutcomeSection } from "./PdpOutcomeSection";
 import { PdpIncludedSection } from "./PdpIncludedSection";
+import { PdpSandboxFactsSection } from "./PdpSandboxFactsSection";
 import { PdpButton, Reveal } from "./pdp-ui";
 import "../home/home.css";
 import "./pdp.css";
@@ -28,8 +32,25 @@ type ProductPdpPageProps = {
 };
 
 function ProductPdpPageInner({ slug }: ProductPdpPageProps) {
-  const pdp = getPdpContent(slug);
-  const product = getProductBySlug(slug)!;
+  const basePdp = getPdpContent(slug);
+  const baseProduct = getProductBySlug(slug)!;
+  const { map: liveCatalog } = useLiveCatalog();
+  const live = liveCatalog[slug];
+
+  // Every product-facing field on peptide PDPs is overwritten from the sandbox catalog.
+  const pdp = mergeSandboxIntoPdp(basePdp, live);
+
+  const product = live
+    ? {
+        ...baseProduct,
+        name: live.name,
+        // Keep marketing list price as the offer; sandbox ~$10 placeholders stay in facts only.
+        monthlyPrice: resolveDisplayMonthlyPrice(baseProduct.monthlyPrice, live.price),
+        image: pdp.productForm !== "pen" ? live.image : baseProduct.image,
+        description: live.shortDescription ?? live.description ?? baseProduct.description,
+      }
+    : baseProduct;
+
   const { openModal } = useQuizModal();
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const [stickyVisible, setStickyVisible] = useState(false);
@@ -111,11 +132,15 @@ function ProductPdpPageInner({ slug }: ProductPdpPageProps) {
 
         <PdpOutcomeSection />
 
+        <PdpTransformationSection onStart={openQuiz} />
+
         <PdpVerticalTimeline />
 
         {pdp.showPenShowcase ? <PenShowcaseSection /> : null}
 
         <PdpIncludedSection />
+
+        <PdpSandboxFactsSection />
 
         <section className="pdp-section" id="pricing" data-pdp-header-theme="light">
           <div className="pdp-section-shell">

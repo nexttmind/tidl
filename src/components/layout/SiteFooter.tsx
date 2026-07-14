@@ -189,6 +189,15 @@ export function SiteFooter({ onGetStarted }: SiteFooterProps) {
               <div className="footer-copyright-text">&copy; Copyright {new Date().getFullYear()}</div>
               <div className="extra-links">
                 <div className="footer-link-wrap">
+                  <Link to="/privacy" className="footer-link">
+                    Privacy
+                  </Link>
+                  <div className="footer-link-line" />
+                </div>
+                <div className="footer-link-wrap">
+                  <Link to="/terms" className="footer-link">
+                    Terms
+                  </Link>
                   <div className="footer-link-line" />
                 </div>
               </div>

@@ -14,20 +14,28 @@ export interface Product {
   outcomes: readonly string[];
 }
 
+const GLP1_PRODUCT: Product = {
+  slug: "glp-1-weight-loss",
+  brandName: "Lirosome",
+  name: "GLP-1 Weight Loss Program",
+  tag: "Weight loss · TIDL Pen",
+  description:
+    "Doctor-prescribed GLP-1 treatment with pre-dosed delivery. Personalized dosing based on your assessment.",
+  dosage: "Personalized weekly dose",
+  monthlyPrice: 299,
+  goal: "weight-loss",
+  image: SITE_IMAGES.products.penPrimary,
+  outcomes: ["Steady weight loss", "Reduced appetite", "Simple weekly routine"],
+};
+
+// Peptide products are generated from src/lib/peptides.ts. The import is placed
+// after the type/const above to avoid a circular-init issue (peptides.ts imports
+// the Product type only).
+import { PEPTIDE_DEFS, peptideToProduct } from "@/lib/peptides";
+
 export const PRODUCTS: Product[] = [
-  {
-    slug: "glp-1-weight-loss",
-    brandName: "Lirosome",
-    name: "GLP-1 Weight Loss Program",
-    tag: "Weight loss · TIDL Pen",
-    description:
-      "Doctor-prescribed GLP-1 treatment with pre-dosed delivery. Personalized dosing based on your assessment.",
-    dosage: "Personalized weekly dose",
-    monthlyPrice: 299,
-    goal: "weight-loss",
-    image: SITE_IMAGES.products.penPrimary,
-    outcomes: ["Steady weight loss", "Reduced appetite", "Simple weekly routine"],
-  },
+  GLP1_PRODUCT,
+  ...PEPTIDE_DEFS.map(peptideToProduct),
 ];
 
 const GOAL_FALLBACK: Record<GoalId, ProductSlug> = {

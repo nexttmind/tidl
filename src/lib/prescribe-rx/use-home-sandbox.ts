@@ -1,0 +1,147 @@
+import { useEffect, useState } from "react";
+import { fetchPrxEncounterTypes } from "@/lib/prescribe-rx/browse-api";
+import type { PrxEncounterTypeSummary } from "@/lib/prescribe-rx/encounter-schema";
+import { useLiveCatalog, type LiveProduct } from "@/lib/prescribe-rx/use-live-catalog";
+import { getPeptideDef } from "@/lib/peptides";
+import { PRODUCT_SLUGS, type ProductSlug } from "@/types/quiz";
+
+/** All marketed products on the homepage sandbox strip (11 — not the full catalog). */
+export const HOME_FEATURED_SLUGS: readonly ProductSlug[] = PRODUCT_SLUGS;
+
+/**
+ * Care pathways we surface on the landing page.
+ * Includes TRT / HRT / ED assessment routes present in the sandbox tenant.
+ */
+const HOME_ENCOUNTER_SLUGS = new Set([
+  "glp-1-screening",
+  "glp-1-re-assessment",
+  "peptide-assessment",
+  "peptide-reassessment",
+  "male-trt-consult",
+  "male-trt-reassessment",
+  "female-hrt",
+  "female-hrt-reassessment",
+  "mens-sexual-health-ed-assessment",
+]);
+
+let encounterCache: PrxEncounterTypeSummary[] | null = null;
+let encounterInflight: Promise<PrxEncounterTypeSummary[]> | null = null;
+
+async function loadHomeEncounters(): Promise<PrxEncounterTypeSummary[]> {
+  if (encounterCache) return encounterCache;
+  if (!encounterInflight) {
+    encounterInflight = fetchPrxEncounterTypes()
+      .then((list) => {
+        const rows = Array.isArray(list?.data) ? list.data : [];
+        encounterCache = rows.filter((e) => HOME_ENCOUNTER_SLUGS.has(e.slug));
+        return encounterCache;
+      })
+      .catch(() => {
+        encounterCache = [];
+        return encounterCache;
+      });
+  }
+  return encounterInflight;
+}
+
+export type HomeFeaturedPeptide = {
+  slug: ProductSlug;
+  live: LiveProduct;
+  hook: string;
+  outcomes: readonly string[];
+  goalLabel: string;
+};
+
+export type HomeSandboxData = {
+  loading: boolean;
+  featured: HomeFeaturedPeptide[];
+  encounters: PrxEncounterTypeSummary[];
+  catalogCount: number;
+  packageCount: number;
+};
+
+function goalLabel(goal: string): string {
+  switch (goal) {
+    case "weight-loss":
+      return "Weight loss";
+    case "recovery":
+      return "Recovery";
+    case "performance":
+      return "Performance";
+    case "longevity":
+      return "Longevity";
+    case "metabolic-health":
+      return "Metabolic health";
+    case "hormonal-health":
+      return "Hormonal health";
+    default:
+      return "Peptide care";
+  }
+}
+
+/**
+ * Landing-page sandbox fetch — same idea as the dynamic quiz:
+ * pull live catalog + encounter types, then map the marketed set.
+ */
+export function useHomeSandbox(): HomeSandboxData {
+  const { map, loading: catalogLoading, catalogTotal, packages } = useLiveCatalog();
+  const [encounters, setEncounters] = useState<PrxEncounterTypeSummary[]>([]);
+  const [encLoading, setEncLoading] = useState(true);
+
+  useEffect(() => {
+    if (encounterCache) {
+      setEncounters(encounterCache);
+      setEncLoading(false);
+      return;
+    }
+    let cancelled = false;
+    (async () => {
+      try {
+        setEncLoading(true);
+        const rows = await loadHomeEncounters();
+        if (cancelled) return;
+        setEncounters(rows);
+      } finally {
+        if (!cancelled) setEncLoading(false);
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const featured: HomeFeaturedPeptide[] = HOME_FEATURED_SLUGS.flatMap((slug) => {
+    const live = map[slug];
+    if (!live) return [];
+    const def = getPeptideDef(slug);
+    const hook =
+      def?.hook ??
+      (slug === "glp-1-weight-loss"
+        ? "Doctor-prescribed GLP-1, dispensed from the sandbox catalog."
+        : live.shortDescription ?? live.name);
+    const outcomes =
+      def?.outcomes ??
+      ([
+        live.handBox.formLabel,
+        live.handBox.strength,
+        live.handBox.productClass,
+      ] as const);
+    return [
+      {
+        slug,
+        live,
+        hook,
+        outcomes: [...outcomes].slice(0, 3),
+        goalLabel: goalLabel(def?.goal ?? "longevity"),
+      },
+    ];
+  });
+
+  return {
+    loading: catalogLoading || encLoading,
+    featured,
+    encounters,
+    catalogCount: catalogTotal,
+    packageCount: packages.length,
+  };
+}

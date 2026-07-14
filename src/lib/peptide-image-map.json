@@ -1,0 +1,68 @@
+{
+  "glp-1-weight-loss": {
+    "image": "/peptides/glp-1-weight-loss.png",
+    "catalogId": "019bc338-dfbc-731a-9f8a-c4ad3b05a2b4",
+    "catalogName": "Tirzepatide 17mg + B12 8.5mg/.05 mg/ml (2ML Vial 17mg)",
+    "source": "match"
+  },
+  "retatrutide": {
+    "image": "/peptides/retatrutide.png",
+    "catalogId": "019c7c87-5aed-7115-9a7e-448ca8064a4b",
+    "catalogName": "Reta 100mg (10mg/ml 10ml vial)",
+    "source": "match"
+  },
+  "bpc-157": {
+    "image": "/peptides/bpc-157.png",
+    "catalogId": "019c8815-5510-71ea-9d6e-dc6029aa4218",
+    "catalogName": "BPC-157 10mg (1mg/ml 10ml vial)",
+    "source": "match"
+  },
+  "tb-500": {
+    "image": "/peptides/tb-500.png",
+    "catalogId": "019cade3-6192-71fe-a49a-1f0bc8ddffe2",
+    "catalogName": "TB-500 10mg (1mg/ml) 10mg vial",
+    "source": "match"
+  },
+  "wolverine": {
+    "image": "/peptides/wolverine.png",
+    "catalogId": "019caddf-318b-715c-9bae-efb57963d332",
+    "catalogName": "Wolverine BPC-157 10mg TB-500 10mg 10ml",
+    "source": "match"
+  },
+  "cjc-1295-ipamorelin": {
+    "image": "/peptides/cjc-1295-ipamorelin.png",
+    "catalogId": "019cadec-6cf5-72ba-8faf-487b07eb5788",
+    "catalogName": "CJC-1295/Ipamorelin 1/1 mg/ml (10ML Vial)",
+    "source": "match"
+  },
+  "tesamorelin": {
+    "image": "/peptides/tesamorelin.png",
+    "catalogId": "019cadd9-8152-72ba-a4e4-a1114a8f77a8",
+    "catalogName": "Tesamorelin / Ipamorelin 12mg / 3mg 10ml",
+    "source": "match"
+  },
+  "mots-c": {
+    "image": "/peptides/mots-c.png",
+    "catalogId": "019c8834-50f5-72d3-a037-95dbb7adf082",
+    "catalogName": "MOTS-C 10mg (1mg/ml 10ml vial)",
+    "source": "match"
+  },
+  "nad-plus": {
+    "image": "/peptides/nad-plus.png",
+    "catalogId": "019c882f-1f93-727d-ad98-2c503329f3db",
+    "catalogName": "NAD+ 1000mg (100mg/ml 10ml vial)",
+    "source": "match"
+  },
+  "ghk-cu": {
+    "image": "/peptides/ghk-cu.png",
+    "catalogId": "019c883d-6fd6-70e0-b415-144212c2cbe8",
+    "catalogName": "GHK-Cu 50mg (5mg/ml 10ml vial)",
+    "source": "match"
+  },
+  "sermorelin": {
+    "image": "/peptides/sermorelin.png",
+    "catalogId": "019bc3b4-af90-7289-885e-231d4c322b14",
+    "catalogName": "Sermorelin (10mg total) 2mg/ml (5ml vial)",
+    "source": "match"
+  }
+}

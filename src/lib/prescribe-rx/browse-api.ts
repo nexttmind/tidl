@@ -70,6 +70,10 @@ export type PrxCatalogProduct = {
   pricing: PrxCatalogPricing;
   /** Customer-facing price in dollars (consumer → retail → base price). */
   price: number | null;
+  retailPrice: number | null;
+  wholesalePrice: number | null;
+  consumerPrice: number | null;
+  priceType: string | null;
 };
 
 type RawCatalogProduct = {
@@ -88,8 +92,11 @@ type RawCatalogProduct = {
 
 function normalizeCatalogProduct(raw: RawCatalogProduct): PrxCatalogProduct {
   const pricing = raw.pricing ?? {};
-  const price =
-    pricing.consumer_price ?? pricing.retail_price ?? pricing.price ?? null;
+  const consumerPrice = pricing.consumer_price ?? null;
+  const retailPrice = pricing.retail_price ?? null;
+  const wholesalePrice = pricing.wholesale_price ?? null;
+  const basePrice = pricing.price ?? null;
+  const price = consumerPrice ?? retailPrice ?? basePrice;
   return {
     id: raw.id,
     name: raw.name,
@@ -103,23 +110,78 @@ function normalizeCatalogProduct(raw: RawCatalogProduct): PrxCatalogProduct {
     productTypeId: raw.product_type_id ?? null,
     pricing,
     price,
+    retailPrice,
+    wholesalePrice,
+    consumerPrice,
+    priceType: pricing.price_type ?? null,
   };
 }
+
+export type PrxCatalogPackage = {
+  id: string;
+  name: string;
+  description: string | null;
+  sku: string | null;
+  isActive: boolean;
+};
+
+export type PrxCatalogSnapshot = {
+  products: PrxCatalogProduct[];
+  packages: PrxCatalogPackage[];
+  productCount: number;
+  packageCount: number;
+};
+
+type RawCatalogPackage = {
+  id?: string;
+  name?: string;
+  description?: string | null;
+  sku?: string | null;
+  is_active?: boolean;
+};
 
 /**
  * Normalized, customer-facing catalog products from the sandbox.
  * This is the data layer for future product/PDP pages — each item carries a
  * resolved `price` (consumer → retail → base) and a (time-limited) image URL.
  */
-export async function fetchPrxCatalogProducts(): Promise<PrxCatalogProduct[]> {
+export async function fetchPrxCatalogSnapshot(): Promise<PrxCatalogSnapshot> {
   const raw = await fetchPrxCatalog();
   // Envelope: { success, data: { scope, products, packages }, meta }
   const container =
     raw && typeof raw === "object" && "data" in raw
-      ? (raw as { data?: { products?: RawCatalogProduct[] } }).data
+      ? (raw as {
+          data?: {
+            products?: RawCatalogProduct[];
+            packages?: RawCatalogPackage[];
+          };
+        }).data
       : undefined;
-  const products = container?.products ?? [];
-  return products.filter((p) => p && p.id && p.name).map(normalizeCatalogProduct);
+  const products = (container?.products ?? [])
+    .filter((p) => p && p.id && p.name)
+    .map(normalizeCatalogProduct);
+  const packages = (container?.packages ?? [])
+    .filter((p): p is RawCatalogPackage & { id: string; name: string } =>
+      Boolean(p?.id && p?.name),
+    )
+    .map((p) => ({
+      id: p.id,
+      name: p.name,
+      description: p.description ?? null,
+      sku: p.sku ?? null,
+      isActive: p.is_active !== false,
+    }));
+  return {
+    products,
+    packages,
+    productCount: products.length,
+    packageCount: packages.length,
+  };
+}
+
+export async function fetchPrxCatalogProducts(): Promise<PrxCatalogProduct[]> {
+  const snap = await fetchPrxCatalogSnapshot();
+  return snap.products;
 }
 
 export type PrxCheckoutRequest = {
@@ -132,6 +194,8 @@ export type PrxCheckoutRequest = {
     dosage: string;
     goal: import("@/types/quiz").GoalId | null;
   };
+  /** Government ID front image as a data URL (required for peptide assessments). */
+  idFront?: string;
 };
 
 export type PrxCheckoutResult = {

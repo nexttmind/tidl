@@ -74,7 +74,7 @@ export const CATEGORIES: Record<CategorySlug, CategoryDefinition> = {
     extendedLead:
       "GLP-1 medications work with your body's natural signals to reduce appetite and support sustainable weight loss. At TIDL, every plan is physician-guided: a licensed provider reviews your full health history, prescribes only when appropriate, and ships your dose pre-set in the TIDL Pen so you never mix or measure at home.",
     heroImage: SITE_IMAGES.services.weightLoss,
-    productSlugs: ["glp-1-weight-loss"],
+    productSlugs: ["glp-1-weight-loss", "retatrutide"],
     pillars: [
       {
         title: "Physician-guided GLP-1",
@@ -342,7 +342,7 @@ export const CATEGORIES: Record<CategorySlug, CategoryDefinition> = {
     extendedLead:
       "Longevity care at TIDL is physician-supervised, not supplement-store guesswork. Whether you need recovery support after training or metabolic protocols for long-term health, a licensed provider reviews your goals and prescribes only when appropriate.",
     heroImage: SITE_IMAGES.services.longevity,
-    productSlugs: [],
+    productSlugs: ["nad-plus", "ghk-cu", "sermorelin"],
     pillars: [
       {
         title: "Peptide protocols",
@@ -491,7 +491,7 @@ export const CATEGORIES: Record<CategorySlug, CategoryDefinition> = {
     extendedLead:
       "Metabolic health sits at the center of weight, energy, and long-term wellness. TIDL connects you with a licensed provider who reviews your intake and recommends treatment only when medically appropriate.",
     heroImage: SITE_IMAGES.services.weightLoss,
-    productSlugs: [],
+    productSlugs: ["mots-c"],
     pillars: [
       {
         title: "Provider-first protocols",
@@ -588,7 +588,7 @@ export const CATEGORIES: Record<CategorySlug, CategoryDefinition> = {
     extendedLead:
       "Performance care at TIDL is physician-supervised. A licensed provider reviews your goals and history, then recommends treatment only when it is medically appropriate for you.",
     heroImage: SITE_IMAGES.services.testosterone,
-    productSlugs: [],
+    productSlugs: ["cjc-1295-ipamorelin", "tesamorelin"],
     pillars: [
       {
         title: "Legitimate medical path",
@@ -685,7 +685,7 @@ export const CATEGORIES: Record<CategorySlug, CategoryDefinition> = {
     extendedLead:
       "Recovery is where progress sticks. TIDL recovery care starts with your intake, continues with licensed provider review, and ships only when a prescription is medically appropriate.",
     heroImage: SITE_IMAGES.services.longevity,
-    productSlugs: [],
+    productSlugs: ["bpc-157", "tb-500", "wolverine"],
     pillars: [
       {
         title: "Sleep and repair focus",

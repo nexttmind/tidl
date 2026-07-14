@@ -4,8 +4,8 @@ import {
   useMotionValue,
   useSpring,
   useTransform,
-  type MouseEvent,
 } from "framer-motion";
+import type { MouseEvent } from "react";
 import type { CatalogProduct } from "@/lib/product-catalog";
 import { formatCurrency } from "@/lib/pricing";
 import { PRODUCT_PATHS } from "@/lib/product-catalog";
@@ -17,6 +17,16 @@ type CategoryProductCardProps = {
   price: number;
   index: number;
   onStartIntake: (slug: ProductSlug) => void;
+  /** Live sandbox overlays when available. */
+  sandbox?: {
+    catalogName?: string | null;
+    sku?: string | null;
+    shortDescription?: string | null;
+    strength?: string | null;
+    formLabel?: string | null;
+    sandboxPrice?: number | null;
+    variantCount?: number;
+  };
 };
 
 function EyeIcon() {
@@ -36,7 +46,13 @@ function ArrowIcon() {
   );
 }
 
-export function CategoryProductCard({ product, price, index, onStartIntake }: CategoryProductCardProps) {
+export function CategoryProductCard({
+  product,
+  price,
+  index,
+  onStartIntake,
+  sandbox,
+}: CategoryProductCardProps) {
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
   const sx = useSpring(mx, { stiffness: 180, damping: 22 });
@@ -56,6 +72,9 @@ export function CategoryProductCard({ product, price, index, onStartIntake }: Ca
     my.set(0);
   }
 
+  const displayName = sandbox?.catalogName?.trim() || product.shortName;
+  const summary = sandbox?.shortDescription?.trim() || product.summary;
+
   return (
     <motion.article
       className={`cat-product-card cat-product-card--${product.form}`}
@@ -70,7 +89,11 @@ export function CategoryProductCard({ product, price, index, onStartIntake }: Ca
     >
       <div className="cat-product-card-glow" aria-hidden="true" />
       <span className={`cat-form-badge cat-form-badge--${product.form}`}>
-        {product.form === "pen" ? "TIDL Pen" : "Prescription protocol"}
+        {product.form === "pen"
+          ? "TIDL Pen"
+          : product.form === "vial"
+            ? "Peptide vial"
+            : "Prescription protocol"}
       </span>
 
       <div className="cat-product-actions-float" aria-label="Quick actions">
@@ -97,9 +120,15 @@ export function CategoryProductCard({ product, price, index, onStartIntake }: Ca
 
       <div className="cat-product-copy">
         <p className="cat-product-eyebrow">{product.headline}</p>
-        <h3 className="cat-product-name">{product.shortName}</h3>
-        <p className="cat-product-summary">{product.summary}</p>
+        <h3 className="cat-product-name">{displayName}</h3>
+        {sandbox?.sku ? <p className="cat-product-sku">SKU {sandbox.sku}</p> : null}
+        <p className="cat-product-summary">{summary}</p>
         <ul className="cat-product-highlights">
+          {sandbox?.strength ? <li>{sandbox.strength}</li> : null}
+          {sandbox?.formLabel ? <li>{sandbox.formLabel}</li> : null}
+          {(sandbox?.variantCount ?? 0) > 1 ? (
+            <li>{sandbox!.variantCount} sandbox SKU variants</li>
+          ) : null}
           {product.highlights.map((highlight) => (
             <li key={highlight}>{highlight}</li>
           ))}
@@ -108,6 +137,11 @@ export function CategoryProductCard({ product, price, index, onStartIntake }: Ca
           From {formatCurrency(price)}
           <span>/month</span>
         </p>
+        {sandbox?.sandboxPrice != null ? (
+          <p className="cat-product-sandbox-price">
+            Sandbox catalog: {formatCurrency(sandbox.sandboxPrice)}
+          </p>
+        ) : null}
       </div>
 
       <div className="cat-product-actions">

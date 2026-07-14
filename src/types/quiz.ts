@@ -13,7 +13,19 @@ export const GOAL_IDS = [
 
 export type GoalId = (typeof GOAL_IDS)[number];
 
-export const PRODUCT_SLUGS = ["glp-1-weight-loss"] as const;
+export const PRODUCT_SLUGS = [
+  "glp-1-weight-loss",
+  "retatrutide",
+  "bpc-157",
+  "tb-500",
+  "wolverine",
+  "cjc-1295-ipamorelin",
+  "tesamorelin",
+  "mots-c",
+  "nad-plus",
+  "ghk-cu",
+  "sermorelin",
+] as const;
 
 export type ProductSlug = (typeof PRODUCT_SLUGS)[number];
 

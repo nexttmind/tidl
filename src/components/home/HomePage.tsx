@@ -7,6 +7,8 @@ import { useSiteHeaderState } from '@/hooks/useSiteHeaderState';
 import './home.css';
 import { CtaSection } from './cta/CtaSection';
 import { ServicesSection } from './ServicesSection';
+import { BrowseDirectorySection } from './BrowseDirectorySection';
+import { SandboxPeptidesSection } from './SandboxPeptidesSection';
 import { StoriesSection } from './StoriesSection';
 import { JourneySection } from './JourneySection';
 import { AskTidlSection, type AskTidlSectionHandle } from './AskTidlSection';
@@ -14,6 +16,9 @@ import { SiteFooter } from '@/components/layout/SiteFooter';
 import { SITE_IMAGES } from '@/lib/site-assets';
 import { GLP1_PEN_SHOWCASE } from '@/components/pdp/data/pen-showcase-content';
 import { HERO_COPY } from '@/lib/homepage-content';
+import { useHomeSandbox } from '@/lib/prescribe-rx/use-home-sandbox';
+import { isSandboxPlaceholderPrice } from '@/lib/prescribe-rx/use-live-catalog';
+import { formatCurrency } from '@/lib/pricing';
 
 interface FaqItem {
   id: number;
@@ -102,6 +107,8 @@ export default function HomePage() {
 
   const homeNavLinks = [
     { href: '#services', label: 'Treatments' },
+    { href: '#browse', label: 'Categories' },
+    { href: '#sandbox-peptides', label: 'Peptides' },
     { href: '#tdlp5', label: 'The Pen' },
     { href: '#askTidl', label: 'Ask TIDL' },
     { href: '#journey', label: 'About' },
@@ -109,6 +116,16 @@ export default function HomePage() {
     { href: '#faq', label: 'FAQ' },
     { to: '/products/glp-1-weight-loss', label: 'GLP-1 Program' },
   ];
+
+  const { featured: homeFeatured } = useHomeSandbox();
+  const liveGlpPrice = homeFeatured.find((p) => p.slug === 'glp-1-weight-loss')?.live.price;
+  const heroSubhead =
+    liveGlpPrice != null && !isSandboxPlaceholderPrice(liveGlpPrice)
+      ? HERO_COPY.subhead.replace(
+          /Plans start at [^.]+\./,
+          `Plans start at ${formatCurrency(liveGlpPrice)}/mo (sandbox catalog).`,
+        )
+      : HERO_COPY.subhead;
 
   useEffect(() => {
     if (!mobileNavOpen) return;
@@ -246,20 +263,20 @@ export default function HomePage() {
   return (
     <div className="body">
       <div className="site-chrome-stage">
-        <div className="tdl-bar" id="tdlBar" style={{ display: 'block', visibility: 'visible', opacity: 1 }}>
-          <div className="tdl-bar-inner">
-            <span className="tdl-msg">TIDL is now a telehealth platform. Care that delivers results.</span>
-            <a className="tdl-link" href="#journey">
-              Learn more
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="24" height="24">
-                <path d="M5 12h14M13 6l6 6-6 6"/>
-              </svg>
-            </a>
-          </div>
+      <div className="tdl-bar" id="tdlBar" style={{ display: 'block', visibility: 'visible', opacity: 1 }}>
+        <div className="tdl-bar-inner">
+          <span className="tdl-msg">TIDL is now a telehealth platform. Care that delivers results.</span>
+          <a className="tdl-link" href="#journey">
+            Learn more
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="24" height="24">
+              <path d="M5 12h14M13 6l6 6-6 6"/>
+            </svg>
+          </a>
         </div>
+      </div>
 
-        <div className="page-wrapper">
-          <div className="main-wrapper">
+      <div className="page-wrapper">
+        <div className="main-wrapper">
             <div className="hero-wrapper-01" data-site-header-theme="dark">
               <SiteHeader
                 navLinks={homeNavLinks}
@@ -304,7 +321,7 @@ export default function HomePage() {
                       }}
                       suppressHydrationWarning
                     >
-                      {HERO_COPY.subhead}
+                      {heroSubhead}
                     </div>
                     <div 
                       data-w-id="3072fecc-9b21-d07c-8a0f-122ed0f21145"
@@ -351,14 +368,18 @@ export default function HomePage() {
             className="service-v1-overlay"
           />
         </div>
-          </div>
-        </div>
-      </div>
+                    </div>
+                  </div>
+                </div>
 
       <div className="page-wrapper">
         <div className="main-wrapper">
 
         <ServicesSection />
+
+        <BrowseDirectorySection />
+
+        <SandboxPeptidesSection />
 
         {/* ===== TIDL Pen Section ===== */}
         <section className="tdlp5-sec" id="tdlp5" data-site-header-theme="dark">
@@ -400,19 +421,19 @@ export default function HomePage() {
                     alt="The TIDL Pen"
                   />
                   {GLP1_PEN_SHOWCASE.videoEmbedUrl ? (
-                    <button
-                      type="button"
-                      className="tdlp5-play"
-                      aria-label="Play how to use the pen video"
-                      onClick={() => setIsPenVideoOpen(true)}
-                    >
-                      <span className="tdlp5-play-icon" aria-hidden="true">
-                        <svg viewBox="0 0 24 24" fill="currentColor">
-                          <path d="M8.5 6.8a1 1 0 0 1 1.5-.86l8.2 5.2a1 1 0 0 1 0 1.72l-8.2 5.2A1 1 0 0 1 8.5 17.2V6.8Z" />
-                        </svg>
-                      </span>
-                      <span className="tdlp5-play-label">See how to use the pen</span>
-                    </button>
+                  <button
+                    type="button"
+                    className="tdlp5-play"
+                    aria-label="Play how to use the pen video"
+                    onClick={() => setIsPenVideoOpen(true)}
+                  >
+                    <span className="tdlp5-play-icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M8.5 6.8a1 1 0 0 1 1.5-.86l8.2 5.2a1 1 0 0 1 0 1.72l-8.2 5.2A1 1 0 0 1 8.5 17.2V6.8Z" />
+                      </svg>
+                    </span>
+                    <span className="tdlp5-play-label">See how to use the pen</span>
+                  </button>
                   ) : null}
                 </div>
               </div>
@@ -438,8 +459,8 @@ export default function HomePage() {
                 <div className="button-inside">
                   <div className="button-text-01">See If You Qualify</div>
                   <div className="button-text-01">See If You Qualify</div>
-                </div>
-              </div>
+            </div>
+            </div>
             </a>
           </div>
 
@@ -466,12 +487,12 @@ export default function HomePage() {
               <iframe
                 src={GLP1_PEN_SHOWCASE.videoEmbedUrl}
                 title={GLP1_PEN_SHOWCASE.videoTitle ?? 'How to use the TIDL Pen'}
-                loading="lazy"
+                        loading="lazy"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
-              />
-            </div>
-          </div>
+                      />
+                        </div>
+                      </div>
         ) : null}
 
         <AskTidlSection ref={askTidlRef} />
