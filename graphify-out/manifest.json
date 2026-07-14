@@ -1,1314 +1,1677 @@
 {
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\eslint.config.js": {
+  "eslint.config.js": {
     "mtime": 1783377478.3418686,
-    "hash": "345bdd57e188e0e4525edcd00e5003f5"
+    "ast_hash": "345bdd57e188e0e4525edcd00e5003f5",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\vite.config.ts": {
+  "vite.config.ts": {
     "mtime": 1783642215.3481631,
-    "hash": "f575adbecf9c6333f58e79c87db19c7f"
+    "ast_hash": "f575adbecf9c6333f58e79c87db19c7f",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\scripts\\make_peptide_before_after.py": {
+  "scripts/make_peptide_before_after.py": {
     "mtime": 1783989980.534132,
-    "hash": "8f129da94d444bcacff7fd4454512f68"
+    "ast_hash": "8f129da94d444bcacff7fd4454512f68",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\scripts\\prepare_peptide_images.py": {
+  "scripts/prepare_peptide_images.py": {
     "mtime": 1783989980.534132,
-    "hash": "0690d5c4390567bf8d9e4fb2ec1d9ed1"
+    "ast_hash": "0690d5c4390567bf8d9e4fb2ec1d9ed1",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\router.tsx": {
+  "src/router.tsx": {
     "mtime": 1783377478.5157013,
-    "hash": "8f905e713b0eba7fa8148b7995a708c9"
+    "ast_hash": "8f905e713b0eba7fa8148b7995a708c9",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\routeTree.gen.ts": {
-    "mtime": 1783989983.9329586,
-    "hash": "8b3b7aa97c5aaca62665d84df360aebd"
+  "src/routeTree.gen.ts": {
+    "mtime": 1784024043.8691938,
+    "ast_hash": "8b3b7aa97c5aaca62665d84df360aebd",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\server.ts": {
+  "src/server.ts": {
     "mtime": 1783377478.5470543,
-    "hash": "c7bbc49bb70e318af618d92775ee0f27"
+    "ast_hash": "c7bbc49bb70e318af618d92775ee0f27",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\start.ts": {
+  "src/start.ts": {
     "mtime": 1783377478.5600462,
-    "hash": "dc15eda4f935f0db8392d02ab93cbce4"
+    "ast_hash": "dc15eda4f935f0db8392d02ab93cbce4",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\vite-env.d.ts": {
+  "src/vite-env.d.ts": {
     "mtime": 1783642215.3461542,
-    "hash": "00b7979dbd8cb8748f5f73debebce275"
+    "ast_hash": "00b7979dbd8cb8748f5f73debebce275",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\account\\PrxActivityCard.tsx": {
+  "src/components/account/PrxActivityCard.tsx": {
     "mtime": 1783973590.6335394,
-    "hash": "e8a3bbbd08797a14b7a700c3f115c484"
+    "ast_hash": "e8a3bbbd08797a14b7a700c3f115c484",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\age-gate\\AgeGate.tsx": {
+  "src/components/age-gate/AgeGate.tsx": {
     "mtime": 1783463487.5455506,
-    "hash": "07f0265c70c0a0261ea11ac43b7c0519"
+    "ast_hash": "07f0265c70c0a0261ea11ac43b7c0519",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\auth\\AuthBrandPanel.tsx": {
+  "src/components/auth/AuthBrandPanel.tsx": {
     "mtime": 1783724627.6559386,
-    "hash": "2f386f0788227238116d041ef87176c8"
+    "ast_hash": "2f386f0788227238116d041ef87176c8",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\auth\\AuthPage.tsx": {
+  "src/components/auth/AuthPage.tsx": {
     "mtime": 1783723936.434717,
-    "hash": "f5f8e7b2f3c8a9cc24b7930cb42696b9"
+    "ast_hash": "f5f8e7b2f3c8a9cc24b7930cb42696b9",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\brand\\PatientAvatar.tsx": {
+  "src/components/brand/PatientAvatar.tsx": {
     "mtime": 1783532923.9507732,
-    "hash": "e4c29105834b288dfb35d21e38cc87ac"
+    "ast_hash": "e4c29105834b288dfb35d21e38cc87ac",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\brand\\TidlWordmark.tsx": {
+  "src/components/brand/TidlWordmark.tsx": {
     "mtime": 1783532119.2809284,
-    "hash": "962c54b5dd0f3c246649471c33c7ceee"
+    "ast_hash": "962c54b5dd0f3c246649471c33c7ceee",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\category\\category-motion.ts": {
+  "src/components/category/category-motion.ts": {
     "mtime": 1783685838.0743704,
-    "hash": "9a8001880a7a6e5c8501cece34fff4b2"
+    "ast_hash": "9a8001880a7a6e5c8501cece34fff4b2",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\category\\CategoryAmbient.tsx": {
+  "src/components/category/CategoryAmbient.tsx": {
     "mtime": 1783685838.1470673,
-    "hash": "2fade3189086662faf0a6f1d37db0ab7"
+    "ast_hash": "2fade3189086662faf0a6f1d37db0ab7",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\category\\CategoryBundle.tsx": {
+  "src/components/category/CategoryBundle.tsx": {
     "mtime": 1783981290.203531,
-    "hash": "f1e45bb72589ba528e1a8c5087f89318"
+    "ast_hash": "f1e45bb72589ba528e1a8c5087f89318",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\category\\CategoryHero.tsx": {
+  "src/components/category/CategoryHero.tsx": {
     "mtime": 1783685838.2720833,
-    "hash": "3b843242252bb05acbc8b40c15d0806a"
+    "ast_hash": "3b843242252bb05acbc8b40c15d0806a",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\category\\CategoryPage.tsx": {
+  "src/components/category/CategoryPage.tsx": {
     "mtime": 1783989980.5468957,
-    "hash": "45b95fbc94aea0963396b4fda308509c"
+    "ast_hash": "45b95fbc94aea0963396b4fda308509c",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\category\\CategoryPenProgram.tsx": {
+  "src/components/category/CategoryPenProgram.tsx": {
     "mtime": 1783685838.582411,
-    "hash": "7e9dd16481f8ff902c9edcb63931ed99"
+    "ast_hash": "7e9dd16481f8ff902c9edcb63931ed99",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\category\\CategoryProductCard.tsx": {
+  "src/components/category/CategoryProductCard.tsx": {
     "mtime": 1783989980.5509176,
-    "hash": "9b263ae07e24a52694697031ae09a41c"
+    "ast_hash": "9b263ae07e24a52694697031ae09a41c",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\checkout\\CheckoutForm.tsx": {
-    "mtime": 1783989980.560984,
-    "hash": "ab804d2e431f00d70ccf7c8ca05d8108"
+  "src/components/checkout/CheckoutForm.tsx": {
+    "mtime": 1784042500.5653384,
+    "ast_hash": "aba4500a4b3f7e2a4d8a2c5452b9ba37",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\checkout\\CheckoutLayout.tsx": {
+  "src/components/checkout/CheckoutLayout.tsx": {
     "mtime": 1783620338.8206327,
-    "hash": "09dc4fad67148369086379bed68623c3"
+    "ast_hash": "09dc4fad67148369086379bed68623c3",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\checkout\\OrderSummary.tsx": {
-    "mtime": 1783989980.5650156,
-    "hash": "139cc00221fc5ea5e56562af898a5e02"
+  "src/components/checkout/OrderSummary.tsx": {
+    "mtime": 1784042500.5653384,
+    "ast_hash": "ef8abb49d0212fcde0f501a1639f777a",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\checkout\\StatusTimeline.tsx": {
+  "src/components/checkout/StatusTimeline.tsx": {
     "mtime": 1783642215.2865021,
-    "hash": "ee36a6cdca80622a9751d04b16857dd7"
+    "ast_hash": "ee36a6cdca80622a9751d04b16857dd7",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\home\\AskTidlSection.tsx": {
-    "mtime": 1783989582.6401086,
-    "hash": "204d7aaae8dc178723534b62e3d3dbb1"
+  "src/components/home/AskTidlSection.tsx": {
+    "mtime": 1784039106.658549,
+    "ast_hash": "3ad3571977d95608d89e552cc7b78eb8",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\home\\BrowseDirectorySection.tsx": {
+  "src/components/home/BrowseDirectorySection.tsx": {
     "mtime": 1783989980.5670252,
-    "hash": "49bf8f7770c698b8021d01f7bc8e115c"
+    "ast_hash": "49bf8f7770c698b8021d01f7bc8e115c",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\home\\HomePage.tsx": {
-    "mtime": 1783989980.5707858,
-    "hash": "3275c320bf5e591bf751383d0da1345a"
+  "src/components/home/HomePage.tsx": {
+    "mtime": 1784042500.5754063,
+    "ast_hash": "b96ff35433d823eb45997ca2c6f846eb",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\home\\JourneySection.tsx": {
-    "mtime": 1783642215.4928236,
-    "hash": "2d37635a25d38fb7eab79eb7532322fc"
+  "src/components/home/JourneySection.tsx": {
+    "mtime": 1784037602.7548242,
+    "ast_hash": "5279a59a6ca3fc164d72eea3c2954b5f",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\home\\SandboxPeptidesSection.tsx": {
-    "mtime": 1783989980.572144,
-    "hash": "08ceca2802f538a7d16e7947d04fac61"
+  "src/components/home/SandboxPeptidesSection.tsx": {
+    "mtime": 1784042500.5774257,
+    "ast_hash": "5fbbf3a5ea6f878b3815014f48aa245f",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\home\\ServicesClosing.tsx": {
-    "mtime": 1783642215.4928236,
-    "hash": "7cbf8e3319c3f3581b98e66fca903998"
+  "src/components/home/ServicesClosing.tsx": {
+    "mtime": 1784037596.4951365,
+    "ast_hash": "1dfaf6e3b338a8df3bda92e89a17357c",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\home\\ServicesSection.tsx": {
-    "mtime": 1783642215.4956107,
-    "hash": "83ba29da31d8b22a44a8563567fe3e4d"
+  "src/components/home/ServicesSection.tsx": {
+    "mtime": 1784040179.1420918,
+    "ast_hash": "84b403709f19b156d52ae0e71199fd0c",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\home\\StoriesSection.tsx": {
-    "mtime": 1783989061.3551662,
-    "hash": "c558b6fbd5bef79df1b13436d31ea934"
+  "src/components/home/StoriesSection.tsx": {
+    "mtime": 1784034826.922149,
+    "ast_hash": "4415e1dce4588507fcaf6b03cff673f6",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\home\\cta\\ContourField.tsx": {
+  "src/components/home/cta/ContourField.tsx": {
     "mtime": 1783512239.585607,
-    "hash": "ab8b4da9a67f08fb70b4d1cd485b1972"
+    "ast_hash": "ab8b4da9a67f08fb70b4d1cd485b1972",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\home\\cta\\CtaSection.tsx": {
+  "src/components/home/cta/CtaSection.tsx": {
     "mtime": 1783642215.4996328,
-    "hash": "e76b209fbb5d4a090426f1947f507801"
+    "ast_hash": "e76b209fbb5d4a090426f1947f507801",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\home\\cta\\icons.tsx": {
+  "src/components/home/cta/icons.tsx": {
     "mtime": 1783512239.5507753,
-    "hash": "93d53a9a80d969466a165ebe22de76d4"
+    "ast_hash": "93d53a9a80d969466a165ebe22de76d4",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\home\\how-it-works\\ContourMap.tsx": {
+  "src/components/home/how-it-works/ContourMap.tsx": {
     "mtime": 1783527661.6464112,
-    "hash": "1d30a2e34c8fea32a483f6efe66b181d"
+    "ast_hash": "1d30a2e34c8fea32a483f6efe66b181d",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\home\\how-it-works\\data.ts": {
+  "src/components/home/how-it-works/data.ts": {
     "mtime": 1783620338.842068,
-    "hash": "d2cfb79b7a40f556ae284c64f9c434bb"
+    "ast_hash": "d2cfb79b7a40f556ae284c64f9c434bb",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\home\\how-it-works\\HowItWorksSection.tsx": {
+  "src/components/home/how-it-works/HowItWorksSection.tsx": {
     "mtime": 1783620338.837001,
-    "hash": "a44aabfcb60917d20827e331b50ee6e2"
+    "ast_hash": "a44aabfcb60917d20827e331b50ee6e2",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\home\\how-it-works\\icons.tsx": {
+  "src/components/home/how-it-works/icons.tsx": {
     "mtime": 1783512239.7786143,
-    "hash": "116e970dba2b99ebf1ad98e7cfb893f2"
+    "ast_hash": "116e970dba2b99ebf1ad98e7cfb893f2",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\layout\\FunnelPageShell.tsx": {
+  "src/components/layout/FunnelPageShell.tsx": {
     "mtime": 1783620338.845166,
-    "hash": "14a560dd6e4dccf31d91acaaf6700f05"
+    "ast_hash": "14a560dd6e4dccf31d91acaaf6700f05",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\layout\\site-nav.ts": {
+  "src/components/layout/site-nav.ts": {
     "mtime": 1783620338.845166,
-    "hash": "302cdc1a4e3ce52722e226cc0dbf80b4"
+    "ast_hash": "302cdc1a4e3ce52722e226cc0dbf80b4",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\layout\\SiteFooter.tsx": {
+  "src/components/layout/SiteFooter.tsx": {
     "mtime": 1783989980.584519,
-    "hash": "0510ebc0ecfe1e273ca19062f026481f"
+    "ast_hash": "0510ebc0ecfe1e273ca19062f026481f",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\layout\\SiteHeader.tsx": {
+  "src/components/layout/SiteHeader.tsx": {
     "mtime": 1783981252.0974748,
-    "hash": "c8f1d2206abf1691ebe220a110f6e2fc"
+    "ast_hash": "c8f1d2206abf1691ebe220a110f6e2fc",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\lenis\\LenisScroll.tsx": {
+  "src/components/lenis/LenisScroll.tsx": {
     "mtime": 1783528099.2751458,
-    "hash": "08950e7ed1b6eca9e30e4d3cb047bca9"
+    "ast_hash": "08950e7ed1b6eca9e30e4d3cb047bca9",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\pdp\\Glp1PdpPage.tsx": {
+  "src/components/pdp/Glp1PdpPage.tsx": {
     "mtime": 1783620338.845166,
-    "hash": "14032d77585b27d0496b55dd0346b3ce"
+    "ast_hash": "14032d77585b27d0496b55dd0346b3ce",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\pdp\\pdp-ui.tsx": {
+  "src/components/pdp/pdp-ui.tsx": {
     "mtime": 1783527661.6691341,
-    "hash": "a704fc18be0ec2c40909600b332411d3"
+    "ast_hash": "a704fc18be0ec2c40909600b332411d3",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\pdp\\PdpBeforeAfterSection.tsx": {
+  "src/components/pdp/PdpBeforeAfterSection.tsx": {
     "mtime": 1783989061.0837939,
-    "hash": "2b25f2d663a12750de8ceeecee349615"
+    "ast_hash": "2b25f2d663a12750de8ceeecee349615",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\pdp\\PdpCtaBand.tsx": {
+  "src/components/pdp/PdpCtaBand.tsx": {
     "mtime": 1783620338.8533359,
-    "hash": "5397c7cc4eba635e4040f37da61fa085"
+    "ast_hash": "5397c7cc4eba635e4040f37da61fa085",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\pdp\\PdpDataProvider.tsx": {
+  "src/components/pdp/PdpDataProvider.tsx": {
     "mtime": 1783620338.8533359,
-    "hash": "5deb59ca42077efddb8f12363016093d"
+    "ast_hash": "5deb59ca42077efddb8f12363016093d",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\pdp\\PdpFaqSection.tsx": {
+  "src/components/pdp/PdpFaqSection.tsx": {
     "mtime": 1783620338.8533359,
-    "hash": "8e8ae5221ec11bc4babf54927229e72f"
+    "ast_hash": "8e8ae5221ec11bc4babf54927229e72f",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\pdp\\PdpHeader.tsx": {
+  "src/components/pdp/PdpHeader.tsx": {
     "mtime": 1783620338.8533359,
-    "hash": "42e1bde90b98f28bae5f2618c80ea6da"
+    "ast_hash": "42e1bde90b98f28bae5f2618c80ea6da",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\pdp\\PdpHeroSection.tsx": {
+  "src/components/pdp/PdpHeroSection.tsx": {
     "mtime": 1783990040.4183476,
-    "hash": "3b8a44d4b1bd9d7b2d885e03c9a3aa22"
+    "ast_hash": "3b8a44d4b1bd9d7b2d885e03c9a3aa22",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\pdp\\PdpIncludedSection.tsx": {
+  "src/components/pdp/PdpIncludedSection.tsx": {
     "mtime": 1783986070.5007522,
-    "hash": "76f40d0cdac03062ae59ca914daa5871"
+    "ast_hash": "76f40d0cdac03062ae59ca914daa5871",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\pdp\\PdpOutcomeSection.tsx": {
+  "src/components/pdp/PdpOutcomeSection.tsx": {
     "mtime": 1783788619.7232885,
-    "hash": "34e3c9a8cc3e6f426a0b0d12fb34c203"
+    "ast_hash": "34e3c9a8cc3e6f426a0b0d12fb34c203",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\pdp\\PdpReviewsSection.tsx": {
+  "src/components/pdp/PdpReviewsSection.tsx": {
     "mtime": 1783989060.9200983,
-    "hash": "a0685d48cc93bdcd550b7698e3a8f52d"
+    "ast_hash": "a0685d48cc93bdcd550b7698e3a8f52d",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\pdp\\PdpSafetySection.tsx": {
+  "src/components/pdp/PdpSafetySection.tsx": {
     "mtime": 1783620338.8533359,
-    "hash": "e186857e6d994bcc665ae9029cc9aa15"
+    "ast_hash": "e186857e6d994bcc665ae9029cc9aa15",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\pdp\\PdpSandboxFactsSection.tsx": {
+  "src/components/pdp/PdpSandboxFactsSection.tsx": {
     "mtime": 1783989980.602667,
-    "hash": "183311b7798419ea6378c83fcbf6e195"
+    "ast_hash": "183311b7798419ea6378c83fcbf6e195",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\pdp\\PdpTransformationSection.tsx": {
+  "src/components/pdp/PdpTransformationSection.tsx": {
     "mtime": 1783989980.6046772,
-    "hash": "4ce10380819a1f089142844f42255ac2"
+    "ast_hash": "4ce10380819a1f089142844f42255ac2",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\pdp\\PdpVerticalTimeline.tsx": {
+  "src/components/pdp/PdpVerticalTimeline.tsx": {
     "mtime": 1783620338.8533359,
-    "hash": "443eef3a198384b6f36cddf264595623"
+    "ast_hash": "443eef3a198384b6f36cddf264595623",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\pdp\\PenShowcaseSection.tsx": {
+  "src/components/pdp/PenShowcaseSection.tsx": {
     "mtime": 1783620338.8689764,
-    "hash": "b5d5d4fff9661bc5e45d99e9a008bb8f"
+    "ast_hash": "b5d5d4fff9661bc5e45d99e9a008bb8f",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\pdp\\ProductPdpPage.tsx": {
+  "src/components/pdp/ProductPdpPage.tsx": {
     "mtime": 1783990036.6024306,
-    "hash": "9a3906ca474ae4649cc2256abb51e500"
+    "ast_hash": "9a3906ca474ae4649cc2256abb51e500",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\pdp\\usePdpHeaderState.ts": {
+  "src/components/pdp/usePdpHeaderState.ts": {
     "mtime": 1783620338.8689764,
-    "hash": "37ac53557e3aa3b868caff7c9eda5583"
+    "ast_hash": "37ac53557e3aa3b868caff7c9eda5583",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\pdp\\data\\glp1-pdp-content.ts": {
+  "src/components/pdp/data/glp1-pdp-content.ts": {
     "mtime": 1783989980.615681,
-    "hash": "4fe7916b8fe6e25147606f8d873e209c"
+    "ast_hash": "4fe7916b8fe6e25147606f8d873e209c",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\pdp\\data\\glp1-pdp-data.ts": {
+  "src/components/pdp/data/glp1-pdp-data.ts": {
     "mtime": 1783620338.8689764,
-    "hash": "c44cf02567317885a29f5301907a3c9a"
+    "ast_hash": "c44cf02567317885a29f5301907a3c9a",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\pdp\\data\\pdp-data-registry.ts": {
+  "src/components/pdp/data/pdp-data-registry.ts": {
     "mtime": 1783989980.61769,
-    "hash": "89a405b015d6984b7223ba82eef52d6a"
+    "ast_hash": "89a405b015d6984b7223ba82eef52d6a",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\pdp\\data\\pen-showcase-content.ts": {
+  "src/components/pdp/data/pen-showcase-content.ts": {
     "mtime": 1783620338.8689764,
-    "hash": "1ce030442c8e4cf9700b67a1ec7ae034"
+    "ast_hash": "1ce030442c8e4cf9700b67a1ec7ae034",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\pdp\\data\\types.ts": {
+  "src/components/pdp/data/types.ts": {
     "mtime": 1783989980.6304076,
-    "hash": "cd2aa0f9ff7dfa4d0708f0b76f90efb8"
+    "ast_hash": "cd2aa0f9ff7dfa4d0708f0b76f90efb8",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\quiz\\dynamic\\DynamicQuiz.tsx": {
+  "src/components/quiz/dynamic/DynamicQuiz.tsx": {
+    "mtime": 1784042500.5774257,
+    "ast_hash": "9b8dc63d6a99514349a132cf2a986894",
+    "semantic_hash": ""
+  },
+  "src/components/quiz/dynamic/DynamicQuizModal.tsx": {
     "mtime": 1783973590.6502402,
-    "hash": "db600b2644c5476a14e51f227609256c"
+    "ast_hash": "67a0b45582881c04702c4893cef90f54",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\quiz\\dynamic\\DynamicQuizModal.tsx": {
-    "mtime": 1783973590.6502402,
-    "hash": "67a0b45582881c04702c4893cef90f54"
-  },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\ui\\accordion.tsx": {
+  "src/components/ui/accordion.tsx": {
     "mtime": 1783377478.6561234,
-    "hash": "55f9dda62b4e3913c9b23e5015a86aef"
+    "ast_hash": "55f9dda62b4e3913c9b23e5015a86aef",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\ui\\alert-dialog.tsx": {
+  "src/components/ui/alert-dialog.tsx": {
     "mtime": 1783377478.6685548,
-    "hash": "96350e949e9b7b674545430a410ab89c"
+    "ast_hash": "96350e949e9b7b674545430a410ab89c",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\ui\\alert.tsx": {
+  "src/components/ui/alert.tsx": {
     "mtime": 1783377478.6816416,
-    "hash": "f993d7e96b1e25ce50e68ed97e11d2a8"
+    "ast_hash": "f993d7e96b1e25ce50e68ed97e11d2a8",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\ui\\aspect-ratio.tsx": {
+  "src/components/ui/aspect-ratio.tsx": {
     "mtime": 1783377478.6955917,
-    "hash": "c5c364545e1b25a94e9e752cd67ad048"
+    "ast_hash": "c5c364545e1b25a94e9e752cd67ad048",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\ui\\avatar.tsx": {
+  "src/components/ui/avatar.tsx": {
     "mtime": 1783377478.7054534,
-    "hash": "72989cd32f72c4122802540ef32525a5"
+    "ast_hash": "72989cd32f72c4122802540ef32525a5",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\ui\\badge.tsx": {
+  "src/components/ui/badge.tsx": {
     "mtime": 1783377478.7207341,
-    "hash": "81cade001fc4260f9943e18dcd79449b"
+    "ast_hash": "81cade001fc4260f9943e18dcd79449b",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\ui\\breadcrumb.tsx": {
+  "src/components/ui/breadcrumb.tsx": {
     "mtime": 1783377478.7318697,
-    "hash": "bb9ac254f12662b20d5d50b84308bf3a"
+    "ast_hash": "bb9ac254f12662b20d5d50b84308bf3a",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\ui\\button.tsx": {
+  "src/components/ui/button.tsx": {
     "mtime": 1783377478.7469082,
-    "hash": "7d07d520f486b12bd47373d694ecd2ee"
+    "ast_hash": "7d07d520f486b12bd47373d694ecd2ee",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\ui\\calendar.tsx": {
+  "src/components/ui/calendar.tsx": {
     "mtime": 1783377478.7525246,
-    "hash": "415d91d7006d4cc654e27620fca340f6"
+    "ast_hash": "415d91d7006d4cc654e27620fca340f6",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\ui\\card.tsx": {
+  "src/components/ui/card.tsx": {
     "mtime": 1783377478.7706208,
-    "hash": "d6c48ea36221b9cdc3576d305d12d5d5"
+    "ast_hash": "d6c48ea36221b9cdc3576d305d12d5d5",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\ui\\carousel.tsx": {
+  "src/components/ui/carousel.tsx": {
     "mtime": 1783377478.7845323,
-    "hash": "e324c68ae00cd5aed49317638abd429a"
+    "ast_hash": "e324c68ae00cd5aed49317638abd429a",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\ui\\chart.tsx": {
+  "src/components/ui/chart.tsx": {
     "mtime": 1783377478.7845323,
-    "hash": "6a3baf94f2e89f1f97d4d7a28f3622d2"
+    "ast_hash": "6a3baf94f2e89f1f97d4d7a28f3622d2",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\ui\\checkbox.tsx": {
+  "src/components/ui/checkbox.tsx": {
     "mtime": 1783377478.809343,
-    "hash": "f78aac270ca482c8c2cb907ef6260462"
+    "ast_hash": "f78aac270ca482c8c2cb907ef6260462",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\ui\\collapsible.tsx": {
+  "src/components/ui/collapsible.tsx": {
     "mtime": 1783377478.8174162,
-    "hash": "767631bbc344945c236f185f4078d71d"
+    "ast_hash": "767631bbc344945c236f185f4078d71d",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\ui\\command.tsx": {
+  "src/components/ui/command.tsx": {
     "mtime": 1783377478.8306558,
-    "hash": "014782599cc838b021ec68b07ad4ea02"
+    "ast_hash": "014782599cc838b021ec68b07ad4ea02",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\ui\\context-menu.tsx": {
+  "src/components/ui/context-menu.tsx": {
     "mtime": 1783377478.8478644,
-    "hash": "e9d689beb53d9adb63165bfe64838bf6"
+    "ast_hash": "e9d689beb53d9adb63165bfe64838bf6",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\ui\\dialog.tsx": {
+  "src/components/ui/dialog.tsx": {
     "mtime": 1783377478.8539107,
-    "hash": "ef4fe8e7de8675730afe3d633b260e09"
+    "ast_hash": "ef4fe8e7de8675730afe3d633b260e09",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\ui\\drawer.tsx": {
+  "src/components/ui/drawer.tsx": {
     "mtime": 1783377478.8702207,
-    "hash": "8be333e8fd8e42576b1b5f72f07f4337"
+    "ast_hash": "8be333e8fd8e42576b1b5f72f07f4337",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\ui\\dropdown-menu.tsx": {
+  "src/components/ui/dropdown-menu.tsx": {
     "mtime": 1783377478.8852577,
-    "hash": "32156e221f3473280114c80fdb818829"
+    "ast_hash": "32156e221f3473280114c80fdb818829",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\ui\\form.tsx": {
+  "src/components/ui/form.tsx": {
     "mtime": 1783377478.8928952,
-    "hash": "1b0aa6302b9017ea2a1307c22a1d2983"
+    "ast_hash": "1b0aa6302b9017ea2a1307c22a1d2983",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\ui\\hover-card.tsx": {
+  "src/components/ui/hover-card.tsx": {
     "mtime": 1783377478.9085615,
-    "hash": "1442794c5ca2a78d69e4e613b315ed3d"
+    "ast_hash": "1442794c5ca2a78d69e4e613b315ed3d",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\ui\\input-otp.tsx": {
+  "src/components/ui/input-otp.tsx": {
     "mtime": 1783377478.9180446,
-    "hash": "58cff10c8942cac8483c0bcd65d39d3c"
+    "ast_hash": "58cff10c8942cac8483c0bcd65d39d3c",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\ui\\input.tsx": {
+  "src/components/ui/input.tsx": {
     "mtime": 1783377478.9242315,
-    "hash": "1d4cc52a4cd8afb3e18e45bda942bb8a"
+    "ast_hash": "1d4cc52a4cd8afb3e18e45bda942bb8a",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\ui\\label.tsx": {
+  "src/components/ui/label.tsx": {
     "mtime": 1783377478.9474068,
-    "hash": "7e35df4ca8edd0835efd97ca7937ef92"
+    "ast_hash": "7e35df4ca8edd0835efd97ca7937ef92",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\ui\\menubar.tsx": {
+  "src/components/ui/menubar.tsx": {
     "mtime": 1783377478.9554677,
-    "hash": "5870465653e12c3d0e35a2fad6f9faa9"
+    "ast_hash": "5870465653e12c3d0e35a2fad6f9faa9",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\ui\\navigation-menu.tsx": {
+  "src/components/ui/navigation-menu.tsx": {
     "mtime": 1783377478.9711156,
-    "hash": "e85351147a02b29577ff83d188b63c24"
+    "ast_hash": "e85351147a02b29577ff83d188b63c24",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\ui\\pagination.tsx": {
+  "src/components/ui/pagination.tsx": {
     "mtime": 1783377478.986786,
-    "hash": "fac6cdbb4bbf78b273d85cd36d6cbb49"
+    "ast_hash": "fac6cdbb4bbf78b273d85cd36d6cbb49",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\ui\\popover.tsx": {
+  "src/components/ui/popover.tsx": {
     "mtime": 1783377478.9972477,
-    "hash": "f18aa1da2144f25ee60795c539c51bcd"
+    "ast_hash": "f18aa1da2144f25ee60795c539c51bcd",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\ui\\progress.tsx": {
+  "src/components/ui/progress.tsx": {
     "mtime": 1783377479.0110877,
-    "hash": "55c462e5c9dd678dcf2c0c510b014ac4"
+    "ast_hash": "55c462e5c9dd678dcf2c0c510b014ac4",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\ui\\radio-group.tsx": {
+  "src/components/ui/radio-group.tsx": {
     "mtime": 1783377479.0263085,
-    "hash": "0e1ace237a5da3197e3eb1e6683faba9"
+    "ast_hash": "0e1ace237a5da3197e3eb1e6683faba9",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\ui\\resizable.tsx": {
+  "src/components/ui/resizable.tsx": {
     "mtime": 1783377479.0339198,
-    "hash": "d9fcb9203c749fcab4e125a99bb12a86"
+    "ast_hash": "d9fcb9203c749fcab4e125a99bb12a86",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\ui\\scroll-area.tsx": {
+  "src/components/ui/scroll-area.tsx": {
     "mtime": 1783377479.0495772,
-    "hash": "87b65d3eb26f2b02ff35a7acea585ba5"
+    "ast_hash": "87b65d3eb26f2b02ff35a7acea585ba5",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\ui\\select.tsx": {
+  "src/components/ui/select.tsx": {
     "mtime": 1783377479.0655973,
-    "hash": "31ea1bbd6671833b010b2e852c8a55d0"
+    "ast_hash": "31ea1bbd6671833b010b2e852c8a55d0",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\ui\\separator.tsx": {
+  "src/components/ui/separator.tsx": {
     "mtime": 1783377479.0777762,
-    "hash": "433d163c4ffa00b59398a0c293198b5e"
+    "ast_hash": "433d163c4ffa00b59398a0c293198b5e",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\ui\\sheet.tsx": {
+  "src/components/ui/sheet.tsx": {
     "mtime": 1783377479.091305,
-    "hash": "0221fbf97b69611b47fcbc10bb27669a"
+    "ast_hash": "0221fbf97b69611b47fcbc10bb27669a",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\ui\\sidebar.tsx": {
+  "src/components/ui/sidebar.tsx": {
     "mtime": 1783377479.1036146,
-    "hash": "83c1623eb50ebc370d7b1b84a542e369"
+    "ast_hash": "83c1623eb50ebc370d7b1b84a542e369",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\ui\\skeleton.tsx": {
+  "src/components/ui/skeleton.tsx": {
     "mtime": 1783377479.1183681,
-    "hash": "41b182e6e2fc3805960d41e767d4a972"
+    "ast_hash": "41b182e6e2fc3805960d41e767d4a972",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\ui\\slider.tsx": {
+  "src/components/ui/slider.tsx": {
     "mtime": 1783377479.1543722,
-    "hash": "4752f1bfa26426988d325599e01c335b"
+    "ast_hash": "4752f1bfa26426988d325599e01c335b",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\ui\\sonner.tsx": {
+  "src/components/ui/sonner.tsx": {
     "mtime": 1783377479.1807144,
-    "hash": "97f59f60be3413196d095fcbf7383216"
+    "ast_hash": "97f59f60be3413196d095fcbf7383216",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\ui\\switch.tsx": {
+  "src/components/ui/switch.tsx": {
     "mtime": 1783377479.2056806,
-    "hash": "82f5d8b0c59bb7ff305caa9f502e79ff"
+    "ast_hash": "82f5d8b0c59bb7ff305caa9f502e79ff",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\ui\\table.tsx": {
+  "src/components/ui/table.tsx": {
     "mtime": 1783377479.2157083,
-    "hash": "7cc889989d53894b659903c73aded96e"
+    "ast_hash": "7cc889989d53894b659903c73aded96e",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\ui\\tabs.tsx": {
+  "src/components/ui/tabs.tsx": {
     "mtime": 1783377479.234221,
-    "hash": "56e725558c2ce72c18243bf51717f385"
+    "ast_hash": "56e725558c2ce72c18243bf51717f385",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\ui\\textarea.tsx": {
+  "src/components/ui/textarea.tsx": {
     "mtime": 1783377479.2470548,
-    "hash": "c7aad96fb9545210d53135a96c76ed6b"
+    "ast_hash": "c7aad96fb9545210d53135a96c76ed6b",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\ui\\toggle-group.tsx": {
+  "src/components/ui/toggle-group.tsx": {
     "mtime": 1783377479.2552817,
-    "hash": "ac26383acf721d116ca8e3ab5c5355d5"
+    "ast_hash": "ac26383acf721d116ca8e3ab5c5355d5",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\ui\\toggle.tsx": {
+  "src/components/ui/toggle.tsx": {
     "mtime": 1783377479.273523,
-    "hash": "ee8c5adac74e7242b85b544db1a8fbad"
+    "ast_hash": "ee8c5adac74e7242b85b544db1a8fbad",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\components\\ui\\tooltip.tsx": {
+  "src/components/ui/tooltip.tsx": {
     "mtime": 1783377479.2868145,
-    "hash": "67d71db5a1ab935695d1def497f5b8a6"
+    "ast_hash": "67d71db5a1ab935695d1def497f5b8a6",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\hooks\\use-is-mounted.ts": {
+  "src/hooks/use-is-mounted.ts": {
     "mtime": 1783463487.7238126,
-    "hash": "0f92e44c35fe9fa68929788984078222"
+    "ast_hash": "0f92e44c35fe9fa68929788984078222",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\hooks\\use-lenis-scroll.ts": {
+  "src/hooks/use-lenis-scroll.ts": {
     "mtime": 1783788017.6840491,
-    "hash": "b1da717204eec21523f00faaa249cc80"
+    "ast_hash": "b1da717204eec21523f00faaa249cc80",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\hooks\\use-mobile.tsx": {
+  "src/hooks/use-mobile.tsx": {
     "mtime": 1783377479.302624,
-    "hash": "c0a0bdd4638c391a1dd06ac82074e60b"
+    "ast_hash": "c0a0bdd4638c391a1dd06ac82074e60b",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\hooks\\use-prx-encounter-status.ts": {
+  "src/hooks/use-prx-encounter-status.ts": {
     "mtime": 1783973590.6502402,
-    "hash": "4c6f6d2f75ce30a9c42f69c17ff43919"
+    "ast_hash": "4c6f6d2f75ce30a9c42f69c17ff43919",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\hooks\\useSiteHeaderState.ts": {
+  "src/hooks/useSiteHeaderState.ts": {
     "mtime": 1783620338.8846278,
-    "hash": "ccd23d487900394780f5c53c8a2ebad1"
+    "ast_hash": "ccd23d487900394780f5c53c8a2ebad1",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\lib\\age-gate.ts": {
+  "src/lib/age-gate.ts": {
     "mtime": 1783463486.7634184,
-    "hash": "8853717499f10403c4d042e5ff1f56c3"
+    "ast_hash": "8853717499f10403c4d042e5ff1f56c3",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\lib\\ask-tidl-content.ts": {
+  "src/lib/ask-tidl-content.ts": {
     "mtime": 1783989938.2125068,
-    "hash": "a01a3d2c3944439408f93a30aad70fc9"
+    "ast_hash": "a01a3d2c3944439408f93a30aad70fc9",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\lib\\auth-storage.ts": {
+  "src/lib/auth-storage.ts": {
     "mtime": 1783463486.738559,
-    "hash": "1f60e8eb19402a52a0c40d78a3a55c79"
+    "ast_hash": "1f60e8eb19402a52a0c40d78a3a55c79",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\lib\\categories.ts": {
+  "src/lib/categories.ts": {
     "mtime": 1783989980.6416285,
-    "hash": "ca7201725cdab38d0c16cb4189535981"
+    "ast_hash": "ca7201725cdab38d0c16cb4189535981",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\lib\\category-bundles.ts": {
+  "src/lib/category-bundles.ts": {
     "mtime": 1783981285.120438,
-    "hash": "9a70cb8ee83b0c105c750f49d1b52afb"
+    "ast_hash": "9a70cb8ee83b0c105c750f49d1b52afb",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\lib\\category-recommendations.ts": {
+  "src/lib/category-recommendations.ts": {
     "mtime": 1783685838.7958632,
-    "hash": "738153daa3d56d8bd96be9c082ed8827"
+    "ast_hash": "738153daa3d56d8bd96be9c082ed8827",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\lib\\category-testimonials.ts": {
+  "src/lib/category-testimonials.ts": {
     "mtime": 1783685838.821064,
-    "hash": "8cd15a4174a64579592435ac67ebe34e"
+    "ast_hash": "8cd15a4174a64579592435ac67ebe34e",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\lib\\checkout-schema.ts": {
-    "mtime": 1783989980.6436374,
-    "hash": "7b960408785ddedd1a460319f7bf6d76"
+  "src/lib/checkout-schema.ts": {
+    "mtime": 1784042500.5970685,
+    "ast_hash": "452bd6e2bf85bfc01f3c2973bf898b34",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\lib\\error-capture.ts": {
+  "src/lib/error-capture.ts": {
     "mtime": 1783377479.3341131,
-    "hash": "00e77bfacfb2d79c0816361e678f1b65"
+    "ast_hash": "00e77bfacfb2d79c0816361e678f1b65",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\lib\\error-page.ts": {
+  "src/lib/error-page.ts": {
     "mtime": 1783377479.3469515,
-    "hash": "8da0ddd7569bac2676b9a5c8edff8a36"
+    "ast_hash": "8da0ddd7569bac2676b9a5c8edff8a36",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\lib\\homepage-content.ts": {
+  "src/lib/homepage-content.ts": {
     "mtime": 1783989980.6456459,
-    "hash": "3e27dbd4974420d0d83d7badffad4fc5"
+    "ast_hash": "3e27dbd4974420d0d83d7badffad4fc5",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\lib\\order-storage.ts": {
+  "src/lib/order-storage.ts": {
     "mtime": 1783973590.6575217,
-    "hash": "b2c682d9fb2c4e278a62b2ad67451c61"
+    "ast_hash": "b2c682d9fb2c4e278a62b2ad67451c61",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\lib\\pdp-marketing.ts": {
+  "src/lib/pdp-marketing.ts": {
     "mtime": 1783989980.6520104,
-    "hash": "7c0fd62db3e7f0451cda19d1603b9f21"
+    "ast_hash": "7c0fd62db3e7f0451cda19d1603b9f21",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\lib\\peptide-images.ts": {
-    "mtime": 1783989980.6557436,
-    "hash": "0a0513838bdac608fb7ad6979847dfc9"
+  "src/lib/peptide-images.ts": {
+    "mtime": 1784042765.6562207,
+    "ast_hash": "bb196e57bb38caac23c7d3951dca61ef",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\lib\\peptides.ts": {
+  "src/lib/peptides.ts": {
     "mtime": 1783989980.6637883,
-    "hash": "219cfe778e25f8ccb4517a0136339e07"
+    "ast_hash": "219cfe778e25f8ccb4517a0136339e07",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\lib\\pricing.ts": {
-    "mtime": 1783989980.677858,
-    "hash": "61c1bc5a981643c1f66f82ce9f5235c3"
+  "src/lib/pricing.ts": {
+    "mtime": 1784042500.6047304,
+    "ast_hash": "fc05bd37cced25c66977b48a602b2dd6",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\lib\\product-catalog.ts": {
+  "src/lib/product-catalog.ts": {
     "mtime": 1783989980.6798677,
-    "hash": "9bc7e4aed2a49cad73d2ced714512d51"
+    "ast_hash": "9bc7e4aed2a49cad73d2ced714512d51",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\lib\\products.ts": {
+  "src/lib/products.ts": {
     "mtime": 1783989980.6818888,
-    "hash": "29c99dc10ee62ea38ef2ab1399637f68"
+    "ast_hash": "29c99dc10ee62ea38ef2ab1399637f68",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\lib\\quiz-storage.ts": {
+  "src/lib/quiz-storage.ts": {
     "mtime": 1783463486.560245,
-    "hash": "6f93e1252e8035ceebef2595a92291d8"
+    "ast_hash": "6f93e1252e8035ceebef2595a92291d8",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\lib\\services-content.ts": {
+  "src/lib/services-content.ts": {
     "mtime": 1783981285.120438,
-    "hash": "d2c10e1e2499c9d897630a2bdb780b28"
+    "ast_hash": "d2c10e1e2499c9d897630a2bdb780b28",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\lib\\site-assets.ts": {
+  "src/lib/site-assets.ts": {
     "mtime": 1783642215.5139017,
-    "hash": "e2c8344f39d5e5aef142b7f98d68bc82"
+    "ast_hash": "e2c8344f39d5e5aef142b7f98d68bc82",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\lib\\stories-content.ts": {
-    "mtime": 1783642215.5139017,
-    "hash": "f83f6e9ffe98f700d348fd36a7471706"
+  "src/lib/stories-content.ts": {
+    "mtime": 1784024151.465615,
+    "ast_hash": "34e7f88a942319c76573c57d929ec44b",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\lib\\testimonials.ts": {
-    "mtime": 1783989980.6859088,
-    "hash": "a39c9998099a10ef40c6ee2b544ca695"
+  "src/lib/testimonials.ts": {
+    "mtime": 1784024151.4720514,
+    "ast_hash": "adf45ee468a3b34692db90650f5f18c6",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\lib\\trust-content.ts": {
+  "src/lib/trust-content.ts": {
     "mtime": 1783620338.9051366,
-    "hash": "e4d2d1a4091e999e3cf2f573c438f2e7"
+    "ast_hash": "e4d2d1a4091e999e3cf2f573c438f2e7",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\lib\\utils.ts": {
+  "src/lib/utils.ts": {
     "mtime": 1783377479.3656476,
-    "hash": "d9837f38cc05303254571985e3164050"
+    "ast_hash": "d9837f38cc05303254571985e3164050",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\lib\\prescribe-rx\\browse-api.ts": {
+  "src/lib/prescribe-rx/browse-api.ts": {
     "mtime": 1783989980.6678078,
-    "hash": "99ac4eb927353e4e63f5cd37a947960d"
+    "ast_hash": "99ac4eb927353e4e63f5cd37a947960d",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\lib\\prescribe-rx\\client.ts": {
+  "src/lib/prescribe-rx/client.ts": {
     "mtime": 1783642215.3121872,
-    "hash": "8420b4304a5897be218c688139db273e"
+    "ast_hash": "8420b4304a5897be218c688139db273e",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\lib\\prescribe-rx\\encounter-schema.ts": {
+  "src/lib/prescribe-rx/encounter-schema.ts": {
     "mtime": 1783973590.6619153,
-    "hash": "07e0e6e79f589a2befc8fdf4876f6654"
+    "ast_hash": "07e0e6e79f589a2befc8fdf4876f6654",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\lib\\prescribe-rx\\encounter-status.ts": {
+  "src/lib/prescribe-rx/encounter-status.ts": {
     "mtime": 1783973590.6619153,
-    "hash": "98fb29070d509abb4efa73ac7928834f"
+    "ast_hash": "98fb29070d509abb4efa73ac7928834f",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\lib\\prescribe-rx\\env.ts": {
+  "src/lib/prescribe-rx/env.ts": {
     "mtime": 1783989980.6678078,
-    "hash": "eaee1ebc3835d46ce6fb224806dad59d"
+    "ast_hash": "eaee1ebc3835d46ce6fb224806dad59d",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\lib\\prescribe-rx\\index.ts": {
+  "src/lib/prescribe-rx/index.ts": {
     "mtime": 1783973590.6677032,
-    "hash": "64d45c4d6706ec6238ab0d344bee0dd8"
+    "ast_hash": "64d45c4d6706ec6238ab0d344bee0dd8",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\lib\\prescribe-rx\\merge-sandbox-pdp.ts": {
-    "mtime": 1783989980.6698208,
-    "hash": "92f8e44c865fade89c4294cb76db1e4b"
+  "src/lib/prescribe-rx/merge-sandbox-pdp.ts": {
+    "mtime": 1784042500.6007128,
+    "ast_hash": "fbe7a692d74ec16631f0c429f3256647",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\lib\\prescribe-rx\\types.ts": {
+  "src/lib/prescribe-rx/types.ts": {
     "mtime": 1783642215.3162105,
-    "hash": "15c794abd710a2505466bb248f2ae5bc"
+    "ast_hash": "15c794abd710a2505466bb248f2ae5bc",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\lib\\prescribe-rx\\use-home-sandbox.ts": {
-    "mtime": 1783989980.6698208,
-    "hash": "638d9ca56767fd3cbb992c84f1fd90a0"
+  "src/lib/prescribe-rx/use-home-sandbox.ts": {
+    "mtime": 1784042500.6027215,
+    "ast_hash": "78713eba2043c1d6d0843bb36dfffbff",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\lib\\prescribe-rx\\use-live-catalog.ts": {
-    "mtime": 1783989980.6738408,
-    "hash": "be1b75132b5a6ec617497e300a5ae0f3"
+  "src/lib/prescribe-rx/use-live-catalog.ts": {
+    "mtime": 1784033848.6756127,
+    "ast_hash": "2317f37240b7e45fa64522823193c13b",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\providers\\auth-provider.tsx": {
+  "src/providers/auth-provider.tsx": {
     "mtime": 1783463486.8584554,
-    "hash": "4bf659d81e39aad684cdc522b1d6c4f4"
+    "ast_hash": "4bf659d81e39aad684cdc522b1d6c4f4",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\providers\\quiz-modal-provider.tsx": {
+  "src/providers/quiz-modal-provider.tsx": {
     "mtime": 1783463486.8886693,
-    "hash": "38468f22ff13e67816385c526eaa9dfc"
+    "ast_hash": "38468f22ff13e67816385c526eaa9dfc",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\routes\\auth.tsx": {
+  "src/routes/auth.tsx": {
     "mtime": 1783724648.7797866,
-    "hash": "de12ad42b2d3b9a6d9f4e4aad802a25d"
+    "ast_hash": "de12ad42b2d3b9a6d9f4e4aad802a25d",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\routes\\checkout.tsx": {
+  "src/routes/checkout.tsx": {
     "mtime": 1783973590.6823506,
-    "hash": "b9e22560ed07ac79b11778cf9a1027ce"
+    "ast_hash": "b9e22560ed07ac79b11778cf9a1027ce",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\routes\\confirmation.tsx": {
+  "src/routes/confirmation.tsx": {
     "mtime": 1783989980.6922784,
-    "hash": "ebf1e8c78aad23a0e9959a09bf93be23"
+    "ast_hash": "ebf1e8c78aad23a0e9959a09bf93be23",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\routes\\index.tsx": {
+  "src/routes/index.tsx": {
     "mtime": 1783377479.4308736,
-    "hash": "14a0378cffaef87686e64c1e51fb0f5e"
+    "ast_hash": "14a0378cffaef87686e64c1e51fb0f5e",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\routes\\privacy.tsx": {
+  "src/routes/privacy.tsx": {
     "mtime": 1783989980.6922784,
-    "hash": "75dd2a20e2d3e3a475f8eeae6cce515a"
+    "ast_hash": "75dd2a20e2d3e3a475f8eeae6cce515a",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\routes\\quiz-sandbox.tsx": {
+  "src/routes/quiz-sandbox.tsx": {
     "mtime": 1783973590.693102,
-    "hash": "2ba38336fa5fabe7714d53d032067273"
+    "ast_hash": "2ba38336fa5fabe7714d53d032067273",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\routes\\terms.tsx": {
+  "src/routes/terms.tsx": {
     "mtime": 1783989980.6960554,
-    "hash": "43bee152d36d08a94df917a65beda35f"
+    "ast_hash": "43bee152d36d08a94df917a65beda35f",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\routes\\__root.tsx": {
+  "src/routes/__root.tsx": {
     "mtime": 1783973590.67191,
-    "hash": "7c55848502e52548a9cb1621afd42f59"
+    "ast_hash": "7c55848502e52548a9cb1621afd42f59",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\routes\\account\\index.tsx": {
+  "src/routes/account/index.tsx": {
     "mtime": 1783973590.6739252,
-    "hash": "6dea23a8de30717be50e7191182294d3"
+    "ast_hash": "6dea23a8de30717be50e7191182294d3",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\routes\\api\\prx\\auth.me.ts": {
+  "src/routes/api/prx/auth.me.ts": {
     "mtime": 1783973590.6739252,
-    "hash": "78c84a5295d84d776d8d45a606f636d5"
+    "ast_hash": "78c84a5295d84d776d8d45a606f636d5",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\routes\\api\\prx\\catalog.ts": {
+  "src/routes/api/prx/catalog.ts": {
     "mtime": 1783642215.328312,
-    "hash": "6f931eb35917b96ba9ccc72b755b9f8b"
+    "ast_hash": "6f931eb35917b96ba9ccc72b755b9f8b",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\routes\\api\\prx\\checkout.ts": {
+  "src/routes/api/prx/checkout.ts": {
     "mtime": 1783973590.6767573,
-    "hash": "41daafb0c3b3a36788b047954db55ebd"
+    "ast_hash": "41daafb0c3b3a36788b047954db55ebd",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\routes\\api\\prx\\encounter-types.$encounterTypeId.schema.ts": {
+  "src/routes/api/prx/encounter-types.$encounterTypeId.schema.ts": {
     "mtime": 1783973590.6792762,
-    "hash": "574a8712ed6c81313ab357f5aa8abcef"
+    "ast_hash": "574a8712ed6c81313ab357f5aa8abcef",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\routes\\api\\prx\\encounter-types.ts": {
+  "src/routes/api/prx/encounter-types.ts": {
     "mtime": 1783973590.6792762,
-    "hash": "32352a9c71b972da77e3e2f55130d11c"
+    "ast_hash": "32352a9c71b972da77e3e2f55130d11c",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\routes\\api\\prx\\encounters.$encounterId.ts": {
+  "src/routes/api/prx/encounters.$encounterId.ts": {
     "mtime": 1783973590.6792762,
-    "hash": "5cfe273619722aa304b7bdcb981ebe3a"
+    "ast_hash": "5cfe273619722aa304b7bdcb981ebe3a",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\routes\\api\\prx\\encounters.ts": {
+  "src/routes/api/prx/encounters.ts": {
     "mtime": 1783973590.6823506,
-    "hash": "b0616412fbe5791c141adc9753141a16"
+    "ast_hash": "b0616412fbe5791c141adc9753141a16",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\routes\\api\\prx\\health.ts": {
+  "src/routes/api/prx/health.ts": {
     "mtime": 1783642215.3303268,
-    "hash": "2e004c3a4b69aa60525b3fb5b29da7e6"
+    "ast_hash": "2e004c3a4b69aa60525b3fb5b29da7e6",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\routes\\api\\prx\\intake-dynamic.ts": {
+  "src/routes/api/prx/intake-dynamic.ts": {
     "mtime": 1783973590.6823506,
-    "hash": "ecf326fb70fb3edc0f33b88386ba2090"
+    "ast_hash": "ecf326fb70fb3edc0f33b88386ba2090",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\routes\\api\\prx\\intake.ts": {
+  "src/routes/api/prx/intake.ts": {
     "mtime": 1783642215.3303268,
-    "hash": "392d7dda28a02d02868735f60227a985"
+    "ast_hash": "392d7dda28a02d02868735f60227a985",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\routes\\api\\prx\\me.ts": {
+  "src/routes/api/prx/me.ts": {
     "mtime": 1783642215.3303268,
-    "hash": "f95f9db85e82dc5c053b80b222a3efca"
+    "ast_hash": "f95f9db85e82dc5c053b80b222a3efca",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\routes\\api\\prx\\orders.$orderId.ts": {
+  "src/routes/api/prx/orders.$orderId.ts": {
     "mtime": 1783642215.3323383,
-    "hash": "6a0b04aa61b9b15cf77dacada81aa1a3"
+    "ast_hash": "6a0b04aa61b9b15cf77dacada81aa1a3",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\routes\\api\\prx\\orders.ts": {
+  "src/routes/api/prx/orders.ts": {
     "mtime": 1783642215.3343484,
-    "hash": "bd2d7b8f3e598038d4383cde2dc7f59d"
+    "ast_hash": "bd2d7b8f3e598038d4383cde2dc7f59d",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\routes\\api\\prx\\patients.ts": {
+  "src/routes/api/prx/patients.ts": {
     "mtime": 1783642215.3343484,
-    "hash": "83a9e20f1c5038d3c00cb31fc52821df"
+    "ast_hash": "83a9e20f1c5038d3c00cb31fc52821df",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\routes\\api\\prx\\products.ts": {
+  "src/routes/api/prx/products.ts": {
     "mtime": 1783642215.3343484,
-    "hash": "78990313fbc999d497bcb9ded2ff3a3b"
+    "ast_hash": "78990313fbc999d497bcb9ded2ff3a3b",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\routes\\api\\prx\\webhooks.event-types.ts": {
+  "src/routes/api/prx/webhooks.event-types.ts": {
     "mtime": 1783973590.6823506,
-    "hash": "8be7f37f13896a2739d605af28655864"
+    "ast_hash": "8be7f37f13896a2739d605af28655864",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\routes\\api\\prx\\webhooks.ts": {
+  "src/routes/api/prx/webhooks.ts": {
     "mtime": 1783981407.8700247,
-    "hash": "b6582eb0c9eaf88586aa4e13d290b1a1"
+    "ast_hash": "b6582eb0c9eaf88586aa4e13d290b1a1",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\routes\\category\\$slug.tsx": {
+  "src/routes/category/$slug.tsx": {
     "mtime": 1783706625.2972744,
-    "hash": "425fa90442cd65483eb329d4e07b4fba"
+    "ast_hash": "425fa90442cd65483eb329d4e07b4fba",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\routes\\products\\$slug.tsx": {
+  "src/routes/products/$slug.tsx": {
     "mtime": 1783989980.6942947,
-    "hash": "1bd9f39b31418d93898d1157da1fa1fa"
+    "ast_hash": "1bd9f39b31418d93898d1157da1fa1fa",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\routes\\products\\glp-1-weight-loss.tsx": {
+  "src/routes/products/glp-1-weight-loss.tsx": {
     "mtime": 1783620338.9161837,
-    "hash": "1fc35abfaac2a62af7df30242f2af82c"
+    "ast_hash": "1fc35abfaac2a62af7df30242f2af82c",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\server\\prx\\extract.ts": {
+  "src/server/prx/extract.ts": {
     "mtime": 1783973590.693102,
-    "hash": "45089a9d637bcb19777f28a51942b6e0"
+    "ast_hash": "45089a9d637bcb19777f28a51942b6e0",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\server\\prx\\mappers.ts": {
-    "mtime": 1783989980.7016423,
-    "hash": "7d679c163fd51280a7345884f69ea78c"
+  "src/server/prx/mappers.ts": {
+    "mtime": 1784042500.6107748,
+    "ast_hash": "718f298ac93b400356d3412c75979c63",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\server\\prx\\respond.ts": {
+  "src/server/prx/respond.ts": {
     "mtime": 1783642215.3423915,
-    "hash": "a3016e1efb8e929987572d4751e43150"
+    "ast_hash": "a3016e1efb8e929987572d4751e43150",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\server\\prx\\schema-intake.ts": {
+  "src/server/prx/schema-intake.ts": {
+    "mtime": 1784042500.6148,
+    "ast_hash": "d195a9b8456f9cffd504f2fd3a4612eb",
+    "semantic_hash": ""
+  },
+  "src/server/prx/webhook-store.ts": {
     "mtime": 1783973590.6988747,
-    "hash": "8292bad227b366f426f129e6dc11e72b"
+    "ast_hash": "cba275969641835c5d6c58e49b4377a7",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\server\\prx\\webhook-store.ts": {
-    "mtime": 1783973590.6988747,
-    "hash": "cba275969641835c5d6c58e49b4377a7"
-  },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\server\\prx\\webhook-verify.ts": {
+  "src/server/prx/webhook-verify.ts": {
     "mtime": 1783981407.8734643,
-    "hash": "4b5f5acf3ee1e8dd29b1f623e349244d"
+    "ast_hash": "4b5f5acf3ee1e8dd29b1f623e349244d",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\types\\auth.ts": {
+  "src/types/auth.ts": {
     "mtime": 1783463486.5104015,
-    "hash": "60aecd82b90ab9e2b09904039c56488d"
+    "ast_hash": "60aecd82b90ab9e2b09904039c56488d",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\types\\order.ts": {
+  "src/types/order.ts": {
     "mtime": 1783973590.6988747,
-    "hash": "248c53ab5161b6be8fc438b340e761f4"
+    "ast_hash": "248c53ab5161b6be8fc438b340e761f4",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\types\\quiz.ts": {
+  "src/types/quiz.ts": {
     "mtime": 1783989980.7036507,
-    "hash": "7dc3752762061a38335fd95558a5feba"
+    "ast_hash": "7dc3752762061a38335fd95558a5feba",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\ASK_TIDL_HANDOFF.md": {
+  "ASK_TIDL_HANDOFF.md": {
     "mtime": 1783642215.419478,
-    "hash": "1511aedd79baa5a2dd1dd14957a4c7cb"
+    "ast_hash": "1511aedd79baa5a2dd1dd14957a4c7cb",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\CATEGORY_PAGE_HANDOFF.md": {
+  "CATEGORY_PAGE_HANDOFF.md": {
     "mtime": 1783642215.4210012,
-    "hash": "106006a8a5859b6dac2dff3f46c3b2f3"
+    "ast_hash": "106006a8a5859b6dac2dff3f46c3b2f3",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\glp-1-pdp-spec.md": {
+  "glp-1-pdp-spec.md": {
     "mtime": 1783527661.6285574,
-    "hash": "be136a9dbfacdddd7018b4b7b26b4b68"
+    "ast_hash": "be136a9dbfacdddd7018b4b7b26b4b68",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\how-tidl-works-section.md": {
+  "how-tidl-works-section.md": {
     "mtime": 1783514256.0977314,
-    "hash": "bd450c28bcc50cfea23d45ec8616426f"
+    "ast_hash": "bd450c28bcc50cfea23d45ec8616426f",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\Last Edit Sandbox.md": {
+  "Last Edit Sandbox.md": {
     "mtime": 1783973590.6144273,
-    "hash": "6778c12c07ec339372f5cf314c489c51"
+    "ast_hash": "6778c12c07ec339372f5cf314c489c51",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\login-flow.md": {
+  "login-flow.md": {
     "mtime": 1783973590.6184604,
-    "hash": "3e4e1649f0119dfb373f2d83c588f2c8"
+    "ast_hash": "3e4e1649f0119dfb373f2d83c588f2c8",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\message-to-thomas.md": {
+  "message-to-thomas.md": {
     "mtime": 1783989980.1983936,
-    "hash": "6cadf6a9077a9c6eac5dc7ceb87f14e8"
+    "ast_hash": "6cadf6a9077a9c6eac5dc7ceb87f14e8",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\PDP_PAGE_HANDOFF.md": {
+  "PDP_PAGE_HANDOFF.md": {
     "mtime": 1783973590.616447,
-    "hash": "09ca4d7634a2ad50b4e33583c17e22f3"
+    "ast_hash": "09ca4d7634a2ad50b4e33583c17e22f3",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\sandbox-full-connection.md": {
+  "sandbox-full-connection.md": {
     "mtime": 1783973590.6295037,
-    "hash": "ad7eedd8e27d69ea2b8399bc613b03b8"
+    "ast_hash": "ad7eedd8e27d69ea2b8399bc613b03b8",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\sandbox-meeting.md": {
+  "sandbox-meeting.md": {
     "mtime": 1783973590.6315234,
-    "hash": "07c3cbc6261360d668db5a61849efc14"
+    "ast_hash": "07c3cbc6261360d668db5a61849efc14",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\sandbox-one.md": {
+  "sandbox-one.md": {
     "mtime": 1783989980.5321214,
-    "hash": "3a9c1d83cdcb7f6bc2b4bb6779366a14"
+    "ast_hash": "3a9c1d83cdcb7f6bc2b4bb6779366a14",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\sandbox-tested.md": {
+  "sandbox-tested.md": {
     "mtime": 1783981407.867367,
-    "hash": "00862b9d95fec46f3e2423253c92edd5"
+    "ast_hash": "00862b9d95fec46f3e2423253c92edd5",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\the-last-sandbox-details.md": {
-    "mtime": 1783989980.705538,
-    "hash": "fdcfd1c5ede724b64399ab7656badb2b"
+  "the-last-sandbox-details.md": {
+    "mtime": 1784042500.616809,
+    "ast_hash": "a362f447153e1515872db71a1ca39270",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\graphify-out\\converted\\TIDL.com Overview_08JUN26 (1)_494c2e0f.md": {
-    "mtime": 1783990234.1469252,
-    "hash": "db8bd5eccbb54231d17c6a820b9629b7"
+  "graphify-out/converted/TIDL.com Overview_08JUN26 (1)_494c2e0f.md": {
+    "mtime": 1784034930.79529,
+    "ast_hash": "db8bd5eccbb54231d17c6a820b9629b7",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\clone\\index.html": {
+  "clone/index.html": {
     "mtime": 1783377478.4362774,
-    "hash": "6863a580e885a0e995b750b3ad239e14"
+    "ast_hash": "6863a580e885a0e995b750b3ad239e14",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\graphify-out\\converted\\TIDL.com Overview_08JUN26_3e4bdac0.md": {
-    "mtime": 1783990234.3058672,
-    "hash": "4369f29b4fa0f64886584ae402113c4d"
+  "graphify-out/converted/TIDL.com Overview_08JUN26_3e4bdac0.md": {
+    "mtime": 1784034931.0143938,
+    "ast_hash": "4369f29b4fa0f64886584ae402113c4d",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\routes\\README.md": {
+  "src/routes/README.md": {
     "mtime": 1783377479.397041,
-    "hash": "b3a2f259b66fd1a11f54b6d5ac83bf57"
+    "ast_hash": "b3a2f259b66fd1a11f54b6d5ac83bf57",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\ui\\ux skill.md": {
+  "ui/ux skill.md": {
     "mtime": 1783986692.976146,
-    "hash": "3471a867438fc3cd51fe53f144100732"
+    "ast_hash": "3471a867438fc3cd51fe53f144100732",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\image2.png": {
+  "public/image2.png": {
     "mtime": 1783620338.7912025,
-    "hash": "49f313bdbf3fd64c17877bc1d2bb75e9"
+    "ast_hash": "49f313bdbf3fd64c17877bc1d2bb75e9",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\product 3 3d pink.png": {
+  "public/product 3 3d pink.png": {
     "mtime": 1783620338.8131492,
-    "hash": "de8be5dabad67743997da5358d703091"
+    "ast_hash": "de8be5dabad67743997da5358d703091",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\tidl_logo.png": {
+  "public/tidl_logo.png": {
     "mtime": 1783620338.8135386,
-    "hash": "5d2a64b459271c4ca9c0975c11d00ded"
+    "ast_hash": "5d2a64b459271c4ca9c0975c11d00ded",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\TIDL_LOGO_YELLOW.png": {
+  "public/TIDL_LOGO_YELLOW.png": {
     "mtime": 1783620338.774557,
-    "hash": "aeb931e44a45bab971b7942dc505025b"
+    "ast_hash": "aeb931e44a45bab971b7942dc505025b",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\WhatsApp_Image_2026-06-17_at_1.36.29_AM__1_-removebg-preview.png": {
+  "public/WhatsApp_Image_2026-06-17_at_1.36.29_AM__1_-removebg-preview.png": {
     "mtime": 1783620338.774557,
-    "hash": "fdb3aa375bf8554be99e2a2335ef3669"
+    "ast_hash": "fdb3aa375bf8554be99e2a2335ef3669",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\bpc-157.png": {
-    "mtime": 1783989980.267381,
-    "hash": "3d6a351b5806635a9870ec7105e077fe"
+  "public/peptides/bpc-157.png": {
+    "mtime": 1784042500.5199115,
+    "ast_hash": "d2510127ec99a0f0569cc08e1fd52cbb",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\cjc-1295-ipamorelin.png": {
-    "mtime": 1783989980.4967377,
-    "hash": "b902413558eef026c5c9b61feb31fc6b"
+  "public/peptides/cjc-1295-ipamorelin.png": {
+    "mtime": 1784042516.431467,
+    "ast_hash": "234792a4dc41c806ae80c70c4d0a3f2a",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\ghk-cu.png": {
-    "mtime": 1783989980.4987483,
-    "hash": "466839020562fe5743da926d98e442d0"
+  "public/peptides/ghk-cu.png": {
+    "mtime": 1784042500.5257013,
+    "ast_hash": "0221c1e644df963ebc633830b7fd6198",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\glp-1-weight-loss.png": {
-    "mtime": 1783989980.5007608,
-    "hash": "1e7258ccddd6bde7d866bd30921bd2ad"
+  "public/peptides/glp-1-weight-loss.png": {
+    "mtime": 1784042500.5311077,
+    "ast_hash": "3b7f34f07fc36f473bdf4a60ca3e1384",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\mots-c.png": {
-    "mtime": 1783989980.5027695,
-    "hash": "a5ff64d410ae501ac1ac6c62087df52a"
+  "public/peptides/mots-c.png": {
+    "mtime": 1784042500.5351343,
+    "ast_hash": "48d57b3ae7070976e106cb14a26df94c",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\nad-plus.png": {
-    "mtime": 1783989980.5113585,
-    "hash": "e204f2606fba9beeb3f199eaf3b5a609"
+  "public/peptides/nad-plus.png": {
+    "mtime": 1784042516.431467,
+    "ast_hash": "c9c5be8e8cbef4a7cd206e3ff52004ab",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\retatrutide.png": {
-    "mtime": 1783989980.5133686,
-    "hash": "bc3c5f7f6f383ba708491eaa74353130"
+  "public/peptides/retatrutide.png": {
+    "mtime": 1784042500.5403528,
+    "ast_hash": "dd0a9e7265214efeb4e005859bc40738",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\sermorelin.png": {
-    "mtime": 1783989980.515378,
-    "hash": "76cde7b5df53c6ac3795f082deaa0977"
+  "public/peptides/sermorelin.png": {
+    "mtime": 1784042500.5437298,
+    "ast_hash": "76183c270f8db6ea2758be04a4d0828b",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\tb-500.png": {
-    "mtime": 1783989980.5173862,
-    "hash": "c50c1ea3c7cde84a9c017c9015b2392a"
+  "public/peptides/tb-500.png": {
+    "mtime": 1784042500.5437298,
+    "ast_hash": "e39b354917e6aea7bc66cd835a8dc9ab",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\tesamorelin.png": {
-    "mtime": 1783989980.519397,
-    "hash": "6d870ac94dc35659c44007d4b6fc016c"
+  "public/peptides/tesamorelin.png": {
+    "mtime": 1784042500.5543475,
+    "ast_hash": "53e19f870a51a9c4eddadd0dd416e0fd",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\wolverine.png": {
-    "mtime": 1783989980.5280974,
-    "hash": "dde92e26b8944704128998c0c56ab254"
+  "public/peptides/wolverine.png": {
+    "mtime": 1784042500.5593004,
+    "ast_hash": "1564fb8a80d89f9b91414c40040dcd78",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\ba\\bpc-157-after.png": {
+  "public/peptides/ba/bpc-157-after.png": {
     "mtime": 1783989980.2024128,
-    "hash": "ceb52860c72c5a071513d1f59eff4714"
+    "ast_hash": "ceb52860c72c5a071513d1f59eff4714",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\ba\\bpc-157-before.png": {
+  "public/peptides/ba/bpc-157-before.png": {
     "mtime": 1783989980.2064786,
-    "hash": "1c1ed4016c30a45ca2273f16177e3fd6"
+    "ast_hash": "1c1ed4016c30a45ca2273f16177e3fd6",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\ba\\cjc-1295-ipamorelin-after.png": {
+  "public/peptides/ba/cjc-1295-ipamorelin-after.png": {
     "mtime": 1783989980.2084925,
-    "hash": "03edea91a0762ed405b15eefdd6fe486"
+    "ast_hash": "03edea91a0762ed405b15eefdd6fe486",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\ba\\cjc-1295-ipamorelin-before.png": {
+  "public/peptides/ba/cjc-1295-ipamorelin-before.png": {
     "mtime": 1783989980.2105048,
-    "hash": "176461974305176f3c48d9dae4e865cf"
+    "ast_hash": "176461974305176f3c48d9dae4e865cf",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\ba\\ghk-cu-after.png": {
+  "public/peptides/ba/ghk-cu-after.png": {
     "mtime": 1783989980.2145329,
-    "hash": "81d660383359153cda818a2b6077a8a3"
+    "ast_hash": "81d660383359153cda818a2b6077a8a3",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\ba\\ghk-cu-before.png": {
+  "public/peptides/ba/ghk-cu-before.png": {
     "mtime": 1783989980.218557,
-    "hash": "f037570ee95700841a2fe3e7e90641c9"
+    "ast_hash": "f037570ee95700841a2fe3e7e90641c9",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\ba\\glp-1-weight-loss-after.png": {
+  "public/peptides/ba/glp-1-weight-loss-after.png": {
     "mtime": 1783989980.2205737,
-    "hash": "39dd057f65420cb5cf1658773a7db7a9"
+    "ast_hash": "39dd057f65420cb5cf1658773a7db7a9",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\ba\\glp-1-weight-loss-before.png": {
+  "public/peptides/ba/glp-1-weight-loss-before.png": {
     "mtime": 1783989980.2243564,
-    "hash": "794bb5d24f03a897b530ad1f4f57299a"
+    "ast_hash": "794bb5d24f03a897b530ad1f4f57299a",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\ba\\mots-c-after.png": {
+  "public/peptides/ba/mots-c-after.png": {
     "mtime": 1783989980.2263665,
-    "hash": "2f515578a2ce1ac5fe3fb60ea38ba5b4"
+    "ast_hash": "2f515578a2ce1ac5fe3fb60ea38ba5b4",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\ba\\mots-c-before.png": {
+  "public/peptides/ba/mots-c-before.png": {
     "mtime": 1783989980.22838,
-    "hash": "b757edf113d2329a4037dbeb403f2e31"
+    "ast_hash": "b757edf113d2329a4037dbeb403f2e31",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\ba\\nad-plus-after.png": {
+  "public/peptides/ba/nad-plus-after.png": {
     "mtime": 1783989980.2323968,
-    "hash": "3be75799a9c54cb254049c251c1e1dc8"
+    "ast_hash": "3be75799a9c54cb254049c251c1e1dc8",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\ba\\nad-plus-before.png": {
+  "public/peptides/ba/nad-plus-before.png": {
     "mtime": 1783989980.2323968,
-    "hash": "2d330dbae58924fb8392596981c75803"
+    "ast_hash": "2d330dbae58924fb8392596981c75803",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\ba\\retatrutide-after.png": {
+  "public/peptides/ba/retatrutide-after.png": {
     "mtime": 1783989980.2323968,
-    "hash": "8478026d2e11fcb233256714716dd1b1"
+    "ast_hash": "8478026d2e11fcb233256714716dd1b1",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\ba\\retatrutide-before.png": {
+  "public/peptides/ba/retatrutide-before.png": {
     "mtime": 1783989980.2397206,
-    "hash": "fb450e781b77748b39d591734822bb16"
+    "ast_hash": "fb450e781b77748b39d591734822bb16",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\ba\\sermorelin-after.png": {
+  "public/peptides/ba/sermorelin-after.png": {
     "mtime": 1783989980.2439103,
-    "hash": "7d602ae4ccf6ab32a13062fb8658f4df"
+    "ast_hash": "7d602ae4ccf6ab32a13062fb8658f4df",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\ba\\sermorelin-before.png": {
+  "public/peptides/ba/sermorelin-before.png": {
     "mtime": 1783989980.2459216,
-    "hash": "3f00d06fcb22a24b44ff60df38e7f9cf"
+    "ast_hash": "3f00d06fcb22a24b44ff60df38e7f9cf",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\ba\\tb-500-after.png": {
+  "public/peptides/ba/tb-500-after.png": {
     "mtime": 1783989980.2469316,
-    "hash": "f58edb07c3c86d1a5b3481de1147ef64"
+    "ast_hash": "f58edb07c3c86d1a5b3481de1147ef64",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\ba\\tb-500-before.png": {
+  "public/peptides/ba/tb-500-before.png": {
     "mtime": 1783989980.2489398,
-    "hash": "1ed0f639dd040a35657e570a4f74b75d"
+    "ast_hash": "1ed0f639dd040a35657e570a4f74b75d",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\ba\\tesamorelin-after.png": {
+  "public/peptides/ba/tesamorelin-after.png": {
     "mtime": 1783989980.2529657,
-    "hash": "fa8a9bdf37ea2004a6b0396d73fba7f4"
+    "ast_hash": "fa8a9bdf37ea2004a6b0396d73fba7f4",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\ba\\tesamorelin-before.png": {
+  "public/peptides/ba/tesamorelin-before.png": {
     "mtime": 1783989980.2556667,
-    "hash": "d71c151a6f180583361a1cf8461ea5ac"
+    "ast_hash": "d71c151a6f180583361a1cf8461ea5ac",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\ba\\wolverine-after.png": {
+  "public/peptides/ba/wolverine-after.png": {
     "mtime": 1783989980.261841,
-    "hash": "80e1af72872673c0f63f1b780e84f84f"
+    "ast_hash": "80e1af72872673c0f63f1b780e84f84f",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\ba\\wolverine-before.png": {
+  "public/peptides/ba/wolverine-before.png": {
     "mtime": 1783989980.2633557,
-    "hash": "b1947591366853f8d85a825dd6b94c41"
+    "ast_hash": "b1947591366853f8d85a825dd6b94c41",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019b9783-d3fe-730a-8278-b131e3ad6b57.png": {
+  "public/peptides/catalog/019b9783-d3fe-730a-8278-b131e3ad6b57.png": {
     "mtime": 1783989980.269394,
-    "hash": "157144c03a9707237dc1f87600c0a84b"
+    "ast_hash": "157144c03a9707237dc1f87600c0a84b",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019bb9b5-0f71-7154-8eca-e43f614b6f97.png": {
+  "public/peptides/catalog/019bb9b5-0f71-7154-8eca-e43f614b6f97.png": {
     "mtime": 1783989980.2743042,
-    "hash": "d93f86838f90c3665636f55be407007f"
+    "ast_hash": "d93f86838f90c3665636f55be407007f",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019bc32e-c4d5-7230-b879-a706dc054db1.png": {
+  "public/peptides/catalog/019bc32e-c4d5-7230-b879-a706dc054db1.png": {
     "mtime": 1783989980.2763147,
-    "hash": "bb94e4e1cf4bf0faf0743806e71788e4"
+    "ast_hash": "bb94e4e1cf4bf0faf0743806e71788e4",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019bc338-dfbc-731a-9f8a-c4ad3b05a2b4.png": {
+  "public/peptides/catalog/019bc338-dfbc-731a-9f8a-c4ad3b05a2b4.png": {
     "mtime": 1783989980.278326,
-    "hash": "1e7258ccddd6bde7d866bd30921bd2ad"
+    "ast_hash": "1e7258ccddd6bde7d866bd30921bd2ad",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019bc346-1b8f-71a0-a07c-9f8bce3ddcc9.png": {
+  "public/peptides/catalog/019bc346-1b8f-71a0-a07c-9f8bce3ddcc9.png": {
     "mtime": 1783989980.27984,
-    "hash": "88d0784e0449641b937a1693f3fcff77"
+    "ast_hash": "88d0784e0449641b937a1693f3fcff77",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019bc34d-e6e7-7132-84c1-1b2caf61da8e.png": {
+  "public/peptides/catalog/019bc34d-e6e7-7132-84c1-1b2caf61da8e.png": {
     "mtime": 1783989980.2832744,
-    "hash": "7cc7bb1df06ddc2fba3374a7eedc256f"
+    "ast_hash": "7cc7bb1df06ddc2fba3374a7eedc256f",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019bc38a-4e18-739b-93e9-a32f8c2f8fdd.png": {
+  "public/peptides/catalog/019bc38a-4e18-739b-93e9-a32f8c2f8fdd.png": {
     "mtime": 1783989980.285377,
-    "hash": "09be091c802573cf193d1d48c0900d83"
+    "ast_hash": "09be091c802573cf193d1d48c0900d83",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019bc3b4-af90-7289-885e-231d4c322b14.png": {
+  "public/peptides/catalog/019bc3b4-af90-7289-885e-231d4c322b14.png": {
     "mtime": 1783989980.285377,
-    "hash": "76cde7b5df53c6ac3795f082deaa0977"
+    "ast_hash": "76cde7b5df53c6ac3795f082deaa0977",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019bdbeb-1c06-7305-b832-336db78c105b.png": {
+  "public/peptides/catalog/019bdbeb-1c06-7305-b832-336db78c105b.png": {
     "mtime": 1783989980.2897608,
-    "hash": "b47959ad42bbd89011389407d93d69f1"
+    "ast_hash": "b47959ad42bbd89011389407d93d69f1",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019bde3e-e581-7264-9525-296929cc2c30.png": {
+  "public/peptides/catalog/019bde3e-e581-7264-9525-296929cc2c30.png": {
     "mtime": 1783989980.29177,
-    "hash": "41e4cc43331d1712b25b2232af37a1d5"
+    "ast_hash": "41e4cc43331d1712b25b2232af37a1d5",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019bde3e-e588-718a-8328-d772f63cb741.png": {
+  "public/peptides/catalog/019bde3e-e588-718a-8328-d772f63cb741.png": {
     "mtime": 1783989980.2937827,
-    "hash": "744a1e4fe6d0ecf6d8216a16b7b5fb48"
+    "ast_hash": "744a1e4fe6d0ecf6d8216a16b7b5fb48",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019bde3e-e58f-72e0-be3c-3af65b406741.png": {
+  "public/peptides/catalog/019bde3e-e58f-72e0-be3c-3af65b406741.png": {
     "mtime": 1783989980.295537,
-    "hash": "880ac4056bb5f3077a790163945f083d"
+    "ast_hash": "880ac4056bb5f3077a790163945f083d",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019bde3e-e5d9-70a3-9ea2-d334aeca9f25.png": {
+  "public/peptides/catalog/019bde3e-e5d9-70a3-9ea2-d334aeca9f25.png": {
     "mtime": 1783989980.2975461,
-    "hash": "77edeff3d82dc58fd791950c915da196"
+    "ast_hash": "77edeff3d82dc58fd791950c915da196",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019bde3e-e5e0-70cd-8c2d-2c3e9bf11bbc.png": {
+  "public/peptides/catalog/019bde3e-e5e0-70cd-8c2d-2c3e9bf11bbc.png": {
     "mtime": 1783989980.30127,
-    "hash": "a5e95ec1cbb303eb10d74d649ab0b2ea"
+    "ast_hash": "a5e95ec1cbb303eb10d74d649ab0b2ea",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019bde3e-e5e7-73ce-b7f4-ad1b19d7e1b5.png": {
+  "public/peptides/catalog/019bde3e-e5e7-73ce-b7f4-ad1b19d7e1b5.png": {
     "mtime": 1783989980.3032773,
-    "hash": "39640574431a632826a0c42abcd6d324"
+    "ast_hash": "39640574431a632826a0c42abcd6d324",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019bde3e-e5ee-7307-9b6f-08e888c445dd.png": {
+  "public/peptides/catalog/019bde3e-e5ee-7307-9b6f-08e888c445dd.png": {
     "mtime": 1783989980.308155,
-    "hash": "2c12c80d6595a5a22a93300427d1466a"
+    "ast_hash": "2c12c80d6595a5a22a93300427d1466a",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019bde3e-e6ad-70ee-9c94-de9a96565c1b.png": {
+  "public/peptides/catalog/019bde3e-e6ad-70ee-9c94-de9a96565c1b.png": {
     "mtime": 1783989980.3101637,
-    "hash": "8d1f1409cc4203849e4f9973ec67e42c"
+    "ast_hash": "8d1f1409cc4203849e4f9973ec67e42c",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019bde3e-e71a-7225-98fe-8f28b4cbcd77.png": {
+  "public/peptides/catalog/019bde3e-e71a-7225-98fe-8f28b4cbcd77.png": {
     "mtime": 1783989980.312173,
-    "hash": "ee4e7276d0d06b0ac4266ec9ca0d1e4a"
+    "ast_hash": "ee4e7276d0d06b0ac4266ec9ca0d1e4a",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019bde3e-e796-7234-b44e-0adbcd81270f.png": {
+  "public/peptides/catalog/019bde3e-e796-7234-b44e-0adbcd81270f.png": {
     "mtime": 1783989980.3136852,
-    "hash": "e1c869a9082fdbf0e1abf80693299d87"
+    "ast_hash": "e1c869a9082fdbf0e1abf80693299d87",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019bdf22-9ff5-70f8-8fb5-6e5e70c626f2.png": {
+  "public/peptides/catalog/019bdf22-9ff5-70f8-8fb5-6e5e70c626f2.png": {
     "mtime": 1783989980.3156955,
-    "hash": "33d258ac73def2bda700ff141bd5161e"
+    "ast_hash": "33d258ac73def2bda700ff141bd5161e",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019bdf2d-fce9-71ac-b7e5-b4064879b40d.png": {
+  "public/peptides/catalog/019bdf2d-fce9-71ac-b7e5-b4064879b40d.png": {
     "mtime": 1783989980.3197262,
-    "hash": "422640e7d30d8f09e1d77a138e5088a3"
+    "ast_hash": "422640e7d30d8f09e1d77a138e5088a3",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019c7c81-6985-7090-857c-94607d506692.png": {
+  "public/peptides/catalog/019c7c81-6985-7090-857c-94607d506692.png": {
     "mtime": 1783989980.3242054,
-    "hash": "8f23aa827f9f8dd1d66d7ced3fbdec39"
+    "ast_hash": "8f23aa827f9f8dd1d66d7ced3fbdec39",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019c7c87-5aed-7115-9a7e-448ca8064a4b.png": {
+  "public/peptides/catalog/019c7c87-5aed-7115-9a7e-448ca8064a4b.png": {
     "mtime": 1783989980.3282251,
-    "hash": "bc3c5f7f6f383ba708491eaa74353130"
+    "ast_hash": "bc3c5f7f6f383ba708491eaa74353130",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019c7c9f-7a96-73d4-bb41-8920853b48d6.png": {
+  "public/peptides/catalog/019c7c9f-7a96-73d4-bb41-8920853b48d6.png": {
     "mtime": 1783989980.3322482,
-    "hash": "09f3160db3ea15e49b74979812d42259"
+    "ast_hash": "09f3160db3ea15e49b74979812d42259",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019c7cb4-049f-73ec-b278-42ca6c54159c.png": {
+  "public/peptides/catalog/019c7cb4-049f-73ec-b278-42ca6c54159c.png": {
     "mtime": 1783989980.3342571,
-    "hash": "2c7d6f712ae420be438478e435d842bb"
+    "ast_hash": "2c7d6f712ae420be438478e435d842bb",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019c7d0d-81a0-725c-b477-ed4ac0e96640.png": {
+  "public/peptides/catalog/019c7d0d-81a0-725c-b477-ed4ac0e96640.png": {
     "mtime": 1783989980.3371313,
-    "hash": "08a66a227b6df76dcf02403949885215"
+    "ast_hash": "08a66a227b6df76dcf02403949885215",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019c8815-5510-71ea-9d6e-dc6029aa4218.png": {
+  "public/peptides/catalog/019c8815-5510-71ea-9d6e-dc6029aa4218.png": {
     "mtime": 1783989980.3426363,
-    "hash": "3d6a351b5806635a9870ec7105e077fe"
+    "ast_hash": "3d6a351b5806635a9870ec7105e077fe",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019c8819-35be-73f4-b5c2-c7e9c82a0f27.png": {
+  "public/peptides/catalog/019c8819-35be-73f4-b5c2-c7e9c82a0f27.png": {
     "mtime": 1783989980.3446615,
-    "hash": "b9e404522e913432eeb72a9930eda943"
+    "ast_hash": "b9e404522e913432eeb72a9930eda943",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019c882b-1bec-724c-baa3-6cff65c53c6b.png": {
+  "public/peptides/catalog/019c882b-1bec-724c-baa3-6cff65c53c6b.png": {
     "mtime": 1783989980.3466873,
-    "hash": "16361460d1983b1774966ee88227aa45"
+    "ast_hash": "16361460d1983b1774966ee88227aa45",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019c882f-1f93-727d-ad98-2c503329f3db.png": {
+  "public/peptides/catalog/019c882f-1f93-727d-ad98-2c503329f3db.png": {
     "mtime": 1783989980.3507235,
-    "hash": "e204f2606fba9beeb3f199eaf3b5a609"
+    "ast_hash": "e204f2606fba9beeb3f199eaf3b5a609",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019c8831-5636-728c-b15f-6936811a3631.png": {
+  "public/peptides/catalog/019c8831-5636-728c-b15f-6936811a3631.png": {
     "mtime": 1783989980.3527396,
-    "hash": "2385edc3805e033f59de01fa42b56244"
+    "ast_hash": "2385edc3805e033f59de01fa42b56244",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019c8834-50f5-72d3-a037-95dbb7adf082.png": {
+  "public/peptides/catalog/019c8834-50f5-72d3-a037-95dbb7adf082.png": {
     "mtime": 1783989980.3590922,
-    "hash": "a5ff64d410ae501ac1ac6c62087df52a"
+    "ast_hash": "a5ff64d410ae501ac1ac6c62087df52a",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019c883b-1dd0-72a1-8ad8-7b4e2bd3d8ae.png": {
+  "public/peptides/catalog/019c883b-1dd0-72a1-8ad8-7b4e2bd3d8ae.png": {
     "mtime": 1783989980.363152,
-    "hash": "b7bd207d4c409ebca2bc70b07002aa7b"
+    "ast_hash": "b7bd207d4c409ebca2bc70b07002aa7b",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019c883d-6fd6-70e0-b415-144212c2cbe8.png": {
+  "public/peptides/catalog/019c883d-6fd6-70e0-b415-144212c2cbe8.png": {
     "mtime": 1783989980.36516,
-    "hash": "466839020562fe5743da926d98e442d0"
+    "ast_hash": "466839020562fe5743da926d98e442d0",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019cadd9-8152-72ba-a4e4-a1114a8f77a8.png": {
+  "public/peptides/catalog/019cadd9-8152-72ba-a4e4-a1114a8f77a8.png": {
     "mtime": 1783989980.3671682,
-    "hash": "6d870ac94dc35659c44007d4b6fc016c"
+    "ast_hash": "6d870ac94dc35659c44007d4b6fc016c",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019caddf-318b-715c-9bae-efb57963d332.png": {
+  "public/peptides/catalog/019caddf-318b-715c-9bae-efb57963d332.png": {
     "mtime": 1783989980.3671682,
-    "hash": "dde92e26b8944704128998c0c56ab254"
+    "ast_hash": "dde92e26b8944704128998c0c56ab254",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019cade3-6192-71fe-a49a-1f0bc8ddffe2.png": {
+  "public/peptides/catalog/019cade3-6192-71fe-a49a-1f0bc8ddffe2.png": {
     "mtime": 1783989980.3753886,
-    "hash": "c50c1ea3c7cde84a9c017c9015b2392a"
+    "ast_hash": "c50c1ea3c7cde84a9c017c9015b2392a",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019cade5-fefa-7238-9c94-df68a64152d7.png": {
+  "public/peptides/catalog/019cade5-fefa-7238-9c94-df68a64152d7.png": {
     "mtime": 1783989980.3773952,
-    "hash": "ef2ef505dbaad0e00d6ab9bd7d549c78"
+    "ast_hash": "ef2ef505dbaad0e00d6ab9bd7d549c78",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019cade7-db49-7279-8f30-7af9f2dd93ad.png": {
+  "public/peptides/catalog/019cade7-db49-7279-8f30-7af9f2dd93ad.png": {
     "mtime": 1783989980.3953338,
-    "hash": "1b2e9e7cdc953014fbca69a27193a067"
+    "ast_hash": "1b2e9e7cdc953014fbca69a27193a067",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019cadea-3836-70a6-8325-470804544e4e.png": {
+  "public/peptides/catalog/019cadea-3836-70a6-8325-470804544e4e.png": {
     "mtime": 1783989980.4013624,
-    "hash": "cf9d91c7fbaed29106f444cb096dea3a"
+    "ast_hash": "cf9d91c7fbaed29106f444cb096dea3a",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019cadec-6cf5-72ba-8faf-487b07eb5788.png": {
+  "public/peptides/catalog/019cadec-6cf5-72ba-8faf-487b07eb5788.png": {
     "mtime": 1783989980.4043767,
-    "hash": "b902413558eef026c5c9b61feb31fc6b"
+    "ast_hash": "b902413558eef026c5c9b61feb31fc6b",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019cadef-a3fa-707b-b17f-df1ba069768b.png": {
+  "public/peptides/catalog/019cadef-a3fa-707b-b17f-df1ba069768b.png": {
     "mtime": 1783989980.415101,
-    "hash": "6631b2c6ea674a7122bc1530a23a8bc0"
+    "ast_hash": "6631b2c6ea674a7122bc1530a23a8bc0",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019cadf5-ac12-72f7-9d7c-971ec5475714.png": {
+  "public/peptides/catalog/019cadf5-ac12-72f7-9d7c-971ec5475714.png": {
     "mtime": 1783989980.4181337,
-    "hash": "62f2b46cb27780d3db16a1bc2525ff1e"
+    "ast_hash": "62f2b46cb27780d3db16a1bc2525ff1e",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019cadf7-b938-70aa-bf68-cfd894b7fbb4.png": {
+  "public/peptides/catalog/019cadf7-b938-70aa-bf68-cfd894b7fbb4.png": {
     "mtime": 1783989980.4201477,
-    "hash": "7d3c0be8d42cada1223a417576ed5d07"
+    "ast_hash": "7d3c0be8d42cada1223a417576ed5d07",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019cdb9d-63b3-7179-8263-d2e3acfdb93b.png": {
+  "public/peptides/catalog/019cdb9d-63b3-7179-8263-d2e3acfdb93b.png": {
     "mtime": 1783989980.4256847,
-    "hash": "89299e7cb291ac9a95bc16df33f22a31"
+    "ast_hash": "89299e7cb291ac9a95bc16df33f22a31",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019cdb9d-63ba-7378-ad06-d44f29bdb6c5.png": {
+  "public/peptides/catalog/019cdb9d-63ba-7378-ad06-d44f29bdb6c5.png": {
     "mtime": 1783989980.429708,
-    "hash": "c32c2687e9dec3b6e05e454ffa59a334"
+    "ast_hash": "c32c2687e9dec3b6e05e454ffa59a334",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019cdb9d-63c0-726e-bffc-9b2e8d8a06fc.png": {
+  "public/peptides/catalog/019cdb9d-63c0-726e-bffc-9b2e8d8a06fc.png": {
     "mtime": 1783989980.431717,
-    "hash": "0900166b5122499986bea4ade783f728"
+    "ast_hash": "0900166b5122499986bea4ade783f728",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019cdb9d-63c5-71fa-8817-f207f4a3b7f2.png": {
+  "public/peptides/catalog/019cdb9d-63c5-71fa-8817-f207f4a3b7f2.png": {
     "mtime": 1783989980.433725,
-    "hash": "9f7709ba9f224f3bc1b35854b16056c1"
+    "ast_hash": "9f7709ba9f224f3bc1b35854b16056c1",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019cdb9d-63cb-7187-9a7a-e38dc7300800.png": {
+  "public/peptides/catalog/019cdb9d-63cb-7187-9a7a-e38dc7300800.png": {
     "mtime": 1783989980.440734,
-    "hash": "9f7709ba9f224f3bc1b35854b16056c1"
+    "ast_hash": "9f7709ba9f224f3bc1b35854b16056c1",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019cdb9d-63d0-7141-b33a-8aacab2ac4c5.png": {
+  "public/peptides/catalog/019cdb9d-63d0-7141-b33a-8aacab2ac4c5.png": {
     "mtime": 1783989980.4487696,
-    "hash": "8a133d531707cf13df91b6d2ccdb2e5b"
+    "ast_hash": "8a133d531707cf13df91b6d2ccdb2e5b",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019cdb9d-63d6-707d-a995-2c24617e2137.png": {
+  "public/peptides/catalog/019cdb9d-63d6-707d-a995-2c24617e2137.png": {
     "mtime": 1783989980.4497793,
-    "hash": "dab9b145002589bc8bf9e416e14fdf65"
+    "ast_hash": "dab9b145002589bc8bf9e416e14fdf65",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019cdb9d-63dc-703c-973a-c50f5d9e5df0.png": {
+  "public/peptides/catalog/019cdb9d-63dc-703c-973a-c50f5d9e5df0.png": {
     "mtime": 1783989980.4497793,
-    "hash": "22889d1faf911aa53ffcc3ed358bc4c3"
+    "ast_hash": "22889d1faf911aa53ffcc3ed358bc4c3",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019cdb9d-63e1-71dc-a377-6c44c80827e0.png": {
+  "public/peptides/catalog/019cdb9d-63e1-71dc-a377-6c44c80827e0.png": {
     "mtime": 1783989980.4538004,
-    "hash": "85cd8a74f7f31ffe484652e7d27efb47"
+    "ast_hash": "85cd8a74f7f31ffe484652e7d27efb47",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019cdb9d-63e7-71b3-b0d9-5e2de9492941.png": {
+  "public/peptides/catalog/019cdb9d-63e7-71b3-b0d9-5e2de9492941.png": {
     "mtime": 1783989980.4538004,
-    "hash": "a406d7c1d61a2d6f9a77db7f81e83f55"
+    "ast_hash": "a406d7c1d61a2d6f9a77db7f81e83f55",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019cdb9d-63ef-7111-8cf1-ba9b6df38bee.png": {
+  "public/peptides/catalog/019cdb9d-63ef-7111-8cf1-ba9b6df38bee.png": {
     "mtime": 1783989980.4593182,
-    "hash": "d0d54d03c40d767714c5a2e3d0894211"
+    "ast_hash": "d0d54d03c40d767714c5a2e3d0894211",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019cdb9d-63f5-70d1-857d-666d2b320850.png": {
+  "public/peptides/catalog/019cdb9d-63f5-70d1-857d-666d2b320850.png": {
     "mtime": 1783989980.4613304,
-    "hash": "e7f7d871fef539907c621a9f2a769fb0"
+    "ast_hash": "e7f7d871fef539907c621a9f2a769fb0",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019cdb9d-63fa-73ef-bbea-dba35ab51a17.png": {
+  "public/peptides/catalog/019cdb9d-63fa-73ef-bbea-dba35ab51a17.png": {
     "mtime": 1783989980.4633446,
-    "hash": "722befc26aaa83c7bb14617d085edbd7"
+    "ast_hash": "722befc26aaa83c7bb14617d085edbd7",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019cdb9d-6406-7271-b16d-02f6bead3d28.png": {
+  "public/peptides/catalog/019cdb9d-6406-7271-b16d-02f6bead3d28.png": {
     "mtime": 1783989980.4653544,
-    "hash": "554e2a67c58452fec0742cdd11eaac4e"
+    "ast_hash": "554e2a67c58452fec0742cdd11eaac4e",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019cdb9d-640b-702a-8e87-3f36d587b002.png": {
+  "public/peptides/catalog/019cdb9d-640b-702a-8e87-3f36d587b002.png": {
     "mtime": 1783989980.4653544,
-    "hash": "9f65b44354cc31791045a4bec0ce593a"
+    "ast_hash": "9f65b44354cc31791045a4bec0ce593a",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019cdb9d-6411-707a-83aa-90cbb4c254f3.png": {
+  "public/peptides/catalog/019cdb9d-6411-707a-83aa-90cbb4c254f3.png": {
     "mtime": 1783989980.4673648,
-    "hash": "8a8ae47a923c373c612f5a85a1639b90"
+    "ast_hash": "8a8ae47a923c373c612f5a85a1639b90",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019cdb9d-6417-7139-b80b-29ef982f5bc4.png": {
+  "public/peptides/catalog/019cdb9d-6417-7139-b80b-29ef982f5bc4.png": {
     "mtime": 1783989980.4735894,
-    "hash": "c268b40847297821066b105d2fd22310"
+    "ast_hash": "c268b40847297821066b105d2fd22310",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019cdb9d-641c-7238-8d17-304f5158646e.png": {
+  "public/peptides/catalog/019cdb9d-641c-7238-8d17-304f5158646e.png": {
     "mtime": 1783989980.479625,
-    "hash": "f6749ddcffae8f0b51dc1fe8c57ad60a"
+    "ast_hash": "f6749ddcffae8f0b51dc1fe8c57ad60a",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019cdb9d-6422-72d9-a66f-355a3171ddfc.png": {
+  "public/peptides/catalog/019cdb9d-6422-72d9-a66f-355a3171ddfc.png": {
     "mtime": 1783989980.4813757,
-    "hash": "80dda936ca752bc674e714202fe2cea3"
+    "ast_hash": "80dda936ca752bc674e714202fe2cea3",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019cdb9d-6427-72f7-8bc9-2ac55b626679.png": {
+  "public/peptides/catalog/019cdb9d-6427-72f7-8bc9-2ac55b626679.png": {
     "mtime": 1783989980.483384,
-    "hash": "80dda936ca752bc674e714202fe2cea3"
+    "ast_hash": "80dda936ca752bc674e714202fe2cea3",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019da805-a61c-71f8-bd4b-48bd7ed31448.png": {
+  "public/peptides/catalog/019da805-a61c-71f8-bd4b-48bd7ed31448.png": {
     "mtime": 1783989980.4854038,
-    "hash": "abdcda3d7f7bd2ba826f2f4addb91d96"
+    "ast_hash": "abdcda3d7f7bd2ba826f2f4addb91d96",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\public\\peptides\\catalog\\019f48e5-0a5c-717b-b648-24298cc9c3c3.png": {
+  "public/peptides/catalog/019f48e5-0a5c-717b-b648-24298cc9c3c3.png": {
     "mtime": 1783989980.490707,
-    "hash": "fff03ec94fca81e5c46a991cd736fd5e"
+    "ast_hash": "fff03ec94fca81e5c46a991cd736fd5e",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\assets\\auth-brand-runner.png": {
+  "src/assets/auth-brand-runner.png": {
     "mtime": 1783718110.834206,
-    "hash": "30d148b027eed380f2ad0da2aeaee116"
+    "ast_hash": "30d148b027eed380f2ad0da2aeaee116",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\assets\\ChatGPT Image Jul 11, 2026, 12_15_10 AM.png": {
+  "src/assets/ChatGPT Image Jul 11, 2026, 12_15_10 AM.png": {
     "mtime": 1783718110.834206,
-    "hash": "30d148b027eed380f2ad0da2aeaee116"
+    "ast_hash": "30d148b027eed380f2ad0da2aeaee116",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\assets\\ChatGPT Image Jul 9, 2026, 10_11_25 PM.png": {
+  "src/assets/ChatGPT Image Jul 9, 2026, 10_11_25 PM.png": {
     "mtime": 1783642215.4349923,
-    "hash": "e036872066163055ee101bac2ac267f9"
+    "ast_hash": "e036872066163055ee101bac2ac267f9",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\assets\\ChatGPT Image Jul 9, 2026, 10_11_30 PM.png": {
+  "src/assets/ChatGPT Image Jul 9, 2026, 10_11_30 PM.png": {
     "mtime": 1783642215.439938,
-    "hash": "d56cd687dda4a30ad6a0c6137a00f4c8"
+    "ast_hash": "d56cd687dda4a30ad6a0c6137a00f4c8",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\assets\\testimonial-portrait-man.png": {
+  "src/assets/testimonial-portrait-man.png": {
     "mtime": 1783642215.4733326,
-    "hash": "e036872066163055ee101bac2ac267f9"
+    "ast_hash": "e036872066163055ee101bac2ac267f9",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\assets\\testimonial-portrait-woman.png": {
+  "src/assets/testimonial-portrait-woman.png": {
     "mtime": 1783642215.4857998,
-    "hash": "d56cd687dda4a30ad6a0c6137a00f4c8"
+    "ast_hash": "d56cd687dda4a30ad6a0c6137a00f4c8",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\assets\\tidl-hero.jpg": {
+  "src/assets/tidl-hero.jpg": {
     "mtime": 1783500506.280257,
-    "hash": "e3135e6b1e4a750c187ffe19499a7582"
+    "ast_hash": "e3135e6b1e4a750c187ffe19499a7582",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\assets\\TIDL_Pen-Rendering_WITH-LABEL.png": {
+  "src/assets/TIDL_Pen-Rendering_WITH-LABEL.png": {
     "mtime": 1783642215.457135,
-    "hash": "6b8306e4f9910d7948a1e182851d8c2b"
+    "ast_hash": "6b8306e4f9910d7948a1e182851d8c2b",
+    "semantic_hash": ""
   },
-  "C:\\Users\\User\\OneDrive\\Desktop\\tidl-main\\tidl-main\\src\\assets\\TIDL_Pen-Rendering_WITH-LABEL.upright-backup.png": {
+  "src/assets/TIDL_Pen-Rendering_WITH-LABEL.upright-backup.png": {
     "mtime": 1783642215.4631574,
-    "hash": "839e7d1c328d64db20fa57fc1365bd32"
+    "ast_hash": "839e7d1c328d64db20fa57fc1365bd32",
+    "semantic_hash": ""
+  },
+  "components.json": {
+    "mtime": 1783377478.3261485,
+    "ast_hash": "30d3d035361ce807021f5c54620962e9",
+    "semantic_hash": ""
+  },
+  "package.json": {
+    "mtime": 1783705219.4749274,
+    "ast_hash": "cd76216fddf2edd0584eacb4378a1e1b",
+    "semantic_hash": ""
+  },
+  "scripts/make_peptide_vials.py": {
+    "mtime": 1784042500.5633318,
+    "ast_hash": "faa7958d99ec793678d8d95dc5379276",
+    "semantic_hash": ""
+  },
+  "scripts/prx-catalog-images.json": {
+    "mtime": 1783989980.5371485,
+    "ast_hash": "7da8e4e02c960ce391c5564c4d68791f",
+    "semantic_hash": ""
+  },
+  "src/lib/peptide-image-map.json": {
+    "mtime": 1783989980.654019,
+    "ast_hash": "9b1af186b5ef047785b0b320cafe9179",
+    "semantic_hash": ""
+  },
+  "tsconfig.json": {
+    "mtime": 1783989980.7095575,
+    "ast_hash": "e9905064abe5abcd21413a284f522fd1",
+    "semantic_hash": ""
+  },
+  "ui/pick-your-goal-section.md": {
+    "mtime": 1784029329.9815767,
+    "ast_hash": "1214e8467e0b2b214674bd4ab2606783",
+    "semantic_hash": ""
   }
 }

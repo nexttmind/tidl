@@ -131,11 +131,39 @@ export function ServicesSection() {
   const scrollLockUntil = useRef(0);
   const activeIdxRef = useRef(0);
   const railProgressRef = useRef<HTMLDivElement>(null);
-  const hintProgressRef = useRef<HTMLSpanElement>(null);
+  const railTrackRef = useRef<HTMLDivElement>(null);
+  const railNavRef = useRef<HTMLNavElement>(null);
   const active = categories[activeIdx] ?? categories[0];
   const next = categories[(activeIdx + 1) % categories.length];
   const scrollRef = useRef<HTMLDivElement>(null);
   const cabinetInViewRef = useRef(false);
+
+  const syncRailFill = (progress: number) => {
+    const track = railTrackRef.current;
+    const fill = railProgressRef.current;
+    const nav = railNavRef.current;
+    if (!track || !fill || !nav) return;
+
+    const items = nav.querySelectorAll<HTMLElement>(".svc-cab-rail-item");
+    const n = items.length;
+    if (n === 0) return;
+
+    const trackRect = track.getBoundingClientRect();
+    if (trackRect.height <= 0) return;
+
+    const tipY = (el: HTMLElement) => {
+      const r = el.getBoundingClientRect();
+      return r.top + r.height * 0.55 - trackRect.top;
+    };
+
+    const seg = Math.min(Math.max(progress, 0), 1) * n;
+    const i0 = Math.min(n - 1, Math.floor(seg));
+    const i1 = Math.min(n - 1, i0 + 1);
+    const t = n <= 1 ? 0 : seg - i0;
+    const y = tipY(items[i0]) + (tipY(items[i1]) - tipY(items[i0])) * t;
+    const pct = Math.min(1, Math.max(0, y / trackRect.height));
+    fill.style.height = `${pct * 100}%`;
+  };
 
   useEffect(() => {
     activeIdxRef.current = activeIdx;
@@ -158,11 +186,15 @@ export function ServicesSection() {
       if (total <= 0) return;
       const scrolled = Math.min(Math.max(-rect.top, 0), total);
       const progress = scrolled / total;
-      const pct = `${progress * 100}%`;
-      if (railProgressRef.current) railProgressRef.current.style.height = pct;
-      if (hintProgressRef.current) hintProgressRef.current.style.width = pct;
 
-      if (performance.now() < scrollLockUntil.current) return;
+      if (performance.now() < scrollLockUntil.current) {
+        const locked = activeIdxRef.current;
+        const n = Math.max(categories.length, 1);
+        syncRailFill((locked + 0.55) / n);
+        return;
+      }
+
+      syncRailFill(progress);
 
       const n = categories.length;
       const raw = Math.min(n - 1, Math.floor(progress * n));
@@ -171,7 +203,7 @@ export function ServicesSection() {
       if (raw !== prev) {
         const boundary = (Math.min(raw, prev) + 1) / n;
         const dist = Math.abs(progress - boundary);
-        if (Math.abs(raw - prev) === 1 && dist < 0.045) nextIdx = prev;
+        if (Math.abs(raw - prev) === 1 && dist < 0.04) nextIdx = prev;
       }
       if (nextIdx !== prev) {
         activeIdxRef.current = nextIdx;
@@ -224,6 +256,8 @@ export function ServicesSection() {
     activeIdxRef.current = i;
     setActiveIdx(i);
     scrollLockUntil.current = performance.now() + 900;
+    const n = Math.max(categories.length, 1);
+    syncRailFill((i + 0.55) / n);
     const el = scrollRef.current;
     if (!el) return;
     const rect = el.getBoundingClientRect();
@@ -232,7 +266,7 @@ export function ServicesSection() {
     if (total <= 0 || window.matchMedia("(max-width: 900px)").matches) return;
     // Land mid-segment so hysteresis does not bounce back to the previous pathway.
     const target =
-      rect.top + window.scrollY + ((i + 0.5) / categories.length) * total;
+      rect.top + window.scrollY + ((i + 0.5) / n) * total;
     window.scrollTo({ top: target, behavior: reduceMotion ? "auto" : "smooth" });
   };
 
@@ -274,7 +308,7 @@ export function ServicesSection() {
             </header>
 
             <div className="svc-cab-stage">
-              <nav className="svc-cab-rail" aria-label="Treatment categories">
+              <nav ref={railNavRef} className="svc-cab-rail" aria-label="Treatment categories">
                 <p className="svc-cab-rail-kicker">Pathways</p>
                 <ol>
                   {categories.map((c, i) => {
@@ -300,7 +334,7 @@ export function ServicesSection() {
                     );
                   })}
                 </ol>
-                <div className="svc-cab-rail-track" aria-hidden="true">
+                <div ref={railTrackRef} className="svc-cab-rail-track" aria-hidden="true">
                   <div ref={railProgressRef} className="svc-cab-rail-track-fill" />
                 </div>
               </nav>
@@ -334,11 +368,13 @@ export function ServicesSection() {
                 </div>
 
                 <div className="svc-cab-caption">
-                  <span className="svc-cab-caption-kicker">
+                  <span className="svc-cab-caption-kicker" key={`kick-${active.slug}`}>
                     Pathway {active.index}
                     <span className="svc-cab-caption-of"> / {String(categories.length).padStart(2, "0")}</span>
                   </span>
-                  <span className="svc-cab-caption-molecule">{active.molecule}</span>
+                  <span className="svc-cab-caption-molecule" key={`mol-${active.slug}`}>
+                    {active.molecule}
+                  </span>
                 </div>
               </div>
 
@@ -450,21 +486,6 @@ export function ServicesSection() {
             </div>
 
             <div className="svc-cab-scrollhint" aria-hidden="true">
-              <div className="svc-cab-scrollhint-path">
-                <span className="svc-cab-scrollhint-track">
-                  <span ref={hintProgressRef} className="svc-cab-scrollhint-fill" />
-                </span>
-                <ol className="svc-cab-scrollhint-stops">
-                  {categories.map((c, i) => (
-                    <li
-                      key={c.slug}
-                      className={`svc-cab-scrollhint-stop${i < activeIdx ? " is-past" : ""}${i === activeIdx ? " is-active" : ""}`}
-                    >
-                      <span className="svc-cab-scrollhint-stop-dot" />
-                    </li>
-                  ))}
-                </ol>
-              </div>
               <span className="svc-cab-scrollhint-copy">
                 {nextLabel
                   ? `Scroll · arriving at ${nextLabel}`

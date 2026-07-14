@@ -1029,6 +1029,8 @@
   .svc-cab-vial-wrap,
   .svc-cab-brief {
     transition-duration: 0.01ms;
+    transform: none !important;
+    filter: none !important;
   }
 }
 
@@ -2895,9 +2897,10 @@ html::-webkit-scrollbar-track {
 .svc-cab-rail-track {
   position: absolute;
   right: 4px;
-  top: 34px;
-  bottom: 8px;
-  width: 1px;
+  top: 40px;
+  bottom: 10px;
+  width: 2px;
+  border-radius: 999px;
   background: rgba(255, 255, 255, 0.08);
   overflow: visible;
 }
@@ -2905,29 +2908,33 @@ html::-webkit-scrollbar-track {
 .svc-cab-rail-track-fill {
   position: relative;
   width: 100%;
+  height: 0;
+  border-radius: inherit;
   background: linear-gradient(
     180deg,
-    rgba(243, 195, 0, 0.25) 0%,
-    rgb(243, 195, 0) 78%,
+    rgba(243, 195, 0, 0.2) 0%,
+    rgb(243, 195, 0) 72%,
     #ffe27a 100%
   );
-  box-shadow: 0 0 12px rgba(243, 195, 0, 0.35);
-  transition: height 0.18s linear;
+  box-shadow: 0 0 14px rgba(243, 195, 0, 0.4);
+  transition: height 0.12s linear;
+  will-change: height;
 }
 
 .svc-cab-rail-track-fill::after {
   content: "";
   position: absolute;
   left: 50%;
-  bottom: -3px;
-  width: 7px;
-  height: 7px;
+  bottom: -4px;
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
   transform: translateX(-50%);
   background: #ffe27a;
   box-shadow:
-    0 0 0 2px rgba(11, 10, 8, 0.85),
-    0 0 12px rgba(243, 195, 0, 0.75);
+    0 0 0 2px rgba(11, 10, 8, 0.9),
+    0 0 0 5px rgba(243, 195, 0, 0.16),
+    0 0 16px rgba(243, 195, 0, 0.8);
 }
 
 .svc-cab-specimen {
@@ -3007,13 +3014,20 @@ html::-webkit-scrollbar-track {
   box-sizing: border-box;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  transform: translate3d(0, 28px, 0) scale(0.9);
+  filter: blur(10px) brightness(0.75);
+  transition:
+    opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .svc-cab-vial-wrap.is-active {
   opacity: 1;
   z-index: 2;
   pointer-events: auto;
+  transform: translate3d(0, 0, 0) scale(1);
+  filter: blur(0) brightness(1);
 }
 
 .svc-cab-product-shot {
@@ -3028,6 +3042,13 @@ html::-webkit-scrollbar-track {
   background: transparent;
   transform: none;
   filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.5));
+  transition: filter 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.svc-cab-vial-wrap.is-active .svc-cab-product-shot {
+  filter:
+    drop-shadow(0 10px 24px rgba(0, 0, 0, 0.55))
+    drop-shadow(0 0 28px rgba(243, 195, 0, 0.12));
 }
 
 .svc-cab-caption {
@@ -3051,6 +3072,7 @@ html::-webkit-scrollbar-track {
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.4);
+  animation: svcCabCaptionIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .svc-cab-caption-molecule {
@@ -3059,7 +3081,18 @@ html::-webkit-scrollbar-track {
   letter-spacing: 0.04em;
   color: rgba(255, 255, 255, 0.62);
   line-height: 1.35;
-  min-height: 1.35em;
+  animation: svcCabCaptionIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) 0.05s both;
+}
+
+@keyframes svcCabCaptionIn {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 8px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
 }
 
 .svc-cab-mark {
@@ -3111,13 +3144,17 @@ html::-webkit-scrollbar-track {
   padding: 2px 6px 14px 2px;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  transform: translate3d(0, 14px, 0);
+  transition:
+    opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .svc-cab-brief.is-active {
   opacity: 1;
   z-index: 2;
   pointer-events: auto;
+  transform: translate3d(0, 0, 0);
 }
 
 .svc-cab-brief-head {
@@ -3662,137 +3699,10 @@ html::-webkit-scrollbar-track {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 14px;
+  gap: 0;
   width: 100%;
   margin-top: clamp(14px, 2.2vh, 22px);
   pointer-events: none;
-}
-
-.svc-cab-scrollhint-path {
-  position: relative;
-  width: min(420px, 72vw);
-  height: 18px;
-  display: flex;
-  align-items: center;
-}
-
-.svc-cab-scrollhint-track {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  height: 2px;
-  border-radius: 999px;
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0.06),
-    rgba(255, 255, 255, 0.16),
-    rgba(255, 255, 255, 0.06)
-  );
-  overflow: visible;
-}
-
-.svc-cab-scrollhint-fill {
-  position: relative;
-  display: block;
-  height: 100%;
-  border-radius: inherit;
-  background: linear-gradient(
-    90deg,
-    rgba(243, 195, 0, 0.35) 0%,
-    rgb(243, 195, 0) 72%,
-    #ffe27a 100%
-  );
-  box-shadow:
-    0 0 10px rgba(243, 195, 0, 0.45),
-    0 0 22px rgba(243, 195, 0, 0.2);
-  transition: width 0.18s linear;
-}
-
-.svc-cab-scrollhint-fill::after {
-  content: "";
-  position: absolute;
-  right: -5px;
-  top: 50%;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  transform: translateY(-50%);
-  background: #ffe27a;
-  box-shadow:
-    0 0 0 2px rgba(11, 10, 8, 0.85),
-    0 0 14px rgba(243, 195, 0, 0.85),
-    0 0 28px rgba(243, 195, 0, 0.4);
-}
-
-.svc-cab-scrollhint-stops {
-  position: relative;
-  z-index: 1;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.svc-cab-scrollhint-stop {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 18px;
-}
-
-.svc-cab-scrollhint-stop-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.22);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  box-shadow: 0 0 0 3px rgba(11, 10, 8, 0.75);
-  transition:
-    background 0.35s ease,
-    border-color 0.35s ease,
-    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.35s ease;
-}
-
-.svc-cab-scrollhint-stop.is-past .svc-cab-scrollhint-stop-dot {
-  background: rgba(243, 195, 0, 0.75);
-  border-color: rgba(243, 195, 0, 0.9);
-  box-shadow: 0 0 0 3px rgba(11, 10, 8, 0.75), 0 0 10px rgba(243, 195, 0, 0.35);
-}
-
-.svc-cab-scrollhint-stop.is-active .svc-cab-scrollhint-stop-dot {
-  width: 10px;
-  height: 10px;
-  background: #ffe27a;
-  border-color: #fff3b0;
-  transform: scale(1.15);
-  box-shadow:
-    0 0 0 3px rgba(11, 10, 8, 0.9),
-    0 0 0 6px rgba(243, 195, 0, 0.18),
-    0 0 18px rgba(243, 195, 0, 0.75);
-  animation: svcCabStopPulse 1.6s ease-in-out infinite;
-}
-
-@keyframes svcCabStopPulse {
-  0%,
-  100% {
-    box-shadow:
-      0 0 0 3px rgba(11, 10, 8, 0.9),
-      0 0 0 6px rgba(243, 195, 0, 0.16),
-      0 0 16px rgba(243, 195, 0, 0.65);
-  }
-  50% {
-    box-shadow:
-      0 0 0 3px rgba(11, 10, 8, 0.9),
-      0 0 0 9px rgba(243, 195, 0, 0.1),
-      0 0 26px rgba(243, 195, 0, 0.9);
-  }
 }
 
 .svc-cab-scrollhint-copy {
@@ -3800,12 +3710,7 @@ html::-webkit-scrollbar-track {
   font-weight: 600;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.45);
-  transition: color 0.3s ease;
-}
-
-.svc-cab-scrollhint:has(.svc-cab-scrollhint-stop.is-active) .svc-cab-scrollhint-copy {
-  color: rgba(255, 226, 122, 0.72);
+  color: rgba(255, 226, 122, 0.7);
 }
 
 .svc-cab-caption-of {
@@ -3919,12 +3824,21 @@ html::-webkit-scrollbar-track {
   .svc-cab-product,
   .svc-cab-btn-primary,
   .svc-cab-btn-ghost,
-  .svc-cab-rail-track-fill,
-  .svc-cab-scrollhint-fill {
+  .svc-cab-rail-track-fill {
     transition: none !important;
   }
 
-  .svc-cab-scrollhint-stop.is-active .svc-cab-scrollhint-stop-dot {
+  .svc-cab-vial-wrap,
+  .svc-cab-vial-wrap.is-active,
+  .svc-cab-brief,
+  .svc-cab-brief.is-active {
+    transform: none !important;
+    filter: none !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .svc-cab-caption-kicker,
+  .svc-cab-caption-molecule {
     animation: none !important;
   }
 }
