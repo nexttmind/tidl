@@ -1,4 +1,4 @@
-/* ===== Announcement Bar ===== */
+﻿/* ===== Announcement Bar ===== */
 .tdl-bar {
   --ink: #171310;
   --cream: #ffffff;
@@ -601,7 +601,7 @@
 @media (prefers-reduced-motion: reduce) { .tidl-ticker .track { animation: none; } }
 @media (max-width: 767px) { .tidl-ticker { display: none; } }
 
-/* ===== Ask TIDL — white premium intelligence power section ===== */
+/* ===== Ask TIDL ΓÇö white premium intelligence power section ===== */
 .ask-tidl-wrap {
   position: relative;
   overflow: hidden;
@@ -731,7 +731,7 @@
   position: absolute;
   inset: auto 0 -20% 0;
   height: 46%;
-  /* No warm fill — kept for structure/animation slot only */
+  /* No warm fill ΓÇö kept for structure/animation slot only */
   background: transparent;
   animation: none;
 }
@@ -917,7 +917,7 @@
 /*
   Robot sits BEHIND the live panel (z-index), rises UP onto the rim.
   Rest (translateY 0) = perched on the container surface.
-  Down (translateY +%) = tucked behind the panel face — then climbs up.
+  Down (translateY +%) = tucked behind the panel face ΓÇö then climbs up.
 */
 .ask-bot-wrap {
   position: absolute;
@@ -1599,7 +1599,7 @@
 
 /* ===== Webflow hover interactions (CSS fallback for IX2) ===== */
 
-/* Button 01 — dual text slide */
+/* Button 01 ΓÇö dual text slide */
 .button-outside-01 {
   overflow: hidden;
 }
@@ -1619,7 +1619,7 @@
   line-height: 22px;
 }
 
-/* Button 03 — text, icon, and underline slide */
+/* Button 03 ΓÇö text, icon, and underline slide */
 .btn-text-inside-03 {
   display: flex;
   flex-direction: column;
@@ -1661,7 +1661,7 @@
   transform: scaleX(1.2);
 }
 
-/* Mobile menu — dropdown link text slide */
+/* Mobile menu ΓÇö dropdown link text slide */
 .dropdown-inside-texts {
   display: flex;
   flex-direction: column;
@@ -1676,7 +1676,7 @@
   transform: translateY(-50%) !important;
 }
 
-/* Footer — underline expand on hover */
+/* Footer ΓÇö underline expand on hover */
 .footer-link-wrap {
   display: flex;
   flex-direction: column;
@@ -2495,7 +2495,7 @@
   }
 }
 
-/* Nav links — subtle fade */
+/* Nav links ΓÇö subtle fade */
 .nav-items-wrap {
   transition: opacity 0.35s ease;
 }
@@ -2564,7 +2564,7 @@
   padding-top: 0 !important;
 }
 
-/* ===== Testimonials — dual-row marquee ===== */
+/* ===== Testimonials ΓÇö dual-row marquee ===== */
 
 .tst-sec {
   background: #ffffff;
@@ -2709,9 +2709,9 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  height: 210px;
-  padding: 18px 20px 16px;
+  height: auto;
+  min-height: 280px;
+  padding: 0 0 16px;
   border-radius: 20px;
   border: 1px solid rgba(243, 195, 0, 0.26);
   background: #ffffff;
@@ -2722,30 +2722,44 @@
   transition: box-shadow 0.4s ease, transform 0.4s ease, border-color 0.4s ease;
 }
 
-.tst-marquee-head {
+.tst-marquee-media {
+  position: relative;
   display: flex;
   align-items: center;
-  gap: 12px;
-  min-width: 0;
-}
-
-.tst-marquee-avatar {
-  flex-shrink: 0;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
+  justify-content: center;
+  height: 112px;
+  margin: 0 0 14px;
+  padding: 12px 18px 0;
+  background: linear-gradient(145deg, #f3eee4, #e8dfd2);
   overflow: hidden;
-  border: 2px solid rgba(243, 195, 0, 0.55);
-  box-shadow: 0 0 0 3px rgba(243, 195, 0, 0.12);
-  background: rgba(23, 19, 16, 0.06);
 }
 
-.tst-marquee-avatar img {
-  width: 100%;
-  height: 100%;
+.tst-marquee-portrait {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
   object-fit: cover;
   object-position: center top;
-  display: block;
+  border: 2px solid #fff;
+  box-shadow: 0 8px 22px -12px rgba(23, 19, 16, 0.5);
+  background: #ddd;
+}
+
+.tst-marquee-portrait--hero {
+  position: static;
+}
+
+.tst-marquee-portrait--man {
+  width: 64px;
+  height: 64px;
+}
+
+.tst-marquee-result {
+  margin: 8px 18px 0;
+  font-size: 0.75rem;
+  font-weight: 650;
+  letter-spacing: 0.02em;
+  color: rgba(23, 19, 16, 0.55);
 }
 
 .tst-marquee-card-ring {
@@ -2834,20 +2848,29 @@
 }
 
 .tst-marquee-quote {
-  margin: 0;
+  margin: 0 18px 12px;
   flex: 1;
   min-height: 0;
   padding: 0;
   border: none;
   border-left: none !important;
   font-size: 0.92rem;
-  line-height: 1.62;
+  line-height: 1.55;
   font-style: normal;
   color: rgba(23, 19, 16, 0.76);
   display: -webkit-box;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+.tst-marquee-footer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin: auto 18px 0;
+  gap: 10px;
+  padding-top: 0;
 }
 
 .tst-marquee-author {
@@ -2987,14 +3010,13 @@
   }
 
   .tst-marquee-card {
-    height: 200px;
-    padding: 14px 16px 12px;
-    gap: 12px;
+    height: auto;
+    min-height: 260px;
+    padding: 0 0 14px;
   }
 
-  .tst-marquee-avatar {
-    width: 40px;
-    height: 40px;
+  .tst-marquee-media {
+    height: 100px;
   }
 
   .tst-marquee-card-ring {
@@ -3002,7 +3024,7 @@
   }
 
   .tst-marquee-quote {
-    -webkit-line-clamp: 4;
+    -webkit-line-clamp: 3;
     font-size: 0.88rem;
   }
 }
