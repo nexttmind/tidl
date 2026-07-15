@@ -17,6 +17,7 @@ import { PdpUnderstandSection, PdpHowItWorks } from "./PdpMinimalSections";
 import { PdpBeforeAfterSection } from "./PdpBeforeAfterSection";
 import { PdpIncludedSection } from "./PdpIncludedSection";
 import { PdpFaqSection } from "./PdpFaqSection";
+import { PdpCtaBand } from "./PdpCtaBand";
 import { PdpButton } from "./pdp-ui";
 import "../home/home.css";
 import "./pdp.css";
@@ -138,6 +139,7 @@ function ProductPdpPageInner({ slug }: ProductPdpPageProps) {
           title="What patients say"
         />
         <PdpFaqSection />
+        <PdpCtaBand onStart={openQuiz} />
 
         <div className="pdp-footer-zone" data-pdp-header-theme="dark">
           <SiteFooter onGetStarted={openQuiz} />
