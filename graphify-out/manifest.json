@@ -155,8 +155,8 @@
     "semantic_hash": ""
   },
   "src/components/home/StoriesSection.tsx": {
-    "mtime": 1784053573.473893,
-    "ast_hash": "4415e1dce4588507fcaf6b03cff673f6",
+    "mtime": 1784078207.9915893,
+    "ast_hash": "6325a43aa5a2b4fba3dbe8bf095b0280",
     "semantic_hash": ""
   },
   "src/components/home/cta/ContourField.tsx": {
@@ -230,8 +230,8 @@
     "semantic_hash": ""
   },
   "src/components/pdp/PdpBeforeAfterSection.tsx": {
-    "mtime": 1784070337.344838,
-    "ast_hash": "fabd6237f1f6f640890a56d8c8c01415",
+    "mtime": 1784076981.2197502,
+    "ast_hash": "46dcf7f937562c064e612f224349d69c",
     "semantic_hash": ""
   },
   "src/components/pdp/PdpCtaBand.tsx": {
@@ -255,13 +255,13 @@
     "semantic_hash": ""
   },
   "src/components/pdp/PdpHeroSection.tsx": {
-    "mtime": 1784073847.642694,
-    "ast_hash": "64342b291f77cfc19389497cee03a0cf",
+    "mtime": 1784076979.814711,
+    "ast_hash": "b0c0fcc0e431d7e936d44de394832064",
     "semantic_hash": ""
   },
   "src/components/pdp/PdpIncludedSection.tsx": {
-    "mtime": 1783793606.3100748,
-    "ast_hash": "8449b1a8b11298f93236b4a910440034",
+    "mtime": 1784078575.6883352,
+    "ast_hash": "e347d19fd764fd89770ec97e3ada02ac",
     "semantic_hash": ""
   },
   "src/components/pdp/PdpOutcomeSection.tsx": {
@@ -300,8 +300,8 @@
     "semantic_hash": ""
   },
   "src/components/pdp/ProductPdpPage.tsx": {
-    "mtime": 1784073890.1642025,
-    "ast_hash": "3420f7a997d0c391784e927106c68e61",
+    "mtime": 1784078379.964667,
+    "ast_hash": "f0b6e7dce4bb5bc66392ce7a592c0195",
     "semantic_hash": ""
   },
   "src/components/pdp/usePdpHeaderState.ts": {
@@ -310,8 +310,8 @@
     "semantic_hash": ""
   },
   "src/components/pdp/data/glp1-pdp-content.ts": {
-    "mtime": 1784073908.8127823,
-    "ast_hash": "307e63a10906ca0939641942e7c0130d",
+    "mtime": 1784077623.141975,
+    "ast_hash": "9592a7de175e33092825b725336f9dee",
     "semantic_hash": ""
   },
   "src/components/pdp/data/glp1-pdp-data.ts": {
@@ -660,8 +660,8 @@
     "semantic_hash": ""
   },
   "src/lib/pdp-marketing.ts": {
-    "mtime": 1784070228.5816247,
-    "ast_hash": "8329ece99c34ce4306cc8bc55e8773c3",
+    "mtime": 1784076981.4954383,
+    "ast_hash": "ce9f8e34a9c9fc00eb8b864655055800",
     "semantic_hash": ""
   },
   "src/lib/peptide-images.ts": {
@@ -1730,8 +1730,8 @@
     "semantic_hash": ""
   },
   "src/components/pdp/BeforeAfterSlider.tsx": {
-    "mtime": 1784068955.4234393,
-    "ast_hash": "9c5dfc95b9e31865a2c128ec5ab0bab7",
+    "mtime": 1784076981.5870428,
+    "ast_hash": "f6031f42e6e8bbbfe2e3f2b084c06529",
     "semantic_hash": ""
   },
   "src/components/pdp/PdpMotivationMarquee.tsx": {
@@ -1945,13 +1945,53 @@
     "semantic_hash": ""
   },
   "src/components/pdp/PdpMinimalSections.tsx": {
-    "mtime": 1784073908.24696,
-    "ast_hash": "2164204317029494abbfc93544d2a131",
+    "mtime": 1784078564.7680016,
+    "ast_hash": "d7e80ea64d015ef01c8478bb334af5fd",
     "semantic_hash": ""
   },
   "public/pdp/page.md": {
     "mtime": 1784073403.2435982,
     "ast_hash": "1a411d81c069d3c8bea128d7f43865e4",
+    "semantic_hash": ""
+  },
+  "public/pdp/feel-again.png": {
+    "mtime": 1784076024.2015915,
+    "ast_hash": "1b8a0ede42f7ee4411d52e72b1c687cb",
+    "semantic_hash": ""
+  },
+  "public/pdp/how-kit.png": {
+    "mtime": 1784076569.9669454,
+    "ast_hash": "a523592c659c6a07078e87f85d447ed4",
+    "semantic_hash": ""
+  },
+  "public/pdp/how-share.png": {
+    "mtime": 1784076296.0775552,
+    "ast_hash": "1da6c59fac6f269acb4248515f247d67",
+    "semantic_hash": ""
+  },
+  "public/pdp/icons/photo-care.png": {
+    "mtime": 1784077556.5154324,
+    "ast_hash": "026099bc1f903b8aba21cd6f37dd96c2",
+    "semantic_hash": ""
+  },
+  "public/pdp/icons/photo-howto.png": {
+    "mtime": 1784077518.1391082,
+    "ast_hash": "c2a6cb737bb2e6bc29cb0ac639e26f21",
+    "semantic_hash": ""
+  },
+  "public/pdp/icons/photo-packaging.png": {
+    "mtime": 1784077542.2483459,
+    "ast_hash": "ab9954328be17d9cc0c61eaff050e590",
+    "semantic_hash": ""
+  },
+  "public/pdp/icons/photo-pharmacy.png": {
+    "mtime": 1784077513.1290252,
+    "ast_hash": "22c9a5572b93fa72db79114a23856aa2",
+    "semantic_hash": ""
+  },
+  "public/pdp/icons/photo-protocol.png": {
+    "mtime": 1784077507.2255938,
+    "ast_hash": "30919b5fa7a79117683bfab66e263178",
     "semantic_hash": ""
   }
 }

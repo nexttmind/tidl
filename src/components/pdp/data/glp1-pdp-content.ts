@@ -128,11 +128,11 @@ export const GLP1_PDP_CONTENT: PdpPageContent = {
   ],
   includedPhrases: [
     "Licensed provider review",
-    "Personalized GLP-1 prescription",
-    "Pharmacy-grade medication",
-    "TIDL Pen + how-to guide",
-    "Discreet delivery",
-    "Ongoing care messaging",
+    "Pharmacy grade medication",
+    "TIDL Pen + how to guide",
+    "Personalized provider protocol and dosing guidance",
+    "Discreet outer packaging",
+    "Access to your care team for questions",
   ],
   includedItems: [
     {
@@ -146,7 +146,7 @@ export const GLP1_PDP_CONTENT: PdpPageContent = {
     {
       id: "rx",
       num: "02",
-      title: "Personalized GLP-1 plan",
+      title: "Personalized GLP-1 protocol",
       detail: "Your tirzepatide dose and titration are set to your assessment — not a one-size protocol.",
       callsign: "SCRIPT",
       shortLabel: "Rx",
@@ -156,14 +156,14 @@ export const GLP1_PDP_CONTENT: PdpPageContent = {
       id: "pen",
       num: "03",
       title: "TIDL Pen + how to use",
-      detail: "Every peptide plan ships with a pen and a clear how-to so you know exactly what to do each week.",
+      detail: "Every peptide shipment includes a pen and a clear how-to so you know exactly what to do each week.",
       callsign: "PEN",
       shortLabel: "Pen",
     },
     {
       id: "med",
       num: "04",
-      title: "Pharmacy-grade medication",
+      title: "Pharmacy grade medication",
       detail: "Dispensed by a licensed US pharmacy. No gray-market bottles.",
       callsign: "MED",
       shortLabel: "Meds",
@@ -196,7 +196,7 @@ export const GLP1_PDP_CONTENT: PdpPageContent = {
     {
       step: "03",
       label: "Protocol + pen guide",
-      detail: "Your GLP-1 plan is personalized. Your TIDL Pen arrives with clear how-to instructions.",
+      detail: "Your GLP-1 protocol is personalized. Your TIDL Pen arrives with clear how-to instructions.",
       duration: "Personalized",
     },
     {
@@ -208,7 +208,7 @@ export const GLP1_PDP_CONTENT: PdpPageContent = {
     {
       step: "05",
       label: "Ongoing care",
-      detail: "Message your care team, adjust your plan, and reorder with one tap when you're ready.",
+      detail: "Message your care team, adjust your protocol, and reorder with one tap when you're ready.",
       duration: "Always on",
     },
   ],
@@ -227,6 +227,12 @@ export const GLP1_PDP_CONTENT: PdpPageContent = {
       a: "Then it won't be prescribed. Providers only approve treatment when it's medically appropriate for you, and they'll tell you why if it isn't.",
     },
     {
+      id: 12,
+      cat: "start",
+      q: "How is my medication sourced?",
+      a: "After a licensed provider approves treatment, medication is filled by a licensed US-based pharmacy. No gray-market supply — pharmacy-grade fulfillment with discreet shipping.",
+    },
+    {
       id: 5,
       cat: "treat",
       q: "How do I use the TIDL Pen?",
@@ -237,6 +243,18 @@ export const GLP1_PDP_CONTENT: PdpPageContent = {
       cat: "treat",
       q: "What does tirzepatide actually do?",
       a: "It acts on GLP-1 and GIP pathways linked to appetite and fullness, which can help reduce food noise and support meaningful weight loss under medical supervision.",
+    },
+    {
+      id: 13,
+      cat: "care",
+      q: "What happens after I purchase?",
+      a: "You complete a short intake, a provider reviews it, and if prescribed your treatment ships with a TIDL Pen and how-to. You can message your care team anytime about dosing, side effects, or progress.",
+    },
+    {
+      id: 14,
+      cat: "start",
+      q: "What makes TIDL different?",
+      a: "Personalized provider review, US pharmacy sourcing, a clear protocol with the TIDL Pen included, and a simple pay-once package — no membership plan required to get started.",
     },
     ...SHARED_DELIVERY_FAQ,
     ...SHARED_CARE_FAQ,

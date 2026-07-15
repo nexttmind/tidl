@@ -9,16 +9,13 @@ import { SiteHeader } from "@/components/layout/SiteHeader";
 import { useSiteHeaderState } from "@/hooks/useSiteHeaderState";
 import { useLiveCatalog, resolveDisplayMonthlyPrice } from "@/lib/prescribe-rx/use-live-catalog";
 import { mergeSandboxIntoPdp } from "@/lib/prescribe-rx/merge-sandbox-pdp";
+import { StoriesSection } from "@/components/home/StoriesSection";
 import { getPdpContent } from "./data/pdp-data-registry";
 import { PdpDataProvider } from "./PdpDataProvider";
 import { PdpHeroSection } from "./PdpHeroSection";
-import {
-  PdpFeatureCards,
-  PdpHowItWorks,
-  PdpSupportSection,
-  PdpTreatmentGrid,
-  PdpSafetyStrip,
-} from "./PdpMinimalSections";
+import { PdpUnderstandSection, PdpHowItWorks } from "./PdpMinimalSections";
+import { PdpBeforeAfterSection } from "./PdpBeforeAfterSection";
+import { PdpIncludedSection } from "./PdpIncludedSection";
 import { PdpFaqSection } from "./PdpFaqSection";
 import { PdpButton } from "./pdp-ui";
 import "../home/home.css";
@@ -45,14 +42,12 @@ function ProductPdpPageInner({ slug }: ProductPdpPageProps) {
     description: pdp.heroProduct.summary,
   };
 
-  // Keep buy-box price in sync with live sandbox when available.
   const syncedPdp = {
     ...pdp,
     heroProduct: {
       ...pdp.heroProduct,
       startingPrice: product.monthlyPrice,
-      priceNote:
-        "Pay once for this treatment package. Includes provider review, prescription, and discreet delivery when approved.",
+      priceNote: "One package. Provider review when approved.",
       ctaLabel: "Get started",
     },
   };
@@ -93,10 +88,11 @@ function ProductPdpPageInner({ slug }: ProductPdpPageProps) {
 
   const navLinks = [
     { href: "#hero", label: "Product" },
-    { href: "#features", label: "Overview" },
+    { href: "#understand", label: "Your goals" },
+    { href: "#life-shift", label: "Before / After" },
     { href: "#how", label: "How it works" },
     { href: "#included", label: "Included" },
-    { href: "#treatments", label: "Treatments" },
+    { href: "#reviews", label: "Reviews" },
     { href: "#faq", label: "FAQ" },
   ];
 
@@ -132,11 +128,15 @@ function ProductPdpPageInner({ slug }: ProductPdpPageProps) {
           </div>
         </div>
 
-        <PdpFeatureCards onStart={openQuiz} />
+        <PdpUnderstandSection />
+        <PdpBeforeAfterSection onStart={openQuiz} />
         <PdpHowItWorks onStart={openQuiz} />
-        <PdpSupportSection onStart={openQuiz} />
-        <PdpTreatmentGrid />
-        <PdpSafetyStrip />
+        <PdpIncludedSection />
+        <StoriesSection
+          items={[...syncedPdp.reviews]}
+          id="reviews"
+          title="What patients say"
+        />
         <PdpFaqSection />
 
         <div className="pdp-footer-zone" data-pdp-header-theme="dark">
@@ -151,7 +151,7 @@ function ProductPdpPageInner({ slug }: ProductPdpPageProps) {
             <div className="pdp-sticky-inner">
               <div className="pdp-sticky-copy">
                 <strong>{product.name}</strong>
-                <span>One package · Provider review · Discreet delivery</span>
+                <span>One package · Provider review · US pharmacy</span>
               </div>
               <PdpButton className="pdp-sticky-btn" label="Get started" onClick={openQuiz} />
             </div>

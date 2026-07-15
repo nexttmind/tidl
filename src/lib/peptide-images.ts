@@ -120,13 +120,14 @@ export function getPeptideHandBox(slug: string): PeptideHandBox {
     clinicalLabel: "Prescription only · physician use",
     rxNote: "Prescription required after licensed provider review",
     administration:
-      "Every peptide plan includes a TIDL Pen and a clear how-to guide. Follow your provider’s dose — prepare, dial, click, inject. Do not change your dose without instructions.",
+      "Every peptide plan includes a TIDL Pen and a clear how to guide. Follow your provider’s dose: prepare, dial, click, inject. Do not change your dose without instructions.",
     storage:
       "Store as labeled on the pharmacy packaging. Cold-chain when required; keep out of direct light.",
     boxContents: [
-      "Pharmacy-grade medication (dose personalized)",
-      "TIDL Pen + how-to instructions",
-      "Provider protocol & dosing guidance",
+      "Licensed provider review",
+      "Pharmacy grade medication",
+      "TIDL Pen + how to guide",
+      "Personalized provider protocol and dosing guidance",
       "Discreet outer packaging",
       "Access to your care team for questions",
     ],

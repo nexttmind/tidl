@@ -152,31 +152,35 @@ function AnimatedNote() {
 }
 
 function ReviewCard({ story }: { story: Testimonial }) {
+  const performance = story.result || story.condition;
+
   return (
     <article className="tst-marquee-card">
-      {story.portraitImage ? (
-        <div className="tst-marquee-media" aria-hidden="true">
-          <img
-            src={story.portraitImage}
-            alt=""
-            className={`tst-marquee-portrait${
-              story.figure === "man" ? " tst-marquee-portrait--man" : ""
-            }`}
-            loading="lazy"
-            decoding="async"
-            width={44}
-            height={44}
-          />
+      <div className="tst-marquee-identity">
+        {story.portraitImage ? (
+          <div className="tst-marquee-media" aria-hidden="true">
+            <img
+              src={story.portraitImage}
+              alt=""
+              className={`tst-marquee-portrait${
+                story.figure === "man" ? " tst-marquee-portrait--man" : ""
+              }`}
+              loading="lazy"
+              decoding="async"
+              width={44}
+              height={44}
+            />
+          </div>
+        ) : null}
+        <div className="tst-marquee-author">
+          <strong>{story.name}</strong>
+          {performance ? <span>{performance}</span> : null}
         </div>
-      ) : null}
+      </div>
 
       <blockquote className="tst-marquee-quote">&ldquo;{story.quote}&rdquo;</blockquote>
 
       <footer className="tst-marquee-footer">
-        <div className="tst-marquee-author">
-          <strong>{story.name}</strong>
-          <span>{story.condition}</span>
-        </div>
         <div className="tst-marquee-footer-end">
           <StarRating />
           <span className="tst-marquee-verified">
@@ -193,7 +197,6 @@ function ReviewCard({ story }: { story: Testimonial }) {
           </span>
         </div>
       </footer>
-      {story.result ? <p className="tst-marquee-result">{story.result}</p> : null}
     </article>
   );
 }

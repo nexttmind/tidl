@@ -24,7 +24,7 @@ const GOAL_MARKETING: Record<
     dream: "Catch your reflection and smile. Feel like her again — light, confident, unstoppable.",
     motivationHeadline: "This is your turning point.",
     motivationSub:
-      "One quiz. One licensed provider. One plan — medicine, pen, and how-to included.",
+      "One quiz. One licensed provider. Medicine, pen, and how-to included.",
   },
   "metabolic-health": {
     emotionalSub:

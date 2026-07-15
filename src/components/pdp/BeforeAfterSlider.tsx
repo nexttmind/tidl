@@ -7,6 +7,8 @@ type BeforeAfterSliderProps = {
   afterLabel?: string;
   caption?: string;
   className?: string;
+  showLabels?: boolean;
+  showHint?: boolean;
 };
 
 /**
@@ -20,6 +22,8 @@ export function BeforeAfterSlider({
   afterLabel = "After",
   caption,
   className,
+  showLabels = true,
+  showHint = true,
 }: BeforeAfterSliderProps) {
   const [pos, setPos] = useState(50);
   const trackRef = useRef<HTMLDivElement>(null);
@@ -91,11 +95,17 @@ export function BeforeAfterSlider({
           </span>
         </div>
 
-        <span className="pdp-ba-slider-tag pdp-ba-slider-tag--before">{beforeLabel}</span>
-        <span className="pdp-ba-slider-tag pdp-ba-slider-tag--after">{afterLabel}</span>
+        {showLabels ? (
+          <>
+            <span className="pdp-ba-slider-tag pdp-ba-slider-tag--before">{beforeLabel}</span>
+            <span className="pdp-ba-slider-tag pdp-ba-slider-tag--after">{afterLabel}</span>
+          </>
+        ) : null}
       </div>
       {caption ? <figcaption className="pdp-ba-slider-caption">{caption}</figcaption> : null}
-      <p className="pdp-ba-slider-hint">Drag to compare · Individual results vary</p>
+      {showHint ? (
+        <p className="pdp-ba-slider-hint">Drag to compare · Individual results vary</p>
+      ) : null}
     </figure>
   );
 }

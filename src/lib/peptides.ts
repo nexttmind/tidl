@@ -540,7 +540,7 @@ export function peptideToPdpContent(def: PeptideDef): PdpPageContent {
         id: "protocol",
         num: "02",
         title: isWeightLoss ? `Personalized ${def.compound} plan` : "Personalized protocol",
-        detail: `Your ${def.compound} dose is set to your assessment — not a one-size protocol.`,
+        detail: `Your ${def.compound} dose is set to your assessment, not a one-size protocol.`,
         callsign: "PROTOCOL",
         shortLabel: "Protocol",
         accent: true,
@@ -557,7 +557,7 @@ export function peptideToPdpContent(def: PeptideDef): PdpPageContent {
       {
         id: "med",
         num: "04",
-        title: "Pharmacy-grade medication",
+        title: "Pharmacy grade medication",
         detail: `Dispensed by a licensed US pharmacy. ${box.storage}`,
         callsign: "MED",
         shortLabel: "Meds",

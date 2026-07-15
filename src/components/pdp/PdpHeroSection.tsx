@@ -8,40 +8,40 @@ type PdpHeroSectionProps = {
   onStart: (e: MouseEvent) => void;
 };
 
-/** Minimal Hims-style buy box — media left, short copy + CTAs right. */
+function StarRow({ rating }: { rating: number }) {
+  const full = Math.round(rating);
+  return (
+    <span className="hm-hero-stars" aria-hidden="true">
+      {Array.from({ length: 5 }, (_, i) => (
+        <span key={i} className={i < full ? "is-on" : ""}>
+          ★
+        </span>
+      ))}
+    </span>
+  );
+}
+
+/** Wellness buy-box — product + goal headline, stars, one-package price, CTA. */
 export function PdpHeroSection({ heroRef, onStart }: PdpHeroSectionProps) {
-  const { slug, heroProduct, heroImage, penImage } = usePdpData();
+  const { slug, heroProduct, heroImage, penImage, marketing, goal } = usePdpData();
   const catalog = getCatalogProduct(slug);
   const name = catalog?.shortName ?? heroProduct.name;
-  const [openAccordion, setOpenAccordion] = useState<string | null>(null);
   const [galleryIndex, setGalleryIndex] = useState(0);
 
-  const whatItDoes =
-    heroProduct.specs.find((s) => /what it does/i.test(s.label))?.detail ??
-    heroProduct.summary;
-  const howTo =
-    heroProduct.specs.find((s) => /how to use|weekly protocol/i.test(s.label))?.detail ??
-    "Follow your provider’s protocol. Your shipment includes clear how-to instructions.";
+  const headline =
+    goal === "weight-loss"
+      ? "Feel like you again."
+      : marketing?.emotionalHeadline ?? "Care designed around your goals.";
 
-  const bullets =
-    heroProduct.perks.length >= 3
-      ? heroProduct.perks.slice(0, 3).map((p) => p.label)
-      : [
-          heroProduct.descriptor,
-          "Licensed provider review before anything ships",
-          "Pay once for this treatment — no monthly plan",
-        ];
+  const support =
+    goal === "weight-loss"
+      ? "Doctor-prescribed. US pharmacy. TIDL Pen included."
+      : marketing?.emotionalSub ?? "Licensed provider review · US pharmacy · TIDL Pen.";
 
   const gallery = [
     { src: heroImage, alt: `${name} product` },
     { src: penImage || heroImage, alt: `${name} with TIDL Pen` },
     { src: "/pdp/patient-aspire.png", alt: "Care that fits real life" },
-  ];
-
-  const accordions = [
-    { id: "meet", title: `Meet ${name}`, body: heroProduct.summary },
-    { id: "ingredients", title: "About the ingredients", body: whatItDoes },
-    { id: "how", title: "How to take", body: howTo },
   ];
 
   return (
@@ -75,13 +75,15 @@ export function PdpHeroSection({ heroRef, onStart }: PdpHeroSectionProps) {
 
         <div className="hm-hero-buy">
           <span className="hm-badge">HSA &amp; FSA eligible</span>
-          <h1 className="hm-hero-title">{name}</h1>
+          <p className="hm-hero-product-name">{name}</p>
+          <h1 className="hm-hero-title">{headline}</h1>
+          <p className="hm-hero-lead">{support}</p>
 
-          <ul className="hm-hero-bullets">
-            {bullets.map((line) => (
-              <li key={line}>{line}</li>
-            ))}
-          </ul>
+          <div className="hm-hero-rating">
+            <strong>{heroProduct.rating}</strong>
+            <StarRow rating={heroProduct.rating} />
+            <span>{heroProduct.reviewCount} reviews</span>
+          </div>
 
           <p className="hm-hero-price">
             {formatCurrency(heroProduct.startingPrice)}
@@ -91,44 +93,16 @@ export function PdpHeroSection({ heroRef, onStart }: PdpHeroSectionProps) {
 
           <div className="hm-hero-actions">
             <button type="button" className="hm-btn hm-btn-primary" onClick={onStart}>
-              Get started
+              {heroProduct.ctaLabel || "Get started"}
             </button>
             <button type="button" className="hm-btn hm-btn-secondary" onClick={onStart}>
               See if I&apos;m eligible
             </button>
           </div>
 
-          <a className="hm-safety-link" href="#safety">
-            Important safety information
+          <a className="hm-safety-link" href="#why-tidl">
+            US pharmacies · Safety info
           </a>
-
-          <div className="hm-accordions">
-            {accordions.map((item) => {
-              const open = openAccordion === item.id;
-              return (
-                <div key={item.id} className={`hm-acc${open ? " is-open" : ""}`}>
-                  <button
-                    type="button"
-                    className="hm-acc-trigger"
-                    aria-expanded={open}
-                    onClick={() => setOpenAccordion(open ? null : item.id)}
-                  >
-                    <span>{item.title}</span>
-                    <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-                      <path
-                        d="M4.5 6.75L9 11.25L13.5 6.75"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </button>
-                  {open ? <div className="hm-acc-panel">{item.body}</div> : null}
-                </div>
-              );
-            })}
-          </div>
         </div>
       </div>
     </section>
