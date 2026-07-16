@@ -8,7 +8,7 @@ const FALLBACK_LINES = [
 
 /**
  * Left-to-right motivational ticker — restored campaign strip.
- * Pain lines + gold "Become her" refrain.
+ * Pain lines + gold "Become you" refrain.
  */
 export function PdpMotivationMarquee() {
   const { marketing } = usePdpData();
@@ -24,9 +24,9 @@ export function PdpMotivationMarquee() {
                 {item}
               </span>
             ))}
-            <span className="pdp-campaign-chip pdp-campaign-chip--gold">Become her</span>
+            <span className="pdp-campaign-chip pdp-campaign-chip--gold">Become you</span>
             <span className="pdp-campaign-chip">Doctor-guided</span>
-            <span className="pdp-campaign-chip pdp-campaign-chip--gold">Become her</span>
+            <span className="pdp-campaign-chip pdp-campaign-chip--gold">Feel free again</span>
             <span className="pdp-campaign-chip">Discreet delivery</span>
           </span>
         ))}

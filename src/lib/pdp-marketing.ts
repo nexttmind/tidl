@@ -21,7 +21,7 @@ const GOAL_MARKETING: Record<
       "You're done feeling rejected before you walk in",
       "You're done starting over every Monday",
     ],
-    dream: "Catch your reflection and smile. Feel like her again — light, confident, unstoppable.",
+    dream: "Catch your reflection and actually smile. Light. Confident. At home in your body again.",
     motivationHeadline: "This is your turning point.",
     motivationSub:
       "One quiz. One licensed provider. Medicine, pen, and how-to included.",

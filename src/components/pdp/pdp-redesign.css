@@ -307,22 +307,27 @@
 
 .hm-hero-actions {
   display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 10px;
   margin-top: 22px;
 }
 
 .hm-hero-actions .hm-btn {
   width: 100%;
+  text-align: center;
 }
 
-.hm-safety-link {
-  display: block;
-  margin: 16px 0 0;
+.hm-hero-trust {
+  margin: 14px 0 0;
+  font-size: 0.84rem;
+  color: var(--pdp-muted);
   text-align: center;
-  font-size: 0.88rem;
-  color: var(--pdp-ink);
-  text-decoration: underline;
-  text-underline-offset: 3px;
+}
+
+@media (max-width: 560px) {
+  .hm-hero-actions {
+    grid-template-columns: 1fr;
+  }
 }
 
 .hm-accordions {
@@ -452,214 +457,232 @@
   }
 }
 
-/* ---------- How it works — film chapters ---------- */
+/* ---------- How it works — alternating timeline ---------- */
 
-.hm-how--film {
-  padding-top: 64px;
-  padding-bottom: 72px;
+.hm-how--timeline {
+  padding-top: 72px;
+  padding-bottom: 80px;
+  background:
+    radial-gradient(ellipse 50% 40% at 10% 0%, rgba(243, 195, 0, 0.1), transparent 55%),
+    #ffffff;
   overflow: hidden;
 }
 
-.hm-how-film-head {
+.hm-how-tl-head {
   text-align: center;
-  margin-bottom: 36px;
+  max-width: 40rem;
+  margin: 0 auto 28px;
 }
 
-.hm-how-film-head .hm-kicker,
-.hm-how-film-head .hm-h2 {
-  text-align: center;
+.hm-how-tl-head .hm-lede {
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.hm-how-rail {
+.hm-how-kicker {
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+.hm-how-tl {
+  position: relative;
+  width: min(1120px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: 8px 0 12px;
+}
+
+.hm-how-tl-line {
+  position: absolute;
+  left: 4%;
+  right: 4%;
+  top: 50%;
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    rgba(243, 195, 0, 0.1),
+    rgba(243, 195, 0, 0.95) 20%,
+    rgba(243, 195, 0, 0.95) 80%,
+    rgba(243, 195, 0, 0.1)
+  );
+  transform: translateY(-50%);
+  box-shadow: 0 0 24px rgba(243, 195, 0, 0.25);
+}
+
+.hm-how-tl-track {
+  list-style: none;
+  margin: 0;
+  padding: 0;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 14px;
-  width: min(1180px, calc(100% - 40px));
-  margin: 0 auto;
-  align-items: stretch;
-}
-
-.hm-how-chapter {
-  min-width: 0;
-  transform-origin: center top;
-  will-change: transform, opacity;
-}
-
-.hm-how-card {
+  gap: 12px;
   position: relative;
-  height: 100%;
-  border-radius: 28px;
-  overflow: hidden;
-  background: #f7f7f5;
-  isolation: isolate;
+  z-index: 1;
+}
+
+.hm-how-tl-step {
+  display: grid;
+  grid-template-rows: 1fr auto 1fr;
+  align-items: center;
+  justify-items: center;
   min-height: 420px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  border: 1px solid rgba(17, 17, 17, 0.06);
-  transition:
-    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.35s ease;
+  text-align: center;
 }
 
-.hm-how--med .hm-how-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 24px 44px rgba(17, 17, 17, 0.1);
+.hm-how-tl-above,
+.hm-how-tl-below {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  padding: 12px 10px;
 }
 
-.hm-how--med .hm-how-ghost {
-  color: rgba(17, 17, 17, 0.1);
+.hm-how-tl-node {
+  width: 52px;
+  height: 52px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: #0b0a08;
+  border: 2px solid #f3c300;
+  color: #f3c300;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  box-shadow:
+    0 0 0 7px rgba(243, 195, 0, 0.12),
+    0 10px 24px rgba(23, 19, 16, 0.18);
+  cursor: default;
+  transition: box-shadow 0.25s ease;
 }
 
-.hm-how--med .hm-how-card-media::after {
-  background: linear-gradient(
-    180deg,
-    transparent 42%,
-    rgba(247, 247, 245, 0.55) 72%,
-    #f7f7f5 100%
-  );
+.hm-how-tl-step:hover .hm-how-tl-node {
+  box-shadow:
+    0 0 0 10px rgba(243, 195, 0, 0.2),
+    0 14px 28px rgba(23, 19, 16, 0.2);
 }
 
-.hm-how--med .hm-how-card-copy h3 {
-  color: #111;
+.hm-how-tl-media {
+  width: min(100%, 168px);
+  aspect-ratio: 1;
+  border-radius: 26px;
+  overflow: hidden;
+  border: 1px solid rgba(23, 19, 16, 0.08);
+  background: #f7f7f5;
+  box-shadow: 0 16px 34px rgba(23, 19, 16, 0.1);
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
 }
 
-.hm-how--med .hm-how-card-copy p {
-  color: rgba(17, 17, 17, 0.58);
+.hm-how-tl-step:hover .hm-how-tl-media {
+  box-shadow:
+    0 0 0 4px rgba(243, 195, 0, 0.2),
+    0 22px 40px rgba(23, 19, 16, 0.14);
 }
 
-.hm-how-card--product,
-.hm-how-card--kit {
-  background: linear-gradient(165deg, #fff8d0 0%, #f3c300 55%, #e0b400 100%);
+.hm-how-tl-media--product,
+.hm-how-tl-media--kit {
+  background: linear-gradient(165deg, #fff8d0 0%, #f3c300 58%, #e0b400 100%);
   border-color: transparent;
 }
 
-.hm-how-card--product .hm-how-card-media::after,
-.hm-how-card--kit .hm-how-card-media::after {
-  background: linear-gradient(
-    180deg,
-    transparent 40%,
-    rgba(243, 195, 0, 0.35) 75%,
-    rgba(224, 180, 0, 0.95) 100%
-  );
-}
-
-.hm-how-card--product .hm-how-card-media img,
-.hm-how-card--kit .hm-how-card-media img {
-  object-fit: contain;
-  padding: 16% 10% 26%;
-  filter: drop-shadow(0 16px 28px rgba(0, 0, 0, 0.18));
-}
-
-.hm-how-card--product .hm-how-ghost,
-.hm-how-card--kit .hm-how-ghost {
-  color: rgba(17, 17, 17, 0.12);
-}
-
-.hm-how-card--photo .hm-how-card-media img {
-  object-fit: cover;
-  object-position: center 20%;
-}
-
-.hm-how-ghost {
-  position: absolute;
-  top: -0.08em;
-  right: 0.02em;
-  z-index: 2;
-  font-size: clamp(4.5rem, 8vw, 7rem);
-  font-weight: 800;
-  letter-spacing: -0.06em;
-  line-height: 0.8;
-  color: rgba(17, 17, 17, 0.1);
-  pointer-events: none;
-  user-select: none;
-}
-
-.hm-how-card-media {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-}
-
-.hm-how-card-media::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-
-.hm-how-card-media img {
+.hm-how-tl-media img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  object-position: center top;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.hm-how-card:hover .hm-how-card-media img {
-  transform: scale(1.05);
+.hm-how-tl-step:hover .hm-how-tl-media img {
+  transform: scale(1.06);
 }
 
-.hm-how-card-copy {
-  position: relative;
-  z-index: 2;
-  padding: 22px 22px 26px;
+.hm-how-tl-media--product img,
+.hm-how-tl-media--kit img {
+  object-fit: contain;
+  padding: 14%;
+  filter: drop-shadow(0 12px 22px rgba(23, 19, 16, 0.16));
 }
 
-.hm-how-card-copy h3 {
+.hm-how-tl-copy {
+  max-width: 15.5rem;
+}
+
+.hm-how-tl-copy h3 {
   margin: 0;
-  font-size: clamp(1.55rem, 2.4vw, 2rem);
+  font-size: clamp(1.3rem, 2.1vw, 1.65rem);
   font-weight: 800;
   letter-spacing: -0.03em;
-  color: #111;
+  color: #171310;
 }
 
-.hm-how-card-copy p {
-  margin: 4px 0 0;
-  font-size: 0.92rem;
-  font-weight: 500;
-  color: rgba(17, 17, 17, 0.58);
+.hm-how-tl-copy p {
+  margin: 8px 0 0;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: rgba(23, 19, 16, 0.62);
 }
 
-.hm-how-film-cta {
-  display: flex;
-  justify-content: center;
+.hm-how-protocol-cta {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
   margin-top: 36px;
+  text-align: center;
+}
+
+.hm-how-protocol-cta p {
+  margin: 0;
+  font-size: 0.88rem;
+  color: rgba(23, 19, 16, 0.48);
 }
 
 @media (max-width: 960px) {
-  .hm-how-rail {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .hm-how-tl {
     width: calc(100% - 28px);
-  }
-
-  .hm-how-card {
-    min-height: 360px;
-  }
-}
-
-@media (max-width: 640px) {
-  .hm-how-rail {
-    display: flex;
-    gap: 12px;
     overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    padding: 0 16px 8px;
-    width: 100%;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
+    padding-bottom: 8px;
   }
 
-  .hm-how-rail::-webkit-scrollbar {
+  .hm-how-tl::-webkit-scrollbar {
     display: none;
   }
 
-  .hm-how-chapter {
-    flex: 0 0 min(78vw, 300px);
-    scroll-snap-align: center;
+  .hm-how-tl-track {
+    width: max-content;
+    min-width: 100%;
+    grid-template-columns: repeat(4, minmax(220px, 1fr));
   }
 
-  .hm-how-card {
-    min-height: 400px;
+  .hm-how-tl-line {
+    left: 40px;
+    right: 40px;
+    min-width: calc(4 * 220px - 80px);
+  }
+
+  .hm-how-tl-step {
+    min-height: 380px;
+  }
+}
+
+@media (max-width: 560px) {
+  .hm-how-tl-media {
+    width: 140px;
+    border-radius: 22px;
+  }
+
+  .hm-how-protocol-cta .hm-btn {
+    width: min(100%, 320px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hm-how-tl-media img {
+    transition: none;
   }
 }
 
@@ -1066,102 +1089,238 @@
   }
 }
 
-/* ---------- Emotional closing CTA ---------- */
+/* ---------- Emotional closing CTA (TIDL dark stage plate) ---------- */
+
+.hm-cta-wrap {
+  padding: clamp(28px, 4vw, 48px) clamp(16px, 3vw, 32px) clamp(40px, 5vw, 64px);
+  background:
+    radial-gradient(ellipse 55% 40% at 80% 0%, rgba(243, 195, 0, 0.1), transparent 60%),
+    #ffffff;
+}
 
 .hm-cta-band {
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  min-height: clamp(420px, 58vh, 640px);
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(220px, 0.7fr);
   align-items: center;
-  justify-content: center;
-  padding: clamp(72px, 10vw, 120px) 24px;
-  background: #171310;
+  gap: clamp(28px, 5vw, 56px);
+  width: min(1120px, 100%);
+  margin: 0 auto;
+  padding: clamp(32px, 5vw, 56px);
+  border-radius: 40px;
+  background:
+    radial-gradient(ellipse 70% 80% at 110% 20%, rgba(243, 195, 0, 0.14), transparent 55%),
+    linear-gradient(145deg, #14110e 0%, #0b0a08 48%, #171310 100%);
   color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 30px 70px rgba(23, 19, 16, 0.18);
 }
 
-.hm-cta-band-media {
+.hm-cta-band-glow {
   position: absolute;
-  inset: 0;
+  right: -12%;
+  bottom: -28%;
+  width: 55%;
+  height: 70%;
+  border-radius: 50%;
+  background: rgba(243, 195, 0, 0.09);
+  filter: blur(60px);
+  pointer-events: none;
   z-index: 0;
 }
 
-.hm-cta-band-media img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 18%;
-  transform: scale(1.04);
-  filter: saturate(0.92);
-}
-
-.hm-cta-band-veil {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(105deg, rgba(23, 19, 16, 0.92) 8%, rgba(23, 19, 16, 0.72) 48%, rgba(23, 19, 16, 0.55) 100%),
-    radial-gradient(ellipse 70% 60% at 70% 40%, rgba(243, 195, 0, 0.16), transparent 65%);
-}
-
-.hm-cta-band-inner {
+.hm-cta-band-copy {
   position: relative;
   z-index: 1;
-  width: min(720px, 100%);
-  text-align: center;
+  max-width: 36rem;
 }
 
 .hm-cta-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   margin: 0 0 18px;
-  font-size: 0.78rem;
-  font-weight: 650;
-  letter-spacing: 0.18em;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: #f3c300;
 }
 
-.hm-cta-title {
-  margin: 0;
-  font-size: clamp(2.35rem, 6vw, 4.1rem);
-  font-weight: 750;
-  letter-spacing: -0.04em;
-  line-height: 1.02;
-  color: #fff;
+.hm-cta-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #f3c300;
+  box-shadow: 0 0 0 4px rgba(243, 195, 0, 0.18);
+  flex: none;
 }
 
-.hm-cta-title span {
+.hm-cta-title {
+  margin: 0;
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.02;
+  color: #ffffff;
+}
+
+.hm-cta-title-line {
   display: block;
-  color: rgba(255, 255, 255, 0.88);
+  color: rgba(255, 248, 235, 0.72);
+  font-weight: 700;
+}
+
+.hm-cta-title-gold {
+  display: block;
+  margin-top: 0.08em;
+  color: #f3c300;
 }
 
 .hm-cta-copy {
-  margin: 22px auto 0;
-  max-width: 34rem;
-  font-size: clamp(1.02rem, 1.7vw, 1.18rem);
+  margin: 20px 0 0;
+  max-width: 32rem;
+  font-size: clamp(1rem, 1.5vw, 1.1rem);
   line-height: 1.55;
+  color: rgba(255, 248, 235, 0.68);
+}
+
+.hm-cta-copy em {
+  font-style: normal;
+  font-weight: 700;
+  color: #ffd92e;
+}
+
+.hm-cta-signals {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 22px 0 0;
+  padding: 0;
+}
+
+.hm-cta-signals li {
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.04);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   color: rgba(255, 248, 235, 0.78);
 }
 
+.hm-cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px 20px;
+  margin-top: 28px;
+}
+
 .hm-cta-band .hm-btn {
-  margin-top: 32px;
-  min-width: 240px;
+  min-width: 220px;
+  box-shadow: 0 14px 36px rgba(243, 195, 0, 0.28);
 }
 
 .hm-cta-whisper {
-  margin: 16px 0 0;
+  margin: 0;
   font-size: 0.86rem;
-  color: rgba(255, 248, 235, 0.48);
+  color: rgba(255, 248, 235, 0.42);
 }
 
-@media (max-width: 640px) {
+.hm-cta-band-plate {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  display: grid;
+  gap: 14px;
+  justify-items: center;
+}
+
+.hm-cta-band-media {
+  position: relative;
+  width: min(100%, 220px);
+  aspect-ratio: 3 / 4;
+  border-radius: 28px;
+  overflow: hidden;
+  border: 1px solid rgba(243, 195, 0, 0.35);
+  box-shadow:
+    0 0 0 8px rgba(243, 195, 0, 0.08),
+    0 22px 44px rgba(0, 0, 0, 0.35);
+  background: #1c1814;
+}
+
+.hm-cta-band-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 55%, rgba(11, 10, 8, 0.45) 100%);
+  pointer-events: none;
+}
+
+.hm-cta-band-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.hm-cta-caption {
+  text-align: center;
+  display: grid;
+  gap: 2px;
+}
+
+.hm-cta-caption strong {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.hm-cta-caption span {
+  font-size: 0.78rem;
+  color: rgba(255, 248, 235, 0.42);
+}
+
+@media (max-width: 860px) {
   .hm-cta-band {
-    min-height: 0;
-    padding: 72px 20px 80px;
+    grid-template-columns: 1fr;
+    padding: 28px 22px 30px;
+    border-radius: 32px;
+    gap: 24px;
+  }
+
+  .hm-cta-band-plate {
+    order: -1;
+    justify-items: start;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 14px 16px;
+  }
+
+  .hm-cta-band-media {
+    width: 112px;
+    border-radius: 20px;
+    box-shadow:
+      0 0 0 5px rgba(243, 195, 0, 0.08),
+      0 14px 28px rgba(0, 0, 0, 0.28);
+  }
+
+  .hm-cta-caption {
     text-align: left;
   }
 
-  .hm-cta-band-inner {
-    text-align: left;
+  .hm-cta-actions {
+    flex-direction: column;
+    align-items: stretch;
   }
 
   .hm-cta-band .hm-btn {

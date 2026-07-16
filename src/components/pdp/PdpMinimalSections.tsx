@@ -12,35 +12,35 @@ const DONE_PHRASES = [
   "You’re done of eating when you’re not even hungry",
   "You’re done of feeling lazy in your own body",
   "You’re done of clothes that don’t feel like you",
-  "You’re done waiting to feel like her again",
+  "You’re done waiting to feel like yourself again",
 ] as const;
 
-const HOW_CHAPTERS = [
+const HOW_STEPS = [
   {
     n: "01",
     verb: "Assess",
-    whisper: "your goals",
-    image: "/pdp/patient-after.png",
-    tone: "photo" as const,
+    whisper: "Tell us what you want to change — five honest minutes.",
+    image: "/peptides/glp-1-weight-loss.png",
+    tone: "product" as const,
   },
   {
     n: "02",
     verb: "Prescribe",
-    whisper: "if right for you",
+    whisper: "A licensed provider reviews you. Only if it’s right.",
     image: "/pdp/how-kit.png",
     tone: "kit" as const,
   },
   {
     n: "03",
     verb: "Ship",
-    whisper: "pen + medication",
+    whisper: "Pen + medication, discreet, with clear how-to.",
     image: "/peptides/glp-1-weight-loss.png",
     tone: "product" as const,
   },
   {
     n: "04",
     verb: "Begin",
-    whisper: "with clarity",
+    whisper: "Walk back into your life — lighter, present, yours.",
     image: "/pdp/AFTER.png",
     tone: "photo" as const,
   },
@@ -54,7 +54,6 @@ export function PdpUnderstandSection() {
     <section className="hm-section hm-understand hm-understand--marquee" id="understand" data-pdp-header-theme="light">
       <div className="hm-shell hm-understand-head">
         <Reveal>
-          <p className="hm-kicker">We get it</p>
           <h2 className="hm-h2">This is you talking</h2>
         </Reveal>
       </div>
@@ -73,72 +72,89 @@ export function PdpUnderstandSection() {
   );
 }
 
-function HowChapterCard({
-  chapter,
+function TimelineStep({
+  step,
   index,
+  reduceMotion,
 }: {
-  chapter: (typeof HOW_CHAPTERS)[number];
+  step: (typeof HOW_STEPS)[number];
   index: number;
+  reduceMotion: boolean | null;
 }) {
-  const reduceMotion = useReducedMotion();
-  const fromLeft = index % 2 === 0;
-  // Arc depths: outer cards travel farther / rotate more — semicircle meet in the middle.
-  const arcX = fromLeft ? -140 - index * 18 : 140 + (3 - index) * 18;
-  const arcY = -110 - (index === 0 || index === 3 ? 24 : 8);
-  const arcRotate = fromLeft ? -22 - index * 2 : 22 + (3 - index) * 2;
+  const imageAbove = index % 2 === 0;
+  const enterY = imageAbove ? -48 : 48;
+
+  const media = (
+    <motion.div
+      className={`hm-how-tl-media hm-how-tl-media--${step.tone}`}
+      initial={reduceMotion ? false : { opacity: 0, y: enterY, scale: 0.9 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, amount: 0.35 }}
+      transition={{ duration: 0.75, delay: 0.08 * index, ease: settle }}
+      whileHover={reduceMotion ? undefined : { y: imageAbove ? -8 : 8, scale: 1.04 }}
+    >
+      <img src={step.image} alt="" loading="lazy" />
+    </motion.div>
+  );
+
+  const copy = (
+    <motion.div
+      className="hm-how-tl-copy"
+      initial={reduceMotion ? false : { opacity: 0, y: imageAbove ? 28 : -28 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.4 }}
+      transition={{ duration: 0.65, delay: 0.1 + 0.08 * index, ease: settle }}
+    >
+      <h3>{step.verb}</h3>
+      <p>{step.whisper}</p>
+    </motion.div>
+  );
 
   return (
-    <motion.div
-      className="hm-how-chapter"
-      initial={
-        reduceMotion
-          ? false
-          : { opacity: 0, x: arcX, y: arcY, rotate: arcRotate, scale: 0.86 }
-      }
-      whileInView={{ opacity: 1, x: 0, y: 0, rotate: 0, scale: 1 }}
-      viewport={{ once: true, amount: 0.25 }}
-      transition={{
-        duration: 0.85,
-        delay: 0.08 * index,
-        ease: settle,
-      }}
-    >
-      <article className={`hm-how-card hm-how-card--${chapter.tone}`} role="listitem">
-        <span className="hm-how-ghost" aria-hidden="true">
-          {chapter.n}
-        </span>
-        <div className="hm-how-card-media">
-          <img src={chapter.image} alt="" loading="lazy" />
-        </div>
-        <div className="hm-how-card-copy">
-          <h3>{chapter.verb}</h3>
-          <p>{chapter.whisper}</p>
-        </div>
-      </article>
-    </motion.div>
+    <li className={`hm-how-tl-step${imageAbove ? " is-above" : " is-below"}`}>
+      <div className="hm-how-tl-above">{imageAbove ? media : copy}</div>
+
+      <motion.div
+        className="hm-how-tl-node"
+        initial={reduceMotion ? false : { opacity: 0, scale: 0.5 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true, amount: 0.6 }}
+        transition={{ duration: 0.45, delay: 0.05 * index, ease: settle }}
+        whileHover={reduceMotion ? undefined : { scale: 1.12 }}
+      >
+        <span>{step.n}</span>
+      </motion.div>
+
+      <div className="hm-how-tl-below">{imageAbove ? copy : media}</div>
+    </li>
   );
 }
 
-/** Medical path — light, product-true, no apps. */
-export function PdpHowItWorks({ onStart }: StartProps) {
+/** Alternating timeline — image above / under the line, scroll + hover motion. */
+export function PdpHowItWorks(_props: StartProps) {
+  const reduceMotion = useReducedMotion();
+
   return (
-    <section className="hm-section hm-how hm-how--film hm-how--med" id="how" data-pdp-header-theme="light">
-      <div className="hm-shell hm-how-film-head">
+    <section className="hm-section hm-how hm-how--timeline" id="how" data-pdp-header-theme="light">
+      <div className="hm-shell hm-how-tl-head">
         <Reveal>
           <h2 className="hm-h2">How it works</h2>
+          <p className="hm-lede">Five minutes. Real care. Your door.</p>
         </Reveal>
       </div>
 
-      <div className="hm-how-rail" role="list">
-        {HOW_CHAPTERS.map((chapter, i) => (
-          <HowChapterCard key={chapter.n} chapter={chapter} index={i} />
-        ))}
-      </div>
-
-      <div className="hm-how-film-cta">
-        <button type="button" className="hm-btn hm-btn-primary" onClick={onStart}>
-          Get started
-        </button>
+      <div className="hm-how-tl">
+        <div className="hm-how-tl-line" aria-hidden="true" />
+        <ol className="hm-how-tl-track">
+          {HOW_STEPS.map((step, index) => (
+            <TimelineStep
+              key={step.n}
+              step={step}
+              index={index}
+              reduceMotion={reduceMotion}
+            />
+          ))}
+        </ol>
       </div>
     </section>
   );

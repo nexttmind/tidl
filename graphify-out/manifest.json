@@ -95,7 +95,7 @@
     "semantic_hash": ""
   },
   "src/components/category/CategoryPage.tsx": {
-    "mtime": 1784069009.6524088,
+    "mtime": 1784138090.4330287,
     "ast_hash": "751ded0859d89516faa577e7ede817ae",
     "semantic_hash": ""
   },
@@ -105,7 +105,7 @@
     "semantic_hash": ""
   },
   "src/components/category/CategoryProductCard.tsx": {
-    "mtime": 1784068954.0720124,
+    "mtime": 1784138090.4237309,
     "ast_hash": "abb0c1a7185ac0154d69c1189094c54a",
     "semantic_hash": ""
   },
@@ -230,13 +230,13 @@
     "semantic_hash": ""
   },
   "src/components/pdp/PdpBeforeAfterSection.tsx": {
-    "mtime": 1784076981.2197502,
-    "ast_hash": "46dcf7f937562c064e612f224349d69c",
+    "mtime": 1784163776.9565089,
+    "ast_hash": "573904f118f813bd08d918d1538fd646",
     "semantic_hash": ""
   },
   "src/components/pdp/PdpCtaBand.tsx": {
-    "mtime": 1784068954.0844264,
-    "ast_hash": "6caf1ea1c81861f51d5d51c520d059f0",
+    "mtime": 1784163770.918455,
+    "ast_hash": "3c62945b6b3e3ee82ecbb7f022103d84",
     "semantic_hash": ""
   },
   "src/components/pdp/PdpDataProvider.tsx": {
@@ -255,13 +255,13 @@
     "semantic_hash": ""
   },
   "src/components/pdp/PdpHeroSection.tsx": {
-    "mtime": 1784076979.814711,
-    "ast_hash": "b0c0fcc0e431d7e936d44de394832064",
+    "mtime": 1784163750.0773766,
+    "ast_hash": "eef0f5453387cef213ad3f18298e3d45",
     "semantic_hash": ""
   },
   "src/components/pdp/PdpIncludedSection.tsx": {
-    "mtime": 1784078575.6883352,
-    "ast_hash": "e347d19fd764fd89770ec97e3ada02ac",
+    "mtime": 1784078764.1879928,
+    "ast_hash": "a88840b97278fd99e8cbad4bd7b816d1",
     "semantic_hash": ""
   },
   "src/components/pdp/PdpOutcomeSection.tsx": {
@@ -285,7 +285,7 @@
     "semantic_hash": ""
   },
   "src/components/pdp/PdpTransformationSection.tsx": {
-    "mtime": 1784070229.6105783,
+    "mtime": 1784138090.475402,
     "ast_hash": "78f5c229e4d83909998ed68e9744ae65",
     "semantic_hash": ""
   },
@@ -300,8 +300,8 @@
     "semantic_hash": ""
   },
   "src/components/pdp/ProductPdpPage.tsx": {
-    "mtime": 1784078379.964667,
-    "ast_hash": "f0b6e7dce4bb5bc66392ce7a592c0195",
+    "mtime": 1784163765.297466,
+    "ast_hash": "5a2a3ce3a14e0aebb99fa589c3aec1dc",
     "semantic_hash": ""
   },
   "src/components/pdp/usePdpHeaderState.ts": {
@@ -310,8 +310,8 @@
     "semantic_hash": ""
   },
   "src/components/pdp/data/glp1-pdp-content.ts": {
-    "mtime": 1784077623.141975,
-    "ast_hash": "9592a7de175e33092825b725336f9dee",
+    "mtime": 1784138090.4774022,
+    "ast_hash": "6eb7309d18169d6bf41712896485178c",
     "semantic_hash": ""
   },
   "src/components/pdp/data/glp1-pdp-data.ts": {
@@ -320,7 +320,7 @@
     "semantic_hash": ""
   },
   "src/components/pdp/data/pdp-data-registry.ts": {
-    "mtime": 1784068954.0976741,
+    "mtime": 1784138090.475402,
     "ast_hash": "9fdde7760159200fb82ef55acdff6164",
     "semantic_hash": ""
   },
@@ -660,18 +660,18 @@
     "semantic_hash": ""
   },
   "src/lib/pdp-marketing.ts": {
-    "mtime": 1784076981.4954383,
-    "ast_hash": "ce9f8e34a9c9fc00eb8b864655055800",
+    "mtime": 1784138870.6774242,
+    "ast_hash": "853a799059dd1d4d5f66ae973d448d15",
     "semantic_hash": ""
   },
   "src/lib/peptide-images.ts": {
-    "mtime": 1784068954.1034577,
-    "ast_hash": "3b508f51a55d47bdb88bb349b0b66dc6",
+    "mtime": 1784138090.4320314,
+    "ast_hash": "edb0544dee1a4d701006e51515c76120",
     "semantic_hash": ""
   },
   "src/lib/peptides.ts": {
-    "mtime": 1784068954.1054566,
-    "ast_hash": "4847125209cdaba01409f194a344c101",
+    "mtime": 1784138090.4300072,
+    "ast_hash": "9bde6504dc49f89ee41c3e4ab479d465",
     "semantic_hash": ""
   },
   "src/lib/pricing.ts": {
@@ -680,12 +680,12 @@
     "semantic_hash": ""
   },
   "src/lib/product-catalog.ts": {
-    "mtime": 1784068954.1164556,
+    "mtime": 1784138090.475402,
     "ast_hash": "f0a60f333c1781360a70228fdb894dcd",
     "semantic_hash": ""
   },
   "src/lib/products.ts": {
-    "mtime": 1784068954.164269,
+    "mtime": 1784138090.474405,
     "ast_hash": "2da66666de8ce8ec3459d6f5fd8c78ce",
     "semantic_hash": ""
   },
@@ -695,7 +695,7 @@
     "semantic_hash": ""
   },
   "src/lib/services-content.ts": {
-    "mtime": 1784061882.7214372,
+    "mtime": 1784138090.4763985,
     "ast_hash": "d2c10e1e2499c9d897630a2bdb780b28",
     "semantic_hash": ""
   },
@@ -755,7 +755,7 @@
     "semantic_hash": ""
   },
   "src/lib/prescribe-rx/merge-sandbox-pdp.ts": {
-    "mtime": 1784068954.1084561,
+    "mtime": 1784138090.4320314,
     "ast_hash": "5f802e12c01b85e5ef267f83e0d20ee9",
     "semantic_hash": ""
   },
@@ -1660,7 +1660,7 @@
     "semantic_hash": ""
   },
   "src/components/category/CategoryFormularySection.tsx": {
-    "mtime": 1784068954.064586,
+    "mtime": 1784138090.474405,
     "ast_hash": "c7b51bbd6da15d3f398182be25c40cf6",
     "semantic_hash": ""
   },
@@ -1715,12 +1715,12 @@
     "semantic_hash": ""
   },
   ".tmp-pdp-verify/cat-check.mjs": {
-    "mtime": 1784068373.242411,
+    "mtime": 1784138090.4774022,
     "ast_hash": "79328a9bc1467a8d3291e9f5e2019d98",
     "semantic_hash": ""
   },
   ".tmp-pdp-verify/check.mjs": {
-    "mtime": 1784067338.234169,
+    "mtime": 1784138090.4237309,
     "ast_hash": "20c2586ec9d0e048941edbcc5e439574",
     "semantic_hash": ""
   },
@@ -1735,8 +1735,8 @@
     "semantic_hash": ""
   },
   "src/components/pdp/PdpMotivationMarquee.tsx": {
-    "mtime": 1784068955.4254394,
-    "ast_hash": "b782e77e4472e31d8c32d24aa9ce900f",
+    "mtime": 1784138878.9503376,
+    "ast_hash": "ef8fc779d4baf76e7783fe8bf97d6884",
     "semantic_hash": ""
   },
   ".pdf-extract/01_\u2014_Basic_embed___PrescribeRx_Embed_SDK.pdf.txt": {
@@ -1945,8 +1945,8 @@
     "semantic_hash": ""
   },
   "src/components/pdp/PdpMinimalSections.tsx": {
-    "mtime": 1784078564.7680016,
-    "ast_hash": "d7e80ea64d015ef01c8478bb334af5fd",
+    "mtime": 1784163766.0479007,
+    "ast_hash": "2e09e4964dcb7fcda8e9c6448f165386",
     "semantic_hash": ""
   },
   "public/pdp/page.md": {
@@ -1992,6 +1992,61 @@
   "public/pdp/icons/photo-protocol.png": {
     "mtime": 1784077507.2255938,
     "ast_hash": "30919b5fa7a79117683bfab66e263178",
+    "semantic_hash": ""
+  },
+  "code to Figma/README.md": {
+    "mtime": 1784153087.1043367,
+    "ast_hash": "32ddaaa45e44e0fbaba90aa99c267d39",
+    "semantic_hash": ""
+  },
+  "code to Figma/index.html": {
+    "mtime": 1784153052.142316,
+    "ast_hash": "b6cfc114957fc1ace148bd44bc2b4f21",
+    "semantic_hash": ""
+  },
+  "code to Figma/assets/logo-yellow.png": {
+    "mtime": 1783550593.868879,
+    "ast_hash": "aeb931e44a45bab971b7942dc505025b",
+    "semantic_hash": ""
+  },
+  "code to Figma/assets/logo.png": {
+    "mtime": 1781873760.7459347,
+    "ast_hash": "5d2a64b459271c4ca9c0975c11d00ded",
+    "semantic_hash": ""
+  },
+  "code to Figma/assets/pen.png": {
+    "mtime": 1783692252.4120173,
+    "ast_hash": "6b8306e4f9910d7948a1e182851d8c2b",
+    "semantic_hash": ""
+  },
+  "code to Figma/assets/portrait-man.png": {
+    "mtime": 1783692252.464015,
+    "ast_hash": "e036872066163055ee101bac2ac267f9",
+    "semantic_hash": ""
+  },
+  "code to Figma/assets/portrait-woman.png": {
+    "mtime": 1783692252.5050075,
+    "ast_hash": "d56cd687dda4a30ad6a0c6137a00f4c8",
+    "semantic_hash": ""
+  },
+  "code to Figma/assets/progress.png": {
+    "mtime": 1784067558.6933749,
+    "ast_hash": "ba7d2c66192716d676eda462cd5ed9b7",
+    "semantic_hash": ""
+  },
+  "code to Figma/assets/service-metabolic.png": {
+    "mtime": 1784067558.6678424,
+    "ast_hash": "ba7d2c66192716d676eda462cd5ed9b7",
+    "semantic_hash": ""
+  },
+  "code to Figma/assets/service-performance.png": {
+    "mtime": 1784067558.6748393,
+    "ast_hash": "c1711dadf68ef0f1f062e3604cb0e36a",
+    "semantic_hash": ""
+  },
+  "code to Figma/assets/service-recovery.png": {
+    "mtime": 1784067558.6861067,
+    "ast_hash": "30d148b027eed380f2ad0da2aeaee116",
     "semantic_hash": ""
   }
 }

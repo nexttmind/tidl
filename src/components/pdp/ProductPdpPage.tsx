@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState, type MouseEvent } from "react
 import { Link } from "@tanstack/react-router";
 import { useQuizModal } from "@/providers/quiz-modal-provider";
 import { getProductBySlug } from "@/lib/products";
+import { formatCurrency } from "@/lib/pricing";
 import { lockPageScroll, unlockPageScroll } from "@/lib/age-gate";
 import type { ProductSlug } from "@/types/quiz";
 import { SiteFooter } from "@/components/layout/SiteFooter";
@@ -88,11 +89,9 @@ function ProductPdpPageInner({ slug }: ProductPdpPageProps) {
   }, []);
 
   const navLinks = [
-    { href: "#hero", label: "Product" },
-    { href: "#understand", label: "Your goals" },
-    { href: "#life-shift", label: "Before / After" },
     { href: "#how", label: "How it works" },
-    { href: "#included", label: "Included" },
+    { href: "#life-shift", label: "Results" },
+    { href: "#included", label: "What's included" },
     { href: "#reviews", label: "Reviews" },
     { href: "#faq", label: "FAQ" },
   ];
@@ -116,7 +115,7 @@ function ProductPdpPageInner({ slug }: ProductPdpPageProps) {
           <div className="pdp-hero-surface">
             <SiteHeader
               navLinks={navLinks}
-              menuItems={navLinks}
+              menuItems={[...navLinks, { href: "#get-started", label: "Get started" }]}
               menuOpen={mobileNavOpen}
               pinned={headerPinned}
               transparent={headerTransparent}
@@ -129,14 +128,14 @@ function ProductPdpPageInner({ slug }: ProductPdpPageProps) {
           </div>
         </div>
 
+        <PdpHowItWorks onStart={openQuiz} />
         <PdpUnderstandSection />
         <PdpBeforeAfterSection onStart={openQuiz} />
-        <PdpHowItWorks onStart={openQuiz} />
         <PdpIncludedSection />
         <StoriesSection
           items={[...syncedPdp.reviews]}
           id="reviews"
-          title="What patients say"
+          title="Patient reviews"
         />
         <PdpFaqSection />
         <PdpCtaBand onStart={openQuiz} />
@@ -152,10 +151,10 @@ function ProductPdpPageInner({ slug }: ProductPdpPageProps) {
           {stickyVisible ? (
             <div className="pdp-sticky-inner">
               <div className="pdp-sticky-copy">
-                <strong>{product.name}</strong>
-                <span>One package · Provider review · US pharmacy</span>
+                <strong>{formatCurrency(product.monthlyPrice)}/mo</strong>
+                <span>5-minute quiz · Doctor review · Discreet delivery</span>
               </div>
-              <PdpButton className="pdp-sticky-btn" label="Get started" onClick={openQuiz} />
+              <PdpButton className="pdp-sticky-btn" label="Take the quiz" onClick={openQuiz} />
             </div>
           ) : null}
         </div>

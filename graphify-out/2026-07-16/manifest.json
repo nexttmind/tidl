@@ -95,7 +95,7 @@
     "semantic_hash": ""
   },
   "src/components/category/CategoryPage.tsx": {
-    "mtime": 1784069009.6524088,
+    "mtime": 1784138090.4330287,
     "ast_hash": "751ded0859d89516faa577e7ede817ae",
     "semantic_hash": ""
   },
@@ -105,7 +105,7 @@
     "semantic_hash": ""
   },
   "src/components/category/CategoryProductCard.tsx": {
-    "mtime": 1784068954.0720124,
+    "mtime": 1784138090.4237309,
     "ast_hash": "abb0c1a7185ac0154d69c1189094c54a",
     "semantic_hash": ""
   },
@@ -230,13 +230,13 @@
     "semantic_hash": ""
   },
   "src/components/pdp/PdpBeforeAfterSection.tsx": {
-    "mtime": 1784076981.2197502,
+    "mtime": 1784138090.424729,
     "ast_hash": "46dcf7f937562c064e612f224349d69c",
     "semantic_hash": ""
   },
   "src/components/pdp/PdpCtaBand.tsx": {
-    "mtime": 1784080223.2597165,
-    "ast_hash": "0ce12ff7c3d7e77b6a4bfdf14f117c18",
+    "mtime": 1784139758.6089668,
+    "ast_hash": "4391a6efe5d08f4b3e58e4127141e22d",
     "semantic_hash": ""
   },
   "src/components/pdp/PdpDataProvider.tsx": {
@@ -255,7 +255,7 @@
     "semantic_hash": ""
   },
   "src/components/pdp/PdpHeroSection.tsx": {
-    "mtime": 1784076979.814711,
+    "mtime": 1784138090.4237309,
     "ast_hash": "b0c0fcc0e431d7e936d44de394832064",
     "semantic_hash": ""
   },
@@ -285,7 +285,7 @@
     "semantic_hash": ""
   },
   "src/components/pdp/PdpTransformationSection.tsx": {
-    "mtime": 1784070229.6105783,
+    "mtime": 1784138090.475402,
     "ast_hash": "78f5c229e4d83909998ed68e9744ae65",
     "semantic_hash": ""
   },
@@ -300,7 +300,7 @@
     "semantic_hash": ""
   },
   "src/components/pdp/ProductPdpPage.tsx": {
-    "mtime": 1784080226.1269941,
+    "mtime": 1784138090.4340305,
     "ast_hash": "e67188cdf39fce582f96d9eaed3fb7d0",
     "semantic_hash": ""
   },
@@ -310,7 +310,7 @@
     "semantic_hash": ""
   },
   "src/components/pdp/data/glp1-pdp-content.ts": {
-    "mtime": 1784078886.9339652,
+    "mtime": 1784138090.4774022,
     "ast_hash": "6eb7309d18169d6bf41712896485178c",
     "semantic_hash": ""
   },
@@ -320,7 +320,7 @@
     "semantic_hash": ""
   },
   "src/components/pdp/data/pdp-data-registry.ts": {
-    "mtime": 1784068954.0976741,
+    "mtime": 1784138090.475402,
     "ast_hash": "9fdde7760159200fb82ef55acdff6164",
     "semantic_hash": ""
   },
@@ -660,17 +660,17 @@
     "semantic_hash": ""
   },
   "src/lib/pdp-marketing.ts": {
-    "mtime": 1784076981.4954383,
-    "ast_hash": "ce9f8e34a9c9fc00eb8b864655055800",
+    "mtime": 1784138870.6774242,
+    "ast_hash": "853a799059dd1d4d5f66ae973d448d15",
     "semantic_hash": ""
   },
   "src/lib/peptide-images.ts": {
-    "mtime": 1784078880.308946,
+    "mtime": 1784138090.4320314,
     "ast_hash": "edb0544dee1a4d701006e51515c76120",
     "semantic_hash": ""
   },
   "src/lib/peptides.ts": {
-    "mtime": 1784078880.4444525,
+    "mtime": 1784138090.4300072,
     "ast_hash": "9bde6504dc49f89ee41c3e4ab479d465",
     "semantic_hash": ""
   },
@@ -680,12 +680,12 @@
     "semantic_hash": ""
   },
   "src/lib/product-catalog.ts": {
-    "mtime": 1784068954.1164556,
+    "mtime": 1784138090.475402,
     "ast_hash": "f0a60f333c1781360a70228fdb894dcd",
     "semantic_hash": ""
   },
   "src/lib/products.ts": {
-    "mtime": 1784068954.164269,
+    "mtime": 1784138090.474405,
     "ast_hash": "2da66666de8ce8ec3459d6f5fd8c78ce",
     "semantic_hash": ""
   },
@@ -695,7 +695,7 @@
     "semantic_hash": ""
   },
   "src/lib/services-content.ts": {
-    "mtime": 1784061882.7214372,
+    "mtime": 1784138090.4763985,
     "ast_hash": "d2c10e1e2499c9d897630a2bdb780b28",
     "semantic_hash": ""
   },
@@ -755,7 +755,7 @@
     "semantic_hash": ""
   },
   "src/lib/prescribe-rx/merge-sandbox-pdp.ts": {
-    "mtime": 1784068954.1084561,
+    "mtime": 1784138090.4320314,
     "ast_hash": "5f802e12c01b85e5ef267f83e0d20ee9",
     "semantic_hash": ""
   },
@@ -1660,7 +1660,7 @@
     "semantic_hash": ""
   },
   "src/components/category/CategoryFormularySection.tsx": {
-    "mtime": 1784068954.064586,
+    "mtime": 1784138090.474405,
     "ast_hash": "c7b51bbd6da15d3f398182be25c40cf6",
     "semantic_hash": ""
   },
@@ -1715,12 +1715,12 @@
     "semantic_hash": ""
   },
   ".tmp-pdp-verify/cat-check.mjs": {
-    "mtime": 1784068373.242411,
+    "mtime": 1784138090.4774022,
     "ast_hash": "79328a9bc1467a8d3291e9f5e2019d98",
     "semantic_hash": ""
   },
   ".tmp-pdp-verify/check.mjs": {
-    "mtime": 1784067338.234169,
+    "mtime": 1784138090.4237309,
     "ast_hash": "20c2586ec9d0e048941edbcc5e439574",
     "semantic_hash": ""
   },
@@ -1735,8 +1735,8 @@
     "semantic_hash": ""
   },
   "src/components/pdp/PdpMotivationMarquee.tsx": {
-    "mtime": 1784068955.4254394,
-    "ast_hash": "b782e77e4472e31d8c32d24aa9ce900f",
+    "mtime": 1784138878.9503376,
+    "ast_hash": "ef8fc779d4baf76e7783fe8bf97d6884",
     "semantic_hash": ""
   },
   ".pdf-extract/01_\u2014_Basic_embed___PrescribeRx_Embed_SDK.pdf.txt": {
@@ -1945,8 +1945,8 @@
     "semantic_hash": ""
   },
   "src/components/pdp/PdpMinimalSections.tsx": {
-    "mtime": 1784078564.7680016,
-    "ast_hash": "d7e80ea64d015ef01c8478bb334af5fd",
+    "mtime": 1784140125.973747,
+    "ast_hash": "405a8841d987f90219d4c40fa8f7c64b",
     "semantic_hash": ""
   },
   "public/pdp/page.md": {

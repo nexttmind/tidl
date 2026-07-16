@@ -21,7 +21,7 @@ function StarRow({ rating }: { rating: number }) {
   );
 }
 
-/** Wellness buy-box — product + goal headline, stars, one-package price, CTA. */
+/** Product buy-box — vial first, one clear CTA, price + trust. */
 export function PdpHeroSection({ heroRef, onStart }: PdpHeroSectionProps) {
   const { slug, heroProduct, heroImage, penImage, marketing, goal } = usePdpData();
   const catalog = getCatalogProduct(slug);
@@ -31,28 +31,29 @@ export function PdpHeroSection({ heroRef, onStart }: PdpHeroSectionProps) {
   const headline =
     goal === "weight-loss"
       ? "Feel like you again."
-      : marketing?.emotionalHeadline ?? "Care designed around your goals.";
+      : (marketing?.emotionalHeadline ?? "Care designed around your goals.");
 
   const support =
     goal === "weight-loss"
-      ? "Doctor-prescribed. US pharmacy. TIDL Pen included."
-      : marketing?.emotionalSub ?? "Licensed provider review · US pharmacy · TIDL Pen.";
+      ? "Doctor-prescribed GLP-1. Pre-dosed TIDL Pen. Delivered to your door."
+      : (marketing?.emotionalSub ?? "Licensed provider review · US pharmacy · TIDL Pen.");
 
   const gallery = [
-    { src: heroImage, alt: `${name} product` },
-    { src: penImage || heroImage, alt: `${name} with TIDL Pen` },
-    { src: "/pdp/patient-aspire.png", alt: "Care that fits real life" },
+    { src: heroImage, alt: `${name} product`, kind: "product" as const },
+    { src: penImage || heroImage, alt: `${name} with TIDL Pen`, kind: "product" as const },
   ];
+
+  const active = gallery[galleryIndex] ?? gallery[0];
 
   return (
     <section className="hm-hero" id="hero" ref={heroRef} data-pdp-header-theme="light">
       <div className="hm-hero-shell">
         <div className="hm-hero-media">
-          <div className="hm-hero-stage">
+          <div className={`hm-hero-stage${active.kind === "product" ? " is-product" : ""}`}>
             <img
               className="hm-hero-img"
-              src={gallery[galleryIndex]?.src}
-              alt={gallery[galleryIndex]?.alt}
+              src={active.src}
+              alt={active.alt}
               loading="eager"
               fetchPriority="high"
             />
@@ -60,7 +61,7 @@ export function PdpHeroSection({ heroRef, onStart }: PdpHeroSectionProps) {
           <div className="hm-hero-thumbs" role="tablist" aria-label="Product images">
             {gallery.map((item, i) => (
               <button
-                key={item.src + i}
+                key={`${item.src}-${i}`}
                 type="button"
                 role="tab"
                 aria-selected={galleryIndex === i}
@@ -74,7 +75,6 @@ export function PdpHeroSection({ heroRef, onStart }: PdpHeroSectionProps) {
         </div>
 
         <div className="hm-hero-buy">
-          <span className="hm-badge">HSA &amp; FSA eligible</span>
           <p className="hm-hero-product-name">{name}</p>
           <h1 className="hm-hero-title">{headline}</h1>
           <p className="hm-hero-lead">{support}</p>
@@ -87,22 +87,22 @@ export function PdpHeroSection({ heroRef, onStart }: PdpHeroSectionProps) {
 
           <p className="hm-hero-price">
             {formatCurrency(heroProduct.startingPrice)}
-            <span>one package</span>
+            <span>/mo</span>
           </p>
-          <p className="hm-hero-price-note">{heroProduct.priceNote}</p>
+          <p className="hm-hero-price-note">
+            Provider review · Prescription · TIDL Pen · Discreet delivery
+          </p>
 
           <div className="hm-hero-actions">
             <button type="button" className="hm-btn hm-btn-primary" onClick={onStart}>
-              {heroProduct.ctaLabel || "Get started"}
+              Take the 5-minute quiz
             </button>
-            <button type="button" className="hm-btn hm-btn-secondary" onClick={onStart}>
-              See if I&apos;m eligible
-            </button>
+            <a className="hm-btn hm-btn-secondary" href="#how">
+              See how it works
+            </a>
           </div>
 
-          <a className="hm-safety-link" href="#why-tidl">
-            US pharmacies · Safety info
-          </a>
+          <p className="hm-hero-trust">HSA &amp; FSA eligible · Prescription required</p>
         </div>
       </div>
     </section>

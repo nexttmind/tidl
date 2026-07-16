@@ -72,7 +72,6 @@
   "70": "Radix Accordion Primitive",
   "71": "Radix Alert Dialog Primitive",
   "72": "Radix Aspect Ratio Primitive",
-  "73": "input-otp",
   "74": "Radix Checkbox Primitive",
   "75": "data.ts",
   "76": "Radix Context Menu Primitive",
@@ -83,7 +82,9 @@
   "81": "Radix Navigation Primitive",
   "82": "Radix Popover Primitive",
   "83": "Radix Progress Primitive",
+  "84": "Radix Radio Group Primitive",
   "85": "Radix Scroll Area Primitive",
+  "86": "Radix Select Primitive",
   "87": "Radix Separator Primitive",
   "88": "Radix Slider Primitive",
   "89": "AuthPage.tsx",
@@ -238,5 +239,6 @@
   "245": "check.mjs",
   "246": "check2.mjs",
   "247": "cmdk",
+  "248": "3.2 Typography tokens",
   "249": "clsx"
 }

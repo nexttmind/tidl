@@ -104,7 +104,7 @@ export function PdpBeforeAfterSection({ onStart }: PdpBeforeAfterSectionProps) {
           transition={{ duration: 0.5, ease: settle }}
         >
           <button type="button" className="hm-btn hm-btn-primary" onClick={onStart}>
-            Start your free assessment
+            Take the 5-minute quiz
           </button>
         </motion.div>
       </div>

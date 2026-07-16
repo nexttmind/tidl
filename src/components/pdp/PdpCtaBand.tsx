@@ -6,39 +6,57 @@ type PdpCtaBandProps = {
   onStart: (e: MouseEvent) => void;
 };
 
-/** Closing pitch: emotional, woman-first, quiz as the first brave step. */
+/** Closing CTA — curved dark plate, clear next step. */
 export function PdpCtaBand({ onStart }: PdpCtaBandProps) {
   const reduce = useReducedMotion();
 
   return (
-    <section className="hm-cta-band" id="get-started" data-pdp-header-theme="dark">
-      <div className="hm-cta-band-media" aria-hidden="true">
-        <img src="/pdp/AFTER.png" alt="" loading="lazy" />
-        <div className="hm-cta-band-veil" />
-      </div>
+    <section className="hm-cta-wrap" id="get-started" data-pdp-header-theme="light">
+      <div className="hm-cta-band">
+        <div className="hm-cta-band-glow" aria-hidden="true" />
 
-      <motion.div
-        className="hm-cta-band-inner"
-        initial={reduce ? false : { opacity: 0, y: 28 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.35 }}
-        transition={{ duration: 0.75, ease: settle }}
-      >
-        <p className="hm-cta-kicker">She is waiting on you</p>
-        <h2 className="hm-cta-title">
-          Let her be the first
-          <span> to take this quiz.</span>
-        </h2>
-        <p className="hm-cta-copy">
-          Not another Monday promise. Not after one more dress you avoid.
-          Five honest minutes, a licensed provider, and the quiet decision to
-          become her again before the world gets the old version of you back.
-        </p>
-        <button type="button" className="hm-btn hm-btn-gold" onClick={onStart}>
-          Start my free quiz
-        </button>
-        <p className="hm-cta-whisper">No pressure. Just the first honest step.</p>
-      </motion.div>
+        <motion.div
+          className="hm-cta-band-copy"
+          initial={reduce ? false : { opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.35 }}
+          transition={{ duration: 0.7, ease: settle }}
+        >
+          <h2 className="hm-cta-title">
+            The strongest version of you
+            <span className="hm-cta-title-gold">is a quiz away.</span>
+          </h2>
+
+          <ul className="hm-cta-signals" aria-label="What happens next">
+            <li>5-min intake</li>
+            <li>Doctor review</li>
+            <li>Pen + meds</li>
+          </ul>
+
+          <div className="hm-cta-actions">
+            <button type="button" className="hm-btn hm-btn-gold" onClick={onStart}>
+              Start my free quiz
+            </button>
+            <p className="hm-cta-whisper">Private. Prescription required.</p>
+          </div>
+        </motion.div>
+
+        <motion.figure
+          className="hm-cta-band-plate"
+          initial={reduce ? false : { opacity: 0, scale: 0.96 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, amount: 0.35 }}
+          transition={{ duration: 0.75, delay: 0.05, ease: settle }}
+        >
+          <div className="hm-cta-band-media">
+            <img src="/pdp/AFTER.png" alt="" loading="lazy" />
+          </div>
+          <figcaption className="hm-cta-caption">
+            <strong>Feel like yourself again</strong>
+            <span>Individual results vary.</span>
+          </figcaption>
+        </motion.figure>
+      </div>
     </section>
   );
 }
