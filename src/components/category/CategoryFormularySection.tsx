@@ -1,36 +1,22 @@
-import { useMemo, type ReactNode } from "react";
+import { useMemo, useState, type ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
-import { ArrowUpRight, Check } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { useQuizModal } from "@/providers/quiz-modal-provider";
 import { formatCurrency } from "@/lib/pricing";
 import { resolvePeptideOnlyImage } from "@/lib/peptide-images";
-import { getCatalogProduct, getCatalogPrice } from "@/lib/product-catalog";
-import { getPeptideDef } from "@/lib/peptides";
+import {
+  getCatalogItemsForCategory,
+  type CategoryCatalogItem,
+} from "@/lib/category-products";
 import type { CategoryDefinition } from "@/lib/categories";
 import type { ProductSlug } from "@/types/quiz";
-import {
-  useHomeSandbox,
-  type HomeFeaturedPeptide,
-} from "@/lib/prescribe-rx/use-home-sandbox";
+import { useLiveCatalog } from "@/lib/prescribe-rx/use-live-catalog";
 import { CATEGORY_GOAL_MAP } from "@/lib/category-recommendations";
+import { CategorySandboxDetailDrawer } from "./CategorySandboxDetailDrawer";
 import "./category-formulary.css";
 
 type CategoryFormularySectionProps = {
   category: CategoryDefinition;
-};
-
-type ShelfItem = {
-  slug: ProductSlug;
-  name: string;
-  compound: string;
-  hook: string;
-  description: string;
-  outcomes: readonly string[];
-  displayPrice: number;
-  image: string;
-  dosage: string;
-  formLabel: string;
-  popular: boolean;
 };
 
 /** Typed PDP route — GLP-1 has a dedicated path; all others use /products/$slug. */
@@ -59,77 +45,43 @@ function ProductPdpLink({
   );
 }
 
-function buildShelf(
-  productSlugs: readonly ProductSlug[],
-  featured: HomeFeaturedPeptide[],
-): ShelfItem[] {
-  const liveBySlug = new Map(featured.map((item) => [item.slug, item]));
+function tileImage(item: CategoryCatalogItem): string {
+  if (item.imageUrl) return item.imageUrl;
+  if (item.marketedSlug) return resolvePeptideOnlyImage(item.marketedSlug);
+  return "";
+}
 
-  return productSlugs.flatMap((slug) => {
-    const live = liveBySlug.get(slug);
-    const catalog = getCatalogProduct(slug);
-    const peptide = getPeptideDef(slug);
-    if (!live && !catalog && !peptide) return [];
-
-    const marketingPrice = getCatalogPrice(slug);
-    const compound =
-      peptide?.compound ??
-      (slug === "glp-1-weight-loss" ? "Tirzepatide" : catalog?.shortName ?? slug);
-    const name =
-      slug === "glp-1-weight-loss"
-        ? "GLP-1 Weight Loss"
-        : (peptide?.productName ?? peptide?.compound ?? catalog?.shortName ?? slug);
-
-    const formLabel =
-      catalog?.form === "pen"
-        ? "TIDL Pen"
-        : live?.live.handBox.formLabel === "Multi-dose pen"
-          ? "TIDL Pen"
-          : "Peptide protocol";
-
-    return [
-      {
-        slug,
-        name,
-        compound,
-        hook:
-          slug === "glp-1-weight-loss"
-            ? "Steady, measurable weight loss — pen + how-to included with every plan."
-            : (peptide?.hook ??
-              catalog?.headline ??
-              "Physician-guided treatment built for measurable results."),
-        description:
-          slug === "glp-1-weight-loss"
-            ? (catalog?.summary ??
-              "Tirzepatide mimics gut hormones that curb appetite and support significant, sustainable fat loss — prescribed only after a licensed provider review.")
-            : (peptide?.summary ?? catalog?.summary ?? ""),
-        outcomes: (peptide?.outcomes ?? catalog?.highlights ?? []).slice(0, 3),
-        displayPrice: live?.displayPrice ?? marketingPrice,
-        image: resolvePeptideOnlyImage(slug) || live?.live.image || catalog?.image || "",
-        dosage: peptide?.dosage ?? "Personalized dosing",
-        formLabel,
-        popular: slug === "glp-1-weight-loss" || slug === "wolverine",
-      },
-    ];
-  });
+function tilePrice(item: CategoryCatalogItem): number | null {
+  const price = item.consumerPrice ?? item.price ?? item.retailPrice ?? null;
+  return price != null && price > 0 ? price : null;
 }
 
 /**
- * Sales-first treatment shelf — each card opens its PDP.
+ * Dense e-com formulary — every active sandbox SKU mapped to this category.
+ * Marketed products keep PDP links; sandbox-only SKUs open a detail drawer.
  */
 export function CategoryFormularySection({ category }: CategoryFormularySectionProps) {
   const { openModal } = useQuizModal();
-  const { featured, loading } = useHomeSandbox();
+  const { products: catalogProducts, loading, catalogTotal } = useLiveCatalog();
+  const [selected, setSelected] = useState<CategoryCatalogItem | null>(null);
 
   const products = useMemo(
-    () => buildShelf(category.productSlugs, featured),
-    [category.productSlugs, featured],
+    () => getCatalogItemsForCategory(catalogProducts, category.slug),
+    [catalogProducts, category.slug],
   );
   const goal = CATEGORY_GOAL_MAP[category.slug];
 
+  const openIntake = (marketedSlug: ProductSlug | null) => {
+    if (marketedSlug) {
+      openModal({ product: marketedSlug, goal });
+      return;
+    }
+    openModal({ goal });
+  };
+
   return (
     <section
-      className="cform"
+      className="cform cform--calm cform--grid"
       id="category-formulary"
       data-site-header-theme="light"
       aria-label={`${category.title} treatments`}
@@ -138,129 +90,162 @@ export function CategoryFormularySection({ category }: CategoryFormularySectionP
         <header className="cform-head">
           <p className="cform-kicker">
             <span className="cform-kicker-dot" aria-hidden="true" />
-            Treatments
+            Formulary
           </p>
           <h2 className="cform-title">
-            {category.productSlugs.length > 1
-              ? `Choose your ${category.navLabel.toLowerCase()} protocol`
-              : category.productSlugs.length === 1
-                ? `${category.navLabel} protocol`
-                : `${category.navLabel} care pathway`}
+            {products.length > 0
+              ? `${category.navLabel} catalog`
+              : `${category.navLabel} care pathway`}
             <span>
               {loading
-                ? "Loading your options…"
-                : "Outcome-led. Physician-prescribed. Tap a treatment to see full details."}
+                ? "Loading live sandbox catalog…"
+                : products.length > 0
+                  ? `${products.length} package${products.length === 1 ? "" : "s"} from the sandbox catalog${catalogTotal > 0 ? ` (${catalogTotal} total SKUs)` : ""}. Tap a tile for details.`
+                  : "Start intake — a licensed provider will match your pathway."}
             </span>
           </h2>
         </header>
 
         {products.length > 0 ? (
-          <div className="cform-shelf">
-            {products.map((item, index) => (
-              <article
-                key={item.slug}
-                className={`cform-card${index === 0 ? " is-lead" : ""}${
-                  item.popular ? " is-popular" : ""
-                }`}
-              >
-                <ProductPdpLink
-                  slug={item.slug}
-                  className="cform-card-hit"
-                  aria-label={`View ${item.name} details`}
-                >
-                  <div className="cform-card-media" aria-hidden="true">
-                    <div className="cform-card-glow" />
-                    {item.image ? (
-                      <img src={item.image} alt="" className="cform-card-vial" loading="lazy" />
-                    ) : null}
-                    {item.popular ? <span className="cform-card-badge">Best seller</span> : null}
-                  </div>
+          <div className="cform-grid" role="list">
+            {products.map((item) => {
+              const price = tilePrice(item);
+              const image = tileImage(item);
+              const openDetails = () => setSelected(item);
 
-                  <div className="cform-card-copy">
-                    <p className="cform-card-index">
-                      <span>{item.compound}</span>
-                      <span aria-hidden="true">·</span>
-                      <span>{item.formLabel}</span>
-                    </p>
-                    <h3 className="cform-card-name">{item.name}</h3>
-                    {item.displayPrice > 0 ? (
-                      <p className="cform-card-price">
-                        <em>From</em>
-                        <b>{formatCurrency(item.displayPrice)}</b>
-                        <i>/mo</i>
-                      </p>
+              return (
+                <article key={item.id} className="cform-tile" role="listitem">
+                  {item.marketedSlug ? (
+                    <ProductPdpLink
+                      slug={item.marketedSlug}
+                      className="cform-tile-hit"
+                      aria-label={`View ${item.name} product page`}
+                    >
+                      <TileMedia image={image} />
+                      <TileCopy item={item} price={price} />
+                    </ProductPdpLink>
+                  ) : (
+                    <button
+                      type="button"
+                      className="cform-tile-hit"
+                      aria-label={`View ${item.name} details`}
+                      onClick={openDetails}
+                    >
+                      <TileMedia image={image} />
+                      <TileCopy item={item} price={price} />
+                    </button>
+                  )}
+
+                  <div className="cform-tile-actions">
+                    {item.marketedSlug ? (
+                      <ProductPdpLink
+                        slug={item.marketedSlug}
+                        className="cform-btn cform-btn--primary cform-btn--compact"
+                      >
+                        Details
+                        <ArrowUpRight size={14} strokeWidth={2.2} aria-hidden="true" />
+                      </ProductPdpLink>
                     ) : (
-                      <p className="cform-card-price">
-                        <em>Pricing</em>
-                        <b>After review</b>
-                      </p>
+                      <button
+                        type="button"
+                        className="cform-btn cform-btn--primary cform-btn--compact"
+                        onClick={openDetails}
+                      >
+                        Details
+                        <ArrowUpRight size={14} strokeWidth={2.2} aria-hidden="true" />
+                      </button>
                     )}
-                    <p className="cform-card-hook">{item.hook}</p>
-                    {item.description ? <p className="cform-card-desc">{item.description}</p> : null}
-
-                    {item.outcomes.length > 0 ? (
-                      <ul className="cform-card-outcomes">
-                        {item.outcomes.map((o) => (
-                          <li key={o}>
-                            <Check size={14} strokeWidth={2.4} aria-hidden="true" />
-                            <span>{o}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    ) : null}
-
-                    <dl className="cform-card-facts cform-card-facts--slim">
-                      <div>
-                        <dt>Protocol</dt>
-                        <dd>{item.dosage}</dd>
-                      </div>
-                      <div>
-                        <dt>Included</dt>
-                        <dd>Pen + how-to</dd>
-                      </div>
-                    </dl>
+                    <button
+                      type="button"
+                      className="cform-btn cform-btn--ghost cform-btn--compact"
+                      onClick={() => openIntake(item.marketedSlug)}
+                    >
+                      Intake
+                    </button>
                   </div>
-                </ProductPdpLink>
-
-                <div className="cform-card-actions">
-                  <ProductPdpLink slug={item.slug} className="cform-btn cform-btn--primary">
-                    View details
-                    <ArrowUpRight size={16} strokeWidth={2.2} aria-hidden="true" />
-                  </ProductPdpLink>
-                  <button
-                    type="button"
-                    className="cform-btn cform-btn--ghost"
-                    onClick={() => openModal({ product: item.slug, goal })}
-                  >
-                    Start intake
-                  </button>
-                </div>
-              </article>
-            ))}
+                </article>
+              );
+            })}
           </div>
         ) : (
           <div className="cform-empty">
             <h3>
-              {category.slug === "testosterone"
-                ? "Start with a provider-guided TRT pathway"
-                : `${category.title} protocols coming online`}
+              {loading
+                ? "Loading catalog…"
+                : category.slug === "testosterone"
+                  ? "Start with a provider-guided TRT pathway"
+                  : `${category.title} protocols coming online`}
             </h3>
             <p>
-              {category.slug === "testosterone"
-                ? "Licensed review of labs and symptoms before any prescription. Begin intake now."
-                : `Start the assessment — we’ll match you to the right ${category.navLabel.toLowerCase()} protocol.`}
+              {loading
+                ? "Pulling live sandbox packages…"
+                : category.slug === "testosterone"
+                  ? "Licensed review of labs and symptoms before any prescription. Begin intake now."
+                  : `Start the assessment — we’ll match you to the right ${category.navLabel.toLowerCase()} protocol.`}
             </p>
-            <button
-              type="button"
-              className="cform-btn cform-btn--primary"
-              onClick={() => openModal({ goal })}
-            >
-              {category.ctaLabel}
-              <ArrowUpRight size={16} strokeWidth={2.2} aria-hidden="true" />
-            </button>
+            {!loading ? (
+              <button
+                type="button"
+                className="cform-btn cform-btn--primary"
+                onClick={() => openModal({ goal })}
+              >
+                {category.ctaLabel}
+                <ArrowUpRight size={16} strokeWidth={2.2} aria-hidden="true" />
+              </button>
+            ) : null}
           </div>
         )}
       </div>
+
+      <CategorySandboxDetailDrawer
+        item={selected}
+        onClose={() => setSelected(null)}
+        onStartIntake={(slug) => {
+          setSelected(null);
+          openIntake(slug);
+        }}
+      />
     </section>
+  );
+}
+
+function TileMedia({ image }: { image: string }) {
+  return (
+    <div className="cform-tile-media" aria-hidden="true">
+      {image ? (
+        <img src={image} alt="" className="cform-tile-img" loading="lazy" decoding="async" />
+      ) : (
+        <span className="cform-tile-placeholder" />
+      )}
+    </div>
+  );
+}
+
+function TileCopy({
+  item,
+  price,
+}: {
+  item: CategoryCatalogItem;
+  price: number | null;
+}) {
+  return (
+    <div className="cform-tile-copy">
+      <p className="cform-tile-meta">
+        <span>{item.formHint}</span>
+        {item.strength ? (
+          <>
+            <span aria-hidden="true">·</span>
+            <span>{item.strength}</span>
+          </>
+        ) : null}
+      </p>
+      <h3 className="cform-tile-name">{item.name}</h3>
+      {price != null ? (
+        <p className="cform-tile-price">{formatCurrency(price)}</p>
+      ) : (
+        <p className="cform-tile-price cform-tile-price--muted">After review</p>
+      )}
+      {item.sku ? <p className="cform-tile-sku">{item.sku}</p> : null}
+    </div>
   );
 }

@@ -48,6 +48,8 @@ export type LiveCatalogMap = Record<string, LiveProduct>;
 
 type LiveCatalogState = {
   map: LiveCatalogMap;
+  /** Full normalized sandbox catalog (all ~120 SKUs). */
+  products: PrxCatalogProduct[];
   catalogTotal: number;
   packages: PrxCatalogPackage[];
 };
@@ -55,19 +57,67 @@ type LiveCatalogState = {
 let cache: LiveCatalogState | null = null;
 let inflight: Promise<LiveCatalogState> | null = null;
 
-/** Sandbox demo prices are often ~$10 placeholders — keep marketing list price as primary. */
-export function isSandboxPlaceholderPrice(price: number | null | undefined): boolean {
-  return price != null && price > 0 && price <= 25;
+/**
+ * @deprecated Sandbox catalog amounts (including ~$3–$25) are real demo prices.
+ * Kept as a no-op so older callers compile; always returns false.
+ */
+export function isSandboxPlaceholderPrice(
+  _price: number | null | undefined,
+): boolean {
+  return false;
 }
 
+/** First positive dollar amount from sandbox pricing fields. */
+function firstPositiveSandboxPrice(
+  ...prices: Array<number | null | undefined>
+): number | null {
+  for (const price of prices) {
+    if (price != null && price > 0) return price;
+  }
+  return null;
+}
+
+/**
+ * Prefer live sandbox catalog sell price; fall back to curated marketing price.
+ * Field order mirrors PrescribeRx catalog UI green “final” / consumer price:
+ * consumerPrice → price (already consumer→retail→base) → retailPrice.
+ */
+export function resolveDisplayPackagePrice(
+  marketingPrice: number,
+  live?: {
+    price?: number | null;
+    consumerPrice?: number | null;
+    retailPrice?: number | null;
+    fromSandbox?: boolean;
+  } | null,
+): number {
+  if (!live?.fromSandbox) return marketingPrice;
+  return (
+    firstPositiveSandboxPrice(live.consumerPrice, live.price, live.retailPrice) ??
+    marketingPrice
+  );
+}
+
+/** @deprecated Use resolveDisplayPackagePrice — peptides are package-priced, not monthly. */
 export function resolveDisplayMonthlyPrice(
   marketingPrice: number,
-  sandboxPrice: number | null | undefined,
+  liveOrPrice?:
+    | number
+    | null
+    | {
+        price?: number | null;
+        consumerPrice?: number | null;
+        retailPrice?: number | null;
+        fromSandbox?: boolean;
+      },
 ): number {
-  if (sandboxPrice == null || isSandboxPlaceholderPrice(sandboxPrice)) {
-    return marketingPrice;
+  if (liveOrPrice != null && typeof liveOrPrice === "object") {
+    return resolveDisplayPackagePrice(marketingPrice, liveOrPrice);
   }
-  return sandboxPrice;
+  return resolveDisplayPackagePrice(marketingPrice, {
+    price: liveOrPrice ?? null,
+    fromSandbox: liveOrPrice != null,
+  });
 }
 
 function matchProduct(
@@ -176,6 +226,7 @@ function buildState(
   }
   return {
     map,
+    products,
     catalogTotal: products.length,
     packages,
   };
@@ -194,22 +245,23 @@ async function loadLiveCatalog(): Promise<LiveCatalogState> {
         for (const slug of Object.keys(getPeptideImageMap())) {
           map[slug] = toLive(slug, [], CATALOG_KEYWORDS[slug] ?? [slug]);
         }
-        cache = { map, catalogTotal: 0, packages: [] };
+        cache = { map, products: [], catalogTotal: 0, packages: [] };
         return cache;
       });
   }
   return inflight;
 }
 
-/** Full sandbox catalog snapshot for featured TIDL products. */
+/** Full sandbox catalog snapshot — marketed slug map + raw product list. */
 export function useLiveCatalog(): {
   map: LiveCatalogMap;
+  products: PrxCatalogProduct[];
   loading: boolean;
   catalogTotal: number;
   packages: PrxCatalogPackage[];
 } {
   const [state, setState] = useState<LiveCatalogState>(
-    cache ?? { map: {}, catalogTotal: 0, packages: [] },
+    cache ?? { map: {}, products: [], catalogTotal: 0, packages: [] },
   );
   const [loading, setLoading] = useState(!cache);
 
@@ -232,6 +284,7 @@ export function useLiveCatalog(): {
 
   return {
     map: state.map,
+    products: state.products,
     loading,
     catalogTotal: state.catalogTotal,
     packages: state.packages,

@@ -8,7 +8,7 @@ import type { ProductSlug } from "@/types/quiz";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { useSiteHeaderState } from "@/hooks/useSiteHeaderState";
-import { useLiveCatalog, resolveDisplayMonthlyPrice } from "@/lib/prescribe-rx/use-live-catalog";
+import { useLiveCatalog, resolveDisplayPackagePrice } from "@/lib/prescribe-rx/use-live-catalog";
 import { mergeSandboxIntoPdp } from "@/lib/prescribe-rx/merge-sandbox-pdp";
 import { StoriesSection } from "@/components/home/StoriesSection";
 import { getPdpContent } from "./data/pdp-data-registry";
@@ -16,6 +16,7 @@ import { PdpDataProvider } from "./PdpDataProvider";
 import { PdpHeroSection } from "./PdpHeroSection";
 import { PdpUnderstandSection, PdpHowItWorks } from "./PdpMinimalSections";
 import { PdpBeforeAfterSection } from "./PdpBeforeAfterSection";
+import { PdpGoalOutcomesSection } from "./PdpGoalOutcomesSection";
 import { PdpIncludedSection } from "./PdpIncludedSection";
 import { PdpFaqSection } from "./PdpFaqSection";
 import { PdpCtaBand } from "./PdpCtaBand";
@@ -35,11 +36,14 @@ function ProductPdpPageInner({ slug }: ProductPdpPageProps) {
   const live = liveCatalog[slug];
 
   const pdp = mergeSandboxIntoPdp(basePdp, live);
+  const isWeightLoss = pdp.goal === "weight-loss";
+
+  const packagePrice = resolveDisplayPackagePrice(baseProduct.monthlyPrice, live);
 
   const product = {
     ...baseProduct,
     name: basePdp.heroProduct.name,
-    monthlyPrice: resolveDisplayMonthlyPrice(baseProduct.monthlyPrice, live?.price),
+    monthlyPrice: packagePrice,
     image: pdp.heroImage,
     description: pdp.heroProduct.summary,
   };
@@ -48,8 +52,8 @@ function ProductPdpPageInner({ slug }: ProductPdpPageProps) {
     ...pdp,
     heroProduct: {
       ...pdp.heroProduct,
-      startingPrice: product.monthlyPrice,
-      priceNote: "One package. Provider review when approved.",
+      startingPrice: packagePrice,
+      priceNote: "Package price. Provider review · prescription · TIDL Pen · discreet delivery",
       ctaLabel: "Get started",
     },
   };
@@ -90,7 +94,10 @@ function ProductPdpPageInner({ slug }: ProductPdpPageProps) {
 
   const navLinks = [
     { href: "#how", label: "How it works" },
-    { href: "#life-shift", label: "Results" },
+    {
+      href: isWeightLoss ? "#life-shift" : "#outcomes",
+      label: isWeightLoss ? "Results" : "Outcomes",
+    },
     { href: "#included", label: "What's included" },
     { href: "#reviews", label: "Reviews" },
     { href: "#faq", label: "FAQ" },
@@ -130,7 +137,11 @@ function ProductPdpPageInner({ slug }: ProductPdpPageProps) {
 
         <PdpHowItWorks onStart={openQuiz} />
         <PdpUnderstandSection />
-        <PdpBeforeAfterSection onStart={openQuiz} />
+        {isWeightLoss ? (
+          <PdpBeforeAfterSection onStart={openQuiz} />
+        ) : (
+          <PdpGoalOutcomesSection />
+        )}
         <PdpIncludedSection />
         <StoriesSection
           items={[...syncedPdp.reviews]}
@@ -151,8 +162,8 @@ function ProductPdpPageInner({ slug }: ProductPdpPageProps) {
           {stickyVisible ? (
             <div className="pdp-sticky-inner">
               <div className="pdp-sticky-copy">
-                <strong>{formatCurrency(product.monthlyPrice)}/mo</strong>
-                <span>5-minute quiz · Doctor review · Discreet delivery</span>
+                <strong>{formatCurrency(packagePrice)}</strong>
+                <span>Package · 5-minute quiz · Doctor review</span>
               </div>
               <PdpButton className="pdp-sticky-btn" label="Take the quiz" onClick={openQuiz} />
             </div>

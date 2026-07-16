@@ -1,6 +1,7 @@
 import { type MouseEvent } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { BeforeAfterSlider } from "./BeforeAfterSlider";
+import { usePdpData } from "./PdpDataProvider";
 import { settle } from "./pdp-ui";
 
 type PdpBeforeAfterSectionProps = {
@@ -28,9 +29,12 @@ const TECH_STRIP = [
   { k: "Kit", v: "TIDL Pen included" },
 ] as const;
 
-/** Life-shift — slider with flanking results + technical strip below. */
+/** Life-shift — slider with flanking results + technical strip below. Weight-loss only. */
 export function PdpBeforeAfterSection({ onStart }: PdpBeforeAfterSectionProps) {
+  const { goal } = usePdpData();
   const reduceMotion = useReducedMotion();
+
+  if (goal !== "weight-loss") return null;
 
   return (
     <section className="pdp-shift pdp-shift--v2" id="life-shift" data-pdp-header-theme="light">

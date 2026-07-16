@@ -87,10 +87,10 @@ export function PdpHeroSection({ heroRef, onStart }: PdpHeroSectionProps) {
 
           <p className="hm-hero-price">
             {formatCurrency(heroProduct.startingPrice)}
-            <span>/mo</span>
           </p>
           <p className="hm-hero-price-note">
-            Provider review · Prescription · TIDL Pen · Discreet delivery
+            {heroProduct.priceNote ||
+              "Package price · Provider review · Prescription · TIDL Pen · Discreet delivery"}
           </p>
 
           <div className="hm-hero-actions">

@@ -1,10 +1,11 @@
 import type { MouseEvent } from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import { usePdpData } from "./PdpDataProvider";
 import { Reveal, settle } from "./pdp-ui";
 
 type StartProps = { onStart: (e: MouseEvent) => void };
 
-const DONE_PHRASES = [
+const WEIGHT_LOSS_DONE_PHRASES = [
   "You’re done starting over every Monday",
   "You’re done hiding from photos",
   "You’re done sitting out dates",
@@ -15,40 +16,28 @@ const DONE_PHRASES = [
   "You’re done waiting to feel like yourself again",
 ] as const;
 
-const HOW_STEPS = [
-  {
-    n: "01",
-    verb: "Assess",
-    whisper: "Tell us what you want to change — five honest minutes.",
-    image: "/peptides/glp-1-weight-loss.png",
-    tone: "product" as const,
-  },
-  {
-    n: "02",
-    verb: "Prescribe",
-    whisper: "A licensed provider reviews you. Only if it’s right.",
-    image: "/pdp/how-kit.png",
-    tone: "kit" as const,
-  },
-  {
-    n: "03",
-    verb: "Ship",
-    whisper: "Pen + medication, discreet, with clear how-to.",
-    image: "/peptides/glp-1-weight-loss.png",
-    tone: "product" as const,
-  },
-  {
-    n: "04",
-    verb: "Begin",
-    whisper: "Walk back into your life — lighter, present, yours.",
-    image: "/pdp/AFTER.png",
-    tone: "photo" as const,
-  },
-] as const;
+type HowStepTone = "product" | "kit" | "photo";
 
-/** Emotional tickers — “this is me” recognition, left → right. */
+type HowStep = {
+  n: string;
+  verb: string;
+  whisper: string;
+  image: string;
+  tone: HowStepTone;
+};
+
+/** Emotional tickers — goal-aware “this is me” recognition, left → right. */
 export function PdpUnderstandSection() {
-  const loop = [...DONE_PHRASES, ...DONE_PHRASES];
+  const { goal, marketing } = usePdpData();
+
+  const phrases =
+    marketing?.painPoints?.length
+      ? [...marketing.painPoints]
+      : goal === "weight-loss"
+        ? [...WEIGHT_LOSS_DONE_PHRASES]
+        : ["You’re ready for care that matches your goals"];
+
+  const loop = [...phrases, ...phrases];
 
   return (
     <section className="hm-section hm-understand hm-understand--marquee" id="understand" data-pdp-header-theme="light">
@@ -77,7 +66,7 @@ function TimelineStep({
   index,
   reduceMotion,
 }: {
-  step: (typeof HOW_STEPS)[number];
+  step: HowStep;
   index: number;
   reduceMotion: boolean | null;
 }) {
@@ -132,7 +121,45 @@ function TimelineStep({
 
 /** Alternating timeline — image above / under the line, scroll + hover motion. */
 export function PdpHowItWorks(_props: StartProps) {
+  const { goal, heroImage, penImage } = usePdpData();
   const reduceMotion = useReducedMotion();
+  const isWeightLoss = goal === "weight-loss";
+  const productImg = heroImage || "/peptides/glp-1-weight-loss.png";
+  const kitImg = isWeightLoss ? "/pdp/how-kit.png" : penImage || productImg;
+  const beginImg = isWeightLoss ? "/pdp/AFTER.png" : productImg;
+
+  const steps: HowStep[] = [
+    {
+      n: "01",
+      verb: "Assess",
+      whisper: "Tell us what you want to change — five honest minutes.",
+      image: productImg,
+      tone: "product",
+    },
+    {
+      n: "02",
+      verb: "Prescribe",
+      whisper: "A licensed provider reviews you. Only if it’s right.",
+      image: kitImg,
+      tone: "kit",
+    },
+    {
+      n: "03",
+      verb: "Ship",
+      whisper: "Pen + medication, discreet, with clear how-to.",
+      image: productImg,
+      tone: "product",
+    },
+    {
+      n: "04",
+      verb: "Begin",
+      whisper: isWeightLoss
+        ? "Walk back into your life — lighter, present, yours."
+        : "Start your protocol with clear guidance — and keep going.",
+      image: beginImg,
+      tone: "photo",
+    },
+  ];
 
   return (
     <section className="hm-section hm-how hm-how--timeline" id="how" data-pdp-header-theme="light">
@@ -146,7 +173,7 @@ export function PdpHowItWorks(_props: StartProps) {
       <div className="hm-how-tl">
         <div className="hm-how-tl-line" aria-hidden="true" />
         <ol className="hm-how-tl-track">
-          {HOW_STEPS.map((step, index) => (
+          {steps.map((step, index) => (
             <TimelineStep
               key={step.n}
               step={step}

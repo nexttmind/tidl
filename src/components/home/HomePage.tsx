@@ -15,7 +15,6 @@ import { SITE_IMAGES } from '@/lib/site-assets';
 import { GLP1_PEN_SHOWCASE } from '@/components/pdp/data/pen-showcase-content';
 import { HERO_COPY } from '@/lib/homepage-content';
 import { useHomeSandbox } from '@/lib/prescribe-rx/use-home-sandbox';
-import { isSandboxPlaceholderPrice } from '@/lib/prescribe-rx/use-live-catalog';
 import { formatCurrency } from '@/lib/pricing';
 
 interface FaqItem {
@@ -115,12 +114,12 @@ export default function HomePage() {
 
 
   const { featured: homeFeatured } = useHomeSandbox();
-  const liveGlpPrice = homeFeatured.find((p) => p.slug === 'glp-1-weight-loss')?.live.price;
+  const liveGlp = homeFeatured.find((p) => p.slug === 'glp-1-weight-loss');
   const heroSubhead =
-    liveGlpPrice != null && !isSandboxPlaceholderPrice(liveGlpPrice)
+    liveGlp?.live.fromSandbox && liveGlp.displayPrice > 0
       ? HERO_COPY.subhead.replace(
           /Plans start at [^.]+\./,
-          `Plans start at ${formatCurrency(liveGlpPrice)}/mo (sandbox catalog).`,
+          `Plans start at ${formatCurrency(liveGlp.displayPrice)} (sandbox catalog).`,
         )
       : HERO_COPY.subhead;
 

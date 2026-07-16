@@ -22,8 +22,10 @@ function usableLiveCopy(live: LiveProduct, curated: string): string {
  * Light overlay of the live sandbox product onto the static PDP shell.
  *
  * Safe overlays: vial image (+ useful long description when present).
- * Always keep curated: marketing name, descriptor, price, specs, perks, trust.
- * Never surface SKU, UUIDs, wholesale, or $10 sandbox placeholders.
+ * Always keep curated: marketing name, descriptor, specs, perks, trust.
+ * Price is applied by the PDP page via resolveDisplayPackagePrice (live sandbox
+ * consumer/final price when present) — this merge does not overwrite startingPrice.
+ * Never surface SKU, UUIDs, or wholesale.
  */
 export function mergeSandboxIntoPdp(
   base: PdpPageContent,
@@ -42,7 +44,8 @@ export function mergeSandboxIntoPdp(
     heroProduct: {
       ...base.heroProduct,
       summary,
-      // Keep curated name, descriptor, startingPrice, priceNote, specs, perks, trustNote.
+      // Keep curated name, descriptor, specs, perks, trustNote.
+      // startingPrice / priceNote are set by ProductPdpPage from live catalog.
     },
   };
 }

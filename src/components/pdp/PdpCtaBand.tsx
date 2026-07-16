@@ -1,5 +1,6 @@
 import { type MouseEvent } from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import { usePdpData } from "./PdpDataProvider";
 import { settle } from "./pdp-ui";
 
 type PdpCtaBandProps = {
@@ -8,7 +9,20 @@ type PdpCtaBandProps = {
 
 /** Closing CTA — curved dark plate, clear next step. */
 export function PdpCtaBand({ onStart }: PdpCtaBandProps) {
+  const { goal, marketing, heroImage, heroProduct } = usePdpData();
   const reduce = useReducedMotion();
+  const isWeightLoss = goal === "weight-loss";
+
+  const titleLead = isWeightLoss
+    ? "The strongest version of you"
+    : (marketing?.motivationHeadline ?? "Care that fits your goals");
+  const titleGold = isWeightLoss ? "is a quiz away." : "Start with a 5-minute quiz.";
+  const mediaSrc = isWeightLoss ? "/pdp/AFTER.png" : heroImage;
+  const captionStrong = isWeightLoss
+    ? "Feel like yourself again"
+    : (marketing?.dream
+        ? "Built around your goals"
+        : heroProduct.name);
 
   return (
     <section className="hm-cta-wrap" id="get-started" data-pdp-header-theme="light">
@@ -23,8 +37,8 @@ export function PdpCtaBand({ onStart }: PdpCtaBandProps) {
           transition={{ duration: 0.7, ease: settle }}
         >
           <h2 className="hm-cta-title">
-            The strongest version of you
-            <span className="hm-cta-title-gold">is a quiz away.</span>
+            {titleLead}
+            <span className="hm-cta-title-gold">{titleGold}</span>
           </h2>
 
           <ul className="hm-cta-signals" aria-label="What happens next">
@@ -49,10 +63,10 @@ export function PdpCtaBand({ onStart }: PdpCtaBandProps) {
           transition={{ duration: 0.75, delay: 0.05, ease: settle }}
         >
           <div className="hm-cta-band-media">
-            <img src="/pdp/AFTER.png" alt="" loading="lazy" />
+            <img src={mediaSrc} alt="" loading="lazy" />
           </div>
           <figcaption className="hm-cta-caption">
-            <strong>Feel like yourself again</strong>
+            <strong>{captionStrong}</strong>
             <span>Individual results vary.</span>
           </figcaption>
         </motion.figure>

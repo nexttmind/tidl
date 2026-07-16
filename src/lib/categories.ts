@@ -49,6 +49,9 @@ export type CategoryDefinition = {
   headline: string;
   lead: string;
   extendedLead: string;
+  /** Emotional close — how life feels after starting TIDL care */
+  afterHeadline: string;
+  afterLead: string;
   heroImage: string;
   productSlugs: ProductSlug[];
   pillars: readonly { title: string; body: string }[];
@@ -70,11 +73,14 @@ export const CATEGORIES: Record<CategorySlug, CategoryDefinition> = {
     navLabel: "Weight loss",
     title: "Weight Loss",
     kicker: "Clinical weight care",
-    headline: "How to lose weight and keep it off.",
+    headline: "You want weight that stays off — without the noise.",
     lead:
-      "Doctor-prescribed GLP-1 treatment built for steady, measurable progress. No crash diets, no waiting rooms, no guesswork.",
+      "We hear it: quieter food noise, steady progress, and a plan that fits real life. Personalized care, a US pharmacy, and the TIDL Pen — so dosing never becomes another chore.",
     extendedLead:
       "GLP-1 medications work with your body's natural signals to reduce appetite and support sustainable weight loss. At TIDL, every plan is physician-guided: a licensed provider reviews your full health history, prescribes only when appropriate, and ships your dose pre-set in the TIDL Pen so you never mix or measure at home.",
+    afterHeadline: "After TIDL, the scale is not the only thing that moves.",
+    afterLead:
+      "Clothes fit differently. Meals feel calmer. Your dose arrives pharmacy-set in the TIDL Pen — so progress feels like life getting easier, not another project to manage.",
     heroImage: SITE_IMAGES.services.weightLoss,
     productSlugs: ["glp-1-weight-loss", "retatrutide"],
     pillars: [
@@ -96,7 +102,7 @@ export const CATEGORIES: Record<CategorySlug, CategoryDefinition> = {
       },
       {
         title: "Transparent pricing",
-        body: "One monthly plan covers provider review, prescription, and delivery. No hidden clinic fees.",
+        body: "Clear package pricing with provider review, prescription, and delivery shown before checkout.",
       },
       {
         title: "Discreet from day one",
@@ -220,11 +226,14 @@ export const CATEGORIES: Record<CategorySlug, CategoryDefinition> = {
     navLabel: "Testosterone",
     title: "Testosterone",
     kicker: "Hormonal performance",
-    headline: "Restore energy, strength, and focus.",
+    headline: "You want your energy, drive, and focus back.",
     lead:
-      "TRT built around your labs and your life. Licensed providers, personalized protocols, and discreet delivery from US pharmacies.",
+      "Low T is not “just getting older.” We start with how you feel, then labs — personalized care from a licensed provider, filled by a US pharmacy.",
     extendedLead:
       "Low testosterone can affect energy, mood, strength, and focus. TIDL testosterone therapy starts with your symptoms and lab work, reviewed by a licensed provider who builds a protocol around how you actually feel, not a one-size-fits-all chart.",
+    afterHeadline: "After TIDL, mornings feel like yours again.",
+    afterLead:
+      "Strength returns. Focus steadies. Care stays private — provider-guided, pharmacy-dispensed, and built around your labs and your life.",
     heroImage: SITE_IMAGES.services.testosterone,
     productSlugs: [],
     pillars: [
@@ -339,11 +348,14 @@ export const CATEGORIES: Record<CategorySlug, CategoryDefinition> = {
     navLabel: "Longevity",
     title: "Longevity",
     kicker: "Recovery and longevity",
-    headline: "Stay sharp, recover faster, age on your terms.",
+    headline: "You want more good years — not more guesswork.",
     lead:
-      "Peptide and metabolic protocols under physician supervision. Built for sleep, recovery, and long-term performance.",
+      "Sharp mornings. Deeper recovery. Care that respects what actually matters long-term: personalized protocols, a US pharmacy, and formats that stay simple — including the TIDL Pen when it fits.",
     extendedLead:
       "Longevity care at TIDL is physician-supervised, not supplement-store guesswork. Whether you need recovery support after training or metabolic protocols for long-term health, a licensed provider reviews your goals and prescribes only when appropriate.",
+    afterHeadline: "After TIDL, aging feels more like steering than drifting.",
+    afterLead:
+      "Energy holds. Recovery sticks. Your protocol ships from a licensed US pharmacy — reviewed by a provider who stays with you as goals evolve.",
     heroImage: SITE_IMAGES.services.longevity,
     productSlugs: ["nad-plus", "ghk-cu", "sermorelin"],
     pillars: [
@@ -489,11 +501,14 @@ export const CATEGORIES: Record<CategorySlug, CategoryDefinition> = {
     navLabel: "Metabolic",
     title: "Metabolic Health",
     kicker: "Metabolic care",
-    headline: "Steady energy. Better metabolic balance.",
+    headline: "You want steady energy — not another crash cycle.",
     lead:
-      "Physician-guided metabolic support for glucose balance, energy, and sustainable body composition — without gray-market guesswork.",
+      "Metabolic balance is personal. We match care to your goals with licensed review, US pharmacy fulfillment, and a simple dosing experience when your protocol uses the TIDL Pen.",
     extendedLead:
       "Metabolic health sits at the center of weight, energy, and long-term wellness. TIDL connects you with a licensed provider who reviews your intake and recommends treatment only when medically appropriate.",
+    afterHeadline: "After TIDL, energy feels more even — and more yours.",
+    afterLead:
+      "Fewer afternoon crashes. Clearer follow-through. A provider-led plan that ships discreetly and stays adjustable as your body responds.",
     heroImage: SITE_IMAGES.services.metabolic,
     productSlugs: ["mots-c"],
     pillars: [
@@ -592,7 +607,7 @@ export const CATEGORIES: Record<CategorySlug, CategoryDefinition> = {
       {
         id: 1,
         q: "Is metabolic care available now?",
-        a: "This hub is launching soon. Start the intake today and we will match you when protocols go live. Weight-loss GLP-1 care is available now.",
+        a: "Yes. MOTS-C and related metabolic protocols are available through licensed provider review. Start the intake to see if a plan is appropriate for you.",
       },
       {
         id: 2,
@@ -602,7 +617,7 @@ export const CATEGORIES: Record<CategorySlug, CategoryDefinition> = {
       {
         id: 3,
         q: "Can I start with weight-loss care instead?",
-        a: "Yes. GLP-1 weight-loss care is live now if that better matches your goals.",
+        a: "Yes. GLP-1 weight-loss care is live if that better matches your goals.",
       },
     ],
     ctaLabel: "Start metabolic intake",
@@ -617,11 +632,14 @@ export const CATEGORIES: Record<CategorySlug, CategoryDefinition> = {
     navLabel: "Performance",
     title: "Performance",
     kicker: "Performance care",
-    headline: "Train harder. Recover smarter.",
+    headline: "You train hard. You want recovery that keeps up.",
     lead:
-      "Clinically supervised performance protocols for strength, drive, and recovery — real prescriptions, not gray-market shortcuts.",
+      "Strength and drive matter — so does doing it the right way. Personalized, physician-guided protocols from a US pharmacy, with the TIDL Pen when your plan calls for it.",
     extendedLead:
       "Performance care at TIDL is physician-supervised. A licensed provider reviews your goals and history, then recommends treatment only when it is medically appropriate for you.",
+    afterHeadline: "After TIDL, training blocks feel cleaner.",
+    afterLead:
+      "Sessions recover faster. Sleep supports the work. Your protocol is legitimate — licensed review, US pharmacy, no gray-market shortcuts.",
     heroImage: SITE_IMAGES.services.performance,
     productSlugs: ["cjc-1295-ipamorelin", "tesamorelin"],
     pillars: [
@@ -720,7 +738,7 @@ export const CATEGORIES: Record<CategorySlug, CategoryDefinition> = {
       {
         id: 1,
         q: "Is performance care live yet?",
-        a: "This hub is coming soon. Start the intake now to be matched at launch. Weight-loss GLP-1 care is available today.",
+        a: "Yes. CJC-1295/Ipamorelin, Tesamorelin, and related performance protocols are available after licensed provider review.",
       },
       {
         id: 2,
@@ -745,11 +763,14 @@ export const CATEGORIES: Record<CategorySlug, CategoryDefinition> = {
     navLabel: "Recovery",
     title: "Recovery",
     kicker: "Recovery care",
-    headline: "Sleep better. Repair faster.",
+    headline: "You want sleep and repair that actually stick.",
     lead:
-      "Physician-guided recovery protocols for sleep, repair, and bounce-back — with the same medical standards as every TIDL treatment.",
+      "Bounce-back is the goal — not another stimulant shortcut. Personalized recovery care, filled by a US pharmacy, with dosing that stays simple when you use the TIDL Pen.",
     extendedLead:
       "Recovery is where progress sticks. TIDL recovery care starts with your intake, continues with licensed provider review, and ships only when a prescription is medically appropriate.",
+    afterHeadline: "After TIDL, tomorrow’s session starts sooner.",
+    afterLead:
+      "Joints feel quieter. Sleep deepens. Repair becomes part of the week — provider-guided, discreetly delivered, built around how you actually train.",
     heroImage: SITE_IMAGES.services.recovery,
     productSlugs: ["bpc-157", "tb-500", "wolverine"],
     pillars: [
@@ -848,7 +869,7 @@ export const CATEGORIES: Record<CategorySlug, CategoryDefinition> = {
       {
         id: 1,
         q: "Is recovery care available now?",
-        a: "This hub is launching soon. Complete the intake to be matched at launch. GLP-1 weight-loss care is live today.",
+        a: "Yes. BPC-157, TB-500, and the Wolverine blend are available after licensed provider review.",
       },
       {
         id: 2,

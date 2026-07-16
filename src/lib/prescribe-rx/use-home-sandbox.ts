@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { fetchPrxEncounterTypes } from "@/lib/prescribe-rx/browse-api";
 import type { PrxEncounterTypeSummary } from "@/lib/prescribe-rx/encounter-schema";
 import {
-  resolveDisplayMonthlyPrice,
+  resolveDisplayPackagePrice,
   useLiveCatalog,
   type LiveProduct,
 } from "@/lib/prescribe-rx/use-live-catalog";
@@ -62,7 +62,7 @@ export type HomeFeaturedPeptide = {
   hook: string;
   outcomes: readonly string[];
   goalLabel: string;
-  /** Curated marketing price ($199–$349); sandbox $10 placeholders stay in facts only. */
+  /** Live sandbox sell price when matched; otherwise curated marketing price. */
   displayPrice: number;
 };
 
@@ -149,7 +149,7 @@ export function useHomeSandbox(): HomeSandboxData {
         hook,
         outcomes: [...outcomes].slice(0, 3),
         goalLabel: goalLabel(def?.goal ?? product?.goal ?? "longevity"),
-        displayPrice: resolveDisplayMonthlyPrice(marketingPrice, live.price),
+        displayPrice: resolveDisplayPackagePrice(marketingPrice, live),
       },
     ];
   });

@@ -12,21 +12,21 @@ import {
   getCategory,
   type CategorySlug,
 } from "@/lib/categories";
+import {
+  getCatalogItemsForCategory,
+  getProductSlugsForCategory,
+} from "@/lib/category-products";
 import { CATEGORY_GOAL_MAP } from "@/lib/category-recommendations";
 import { getGoalFromProduct } from "@/lib/products";
-import {
-  filterEncountersForCategory,
-  filterFeaturedForCategory,
-  useHomeSandbox,
-} from "@/lib/prescribe-rx/use-home-sandbox";
+import { useLiveCatalog } from "@/lib/prescribe-rx/use-live-catalog";
 import type { GoalId, ProductSlug } from "@/types/quiz";
+import { CategoryAfterSection } from "./CategoryAfterSection";
 import { CategoryAmbient } from "./CategoryAmbient";
 import { CategoryFaqSection } from "./CategoryFaqSection";
+import { CategoryExperienceSection } from "./CategoryExperienceSection";
 import { CategoryFormularySection } from "./CategoryFormularySection";
 import { CategoryHero } from "./CategoryHero";
-import { CategoryHowSection } from "./CategoryHowSection";
-import { CategoryWhySection } from "./CategoryWhySection";
-import { catReveal, catStagger } from "./category-motion";
+import { CategoryTrustSection } from "./CategoryTrustSection";
 import "../home/home.css";
 import "./category.css";
 
@@ -39,21 +39,41 @@ const CATEGORY_GOALS: Record<CategorySlug, GoalId> = CATEGORY_GOAL_MAP;
 export function CategoryPage({ slug }: CategoryPageProps) {
   const category = getCategory(slug);
   const { openModal } = useQuizModal();
-  const { featured, encounters, catalogCount, loading: sandboxLoading } = useHomeSandbox();
+  const { products: catalogProducts, loading: sandboxLoading } = useLiveCatalog();
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const [heroLive, setHeroLive] = useState(false);
   const reduce = useReducedMotion();
   const { pinned: headerPinned, theme: headerTheme, transparent: headerTransparent } =
     useSiteHeaderState({ defaultTheme: "light" });
 
+  const productSlugs = useMemo(() => getProductSlugsForCategory(category.slug), [category.slug]);
+
+  const catalogItems = useMemo(
+    () => getCatalogItemsForCategory(catalogProducts, category.slug),
+    [catalogProducts, category.slug],
+  );
+
   const openQuiz = useCallback(
     (productSlug?: ProductSlug) => (e?: MouseEvent) => {
       e?.preventDefault();
-      const slugToUse = productSlug ?? category.productSlugs[0] ?? "glp-1-weight-loss";
-      const goal = getGoalFromProduct(slugToUse) ?? CATEGORY_GOALS[category.slug];
-      openModal({ product: slugToUse, goal });
+      const goal = CATEGORY_GOALS[category.slug];
+      if (productSlug) {
+        openModal({
+          product: productSlug,
+          goal: getGoalFromProduct(productSlug) ?? goal,
+        });
+        return;
+      }
+      if (productSlugs[0]) {
+        openModal({
+          product: productSlugs[0],
+          goal: getGoalFromProduct(productSlugs[0]) ?? goal,
+        });
+        return;
+      }
+      openModal({ goal });
     },
-    [category.productSlugs, category.slug, openModal],
+    [productSlugs, category.slug, openModal],
   );
 
   useEffect(() => {
@@ -72,25 +92,22 @@ export function CategoryPage({ slug }: CategoryPageProps) {
     label: CATEGORIES[item].navLabel,
   }));
 
-  const reveal = reduce ? { hidden: { opacity: 1, y: 0 }, show: { opacity: 1, y: 0 } } : catReveal;
-  const howSteps = category.howItWorks.slice(0, 4);
+  const fromPrice = useMemo(() => {
+    const prices = catalogItems
+      .map((p) => p.consumerPrice ?? p.price ?? p.retailPrice)
+      .filter((price): price is number => price != null && price > 0);
+    if (prices.length === 0) return null;
+    return Math.min(...prices);
+  }, [catalogItems]);
+
   const faqItems = category.faqItems.slice(0, 4);
 
-  const liveProducts = useMemo(
-    () => filterFeaturedForCategory(featured, category.productSlugs),
-    [featured, category.productSlugs],
-  );
-  const pathways = useMemo(
-    () => filterEncountersForCategory(encounters, category.slug),
-    [encounters, category.slug],
-  );
-
   return (
-    <div className="cat-page cat-page--sales">
+    <div className={`cat-page cat-page--sales cat-page--calm cat-page--${slug}`}>
       <div className="cat-hero-stage site-chrome-stage">
         <div className="tdl-bar" id="tdlBar">
           <div className="tdl-bar-inner">
-            <span className="tdl-msg">Physician-guided care. Discreet delivery. Real results.</span>
+            <span className="tdl-msg">Personalized care. US pharmacy. TIDL Pen dosing.</span>
             <Link to="/" className="tdl-link">
               Home
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -125,65 +142,31 @@ export function CategoryPage({ slug }: CategoryPageProps) {
                 category={category}
                 slug={slug}
                 onGetStarted={() => openQuiz()()}
+                fromPrice={sandboxLoading ? null : fromPrice}
+                productCount={catalogItems.length || productSlugs.length}
               />
             </motion.div>
           </AnimatePresence>
         </div>
       </div>
 
-      {/* Treatments — each card opens its PDP */}
-      <CategoryFormularySection category={category} />
-
-      {/* Path to purchase */}
-      <CategoryHowSection
-        category={category}
-        steps={howSteps}
-        onStartIntake={() => openQuiz()()}
-      />
+      {/* Category-specific emotional recognition — unique composition per goal */}
+      <CategoryExperienceSection slug={slug} />
 
       {/* Trust */}
-      <CategoryWhySection
-        category={category}
-        liveProducts={liveProducts}
-        pathways={pathways}
-        catalogCount={catalogCount}
-        sandboxLoading={sandboxLoading}
-        onStartIntake={() => openQuiz()()}
-      />
+      <CategoryTrustSection category={category} />
 
-      {/* FAQ */}
+      {/* Product formulary — all sandbox products for this category */}
+      <CategoryFormularySection category={category} />
+
+      {/* 4. After-life emotional close */}
+      <CategoryAfterSection category={category} onStartIntake={() => openQuiz()()} />
+
       <CategoryFaqSection
         category={category}
         items={faqItems}
         onStartIntake={() => openQuiz()()}
       />
-
-      <section className="cat-cta-band" data-site-header-theme="light">
-        <motion.div
-          className="cat-cta-inner"
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          variants={catStagger}
-        >
-          <motion.h2 className="cat-cta-title" variants={reveal}>
-            Ready for {category.navLabel.toLowerCase()} that actually ships?
-          </motion.h2>
-          <motion.p className="cat-cta-lead" variants={reveal}>
-            Five-minute intake. Licensed provider review. Discreet pharmacy delivery.
-          </motion.p>
-          <motion.button
-            type="button"
-            className="cat-btn cat-btn--primary"
-            onClick={openQuiz()}
-            variants={reveal}
-            whileHover={reduce ? undefined : { scale: 1.02, y: -2 }}
-            whileTap={reduce ? undefined : { scale: 0.98 }}
-          >
-            {category.ctaLabel}
-          </motion.button>
-        </motion.div>
-      </section>
 
       <div data-site-header-theme="dark">
         <SiteFooter onGetStarted={openQuiz()} />
