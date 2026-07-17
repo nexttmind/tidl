@@ -36,17 +36,36 @@ function findAnswer(query: string): string {
   );
   if (partial) return partial[1];
 
-  if (q.includes("pen") || q.includes("glp")) {
+  if (q.includes("pen") || q.includes("glp") || q.includes("dose") || q.includes("click") || q.includes("food") || q.includes("noise")) {
     return ASK_TIDL_ANSWERS["What is the TIDL Pen?"];
   }
-  if (q.includes("fit") || q.includes("eligib") || q.includes("quiz")) {
+  if (
+    q.includes("fit") ||
+    q.includes("eligib") ||
+    q.includes("quiz") ||
+    q.includes("start today") ||
+    q.includes("myself")
+  ) {
     return ASK_TIDL_ANSWERS["Am I a fit for GLP-1?"];
   }
-  if (q.includes("trt") || q.includes("testosterone") || q.includes("hormone")) {
+  if (
+    q.includes("trt") ||
+    q.includes("testosterone") ||
+    q.includes("hormone") ||
+    q.includes("energy") ||
+    q.includes("tired") ||
+    q.includes("exhaust")
+  ) {
     return ASK_TIDL_ANSWERS["How does TRT work?"];
   }
   if (q.includes("peptide") || q.includes("longevity") || q.includes("recover")) {
     return ASK_TIDL_ANSWERS["What are peptides?"];
+  }
+  if (q.includes("doctor") || q.includes("provider") || q.includes("listen")) {
+    return ASK_TIDL_ANSWERS["Is a doctor involved?"];
+  }
+  if (q.includes("soon") || q.includes("fast") || q.includes("start")) {
+    return ASK_TIDL_ANSWERS["How fast do I start?"];
   }
 
   return ASK_TIDL_FALLBACK;

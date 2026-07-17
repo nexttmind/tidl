@@ -1,40 +1,58 @@
 /** Homepage Ask TIDL section copy and mock Q&A. */
 
 export const ASK_TIDL_SECTION = {
-  kicker: "TIDL Intelligence",
-  titleLine1: "Ask anything.",
-  titleEmphasis: "Decide faster.",
-  placeholder: "Ask about treatments, eligibility, delivery…",
-  statusLabel: "Live",
-  disclaimer:
-    "General information only. Your provider makes every medical decision.",
+  title: "You're safe here.",
+  subtitle: "Whenever you're ready.",
+  placeholder: "Ask when you're ready…",
+  botGreeting: "Hello, this is TIDL AI assistant.",
+  brandName: "Ask TIDL",
+  replyUs: "TIDL",
+  disclaimer: "You're not alone in this. A lot of people ask the same thing — your provider still decides what's right for you.",
 } as const;
 
+/** Short, result-first choices — tap one to ask */
 export const ASK_TIDL_PROMPTS = [
-  "What is the TIDL Pen?",
-  "Am I a fit for GLP-1?",
-  "How does TRT work?",
-  "What are peptides?",
+  "Quieter food noise?",
+  "More energy?",
+  "Feel like myself?",
+  "Start today?",
 ] as const;
 
+/** Cycles as the input placeholder typewriter */
 export const ASK_TIDL_PLACEHOLDER_QS = [
-  "What is the TIDL Pen?",
-  "Am I a fit for GLP-1?",
-  "How fast is delivery?",
-  "What are peptides?",
-  "Can I use HSA or FSA?",
+  "Quieter food noise?",
+  "More energy?",
+  "Feel like myself?",
+  "How fast do I start?",
+  "Is a doctor involved?",
 ] as const;
 
 export const ASK_TIDL_ANSWERS: Record<string, string> = {
+  "Quieter food noise?":
+    "Yes. Provider-guided GLP-1 care can help quiet constant food thoughts. A short intake starts it.",
+  "More energy?":
+    "Many people come for steadier energy and focus. A licensed provider matches the right path for you.",
+  "Feel like myself?":
+    "That's the goal. Care that fits your body, reviewed by a real provider. Start when you're ready.",
+  "Start today?":
+    "Yes. Five-minute intake. Provider review. If it's right for you, treatment ships from a US pharmacy.",
+  "How fast do I start?":
+    "Intake takes about five minutes. If approved, medication ships from a licensed pharmacy.",
+  "Is a doctor involved?":
+    "Always. Licensed providers review your intake and prescribe only when it's appropriate.",
   "What is the TIDL Pen?":
-    "The TIDL Pen is our pre-dosed GLP-1 treatment. The dose is already measured, so there's no mixing and no guesswork. Just click and go. It's prescribed by a licensed provider and shipped from a licensed US pharmacy.",
+    "Pre-dosed treatment. No mixing. Click and go. Prescribed by a provider, shipped from a US pharmacy.",
   "Am I a fit for GLP-1?":
-    "That's exactly what the quiz is for. It takes about five minutes and doubles as your medical intake. A licensed provider reviews your answers and prescribes only if it's right for you.",
+    "The quiz answers that in about five minutes. A provider reviews and decides.",
   "How does TRT work?":
-    "TRT restores testosterone to a healthy range under a doctor's care, which can support energy, strength, drive, and focus. Your provider personalizes the dose and monitors your progress.",
+    "Provider-guided testosterone care for energy, strength, and drive. Personalized dose and follow-up.",
   "What are peptides?":
-    "Peptides are short chains of amino acids your body already uses as signals. Peptide therapy uses specific ones, prescribed by a provider, to support goals like recovery, longevity, and metabolic health.",
+    "Short amino-acid signals your body already uses. Provider-prescribed for recovery, longevity, and more.",
+  "How fast is delivery?":
+    "If approved, a licensed US pharmacy fulfills it. Timing varies by treatment and state.",
+  "Can I use HSA or FSA?":
+    "Often yes for eligible care. Your plan rules apply. Ask during intake if you're unsure.",
 };
 
 export const ASK_TIDL_FALLBACK =
-  "We can walk you through treatments, delivery, and what the intake looks like. Take the quiz to get matched with a licensed provider.";
+  "Thanks for asking. A short intake helps a provider meet you where you are — start whenever you're ready.";

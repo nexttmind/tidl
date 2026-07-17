@@ -48,11 +48,16 @@
 
 .cat-hero-surface {
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   background:
     radial-gradient(ellipse 70% 55% at 80% 12%, rgba(243, 195, 0, 0.22), transparent 60%),
     linear-gradient(165deg, #fff8d6 0%, #ffffff 42%, #ffffff 100%);
   border-radius: 44px 44px 0 0;
+}
+
+.cat-hero-surface > .site-header-wrap {
+  position: relative;
+  z-index: 40;
 }
 
 .cat-ambient {

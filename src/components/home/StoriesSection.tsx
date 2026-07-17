@@ -11,13 +11,13 @@ function buildMarqueeRows(items: Testimonial[]) {
       items,
       direction: "left" as const,
       speed: 56,
-      label: "Patient reviews row one",
+      label: "Testimonials row one",
     },
     {
       items: [...items].reverse(),
       direction: "right" as const,
       speed: 64,
-      label: "Patient reviews row two",
+      label: "Testimonials row two",
     },
   ];
 }
@@ -39,7 +39,7 @@ function StarRating() {
   );
 }
 
-function SectionTitle({ title }: { title: string }) {
+function SectionTitle({ title, subtitle }: { title: string; subtitle?: string }) {
   const ref = useRef<HTMLHeadingElement>(null);
   const [active, setActive] = useState(false);
   const reduceMotion = useReducedMotion();
@@ -68,23 +68,35 @@ function SectionTitle({ title }: { title: string }) {
   }, [reduceMotion]);
 
   return (
-    <h2 ref={ref} className="tst-title-reveal heading-01">
-      <motion.span
-        className="tst-title-reveal-inner"
-        initial={reduceMotion ? false : { opacity: 0, y: 14 }}
-        animate={active ? { opacity: 1, y: 0 } : undefined}
-        transition={{ duration: 0.55, ease: settle }}
-      >
-        {title}
-      </motion.span>
-      <motion.span
-        className="tst-title-rule"
-        aria-hidden="true"
-        initial={reduceMotion ? false : { scaleX: 0, opacity: 0 }}
-        animate={active ? { scaleX: 1, opacity: 1 } : undefined}
-        transition={{ duration: 0.7, delay: 0.2, ease: settle }}
-      />
-    </h2>
+    <div className="tst-title-block">
+      <h2 ref={ref} className="tst-title-reveal heading-01">
+        <motion.span
+          className="tst-title-reveal-inner"
+          initial={reduceMotion ? false : { opacity: 0, y: 14 }}
+          animate={active ? { opacity: 1, y: 0 } : undefined}
+          transition={{ duration: 0.55, ease: settle }}
+        >
+          {title}
+        </motion.span>
+        <motion.span
+          className="tst-title-rule"
+          aria-hidden="true"
+          initial={reduceMotion ? false : { scaleX: 0, opacity: 0 }}
+          animate={active ? { scaleX: 1, opacity: 1 } : undefined}
+          transition={{ duration: 0.7, delay: 0.2, ease: settle }}
+        />
+      </h2>
+      {subtitle ? (
+        <motion.p
+          className="tst-subtitle"
+          initial={reduceMotion ? false : { opacity: 0, y: 10 }}
+          animate={active ? { opacity: 1, y: 0 } : undefined}
+          transition={{ duration: 0.55, delay: 0.12, ease: settle }}
+        >
+          {subtitle}
+        </motion.p>
+      ) : null}
+    </div>
   );
 }
 
@@ -233,10 +245,12 @@ export function StoriesSection({
   items = HOME_STORIES,
   id = "stories",
   title = STORIES_SECTION.title,
+  subtitle = STORIES_SECTION.subtitle,
 }: {
   items?: Testimonial[];
   id?: string;
   title?: string;
+  subtitle?: string;
 } = {}) {
   const rows = useMemo(() => buildMarqueeRows(items), [items]);
   const shellRef = useRef<HTMLDivElement>(null);
@@ -258,7 +272,7 @@ export function StoriesSection({
     <section className="tst-sec" id={id} data-site-header-theme="light">
       <div className="tst-inner">
         <header className="tst-head">
-          <SectionTitle title={title} />
+          <SectionTitle title={title} subtitle={subtitle} />
         </header>
       </div>
 

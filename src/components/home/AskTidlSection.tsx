@@ -20,48 +20,76 @@ export type AskTidlSectionHandle = {
   focusInput: () => void;
 };
 
-const BOT_CYCLE_MS = 6000;
-const BOT_VISIBLE_START = 0.08 * BOT_CYCLE_MS;
-const BOT_VISIBLE_END = 0.55 * BOT_CYCLE_MS;
+type BotPhase = "hidden" | "up" | "down" | "done";
 
-function AskTidlBot({ reduce }: { reduce: boolean }) {
+function AskTidlBot({
+  reduce,
+  play,
+}: {
+  reduce: boolean;
+  play: boolean;
+}) {
   const reactId = useId().replace(/:/g, "");
+  const [phase, setPhase] = useState<BotPhase>("hidden");
   const [waving, setWaving] = useState(false);
+  const playedRef = useRef(false);
 
   useEffect(() => {
-    if (reduce) return;
+    if (!play || playedRef.current) return;
+    playedRef.current = true;
 
+    if (reduce) {
+      setPhase("up");
+      setWaving(true);
+      const hide = window.setTimeout(() => {
+        setWaving(false);
+        setPhase("down");
+        window.setTimeout(() => setPhase("done"), 450);
+      }, 2200);
+      return () => window.clearTimeout(hide);
+    }
+
+    let upTimer: ReturnType<typeof setTimeout> | undefined;
     let waveOn: ReturnType<typeof setTimeout> | undefined;
     let waveOff: ReturnType<typeof setTimeout> | undefined;
+    let downTimer: ReturnType<typeof setTimeout> | undefined;
+    let doneTimer: ReturnType<typeof setTimeout> | undefined;
 
-    const runCycle = () => {
-      waveOn = setTimeout(() => setWaving(true), BOT_VISIBLE_START);
-      waveOff = setTimeout(() => setWaving(false), BOT_VISIBLE_END);
-    };
-
-    runCycle();
-    const interval = setInterval(runCycle, BOT_CYCLE_MS);
+    // Rise from behind the panel
+    upTimer = setTimeout(() => setPhase("up"), 80);
+    waveOn = setTimeout(() => setWaving(true), 520);
+    waveOff = setTimeout(() => setWaving(false), 2800);
+    downTimer = setTimeout(() => setPhase("down"), 3200);
+    doneTimer = setTimeout(() => setPhase("done"), 4200);
 
     return () => {
-      clearInterval(interval);
+      if (upTimer) clearTimeout(upTimer);
       if (waveOn) clearTimeout(waveOn);
       if (waveOff) clearTimeout(waveOff);
+      if (downTimer) clearTimeout(downTimer);
+      if (doneTimer) clearTimeout(doneTimer);
     };
-  }, [reduce]);
+  }, [play, reduce]);
 
   const g = (name: string) => `ask-bot-${name}-${reactId}`;
+  const showBubble = phase === "up";
 
   return (
     <div
-      className={`ask-bot-wrap${waving ? " is-waving" : ""}${reduce ? " is-static" : ""}`}
+      className={`ask-bot-wrap ask-bot-wrap--once is-${phase}${waving ? " is-waving" : ""}${
+        reduce ? " is-static" : ""
+      }`}
       id="askTidlBot"
       aria-hidden="true"
     >
+      <div className={`ask-bot-bubble${showBubble ? " is-visible" : ""}`}>
+        <p>{ASK_TIDL_SECTION.botGreeting}</p>
+      </div>
       <svg viewBox="0 0 52 64" fill="none">
         <defs>
           <linearGradient id={g("head")} x1="10" y1="12" x2="42" y2="36" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stopColor="#2A2620" />
-            <stop offset="100%" stopColor="#0E0C08" />
+            <stop offset="0%" stopColor="#8A8174" />
+            <stop offset="100%" stopColor="#5F574D" />
           </linearGradient>
           <linearGradient id={g("body")} x1="13" y1="36" x2="39" y2="56" gradientUnits="userSpaceOnUse">
             <stop offset="0%" stopColor="#FFD950" />
@@ -108,15 +136,16 @@ function AskTidlBot({ reduce }: { reduce: boolean }) {
           <rect x="10" y="12" width="32" height="24" rx="9" fill={`url(#${g("head")})`} />
           <path
             d="M14 16c4-2 10-3 16-2"
-            stroke="rgba(255,255,255,0.14)"
+            stroke="rgba(255,255,255,0.18)"
             strokeWidth="3"
             strokeLinecap="round"
             fill="none"
           />
 
-          <rect x="13.5" y="19" width="25" height="11" rx="5.5" fill="#0A0906" opacity="0.9" />
+          <rect x="13.5" y="19" width="25" height="11" rx="5.5" fill="#3F3932" opacity="0.92" />
           <circle cx="19.5" cy="24.5" r="3.6" fill={`url(#${g("eye")})`} filter={`url(#${g("soft")})`} />
           <circle cx="32.5" cy="24.5" r="3.6" fill={`url(#${g("eye")})`} filter={`url(#${g("soft")})`} />
+          <circle cx="38.5" cy="30.5" r="1.4" fill="#F3C300" opacity="0.9" />
 
           <rect x="13" y="36" width="26" height="20" rx="8" fill={`url(#${g("body")})`} />
           <path
@@ -136,50 +165,6 @@ function AskTidlBot({ reduce }: { reduce: boolean }) {
           </g>
         </g>
       </svg>
-    </div>
-  );
-}
-
-const ORBS = [
-  { className: "ask-orb ask-orb--a", delay: 0 },
-  { className: "ask-orb ask-orb--b", delay: 1.2 },
-  { className: "ask-orb ask-orb--c", delay: 2.4 },
-  { className: "ask-orb ask-orb--d", delay: 0.6 },
-  { className: "ask-orb ask-orb--e", delay: 1.8 },
-] as const;
-
-const NODES = Array.from({ length: 14 }, (_, i) => i);
-
-function AskAmbient({ reduce }: { reduce: boolean }) {
-  return (
-    <div className="ask-ambient" aria-hidden="true">
-      <div className="ask-ambient-wash ask-ambient-wash--top" />
-      <div className="ask-ambient-wash ask-ambient-wash--right" />
-      <div className="ask-ambient-wash ask-ambient-wash--bottom" />
-      <div className="ask-ambient-mesh" />
-      <div className="ask-ambient-ring ask-ambient-ring--tl" />
-      <div className="ask-ambient-ring ask-ambient-ring--br" />
-
-      {!reduce ? (
-        <>
-          <div className="ask-ambient-beam ask-ambient-beam--top" />
-          <div className="ask-ambient-beam ask-ambient-beam--right" />
-          <div className="ask-ambient-rise" />
-          {ORBS.map((orb) => (
-            <span key={orb.className} className={orb.className} style={{ animationDelay: `${orb.delay}s` }} />
-          ))}
-          <div className="ask-ambient-nodes">
-            {NODES.map((i) => (
-              <span key={i} className={`ask-node ask-node--${i + 1}`} />
-            ))}
-          </div>
-          <svg className="ask-ambient-paths" viewBox="0 0 1200 800" preserveAspectRatio="none">
-            <path className="ask-path ask-path--1" d="M-40 180 C 220 40, 420 320, 640 210 S 980 40, 1240 160" />
-            <path className="ask-path ask-path--2" d="M-40 420 C 180 520, 380 280, 620 390 S 940 560, 1240 430" />
-            <path className="ask-path ask-path--3" d="M-40 640 C 260 560, 480 720, 720 610 S 1020 500, 1240 680" />
-          </svg>
-        </>
-      ) : null}
     </div>
   );
 }
@@ -264,6 +249,7 @@ export const AskTidlSection = forwardRef<AskTidlSectionHandle>(function AskTidlS
     const trimmed = q.trim();
     if (!trimmed) return;
 
+    setAskInput(trimmed);
     setActiveQuestion(trimmed);
     setAskThinking(true);
     setAskDisplayed("");
@@ -287,7 +273,7 @@ export const AskTidlSection = forwardRef<AskTidlSectionHandle>(function AskTidlS
         setAskDisplayed(full.slice(0, i));
         if (i >= full.length && ansTyperRef.current) clearInterval(ansTyperRef.current);
       }, 12);
-    }, 720);
+    }, 520);
   }, []);
 
   const reveal = reduceMotion
@@ -304,12 +290,10 @@ export const AskTidlSection = forwardRef<AskTidlSectionHandle>(function AskTidlS
   return (
     <section
       ref={sectionRef}
-      className={`ask-tidl-wrap${inView ? " ask-tidl-wrap--live" : ""}`}
+      className={`ask-tidl-wrap ask-tidl-wrap--home${inView ? " ask-tidl-wrap--live" : ""}`}
       data-site-header-theme="light"
       id="askTidl"
     >
-      <AskAmbient reduce={!!reduceMotion} />
-
       <div className="ask-tidl">
         <motion.header
           className="ask-tidl-head"
@@ -317,42 +301,26 @@ export const AskTidlSection = forwardRef<AskTidlSectionHandle>(function AskTidlS
           animate={inView ? "show" : "hidden"}
           variants={{
             hidden: {},
-            show: { transition: { staggerChildren: reduceMotion ? 0 : 0.1 } },
+            show: { transition: { staggerChildren: reduceMotion ? 0 : 0.08 } },
           }}
         >
-          <motion.p className="ask-kicker" variants={reveal}>
-            <span className="ask-kicker-dot" aria-hidden="true" />
-            {ASK_TIDL_SECTION.kicker}
-          </motion.p>
           <motion.h2 className="ask-h heading-01" variants={reveal}>
-            {ASK_TIDL_SECTION.titleLine1}
-            <br />
-            <em>{ASK_TIDL_SECTION.titleEmphasis}</em>
+            {ASK_TIDL_SECTION.title}
           </motion.h2>
+          <motion.p className="ask-sub" variants={reveal}>
+            {ASK_TIDL_SECTION.subtitle}
+          </motion.p>
         </motion.header>
 
         <motion.div
           className="ask-tidl-stage"
-          initial={reduceMotion ? false : { opacity: 0, y: 36 }}
+          initial={reduceMotion ? false : { opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : undefined}
-          transition={{ duration: 0.75, delay: reduceMotion ? 0 : 0.1, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.65, delay: reduceMotion ? 0 : 0.06, ease: [0.22, 1, 0.36, 1] }}
         >
-          <AskTidlBot reduce={!!reduceMotion} />
+          <AskTidlBot reduce={!!reduceMotion} play={inView} />
 
           <div className="ask-panel">
-            <div className="ask-panel-mesh" aria-hidden="true" />
-
-            <div className="ask-panel-top">
-              <div className="ask-panel-brand">
-                <span className="ask-panel-brand-name">✦ Ask TIDL</span>
-                <span className="ask-panel-brand-meta">Clinical knowledge, powered by AI</span>
-              </div>
-              <div className="ask-panel-live" aria-live="polite">
-                <span className="ask-panel-live-dot" aria-hidden="true" />
-                {ASK_TIDL_SECTION.statusLabel}
-              </div>
-            </div>
-
             <div className="ask-panel-main">
               <div className={`ask-composer${askFocused ? " focus" : ""}${askInput.trim() ? " filled" : ""}`}>
                 <input
@@ -360,7 +328,7 @@ export const AskTidlSection = forwardRef<AskTidlSectionHandle>(function AskTidlS
                   className="ask-composer-input"
                   id="askIn"
                   type="text"
-                  aria-label="Ask TIDL anything"
+                  aria-label="Ask TIDL"
                   placeholder={askPlaceholder}
                   value={askInput}
                   onChange={(e) => setAskInput(e.target.value)}
@@ -389,17 +357,13 @@ export const AskTidlSection = forwardRef<AskTidlSectionHandle>(function AskTidlS
               </div>
 
               <div className="ask-suggest" aria-label="Suggested questions">
-                <span className="ask-suggest-label">Try</span>
                 <div className="ask-suggest-list">
                   {ASK_TIDL_PROMPTS.map((q) => (
                     <button
                       key={q}
                       type="button"
                       className={`ask-suggest-item${activeQuestion === q ? " active" : ""}`}
-                      onClick={() => {
-                        setAskInput(q);
-                        handleAsk(q);
-                      }}
+                      onClick={() => handleAsk(q)}
                     >
                       {q}
                     </button>
@@ -412,15 +376,9 @@ export const AskTidlSection = forwardRef<AskTidlSectionHandle>(function AskTidlS
                 aria-live="polite"
                 aria-hidden={!activeQuestion}
               >
-                {activeQuestion ? (
-                  <div className="ask-reply-q">
-                    <span className="ask-reply-tag">You asked</span>
-                    <p>{activeQuestion}</p>
-                  </div>
-                ) : null}
                 <div className={`ask-reply-progress${askThinking ? " on" : ""}`} aria-hidden="true" />
                 <div className="ask-reply-body">
-                  <span className="ask-reply-tag">TIDL</span>
+                  <span className="ask-reply-tag">{ASK_TIDL_SECTION.replyUs}</span>
                   <p className={`ask-reply-text${askDisplayed || askThinking ? " on" : ""}`}>
                     {askDisplayed}
                     {askThinking ? <span className="ask-cursor" aria-hidden="true" /> : null}

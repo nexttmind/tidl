@@ -18,6 +18,7 @@ export type ServiceCardContent = {
 
 export const SERVICES_INTRO = {
   kicker: "Prescription care, delivered",
+  support: "You're not behind. You're ready for care that meets you where you are.",
 } as const;
 
 export const SERVICE_CARDS: ServiceCardContent[] = [

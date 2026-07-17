@@ -40,6 +40,17 @@
   min-height: 0 !important;
   background: #ffffff !important;
   border-radius: var(--pdp-radius-xl, 44px) var(--pdp-radius-xl, 44px) 0 0 !important;
+  overflow: visible !important;
+}
+
+.hm-page .pdp-hero-surface > .site-header-wrap {
+  position: relative;
+  z-index: 40;
+}
+
+.hm-page .pdp-hero-surface-body {
+  position: relative;
+  z-index: 1;
 }
 
 .hm-page .pdp-hero-surface::before,

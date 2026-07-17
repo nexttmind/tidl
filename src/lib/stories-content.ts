@@ -1,7 +1,8 @@
 /** Homepage testimonials section copy. */
 
 export const STORIES_SECTION = {
-  title: "Patient reviews",
+  title: "Fellow travelers.",
+  subtitle: "People who know exactly how this feels.",
 } as const;
 
 export const TESTIMONIAL_NOTES = [

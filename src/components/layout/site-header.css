@@ -30,7 +30,8 @@
   top: 0;
   left: 0;
   right: 0;
-  z-index: 50;
+  /* Stay above page sections/transforms; below menu overlay (10000+) */
+  z-index: 5000;
 }
 
 .site-header.is-menu-open,

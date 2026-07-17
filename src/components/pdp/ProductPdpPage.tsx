@@ -131,7 +131,9 @@ function ProductPdpPageInner({ slug }: ProductPdpPageProps) {
               onCloseMenu={() => setMobileNavOpen(false)}
             />
 
-            <PdpHeroSection heroRef={heroRef} onStart={openQuiz} />
+            <div className="pdp-hero-surface-body">
+              <PdpHeroSection heroRef={heroRef} onStart={openQuiz} />
+            </div>
           </div>
         </div>
 

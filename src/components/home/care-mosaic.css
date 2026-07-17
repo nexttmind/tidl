@@ -8,10 +8,9 @@
   isolation: isolate;
   padding: clamp(76px, 10vw, 144px) clamp(16px, 4vw, 56px);
   overflow: hidden;
+  border-radius: clamp(28px, 4vw, 52px);
   color: var(--mosaic-ink);
-  background:
-    radial-gradient(circle at 86% 5%, rgb(232 187 88 / 0.13), transparent 24rem),
-    linear-gradient(180deg, #fbf9f5, #f3eee6);
+  background: #ffffff;
 }
 
 .care-mosaic::before {
@@ -38,7 +37,11 @@
 }
 
 .care-mosaic__intro {
-  margin-bottom: clamp(30px, 5vw, 56px);
+  position: relative;
+  z-index: 2;
+  margin-top: 0;
+  /* Pull title toward the assessment card, with ~1cm lift */
+  margin-bottom: calc(50px - clamp(277px, 27.7vw, 383px));
 }
 
 .care-mosaic__eyebrow {
@@ -55,9 +58,9 @@
   max-width: 12ch;
   font-family: var(--font-display);
   font-size: clamp(2.6rem, 6vw, 5.6rem);
-  font-weight: 540;
+  font-weight: 900;
   line-height: 0.96;
-  letter-spacing: -0.055em;
+  letter-spacing: 0.03em;
   text-wrap: balance;
 }
 
@@ -103,9 +106,20 @@
 }
 
 .care-mosaic__feature--assessment {
+  align-self: end;
   align-items: flex-end;
+  min-height: clamp(250px, 25vw, 346px);
   color: #fffaf0;
-  background: var(--mosaic-smoke-deep);
+  background: #5f574d;
+}
+
+.care-mosaic__feature--assessment .care-mosaic__feature-copy {
+  justify-content: flex-end;
+  height: 100%;
+}
+
+.care-mosaic__feature--assessment .care-mosaic__feature-kicker {
+  margin-top: 0;
 }
 
 .care-mosaic__assessment-image,
@@ -118,15 +132,15 @@
 
 .care-mosaic__assessment-image {
   object-fit: cover;
-  object-position: center;
+  object-position: center 68%;
   transition: transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .care-mosaic__assessment-shade {
   z-index: 1;
   background:
-    linear-gradient(90deg, rgb(25 20 17 / 0.92) 0%, rgb(25 20 17 / 0.68) 40%, transparent 70%),
-    linear-gradient(180deg, rgb(25 20 17 / 0.08) 48%, rgb(25 20 17 / 0.72) 100%);
+    linear-gradient(90deg, rgb(95 87 77 / 0.92) 0%, rgb(95 87 77 / 0.58) 40%, transparent 70%),
+    linear-gradient(180deg, rgb(95 87 77 / 0.08) 48%, rgb(79 72 64 / 0.78) 100%);
 }
 
 .care-mosaic__feature--assessment:hover .care-mosaic__assessment-image {
@@ -290,10 +304,11 @@
 
 .care-mosaic__feature--care {
   align-items: flex-end;
+  min-height: clamp(527px, 52.7vw, 729px);
   color: #fffaf0;
   background:
-    radial-gradient(circle at 78% 18%, rgb(232 187 88 / 0.25), transparent 34%),
-    linear-gradient(145deg, #8d7660, #554a40);
+    radial-gradient(circle at 78% 18%, rgb(243 195 0 / 0.12), transparent 34%),
+    linear-gradient(145deg, #7a7165 0%, #71685c 42%, #5f574d 100%);
 }
 
 .care-mosaic__trajectory {
@@ -382,12 +397,12 @@
   background:
     linear-gradient(
       90deg,
-      rgb(28 23 19 / 0.94) 0%,
-      rgb(28 23 19 / 0.76) 36%,
-      rgb(28 23 19 / 0.18) 61%,
+      rgb(95 87 77 / 0.94) 0%,
+      rgb(113 104 92 / 0.7) 36%,
+      rgb(113 104 92 / 0.14) 61%,
       transparent 75%
     ),
-    linear-gradient(180deg, transparent 48%, rgb(28 23 19 / 0.72) 100%);
+    linear-gradient(180deg, transparent 48%, rgb(79 72 64 / 0.72) 100%);
 }
 
 .care-mosaic__feature--care .care-mosaic__feature-copy {
@@ -524,12 +539,16 @@
     margin-bottom: 14px;
   }
 
+  .care-mosaic__intro {
+    margin-bottom: 18px;
+  }
+
   .care-mosaic__grid {
     grid-template-columns: 1fr;
   }
 
   .care-mosaic__feature--care {
-    min-height: 430px;
+    min-height: 580px;
   }
 
   .care-mosaic__care-image {
@@ -548,11 +567,11 @@
     background:
       linear-gradient(
         90deg,
-        rgb(28 23 19 / 0.94) 0%,
-        rgb(28 23 19 / 0.72) 42%,
+        rgb(95 87 77 / 0.94) 0%,
+        rgb(113 104 92 / 0.68) 42%,
         transparent 78%
       ),
-      linear-gradient(180deg, transparent 40%, rgb(28 23 19 / 0.8) 100%);
+      linear-gradient(180deg, transparent 40%, rgb(79 72 64 / 0.8) 100%);
   }
 
   .care-mosaic__pathways {
@@ -580,6 +599,14 @@
     border-radius: 30px;
   }
 
+  .care-mosaic__feature--assessment {
+    min-height: 333px;
+  }
+
+  .care-mosaic__feature--care {
+    min-height: 700px;
+  }
+
   .care-mosaic__feature-copy {
     width: 100%;
   }
@@ -594,13 +621,13 @@
   }
 
   .care-mosaic__assessment-image {
-    object-position: 66% center;
+    object-position: 66% 72%;
   }
 
   .care-mosaic__assessment-shade {
     background:
-      linear-gradient(180deg, transparent 24%, rgb(25 20 17 / 0.15) 45%, rgb(25 20 17 / 0.94) 82%),
-      linear-gradient(90deg, rgb(25 20 17 / 0.32), transparent 70%);
+      linear-gradient(180deg, transparent 24%, rgb(95 87 77 / 0.14) 45%, rgb(79 72 64 / 0.94) 82%),
+      linear-gradient(90deg, rgb(95 87 77 / 0.3), transparent 70%);
   }
 
   .care-mosaic__peptide-callout {
@@ -622,8 +649,8 @@
 
   .care-mosaic__care-shade {
     background:
-      linear-gradient(180deg, transparent 28%, rgb(28 23 19 / 0.88) 78%),
-      linear-gradient(90deg, rgb(28 23 19 / 0.55), transparent 72%);
+      linear-gradient(180deg, transparent 28%, rgb(79 72 64 / 0.88) 78%),
+      linear-gradient(90deg, rgb(95 87 77 / 0.55), transparent 72%);
   }
 
   .care-mosaic__pathway {

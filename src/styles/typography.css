@@ -8,11 +8,12 @@
   --font-display: "Helvetica Neue", Helvetica, Arial, ui-sans-serif, system-ui, sans-serif;
   --font-weight-body: 400;
   --font-weight-body-medium: 500;
-  --font-weight-heading: 700;
-  --font-weight-display: 800;
+  --font-weight-heading: 800;
+  --font-weight-display: 900;
   --font-weight-wordmark: 800;
   --letter-spacing-wordmark: 0.02em;
-  --letter-spacing-display: -0.02em;
+  --letter-spacing-display: 0.02em;
+  --letter-spacing-section: 0.03em;
 }
 
 /* Body copy — Helvetica, regular */
@@ -48,7 +49,7 @@
   font-weight: var(--font-weight-body);
 }
 
-/* Display headings — pronounced athletic voice */
+/* Display / section titles — heavy Helvetica Neue */
 .display,
 .heading-01,
 .heading-02,
@@ -68,8 +69,8 @@
 .families-card-title,
 .families-card-text-02,
 .ask-h,
-.ask-kicker,
 .tdlp5-h2,
+.tdlfaq-h2,
 .services-closing-headline,
 .hiw-title,
 .hiw-step-headline,
@@ -77,28 +78,46 @@
 .hiw-strip-title,
 .footer-left-title,
 .title-small,
+.goals-outcomes__title,
+.care-mosaic__intro h2,
 .pdp-hero-title,
 .pdp-hero-editorial-title,
 .pdp-section-title,
 .pdp-price {
   font-family: var(--font-display) !important;
-  font-weight: var(--font-weight-heading);
-  letter-spacing: var(--letter-spacing-display);
+  font-weight: var(--font-weight-display) !important;
+  letter-spacing: var(--letter-spacing-section);
   text-transform: none;
+  -webkit-font-smoothing: antialiased;
 }
 
 .display,
 .hero-title-01.display,
 .heading-01,
 .hiw-title,
+.goals-outcomes__title,
+.care-mosaic__intro h2,
+.ask-h,
+.tdlp5-h2,
+.tdlfaq-h2,
+.families-title,
+.journey-title,
+.stories-title-03,
+.tst-title,
+.cta-headline,
+.services-closing-headline,
 .pdp-hero-title {
-  font-weight: var(--font-weight-display);
-  letter-spacing: -0.03em;
+  font-weight: var(--font-weight-display) !important;
+  letter-spacing: var(--letter-spacing-section);
+}
+
+.goals-outcomes__title {
+  letter-spacing: 0 !important;
 }
 
 .heading-02,
 .heading-03 {
-  font-weight: var(--font-weight-heading);
+  font-weight: var(--font-weight-heading) !important;
 }
 
 .tidl-wordmark,

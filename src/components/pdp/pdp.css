@@ -47,8 +47,21 @@
   position: relative;
   background: #ffffff;
   border-radius: var(--pdp-radius-xl) var(--pdp-radius-xl) 0 0;
+  /* Keep overflow/isolation off the header so pinned nav is not trapped
+     under later PDP sections that create their own stacking contexts. */
+  overflow: visible;
+}
+
+.pdp-hero-surface > .site-header-wrap {
+  position: relative;
+  z-index: 40;
+}
+
+.pdp-hero-surface-body {
+  position: relative;
+  z-index: 1;
   overflow: hidden;
-  isolation: isolate;
+  border-radius: inherit;
 }
 
 .pdp-hero-surface::before,

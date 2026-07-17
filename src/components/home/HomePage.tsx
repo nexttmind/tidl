@@ -10,6 +10,7 @@ import { StoriesSection } from './StoriesSection';
 import { JourneySection } from './JourneySection';
 import { AskTidlSection, type AskTidlSectionHandle } from './AskTidlSection';
 import { CareMosaicSection } from './CareMosaicSection';
+import { PenCalloutStage } from './PenCalloutStage';
 import { SiteFooter } from '@/components/layout/SiteFooter';
 import { SITE_IMAGES } from '@/lib/site-assets';
 import { GLP1_PEN_SHOWCASE } from '@/components/pdp/data/pen-showcase-content';
@@ -179,8 +180,6 @@ export default function HomePage() {
   const [faqOpen, setFaqOpen] = useState<number | null>(null);
 
   const penGridRef = useRef<HTMLDivElement>(null);
-  const penStageRef = useRef<HTMLDivElement>(null);
-  const penFloatRef = useRef<HTMLDivElement>(null);
   const askTidlRef = useRef<AskTidlSectionHandle>(null);
 
   // TIDL Pen IntersectionObserver
@@ -196,62 +195,11 @@ export default function HomePage() {
           io.unobserve(entry.target);
         });
       },
-      { threshold: 0.25 }
+      { threshold: 0.12 },
     );
 
     io.observe(gridEl);
     return () => io.disconnect();
-  }, []);
-
-  // Parallax scroll for pen float — only while the pen block is on screen
-  useEffect(() => {
-    const float = penFloatRef.current;
-    const stage = penStageRef.current;
-    if (!float || !stage) return;
-
-    let ticking = false;
-    let listening = false;
-
-    const handleScroll = () => {
-      if (!listening) return;
-      if (ticking) return;
-      ticking = true;
-      requestAnimationFrame(() => {
-        const r = stage.getBoundingClientRect();
-        const vh = window.innerHeight || 1;
-        const p = Math.max(-1, Math.min(1, (r.top + r.height / 2 - vh / 2) / (vh / 2)));
-        float.style.transform = `translate3d(0, ${p * -18}px, 0)`;
-        ticking = false;
-      });
-    };
-
-    const start = () => {
-      if (listening) return;
-      listening = true;
-      handleScroll();
-      window.addEventListener("scroll", handleScroll, { passive: true });
-    };
-
-    const stop = () => {
-      if (!listening) return;
-      listening = false;
-      window.removeEventListener("scroll", handleScroll);
-      float.style.transform = "";
-    };
-
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) start();
-        else stop();
-      },
-      { threshold: 0, rootMargin: "100px 0px" },
-    );
-
-    io.observe(stage);
-    return () => {
-      io.disconnect();
-      stop();
-    };
   }, []);
 
   useEffect(() => {
@@ -398,7 +346,7 @@ export default function HomePage() {
       <div className="page-wrapper">
         <div className="main-wrapper">
 
-        <ServicesSection onStartIntake={openQuiz} />
+        <ServicesSection />
 
         {/* Pen hero — Overview: pen is the differentiator, right after goal selection */}
         {/* ===== TIDL Pen Section ===== */}
@@ -408,67 +356,12 @@ export default function HomePage() {
             <h2 className="tdlp5-h2">GLP-1, pre-dosed.<br /><em>Just click.</em></h2>
           </div>
 
-          <div className={`tdlp5-grid${penVisible ? ' tdlp5-on' : ''}`} id="tdlp5Grid" ref={penGridRef}>
-            <div className="tdlp5-col left">
-              <div className="tdlp5-feat">
-                <div className="tdlp5-fnum">01</div>
-                <div className="tdlp5-flab">Precision dose slider</div>
-                <div className="tdlp5-fsub">Your dose, set to your prescription. Nothing to calculate.</div>
-              </div>
-              <div className="tdlp5-feat">
-                <div className="tdlp5-fnum">02</div>
-                <div className="tdlp5-flab">Graduated dose scale</div>
-                <div className="tdlp5-fsub">Clear markings from 0.1 to 1.0{'\u2006'}ml. Zero guesswork.</div>
-              </div>
-            </div>
-
-            <div className="tdlp5-center" id="tdlp5Stage" ref={penStageRef}>
-              <div className="tdlp5-more tdlp5-more--stage">
-                <Link to="/products/glp-1-weight-loss" className="tdlp5-more-wrap tdlp5-more-wrap--btn">
-                  <span className="tdlp5-more-link">More info</span>
-                  <span className="tdlp5-more-line" aria-hidden="true" />
-                </Link>
-              </div>
-              <div className="tdlp5-shadow"></div>
-              <div className="tdlp5-imgwrap" id="tdlp5Float" ref={penFloatRef}>
-                <div className="tdlp5-levit">
-                  <img
-                    className="tdlp5-img"
-                    src={SITE_IMAGES.pen}
-                    alt="The TIDL Pen"
-                  />
-                  {GLP1_PEN_SHOWCASE.videoEmbedUrl ? (
-                  <button
-                    type="button"
-                    className="tdlp5-play"
-                    aria-label="Play how to use the pen video"
-                    onClick={() => setIsPenVideoOpen(true)}
-                  >
-                    <span className="tdlp5-play-icon" aria-hidden="true">
-                      <svg viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M8.5 6.8a1 1 0 0 1 1.5-.86l8.2 5.2a1 1 0 0 1 0 1.72l-8.2 5.2A1 1 0 0 1 8.5 17.2V6.8Z" />
-                      </svg>
-                    </span>
-                    <span className="tdlp5-play-label">See how to use the pen</span>
-                  </button>
-                  ) : null}
-                </div>
-              </div>
-            </div>
-
-            <div className="tdlp5-col right">
-              <div className="tdlp5-feat">
-                <div className="tdlp5-fnum">03</div>
-                <div className="tdlp5-flab">Sealed and dispensed to you</div>
-                <div className="tdlp5-fsub">Labeled with your name at the pharmacy.</div>
-              </div>
-              <div className="tdlp5-feat">
-                <div className="tdlp5-fnum">04</div>
-                <div className="tdlp5-flab">Cold-chain shipped</div>
-                <div className="tdlp5-fsub">Temperature-safe packaging to your door.</div>
-              </div>
-            </div>
-          </div>
+          <PenCalloutStage
+            ref={penGridRef}
+            visible={penVisible}
+            videoEmbedUrl={GLP1_PEN_SHOWCASE.videoEmbedUrl}
+            onPlayVideo={() => setIsPenVideoOpen(true)}
+          />
 
           <div className="tdlp5-cta">
             <a href="#" onClick={openQuiz} className="button-01 button-03 w-inline-block">

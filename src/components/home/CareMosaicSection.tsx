@@ -48,7 +48,6 @@ export function CareMosaicSection({ onStartAssessment }: CareMosaicSectionProps)
   return (
     <section className="care-mosaic" aria-labelledby="care-mosaic-title" data-site-header-theme="light">
       <div className="care-mosaic__intro">
-        <p className="care-mosaic__eyebrow">A clearer way into care</p>
         <h2 id="care-mosaic-title">Care that starts with where you are.</h2>
       </div>
 
@@ -67,7 +66,6 @@ export function CareMosaicSection({ onStartAssessment }: CareMosaicSectionProps)
           />
           <span className="care-mosaic__assessment-shade" aria-hidden="true" />
           <span className="care-mosaic__feature-copy">
-            <span className="care-mosaic__tag">About five minutes</span>
             <span className="care-mosaic__feature-kicker">Your clearest first step</span>
             <strong>Start with your health, not a product.</strong>
             <span className="care-mosaic__feature-link">
