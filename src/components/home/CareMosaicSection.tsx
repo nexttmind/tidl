@@ -79,7 +79,11 @@ export function CareMosaicSection({ onStartAssessment }: CareMosaicSectionProps)
           </span>
         </button>
 
-        <a className="care-mosaic__feature care-mosaic__feature--care" href="#journey">
+        <button
+          type="button"
+          className="care-mosaic__feature care-mosaic__feature--care"
+          onClick={onStartAssessment}
+        >
           <svg
             className="care-mosaic__trajectory"
             viewBox="0 0 600 600"
@@ -118,10 +122,10 @@ export function CareMosaicSection({ onStartAssessment }: CareMosaicSectionProps)
             <span className="care-mosaic__feature-kicker">Human review, digital ease</span>
             <strong>Care that stays personal.</strong>
             <span className="care-mosaic__feature-link">
-              See the care model <Arrow />
+              Start your assessment <Arrow />
             </span>
           </span>
-        </a>
+        </button>
 
         <div className="care-mosaic__pathways" aria-label="Explore care goals">
           {PATHWAYS.map((pathway, index) => (
