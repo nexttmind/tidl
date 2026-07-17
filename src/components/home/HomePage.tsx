@@ -5,11 +5,11 @@ import { lockPageScroll, unlockPageScroll } from '@/lib/age-gate';
 import { SiteHeader } from '@/components/layout/SiteHeader';
 import { useSiteHeaderState } from '@/hooks/useSiteHeaderState';
 import './home.css';
-import { CtaSection } from './cta/CtaSection';
 import { ServicesSection } from './ServicesSection';
 import { StoriesSection } from './StoriesSection';
 import { JourneySection } from './JourneySection';
 import { AskTidlSection, type AskTidlSectionHandle } from './AskTidlSection';
+import { CareMosaicSection } from './CareMosaicSection';
 import { SiteFooter } from '@/components/layout/SiteFooter';
 import { SITE_IMAGES } from '@/lib/site-assets';
 import { GLP1_PEN_SHOWCASE } from '@/components/pdp/data/pen-showcase-content';
@@ -644,10 +644,7 @@ export default function HomePage() {
           </p>
         </section>
 
-        {/* ===== CTA Section ===== */}
-        <div id="cta">
-          <CtaSection onGetStarted={() => openQuiz()} />
-        </div>
+        <CareMosaicSection onStartAssessment={openQuiz} />
 
         </div>
       </div>
