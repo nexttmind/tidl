@@ -1,4 +1,4 @@
-import { useMemo, useState, type ReactNode } from "react";
+import { useMemo, type ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
 import { useQuizModal } from "@/providers/quiz-modal-provider";
@@ -6,13 +6,13 @@ import { formatCurrency } from "@/lib/pricing";
 import { resolvePeptideOnlyImage } from "@/lib/peptide-images";
 import {
   getCatalogItemsForCategory,
+  getProductSlugsForCategory,
   type CategoryCatalogItem,
 } from "@/lib/category-products";
-import type { CategoryDefinition } from "@/lib/categories";
+import type { CategoryDefinition, CategorySlug } from "@/lib/categories";
 import type { ProductSlug } from "@/types/quiz";
 import { useLiveCatalog } from "@/lib/prescribe-rx/use-live-catalog";
 import { CATEGORY_GOAL_MAP } from "@/lib/category-recommendations";
-import { CategorySandboxDetailDrawer } from "./CategorySandboxDetailDrawer";
 import "./category-formulary.css";
 
 type CategoryFormularySectionProps = {
@@ -57,13 +57,39 @@ function tilePrice(item: CategoryCatalogItem): number | null {
 }
 
 /**
+ * Every Details click should land on a real PDP.
+ * Prefer the matched marketed slug; otherwise the best category product.
+ */
+function resolvePdpSlug(item: CategoryCatalogItem, category: CategorySlug): ProductSlug {
+  if (item.marketedSlug) return item.marketedSlug;
+
+  const candidates = getProductSlugsForCategory(category);
+  const lower = item.name.toLowerCase();
+
+  for (const slug of candidates) {
+    if (slug === "glp-1-weight-loss") {
+      if (/\btirzepatide\b|\bsemaglutide\b|\bglp-?1\b/i.test(lower)) return slug;
+      continue;
+    }
+    const tokens = slug.split("-").filter((token) => token.length > 2 && token !== "plus");
+    if (
+      tokens.every((token) => lower.includes(token)) ||
+      tokens.some((token) => lower.includes(token))
+    ) {
+      return slug;
+    }
+  }
+
+  return candidates[0] ?? "glp-1-weight-loss";
+}
+
+/**
  * Dense e-com formulary with every active sandbox SKU mapped to this category.
- * Marketed products keep PDP links; sandbox-only SKUs open a detail drawer.
+ * Details always opens the product PDP page.
  */
 export function CategoryFormularySection({ category }: CategoryFormularySectionProps) {
   const { openModal } = useQuizModal();
   const { products: catalogProducts, loading, catalogTotal } = useLiveCatalog();
-  const [selected, setSelected] = useState<CategoryCatalogItem | null>(null);
 
   const products = useMemo(
     () => getCatalogItemsForCategory(catalogProducts, category.slug),
@@ -71,9 +97,9 @@ export function CategoryFormularySection({ category }: CategoryFormularySectionP
   );
   const goal = CATEGORY_GOAL_MAP[category.slug];
 
-  const openIntake = (marketedSlug: ProductSlug | null) => {
-    if (marketedSlug) {
-      openModal({ product: marketedSlug, goal });
+  const openIntake = (productSlug: ProductSlug | null) => {
+    if (productSlug) {
+      openModal({ product: productSlug, goal });
       return;
     }
     openModal({ goal });
@@ -100,7 +126,7 @@ export function CategoryFormularySection({ category }: CategoryFormularySectionP
               {loading
                 ? "Loading live sandbox catalog…"
                 : products.length > 0
-                  ? `${products.length} package${products.length === 1 ? "" : "s"} from the sandbox catalog${catalogTotal > 0 ? ` (${catalogTotal} total SKUs)` : ""}. Tap a tile for details.`
+                  ? `${products.length} package${products.length === 1 ? "" : "s"} from the sandbox catalog${catalogTotal > 0 ? ` (${catalogTotal} total SKUs)` : ""}. Tap Details for the full product page.`
                   : "Start intake. A licensed provider will match your pathway."}
             </span>
           </h2>
@@ -111,54 +137,31 @@ export function CategoryFormularySection({ category }: CategoryFormularySectionP
             {products.map((item) => {
               const price = tilePrice(item);
               const image = tileImage(item);
-              const openDetails = () => setSelected(item);
+              const pdpSlug = resolvePdpSlug(item, category.slug);
 
               return (
                 <article key={item.id} className="cform-tile" role="listitem">
-                  {item.marketedSlug ? (
-                    <ProductPdpLink
-                      slug={item.marketedSlug}
-                      className="cform-tile-hit"
-                      aria-label={`View ${item.name} product page`}
-                    >
-                      <TileMedia image={image} />
-                      <TileCopy item={item} price={price} />
-                    </ProductPdpLink>
-                  ) : (
-                    <button
-                      type="button"
-                      className="cform-tile-hit"
-                      aria-label={`View ${item.name} details`}
-                      onClick={openDetails}
-                    >
-                      <TileMedia image={image} />
-                      <TileCopy item={item} price={price} />
-                    </button>
-                  )}
+                  <ProductPdpLink
+                    slug={pdpSlug}
+                    className="cform-tile-hit"
+                    aria-label={`View ${item.name} product page`}
+                  >
+                    <TileMedia image={image} />
+                    <TileCopy item={item} price={price} />
+                  </ProductPdpLink>
 
                   <div className="cform-tile-actions">
-                    {item.marketedSlug ? (
-                      <ProductPdpLink
-                        slug={item.marketedSlug}
-                        className="cform-btn cform-btn--primary cform-btn--compact"
-                      >
-                        Details
-                        <ArrowUpRight size={14} strokeWidth={2.2} aria-hidden="true" />
-                      </ProductPdpLink>
-                    ) : (
-                      <button
-                        type="button"
-                        className="cform-btn cform-btn--primary cform-btn--compact"
-                        onClick={openDetails}
-                      >
-                        Details
-                        <ArrowUpRight size={14} strokeWidth={2.2} aria-hidden="true" />
-                      </button>
-                    )}
+                    <ProductPdpLink
+                      slug={pdpSlug}
+                      className="cform-btn cform-btn--primary cform-btn--compact"
+                    >
+                      Details
+                      <ArrowUpRight size={14} strokeWidth={2.2} aria-hidden="true" />
+                    </ProductPdpLink>
                     <button
                       type="button"
                       className="cform-btn cform-btn--ghost cform-btn--compact"
-                      onClick={() => openIntake(item.marketedSlug)}
+                      onClick={() => openIntake(item.marketedSlug ?? pdpSlug)}
                     >
                       Intake
                     </button>
@@ -196,15 +199,6 @@ export function CategoryFormularySection({ category }: CategoryFormularySectionP
           </div>
         )}
       </div>
-
-      <CategorySandboxDetailDrawer
-        item={selected}
-        onClose={() => setSelected(null)}
-        onStartIntake={(slug) => {
-          setSelected(null);
-          openIntake(slug);
-        }}
-      />
     </section>
   );
 }

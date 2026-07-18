@@ -75,7 +75,7 @@ export const CATEGORIES: Record<CategorySlug, CategoryDefinition> = {
     kicker: "Clinical weight care",
     headline: "You want weight that stays off, without the noise.",
     lead:
-      "We hear it: quieter food noise, steady progress, and a plan that fits real life. Personalized care, a US pharmacy, and the TIDL Pen, so dosing never becomes another chore.",
+      "Quieter food noise. Steady progress. Care that fits real life — with the TIDL Pen so dosing stays simple.",
     extendedLead:
       "GLP-1 medications work with your body's natural signals to reduce appetite and support sustainable weight loss. At TIDL, every plan is physician-guided: a licensed provider reviews your full health history, prescribes only when appropriate, and ships your dose pre-set in the TIDL Pen so you never mix or measure at home.",
     afterHeadline: "After TIDL, the scale is not the only thing that moves.",
@@ -228,7 +228,7 @@ export const CATEGORIES: Record<CategorySlug, CategoryDefinition> = {
     kicker: "Hormonal performance",
     headline: "You want your energy, drive, and focus back.",
     lead:
-      "Low T is not “just getting older.” We start with how you feel, then labs, personalized care from a licensed provider, filled by a US pharmacy.",
+      "Energy, drive, and focus — rebuilt with labs, a licensed provider, and discreet US pharmacy care.",
     extendedLead:
       "Low testosterone can affect energy, mood, strength, and focus. TIDL testosterone therapy starts with your symptoms and lab work, reviewed by a licensed provider who builds a protocol around how you actually feel, not a one-size-fits-all chart.",
     afterHeadline: "After TIDL, mornings feel like yours again.",
@@ -350,7 +350,7 @@ export const CATEGORIES: Record<CategorySlug, CategoryDefinition> = {
     kicker: "Recovery and longevity",
     headline: "You want more good years, not more guesswork.",
     lead:
-      "Sharp mornings. Deeper recovery. Care that respects what actually matters long-term: personalized protocols, a US pharmacy, and formats that stay simple, including the TIDL Pen when it fits.",
+      "Sharp mornings. Deeper recovery. Personalized protocols that stay simple — including the TIDL Pen when it fits.",
     extendedLead:
       "Longevity care at TIDL is physician-supervised, not supplement-store guesswork. Whether you need recovery support after training or metabolic protocols for long-term health, a licensed provider reviews your goals and prescribes only when appropriate.",
     afterHeadline: "After TIDL, aging feels more like steering than drifting.",
@@ -503,7 +503,7 @@ export const CATEGORIES: Record<CategorySlug, CategoryDefinition> = {
     kicker: "Metabolic care",
     headline: "You want steady energy, not another crash cycle.",
     lead:
-      "Metabolic balance is personal. We match care to your goals with licensed review, US pharmacy fulfillment, and a simple dosing experience when your protocol uses the TIDL Pen.",
+      "Steady energy, matched to you — licensed review, US pharmacy fulfillment, and simple dosing when you use the TIDL Pen.",
     extendedLead:
       "Metabolic health sits at the center of weight, energy, and long-term wellness. TIDL connects you with a licensed provider who reviews your intake and recommends treatment only when medically appropriate.",
     afterHeadline: "After TIDL, energy feels more even and more yours.",
@@ -634,7 +634,7 @@ export const CATEGORIES: Record<CategorySlug, CategoryDefinition> = {
     kicker: "Performance care",
     headline: "You train hard. You want recovery that keeps up.",
     lead:
-      "Strength and drive matter. So does doing it the right way. Personalized, physician-guided protocols from a US pharmacy, with the TIDL Pen when your plan calls for it.",
+      "Train hard. Recover right. Physician-guided protocols from a US pharmacy — with the TIDL Pen when your plan calls for it.",
     extendedLead:
       "Performance care at TIDL is physician-supervised. A licensed provider reviews your goals and history, then recommends treatment only when it is medically appropriate for you.",
     afterHeadline: "After TIDL, training blocks feel cleaner.",
@@ -765,7 +765,7 @@ export const CATEGORIES: Record<CategorySlug, CategoryDefinition> = {
     kicker: "Recovery care",
     headline: "You want sleep and repair that actually stick.",
     lead:
-      "Bounce-back is the goal, not another stimulant shortcut. Personalized recovery care, filled by a US pharmacy, with dosing that stays simple when you use the TIDL Pen.",
+      "Real bounce-back, not a stimulant shortcut. Personalized recovery care — simple dosing when you use the TIDL Pen.",
     extendedLead:
       "Recovery is where progress sticks. TIDL recovery care starts with your intake, continues with licensed provider review, and ships only when a prescription is medically appropriate.",
     afterHeadline: "After TIDL, tomorrow’s session starts sooner.",

@@ -58,11 +58,6 @@ export function CategoryHero({
         animate="show"
         variants={catStagger}
       >
-        <motion.p className="cat-kicker" variants={reveal}>
-          <span className="cat-kicker-dot" aria-hidden="true" />
-          {category.kicker}
-        </motion.p>
-
         <motion.p className="cat-hero-truth" variants={reveal}>
           {HERO_TRUTHS[slug]}
         </motion.p>

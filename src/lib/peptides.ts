@@ -409,16 +409,16 @@ export function getPeptideDef(slug: ProductSlug): PeptideDef | undefined {
  * appears in a catalog product name wins. Includes the GLP-1 flagship.
  */
 export const CATALOG_KEYWORDS: Record<string, readonly string[]> = {
-  "glp-1-weight-loss": ["tirzepatide", "semaglutide"],
-  retatrutide: ["reta 100", "reta 60", "reta 200", "retatrutide", "reta "],
-  "bpc-157": ["bpc-157 10mg", "bpc-157 20mg", "bpc-157"],
-  "tb-500": ["tb-500 10mg", "tb-500"],
+  "glp-1-weight-loss": ["tirzepatide", "semaglutide", "glp-1", "glp1"],
+  retatrutide: ["reta 100", "reta 60", "reta 200", "retatrutide", "reta ", "reta-"],
+  "bpc-157": ["bpc-157 10mg", "bpc-157 20mg", "bpc-157", "bpc 157", "bpc157"],
+  "tb-500": ["tb-500 10mg", "tb-500", "tb 500", "tb500"],
   wolverine: ["wolverine bpc-157 10mg tb-500 10mg 10ml", "wolverine bpc-157", "wolverine"],
-  "cjc-1295-ipamorelin": ["cjc-1295/ipamorelin", "cjc (no dac)/ipamorelin", "cjc"],
+  "cjc-1295-ipamorelin": ["cjc-1295/ipamorelin", "cjc (no dac)/ipamorelin", "ipamorelin", "cjc-1295", "cjc"],
   tesamorelin: ["tesamorelin"],
-  "mots-c": ["mots-c", "mots"],
-  "nad-plus": ["nad+", "nad -", "nad "],
-  "ghk-cu": ["ghk-cu", "ghk"],
+  "mots-c": ["mots-c", "mots c", "motsc", "mots"],
+  "nad-plus": ["nad+", "nad -", "nad ", "nad+"],
+  "ghk-cu": ["ghk-cu", "ghk cu", "ghkcu", "ghk"],
   sermorelin: ["sermorelin"],
 };
 
