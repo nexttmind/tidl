@@ -2,6 +2,9 @@ import { useEffect } from "react";
 import { createPortal } from "react-dom";
 import { useIsMounted } from "@/hooks/use-is-mounted";
 import { lockPageScroll, unlockPageScroll } from "@/lib/age-gate";
+import { ANALYTICS_EVENTS } from "@/lib/analytics/events";
+import { trackEvent } from "@/lib/analytics/track";
+import { PEPTIDE_PRX_SLUGS } from "@/lib/peptides";
 import { useQuizModal } from "@/providers/quiz-modal-provider";
 import { DynamicQuiz } from "./DynamicQuiz";
 
@@ -12,7 +15,15 @@ import { DynamicQuiz } from "./DynamicQuiz";
  */
 export function DynamicQuizModal() {
   const mounted = useIsMounted();
-  const { isOpen, closeModal } = useQuizModal();
+  const { isOpen, options, closeModal } = useQuizModal();
+
+  useEffect(() => {
+    if (!isOpen) return;
+    trackEvent(ANALYTICS_EVENTS.quizStarted, {
+      goal: options.goal ?? undefined,
+      product_slug: options.product ?? undefined,
+    });
+  }, [isOpen, options.goal, options.product]);
 
   useEffect(() => {
     if (!mounted) return;
@@ -23,5 +34,12 @@ export function DynamicQuizModal() {
 
   if (!mounted || !isOpen) return null;
 
-  return createPortal(<DynamicQuiz onClose={closeModal} />, document.body);
+  const initialSlug = options.product
+    ? (PEPTIDE_PRX_SLUGS[options.product]?.encounter ?? "glp-1-screening")
+    : undefined;
+
+  return createPortal(
+    <DynamicQuiz initialSlug={initialSlug} modalOptions={options} onClose={closeModal} />,
+    document.body,
+  );
 }

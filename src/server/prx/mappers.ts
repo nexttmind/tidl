@@ -1,11 +1,12 @@
 import type { CheckoutFormData } from "@/types/order";
+import type { CheckoutPayloadForServer } from "@/lib/analytics/sanitize-checkout";
 import type { QuizFormData } from "@/types/quiz";
 import type { Product } from "@/lib/products";
 import { calculateOrderPricing, CHECKOUT_DEMO_ZERO } from "@/lib/pricing";
 
 export type PrxCheckoutBody = {
   quiz: QuizFormData;
-  checkout: CheckoutFormData;
+  checkout: CheckoutPayloadForServer;
   product: Pick<Product, "slug" | "name" | "monthlyPrice" | "dosage" | "goal">;
   /** Government ID front image as a data URL (required for peptide assessments). */
   idFront?: string;

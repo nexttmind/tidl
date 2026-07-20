@@ -14,6 +14,7 @@ import {
   extractPatientNumber,
 } from "@/server/prx/extract";
 import { mapCheckoutToUnifiedIntakePayload, type PrxCheckoutBody } from "@/server/prx/mappers";
+import { stripSensitiveCheckoutFields } from "@/server/prx/sanitize-checkout";
 import {
   getIdempotencyKey,
   handlePrxRouteError,
@@ -29,15 +30,26 @@ export const Route = createFileRoute("/api/prx/checkout")({
     handlers: {
       POST: async ({ request }) => {
         try {
-          const body = await readJsonBody<PrxCheckoutBody>(request);
+          const body = await readJsonBody<PrxCheckoutBody & {
+            checkout?: PrxCheckoutBody["checkout"] & {
+              cardNumber?: string;
+              cardExpiry?: string;
+              cardCvc?: string;
+            };
+          }>(request);
           if (!body?.quiz || !body?.checkout || !body?.product) {
             return jsonError("Missing quiz, checkout, or product payload", 400);
           }
 
+          const safeBody: PrxCheckoutBody = {
+            ...body,
+            checkout: stripSensitiveCheckoutFields(body.checkout),
+          };
+
           const idempotencyKey = getIdempotencyKey(request) ?? body.idempotencyKey ?? crypto.randomUUID();
           const prx = createPrxClient();
 
-          const intakePayload = mapCheckoutToUnifiedIntakePayload(body, {
+          const intakePayload = mapCheckoutToUnifiedIntakePayload(safeBody, {
             idempotencyKey,
             sandbox: isPrxSandbox(),
             encounterTypeSlug: getPrxEncounterTypeSlug(body.product.slug),

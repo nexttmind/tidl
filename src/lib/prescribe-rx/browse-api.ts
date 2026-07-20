@@ -186,7 +186,7 @@ export async function fetchPrxCatalogProducts(): Promise<PrxCatalogProduct[]> {
 
 export type PrxCheckoutRequest = {
   quiz: import("@/types/quiz").QuizFormData;
-  checkout: import("@/types/order").CheckoutFormData;
+  checkout: import("@/lib/analytics/sanitize-checkout").CheckoutPayloadForServer;
   product: {
     slug: string;
     name: string;

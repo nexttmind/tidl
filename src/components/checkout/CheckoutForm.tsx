@@ -17,6 +17,9 @@ import {
   formatCurrency,
 } from "@/lib/pricing";
 import { getRecommendedTreatment } from "@/lib/products";
+import { sanitizeCheckoutForServer } from "@/lib/analytics/sanitize-checkout";
+import { ANALYTICS_EVENTS } from "@/lib/analytics/events";
+import { trackEvent } from "@/lib/analytics/track";
 import { submitPrxCheckout } from "@/lib/prescribe-rx/browse-api";
 import { PEPTIDE_PRX_SLUGS } from "@/lib/peptides";
 import { useAuth } from "@/providers/auth-provider";
@@ -166,10 +169,16 @@ export function CheckoutForm() {
 
     let prxResult;
     try {
+      trackEvent(ANALYTICS_EVENTS.checkoutSubmitted, {
+        product_slug: product.slug,
+        value: pricing.total,
+        currency: "USD",
+      });
+
       prxResult = await submitPrxCheckout(
         {
           quiz: quizData,
-          checkout: values,
+          checkout: sanitizeCheckoutForServer(values),
           product: {
             slug: product.slug,
             name: product.name,
@@ -186,9 +195,22 @@ export function CheckoutForm() {
         error instanceof Error
           ? error.message
           : "Could not submit your order to PrescribeRx. Please try again.";
+      trackEvent(ANALYTICS_EVENTS.checkoutFailed, {
+        product_slug: product.slug,
+        error_message: message,
+      });
       setSubmitError(message);
       return;
     }
+
+    trackEvent(ANALYTICS_EVENTS.purchase, {
+      product_slug: product.slug,
+      value: pricing.total,
+      currency: "USD",
+      encounter_id: prxResult.encounterId ?? undefined,
+      encounter_number: prxResult.encounterNumber ?? undefined,
+      patient_number: prxResult.patientNumber ?? undefined,
+    });
 
     const order = createOrder({
       userId,

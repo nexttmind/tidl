@@ -1,17 +1,18 @@
 # The Last Sandbox Details
 
-**Updated:** 14 July 2026  
+**Updated:** 21 July 2026  
 **Purpose:** One place for *everything* we know and have built connecting the TIDL website to the PrescribeRx sandbox — from first connect through the current demo state.
 
-Related docs (older / narrower): `sandbox-one.md`, `Last Edit Sandbox.md`, `sandbox-full-connection.md`, `message-to-thomas.md`, `login-flow.md`.
+Related docs: `integration-deployment-plan.md`, `message-to-prx-provider-assignment.md`, `sandbox-one.md`, `Last Edit Sandbox.md`, `sandbox-full-connection.md`.
 
 ---
 
 ## 1. One-line status
 
-**TIDL site ↔ PRX sandbox works end-to-end up to Patient + Encounter + $0 payment record.**  
-Medication **Orders** stay empty until PRX assigns a **provider** to **TIDL Sandbox**.  
-Landing, categories, and PDPs now surface curated sandbox catalog details; checkout charges **$0 for demo** while PDP list prices stay marketing prices.
+**TIDL site ↔ PRX sandbox works end-to-end through checkout:** dynamic quiz → `/checkout` → unified intake → Patient + Encounter + payment record in PRX.  
+**Medication Orders** stay empty until PRX assigns a **provider** to **TIDL Sandbox**.  
+**Attribution + funnel events** are implemented (GTM/Meta load when env IDs are set).  
+**Card PAN** is never sent to our server or PRX — sandbox `reference_captured` only.
 
 ---
 
@@ -283,6 +284,30 @@ Patients / encounters were created from TIDL checkout (Source: **Api**, Sales Or
 
 ---
 
+## 20. Attribution & funnel (Jul 21)
+
+| Piece | Status | Path |
+|-------|--------|------|
+| UTM / gclid / fbclid capture | ✅ | `src/lib/analytics/attribution.ts` |
+| GTM dataLayer events | ✅ when `VITE_GTM_ID` set | `src/components/analytics/AnalyticsBootstrap.tsx` |
+| Meta Pixel | ✅ when `VITE_META_PIXEL_ID` set | same |
+| Funnel events | ✅ | `src/lib/analytics/track.ts`, `events.ts` |
+| Server demo log | ✅ | `GET/POST /api/funnel/event` |
+| Card PAN stripped | ✅ | `sanitize-checkout.ts`, checkout route |
+| Quiz → checkout bridge | ✅ | `src/lib/dynamic-quiz-bridge.ts` |
+
+**Events:** `page_view`, `quiz_started`, `quiz_step`, `quiz_completed`, `checkout_started`, `checkout_submitted`, `purchase`, `checkout_failed`.
+
+**Deploy:** Set `VITE_GTM_ID` + `VITE_META_PIXEL_ID` in Netlify → redeploy. See `integration-deployment-plan.md`.
+
+---
+
+## 21. Stakeholder reply (copy/paste)
+
+> End-to-end PrescribeRx sandbox backend is live: quiz → checkout → unified intake creates Patient + Encounter + payment record in TIDL Sandbox. Health check: tidltest.netlify.app/api/prx/health. Medication orders pending PRX provider assignment. We've added UTM capture, GTM/Meta scaffolding, and funnel step events — send GTM + Pixel IDs to enable ad attribution. Checkout uses sandbox test card UI; PRX records reference capture (no real charge yet).
+
+---
+
 ## 18. Key file map
 
 | Area | Path |
@@ -296,6 +321,8 @@ Patients / encounters were created from TIDL checkout (Source: **Api**, Sales Or
 | Categories | `src/lib/categories.ts`, `src/components/category/*` |
 | Bundles | `src/lib/category-bundles.ts` |
 | Checkout → PRX | `src/server/prx/mappers.ts`, `src/routes/api/prx/checkout.ts` |
+| Analytics / funnel | `src/lib/analytics/*`, `src/components/analytics/AnalyticsBootstrap.tsx` |
+| Quiz → checkout bridge | `src/lib/dynamic-quiz-bridge.ts` |
 | Dynamic quiz | `src/components/quiz/dynamic/*` |
 | Env | `src/lib/prescribe-rx/env.ts`, `.env.example` |
 | Legal | `/privacy`, `/terms` |

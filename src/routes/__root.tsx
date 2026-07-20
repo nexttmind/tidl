@@ -14,6 +14,7 @@ import { AuthProvider } from "../providers/auth-provider";
 import { QuizModalProvider } from "../providers/quiz-modal-provider";
 import { AgeGate } from "../components/age-gate/AgeGate";
 import { LenisScroll } from "../components/lenis/LenisScroll";
+import { AnalyticsBootstrap } from "../components/analytics/AnalyticsBootstrap";
 import { DynamicQuizModal } from "../components/quiz/dynamic/DynamicQuizModal";
 import { isAgeGateConfirmed } from "../lib/age-gate";
 
@@ -94,6 +95,7 @@ function RootShell({ children }: { children: ReactNode }) {
         <HeadContent />
       </head>
       <body className="body" suppressHydrationWarning>
+        <AnalyticsBootstrap />
         {children}
         <Scripts />
         <WebflowCssCompat />

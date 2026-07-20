@@ -1,9 +1,12 @@
+import { useEffect } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { CheckoutForm } from "@/components/checkout/CheckoutForm";
 import { CheckoutLayout } from "@/components/checkout/CheckoutLayout";
 import { OrderSummary } from "@/components/checkout/OrderSummary";
 import "@/components/checkout/checkout.css";
 import { useIsMounted } from "@/hooks/use-is-mounted";
+import { ANALYTICS_EVENTS } from "@/lib/analytics/events";
+import { trackEvent } from "@/lib/analytics/track";
 import { isQuizComplete, readQuizState } from "@/lib/quiz-storage";
 import { useQuizModal } from "@/providers/quiz-modal-provider";
 
@@ -14,6 +17,17 @@ export const Route = createFileRoute("/checkout")({
 function CheckoutPage() {
   const mounted = useIsMounted();
   const { openModal } = useQuizModal();
+
+  useEffect(() => {
+    if (!mounted) return;
+    const stored = readQuizState();
+    if (isQuizComplete() && stored) {
+      trackEvent(ANALYTICS_EVENTS.checkoutStarted, {
+        goal: stored.data.goal ?? undefined,
+        product_slug: stored.data.productSlug ?? undefined,
+      });
+    }
+  }, [mounted]);
 
   if (!mounted) {
     return <div className="checkout-page" aria-hidden />;

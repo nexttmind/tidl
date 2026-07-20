@@ -32,6 +32,7 @@ import { Route as ApiPrxEncountersRouteImport } from './routes/api/prx/encounter
 import { Route as ApiPrxEncounterTypesRouteImport } from './routes/api/prx/encounter-types'
 import { Route as ApiPrxCheckoutRouteImport } from './routes/api/prx/checkout'
 import { Route as ApiPrxCatalogRouteImport } from './routes/api/prx/catalog'
+import { Route as ApiFunnelEventRouteImport } from './routes/api/funnel/event'
 import { Route as ApiPrxWebhooksEventTypesRouteImport } from './routes/api/prx/webhooks.event-types'
 import { Route as ApiPrxOrdersOrderIdRouteImport } from './routes/api/prx/orders.$orderId'
 import { Route as ApiPrxEncountersEncounterIdRouteImport } from './routes/api/prx/encounters.$encounterId'
@@ -153,6 +154,11 @@ const ApiPrxCatalogRoute = ApiPrxCatalogRouteImport.update({
   path: '/api/prx/catalog',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiFunnelEventRoute = ApiFunnelEventRouteImport.update({
+  id: '/api/funnel/event',
+  path: '/api/funnel/event',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiPrxWebhooksEventTypesRoute =
   ApiPrxWebhooksEventTypesRouteImport.update({
     id: '/event-types',
@@ -194,6 +200,7 @@ export interface FileRoutesByFullPath {
   '/products/$slug': typeof ProductsSlugRoute
   '/products/glp-1-weight-loss': typeof ProductsGlp1WeightLossRoute
   '/account/': typeof AccountIndexRoute
+  '/api/funnel/event': typeof ApiFunnelEventRoute
   '/api/prx/catalog': typeof ApiPrxCatalogRoute
   '/api/prx/checkout': typeof ApiPrxCheckoutRoute
   '/api/prx/encounter-types': typeof ApiPrxEncounterTypesRouteWithChildren
@@ -224,6 +231,7 @@ export interface FileRoutesByTo {
   '/products/$slug': typeof ProductsSlugRoute
   '/products/glp-1-weight-loss': typeof ProductsGlp1WeightLossRoute
   '/account': typeof AccountIndexRoute
+  '/api/funnel/event': typeof ApiFunnelEventRoute
   '/api/prx/catalog': typeof ApiPrxCatalogRoute
   '/api/prx/checkout': typeof ApiPrxCheckoutRoute
   '/api/prx/encounter-types': typeof ApiPrxEncounterTypesRouteWithChildren
@@ -255,6 +263,7 @@ export interface FileRoutesById {
   '/products/$slug': typeof ProductsSlugRoute
   '/products/glp-1-weight-loss': typeof ProductsGlp1WeightLossRoute
   '/account/': typeof AccountIndexRoute
+  '/api/funnel/event': typeof ApiFunnelEventRoute
   '/api/prx/catalog': typeof ApiPrxCatalogRoute
   '/api/prx/checkout': typeof ApiPrxCheckoutRoute
   '/api/prx/encounter-types': typeof ApiPrxEncounterTypesRouteWithChildren
@@ -287,6 +296,7 @@ export interface FileRouteTypes {
     | '/products/$slug'
     | '/products/glp-1-weight-loss'
     | '/account/'
+    | '/api/funnel/event'
     | '/api/prx/catalog'
     | '/api/prx/checkout'
     | '/api/prx/encounter-types'
@@ -317,6 +327,7 @@ export interface FileRouteTypes {
     | '/products/$slug'
     | '/products/glp-1-weight-loss'
     | '/account'
+    | '/api/funnel/event'
     | '/api/prx/catalog'
     | '/api/prx/checkout'
     | '/api/prx/encounter-types'
@@ -347,6 +358,7 @@ export interface FileRouteTypes {
     | '/products/$slug'
     | '/products/glp-1-weight-loss'
     | '/account/'
+    | '/api/funnel/event'
     | '/api/prx/catalog'
     | '/api/prx/checkout'
     | '/api/prx/encounter-types'
@@ -378,6 +390,7 @@ export interface RootRouteChildren {
   ProductsSlugRoute: typeof ProductsSlugRoute
   ProductsGlp1WeightLossRoute: typeof ProductsGlp1WeightLossRoute
   AccountIndexRoute: typeof AccountIndexRoute
+  ApiFunnelEventRoute: typeof ApiFunnelEventRoute
   ApiPrxCatalogRoute: typeof ApiPrxCatalogRoute
   ApiPrxCheckoutRoute: typeof ApiPrxCheckoutRoute
   ApiPrxEncounterTypesRoute: typeof ApiPrxEncounterTypesRouteWithChildren
@@ -556,6 +569,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPrxCatalogRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/funnel/event': {
+      id: '/api/funnel/event'
+      path: '/api/funnel/event'
+      fullPath: '/api/funnel/event'
+      preLoaderRoute: typeof ApiFunnelEventRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/prx/webhooks/event-types': {
       id: '/api/prx/webhooks/event-types'
       path: '/event-types'
@@ -653,6 +673,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProductsSlugRoute: ProductsSlugRoute,
   ProductsGlp1WeightLossRoute: ProductsGlp1WeightLossRoute,
   AccountIndexRoute: AccountIndexRoute,
+  ApiFunnelEventRoute: ApiFunnelEventRoute,
   ApiPrxCatalogRoute: ApiPrxCatalogRoute,
   ApiPrxCheckoutRoute: ApiPrxCheckoutRoute,
   ApiPrxEncounterTypesRoute: ApiPrxEncounterTypesRouteWithChildren,

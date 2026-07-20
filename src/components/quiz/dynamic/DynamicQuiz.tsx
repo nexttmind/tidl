@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { useNavigate } from "@tanstack/react-router";
 import {
   fetchPrxEncounterTypeSchema,
   fetchPrxEncounterTypes,
@@ -11,6 +12,10 @@ import {
   type PrxSchemaStep,
 } from "@/lib/prescribe-rx";
 import { usePrxEncounterStatus } from "@/hooks/use-prx-encounter-status";
+import { ANALYTICS_EVENTS } from "@/lib/analytics/events";
+import { trackEvent } from "@/lib/analytics/track";
+import { persistDynamicQuizForCheckout } from "@/lib/dynamic-quiz-bridge";
+import type { QuizModalOptions } from "@/providers/quiz-modal-provider";
 import "../quiz.css";
 import "./dynamic-quiz.css";
 
@@ -511,11 +516,14 @@ function FieldRenderer({
 
 export function DynamicQuiz({
   initialSlug,
+  modalOptions = {},
   onClose,
 }: {
   initialSlug?: string;
+  modalOptions?: QuizModalOptions;
   onClose?: () => void;
 }) {
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [types, setTypes] = useState<PrxEncounterTypeSummary[]>([]);
   const [selectedId, setSelectedId] = useState<string | null>(null);
@@ -643,6 +651,15 @@ export function DynamicQuiz({
   const screen = screens[screenIndex];
   const progress = screens.length ? ((screenIndex + 1) / screens.length) * 100 : 0;
 
+  useEffect(() => {
+    if (!selectedId || done || screens.length === 0) return;
+    trackEvent(ANALYTICS_EVENTS.quizStep, {
+      step: screenIndex + 1,
+      total_steps: screens.length,
+      encounter_type_id: selectedId,
+    });
+  }, [screenIndex, selectedId, done, screens.length]);
+
   // If a conditional question disappears and leaves us past the end, clamp back.
   useEffect(() => {
     if (!done && screens.length > 0 && screenIndex > screens.length - 1) {
@@ -731,6 +748,17 @@ export function DynamicQuiz({
     if (!onClose) return;
     setOpen(false);
     setTimeout(onClose, 300);
+  };
+
+  const handleContinueToCheckout = () => {
+    const data = persistDynamicQuizForCheckout(answers, schema, modalOptions);
+    trackEvent(ANALYTICS_EVENTS.quizCompleted, {
+      goal: data.goal ?? undefined,
+      product_slug: data.productSlug ?? undefined,
+      answer_count: Object.keys(answers).length,
+    });
+    requestClose();
+    void navigate({ to: "/checkout" });
   };
 
   return (
@@ -888,29 +916,36 @@ export function DynamicQuiz({
                 ) : (
                   <>
                     <span className="dq-done-badge">Assessment complete</span>
-                    <h2 className="dq-title">You're all set</h2>
+                    <h2 className="dq-title">Continue to checkout</h2>
                     <p className="dq-lead mt-1">
-                      Collected {Object.keys(answers).length} answers, keyed by field slug. Submit to
-                      create the patient and encounter in PrescribeRx.
+                      Your answers are saved. Complete shipping and payment on the next screen — we
+                      send everything to PrescribeRx in one secure checkout step.
                     </p>
-                    {submitError ? (
-                      <div className="mt-3 rounded-2xl border border-red-200 bg-red-50 p-3 text-sm text-red-700">
-                        {submitError}
-                      </div>
-                    ) : null}
                     <button
                       type="button"
                       className="tidl-btn mt-4 w-full"
-                      disabled={submitting}
-                      style={{ opacity: submitting ? 0.6 : 1 }}
-                      onClick={handleSubmit}
+                      onClick={handleContinueToCheckout}
                     >
-                      {submitting ? "Submitting…" : "Submit to PrescribeRx"}
+                      Continue to checkout
                     </button>
                     <details className="mt-4">
                       <summary className="cursor-pointer text-xs text-[var(--quiz-muted)]">
-                        View collected answers
+                        Sandbox: submit intake without checkout
                       </summary>
+                      {submitError ? (
+                        <div className="mt-3 rounded-2xl border border-red-200 bg-red-50 p-3 text-sm text-red-700">
+                          {submitError}
+                        </div>
+                      ) : null}
+                      <button
+                        type="button"
+                        className="tidl-btn mt-3 w-full"
+                        disabled={submitting}
+                        style={{ opacity: submitting ? 0.6 : 1 }}
+                        onClick={handleSubmit}
+                      >
+                        {submitting ? "Submitting…" : "Submit to PrescribeRx only"}
+                      </button>
                       <pre className="dq-answers">{JSON.stringify(answers, null, 2)}</pre>
                     </details>
                   </>
