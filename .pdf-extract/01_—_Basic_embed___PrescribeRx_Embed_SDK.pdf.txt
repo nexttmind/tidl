@@ -1,0 +1,59 @@
+ Basic embed
+The minimum viable integration. Initialize the SDK with an embedCode , wire the four lifecycle
+callbacks (onReady , onStepChange , onComplete , onError ), and the wizard runs end-to-end.
+Every event fired by the iframe is mirrored in the live event log on the right.
+The integration code
+Drop this into any HTML page; replace YOUR_EMBED_CODE .
+<!-- 1. The container the SDK will render the iframe into -->
+<div id="prx-intake"></div>
+<!-- 2. Load the SDK -->
+<script src="https://demo.prescribe-rx.com/embed/sdk.js"></script>
+<!-- 3. Initialize -->
+<script>
+  PrescribeRx.init('prx-intake', {
+    embedCode: 'YOUR_EMBED_CODE',
+    onReady:      (data) => console.log('Ready', data),
+    onStepChange: (data) => console.log('Step ' + data.step + '/' + data.total
+    onComplete:   (data) => console.log('Done!', data),
+    onError:      (data) => console.error('Error:', data.message),
+  });
+</script>
+Live wizard
+E x a m p l e  0 1  ·
+←  A l l e x a m p l e s
+
+
+SANDBOX MODE — TEST TRANSACTION ONLY. No real charges will be
+processed. Use test card 4111 1111 1111 1111, any future expiration, any 3-
+digit CVC.
+Male TRT Consult
+1         
+Step 1 of 10 · 10%
+2
+3
+4
+5
+6
+7
+8
+9
+1 0
+ Product Selection
+Select products/medications of interest
+Browse Products
+
+Testosterone 200 mg/ml (5ML Vial)
+Sex Hormones (Male)
+Testosterone Example
+Sex Hormones (Male) $14.70
+
+
+Save & Continue 
+Event log
+Every event fired by the iframe shows up here in real time. Useful for confirming the handshake
+worked + watching step-changed as the user navigates.
+13:00:51.532ready {"version":"1.1.0"}
+Current state
+PrescribeRx.getState() + getProgress() are sync — no postMessage round-trip.
+Refresh state
+click "Refresh state"

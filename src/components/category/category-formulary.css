@@ -2,12 +2,12 @@
 
 .cform {
   --cform-ink: #171310;
-  --cform-muted: rgba(23, 19, 16, 0.64);
+  --cform-muted: rgba(23, 19, 16, 0.58);
   --cform-line: rgba(113, 104, 92, 0.1);
   --cform-gold: #f3c300;
-  --cform-gold-deep: #d4a800;
-  --cform-gold-soft: rgba(243, 195, 0, 0.18);
-  --cform-stage: #ffffff;
+  --cform-gold-deep: #c9a000;
+  --cform-gold-soft: rgba(243, 195, 0, 0.16);
+  --cform-stage: #f5f5f5;
   --cform-mist: #ffffff;
   position: relative;
   isolation: isolate;
@@ -15,14 +15,12 @@
   background: #ffffff;
   color: var(--cform-ink);
   font-family: var(--font-body, "Helvetica Neue", Helvetica, Arial, sans-serif);
-  padding: clamp(64px, 9vw, 112px) clamp(20px, 5vw, 72px);
+  padding: clamp(72px, 10vw, 120px) clamp(20px, 5vw, 72px);
   border-top: 1px solid rgba(113, 104, 92, 0.06);
 }
 
 .cform--calm {
-  background:
-    radial-gradient(50% 40% at 0% 0%, rgba(243, 195, 0, 0.08), transparent 55%),
-    #ffffff;
+  background: #ffffff;
 }
 
 .cform,
@@ -62,52 +60,60 @@
 }
 
 .cform-head {
-  max-width: 42rem;
-  margin-bottom: clamp(28px, 4vw, 40px);
+  max-width: 38rem;
+  margin-bottom: clamp(36px, 5vw, 56px);
 }
 
 .cform-title {
   margin: 0;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 800;
-  font-size: clamp(2.15rem, 5.2vw, 3.65rem);
-  letter-spacing: -0.035em;
-  line-height: 1.02;
+  font-size: clamp(2.35rem, 5.4vw, 3.85rem);
+  letter-spacing: -0.04em;
+  line-height: 0.98;
   color: var(--cform-ink);
 }
 
 .cform-title span {
   display: block;
-  margin-top: 14px;
-  max-width: 36rem;
-  font-size: clamp(1.02rem, 1.8vw, 1.18rem);
+  margin-top: 16px;
+  max-width: 32rem;
+  font-size: clamp(1.05rem, 1.9vw, 1.22rem);
   font-weight: 450;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.012em;
   line-height: 1.5;
   color: var(--cform-muted);
 }
 
-/* —— Dense product grid —— */
+/* —— Image-led product grid —— */
 
 .cform-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 14px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(18px, 2.4vw, 28px);
 }
 
 .cform-tile {
   display: flex;
   flex-direction: column;
   min-width: 0;
-  border: 1px solid rgba(113, 104, 92, 0.1);
-  border-radius: 14px;
+  border: 1px solid rgba(113, 104, 92, 0.08);
+  border-radius: 28px;
   background: #ffffff;
   overflow: hidden;
-  transition: border-color 0.22s ease;
+  box-shadow: 0 18px 48px rgba(23, 19, 16, 0.04);
+  transition:
+    border-color 0.28s ease,
+    box-shadow 0.28s ease,
+    transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .cform-tile:hover {
-  border-color: rgba(243, 195, 0, 0.55);
+  border-color: rgba(243, 195, 0, 0.42);
+  box-shadow:
+    0 28px 64px rgba(23, 19, 16, 0.08),
+    0 8px 24px rgba(243, 195, 0, 0.08);
+  transform: translateY(-4px);
 }
 
 .cform-tile-hit {
@@ -136,30 +142,37 @@
   display: grid;
   place-items: center;
   aspect-ratio: 1 / 1;
-  max-height: 160px;
-  background: #f7f5f2;
-  border-bottom: 1px solid rgba(113, 104, 92, 0.06);
+  margin: 14px 14px 0;
+  border-radius: 20px;
+  background: #f5f5f5;
   overflow: hidden;
 }
 
 .cform-tile-img {
-  width: 72%;
-  height: 72%;
+  width: 68%;
+  height: 68%;
   object-fit: contain;
+  object-position: center;
+  filter: drop-shadow(0 18px 28px rgba(23, 19, 16, 0.12));
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cform-tile:hover .cform-tile-img {
+  transform: scale(1.04);
 }
 
 .cform-tile-placeholder {
-  width: 36%;
+  width: 34%;
   aspect-ratio: 1;
   border-radius: 50%;
-  background: rgba(113, 104, 92, 0.06);
+  background: rgba(113, 104, 92, 0.08);
 }
 
 .cform-tile-copy {
   display: flex;
   flex-direction: column;
-  gap: 4px;
-  padding: 12px 12px 8px;
+  gap: 6px;
+  padding: 18px 20px 10px;
   min-width: 0;
 }
 
@@ -169,19 +182,19 @@
   align-items: center;
   gap: 6px;
   margin: 0;
-  font-size: 0.62rem;
+  font-size: 0.68rem;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--cform-gold-deep);
 }
 
 .cform-tile-name {
   margin: 0;
-  font-size: 0.92rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  line-height: 1.25;
+  font-size: clamp(1.05rem, 1.6vw, 1.22rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
   color: var(--cform-ink);
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -190,35 +203,36 @@
 }
 
 .cform-tile-price {
-  margin: 2px 0 0;
-  font-size: 1.05rem;
+  margin: 4px 0 0;
+  font-size: 1.15rem;
   font-weight: 800;
   letter-spacing: -0.03em;
   color: var(--cform-ink);
 }
 
+.cform-tile-price span {
+  margin-left: 4px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  color: var(--cform-muted);
+}
+
 .cform-tile-price--muted {
-  font-size: 0.82rem;
+  font-size: 0.88rem;
   font-weight: 600;
   color: var(--cform-muted);
 }
 
 .cform-tile-sku {
-  margin: 0;
-  font-size: 0.68rem;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  color: var(--cform-muted);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  display: none;
 }
 
 .cform-tile-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
-  padding: 0 12px 12px;
+  gap: 10px;
+  padding: 8px 20px 20px;
   margin-top: auto;
 }
 
@@ -248,11 +262,11 @@
 }
 
 .cform-btn--compact {
-  min-height: 38px;
-  padding: 0 14px;
-  font-size: 0.8125rem;
+  min-height: 42px;
+  padding: 0 16px;
+  font-size: 0.84rem;
   flex: 1;
-  border-radius: 10px;
+  border-radius: 12px;
 }
 
 .cform-btn--primary {
@@ -520,26 +534,27 @@
 
 @media (max-width: 1100px) {
   .cform-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-@media (max-width: 760px) {
+@media (max-width: 640px) {
   .cform-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .cform-tile {
+    border-radius: 24px;
   }
 
   .cform-tile-media {
-    max-height: 140px;
+    margin: 12px 12px 0;
+    border-radius: 18px;
   }
 }
 
 @media (max-width: 420px) {
-  .cform-grid {
-    grid-template-columns: 1fr;
-  }
-
   .cform-drawer {
     width: 100%;
     max-height: calc(100dvh - 20px);
@@ -550,9 +565,18 @@
 @media (prefers-reduced-motion: reduce) {
   .cform-tile,
   .cform-btn,
-  .cform-drawer {
+  .cform-drawer,
+  .cform-tile-img {
     transition: none;
     animation: none;
+  }
+
+  .cform-tile:hover {
+    transform: none;
+  }
+
+  .cform-tile:hover .cform-tile-img {
+    transform: none;
   }
 
   .cform-btn--primary:hover {

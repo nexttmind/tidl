@@ -1,0 +1,65 @@
+ Preselected package
+Drop the user directly into a specific package + plan instead of making them pick one in-
+wizard. Useful when your storefront already presented packages and the user clicked "Buy
+now". The wizard's package-picker step is skipped automatically because a package is already
+selected.
+The integration pattern
+Two valid shapes — pass at init time, or set at runtime.
+// Option A — at init time (loads the wizard already inside the package)
+PrescribeRx.init('prx-intake', {
+  embedCode: 'YOUR_EMBED_CODE',
+  package:   'PKG-00123',         // human-friendly
+});
+// Option B — runtime, after the user clicks something on YOUR page
+PrescribeRx.selectPackage('PKG-00123');
+PrescribeRx.selectPlan('019d4f...uuid');   // optional — pin the subscription 
+// Option C — multiple packages (rarely needed; bundles)
+PrescribeRx.selectPackages(['PKG-001', 'PKG-002']);
+Try it — pick a package
+Enter a real package_number from your tenant (list via GET /api/v1/packages ) and pick a plan. The
+plan picker is auto-populated from /api/v1/packages/{id} after you enter a valid package number
+— no fake placeholders.
+package_number: PKG-00123
+plan:
+List available packages Load plans for entered number selectPackage / selectPlan
+Reset wizard
+E x a m p l e  0 2  ·
+←  A l l e x a m p l e s
+—  p i c k  p a c k a g e  f i r s t  —
+This demo pulls a sandbox token from /api/docs/tokens (non-prod only) so it can hit
+/api/v1/packages from the browser. In production your BACKEND should call /api/v1/packages
+and your frontend just renders the result — never expose tenant tokens to the browser.
+Live wizard
+
+
+SANDBOX MODE — TEST TRANSACTION ONLY. No real charges will be
+processed. Use test card 4111 1111 1111 1111, any future expiration, any 3-
+digit CVC.
+Male TRT Consult
+1         
+Step 1 of 10 · 10%
+2
+3
+4
+5
+6
+7
+8
+9
+1 0
+ Product Selection
+Select products/medications of interest
+Browse Products
+
+Testosterone 200 mg/ml (5ML Vial)
+Sex Hormones (Male)
+Testosterone Example
+Sex Hormones (Male) $14.70
+
+
+Save & Continue 
+Event log
+13:01:06.330ready {"version":"1.1.0"}
+State
+Refresh state
+click "Refresh state"

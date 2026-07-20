@@ -85,7 +85,7 @@ function resolvePdpSlug(item: CategoryCatalogItem, category: CategorySlug): Prod
  */
 export function CategoryFormularySection({ category }: CategoryFormularySectionProps) {
   const { openModal } = useQuizModal();
-  const { products: catalogProducts, loading, catalogTotal } = useLiveCatalog();
+  const { products: catalogProducts, loading } = useLiveCatalog();
 
   const products = useMemo(
     () => getCatalogItemsForCategory(catalogProducts, category.slug),
@@ -116,13 +116,13 @@ export function CategoryFormularySection({ category }: CategoryFormularySectionP
           </p>
           <h2 className="cform-title">
             {products.length > 0
-              ? `${category.navLabel} catalog`
+              ? `${category.navLabel} treatments`
               : `${category.navLabel} care pathway`}
             <span>
               {loading
-                ? "Loading live sandbox catalog…"
+                ? "Loading available treatments…"
                 : products.length > 0
-                  ? `${products.length} peptide package${products.length === 1 ? "" : "s"} from the sandbox catalog${catalogTotal > 0 ? ` (${catalogTotal} total SKUs)` : ""}. Tap Details for the full product page.`
+                  ? `${products.length} provider-guided peptide${products.length === 1 ? "" : "s"} for ${category.navLabel.toLowerCase()}. Open any product for full details.`
                   : "Start intake. A licensed provider will match your pathway."}
             </span>
           </h2>
@@ -231,11 +231,13 @@ function TileCopy({
       </p>
       <h3 className="cform-tile-name">{item.name}</h3>
       {price != null ? (
-        <p className="cform-tile-price">{formatCurrency(price)}</p>
+        <p className="cform-tile-price">
+          From {formatCurrency(price)}
+          <span>/mo</span>
+        </p>
       ) : (
         <p className="cform-tile-price cform-tile-price--muted">After review</p>
       )}
-      {item.sku ? <p className="cform-tile-sku">{item.sku}</p> : null}
     </div>
   );
 }

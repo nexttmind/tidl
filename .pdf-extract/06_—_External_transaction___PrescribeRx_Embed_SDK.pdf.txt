@@ -1,0 +1,78 @@
+ External transaction integration
+You charged the patient on YOUR gateway (Braintree, Adyen, Worldpay — whatever you
+already integrated). PRX never calls back to that gateway; we just record the transaction for
+audit, receipts, refund reconciliation, and the encounter's payment status. setTransaction is a
+one-call shortcut for this — equivalent to setPayment({ mode: 'reference_captured', ...}) .
+The integration pattern
+// 1. Charge the patient on YOUR gateway (typical Stripe / Braintree / etc.)
+const result = await stripe.paymentIntents.create({
+  amount: 29900,         // in cents
+  currency: 'usd',
+  payment_method: paymentMethodId,
+  confirm: true
+});
+// 2. Record the transaction in PRX so it shows up on the order + statement
+PrescribeRx.setTransaction({
+  transaction_id: result.id,            // 'pi_3PqK...'
+  amount:         result.amount / 100,   // $299.00
+  gateway:        'stripe',           // free-form (record-only)
+  captured_at:    new Date().toISOString()
+});
+// That's it. The wizard's payment step shows "Paid" and the encounter's
+// resulting Order has a captured Transaction row. PRX never calls Stripe.
+// Equivalent — long form via setPayment
+PrescribeRx.setPayment({
+  mode:    'reference_captured',
+  gateway: 'stripe',
+  transaction: {
+    transaction_id: result.id,
+    amount:         result.amount / 100,
+    captured_at:    new Date().toISOString()
+  }
+});
+Simulate it — run a fake charge
+E x a m p l e  0 6  ·
+←  A l l e x a m p l e s
+In production, this is where you'd call stripe.paymentIntents.create() or your gateway equivalent.
+We simulate that round-trip with a 600ms delay, then call setTransaction .
+Amount: 299.00  USD
+Gateway: stripe
+Charge + setTransaction Reset wizard
+Notice: gateway accepts ANY string in reference_captured mode. PRX records it for your audit
+cross-reference but never calls back. If you mis-spell it, no harm.
+Live wizard
+
+
+SANDBOX MODE — TEST TRANSACTION ONLY. No real charges will be
+processed. Use test card 4111 1111 1111 1111, any future expiration, any 3-
+digit CVC.
+Male TRT Consult
+1         
+Step 1 of 10 · 10%
+2
+3
+4
+5
+6
+7
+8
+9
+1 0
+ Product Selection
+Select products/medications of interest
+Browse Products
+
+Testosterone 200 mg/ml (5ML Vial)
+Sex Hormones (Male)
+Testosterone Example
+Sex Hormones (Male) $14.70
+
+
+Save & Continue 
+Event log
+13:02:30.020ready {"version":"1.1.0"}
+Verifying the recorded transaction
+After the encounter is created, fetch the resulting order and check its transactions. The
+external_transaction_id column holds the ID you passed in.
+curl "…/api/v1/orders/{ORDER_ID}/transactions" \
+  -H "Authorization: Bearer $TOKEN"

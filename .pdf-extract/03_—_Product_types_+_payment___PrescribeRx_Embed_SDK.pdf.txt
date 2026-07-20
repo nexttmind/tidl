@@ -1,0 +1,69 @@
+ Generic product types + payment
+Sometimes you don't know the exact SKU yet — the patient is requesting "tirzepatide" and the
+provider will pick the dose + manufacturer at prescribe-time. Use selectProductTypes to send
+the medication TYPE; the wizard renders a placeholder line and the provider swaps in the
+actual SKU during prescribing. Combine with setPayment to record an external transaction
+your gateway already captured.
+The integration pattern
+// Generic medication type — provider picks the final SKU
+PrescribeRx.selectProductTypes([
+  { product_type_slug: 'tirzepatide', quantity: 1 },
+  { product_type_id:   '019d000e-a554-721d-...' }   // equivalent
+]);
+// Payment block — five modes available, see /api/docs/field-mapping
+PrescribeRx.setPayment({
+  mode:        'reference_captured',    // you already charged on YOUR gateway
+  gateway:     'stripe',                // free-form for record-only modes
+  transaction: {
+    transaction_id: 'txn_3PqK...',
+    amount:         299.00,
+    captured_at:    '2026-05-01T13:42:00Z'
+  }
+});
+Token guard: sales-org and client API tokens cannot use mode: 'authorize' — PRX is not the
+merchant of record on API flows. Use reference_captured (you already charged) or
+patient_review (defer to a downstream patient-facing portal). authorize is reserved for first-
+party embed flows where PRX is the merchant.
+Try it
+selectProductTypes(['tirzepatide']) setPayment(reference_captured, $299)
+setPayment(patient_review) setPayment(prepaid) Reset
+E x a m p l e  0 3  ·
+←  A l l  e x a m p l e s
+Live wizard
+
+
+SANDBOX MODE — TEST TRANSACTION ONLY. No real charges will be
+processed. Use test card 4111 1111 1111 1111, any future expiration, any 3-
+digit CVC.
+Male TRT Consult
+1         
+Step 1 of 10 · 10%
+2
+3
+4
+5
+6
+7
+8
+9
+1 0
+ Product Selection
+Select products/medications of interest
+Browse Products
+
+Testosterone 200 mg/ml (5ML Vial)
+Sex Hormones (Male)
+Testosterone Example
+Sex Hormones (Male) $14.70
+
+
+Save & Continue 
+Event log
+13:02:04.914ready {"version":"1.1.0"}
+Five payment modes
+mode PRX charges?
+authorize yes (embed only)
+reference_preauth no — vault + record
+reference_captured no — record-only
+prepaid no — out-of-band
+patient_review no — defer to portal

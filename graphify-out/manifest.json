@@ -25,8 +25,8 @@
     "semantic_hash": ""
   },
   "src/routeTree.gen.ts": {
-    "mtime": 1783989436.9174712,
-    "ast_hash": "8b3b7aa97c5aaca62665d84df360aebd",
+    "mtime": 1784588774.5176294,
+    "ast_hash": "16380b1199cb5e8afe76ad86f8ec3fb9",
     "semantic_hash": ""
   },
   "src/server.ts": {
@@ -40,8 +40,8 @@
     "semantic_hash": ""
   },
   "src/vite-env.d.ts": {
-    "mtime": 1783621954.3203511,
-    "ast_hash": "76312ed699a3aa6d543f3e9befb8d106",
+    "mtime": 1784588855.140124,
+    "ast_hash": "95ab95bcc97527d7a0d663cf23a5968d",
     "semantic_hash": ""
   },
   "src/components/account/PrxActivityCard.tsx": {
@@ -90,13 +90,13 @@
     "semantic_hash": ""
   },
   "src/components/category/CategoryHero.tsx": {
-    "mtime": 1784067558.7002027,
-    "ast_hash": "4f37ba0415cd603fdf1988028e7a3e7a",
+    "mtime": 1784332694.4430153,
+    "ast_hash": "7c998ca1b0c17cdfe57e2622a30ad25c",
     "semantic_hash": ""
   },
   "src/components/category/CategoryPage.tsx": {
-    "mtime": 1784138090.4330287,
-    "ast_hash": "751ded0859d89516faa577e7ede817ae",
+    "mtime": 1784416594.5889053,
+    "ast_hash": "eff379772d80080f99e520ebe8c91dad",
     "semantic_hash": ""
   },
   "src/components/category/CategoryPenProgram.tsx": {
@@ -105,13 +105,13 @@
     "semantic_hash": ""
   },
   "src/components/category/CategoryProductCard.tsx": {
-    "mtime": 1784138090.4237309,
-    "ast_hash": "abb0c1a7185ac0154d69c1189094c54a",
+    "mtime": 1784416598.4721856,
+    "ast_hash": "32c96ddee2d9708e14fc046da4cce48c",
     "semantic_hash": ""
   },
   "src/components/checkout/CheckoutForm.tsx": {
-    "mtime": 1784029926.5971303,
-    "ast_hash": "aba4500a4b3f7e2a4d8a2c5452b9ba37",
+    "mtime": 1784588801.2218437,
+    "ast_hash": "eaf2f02c39ff87a40d968b09bbd2394d",
     "semantic_hash": ""
   },
   "src/components/checkout/CheckoutLayout.tsx": {
@@ -130,13 +130,13 @@
     "semantic_hash": ""
   },
   "src/components/home/AskTidlSection.tsx": {
-    "mtime": 1784053573.4269907,
-    "ast_hash": "d312bae8d18f2892d20b89f86f668465",
+    "mtime": 1784331548.520399,
+    "ast_hash": "0bee9c4135c78c4082e468c51e002b9f",
     "semantic_hash": ""
   },
   "src/components/home/HomePage.tsx": {
-    "mtime": 1784069078.9853127,
-    "ast_hash": "0275495632c5be1d4d6896c9b641683c",
+    "mtime": 1784421035.4026139,
+    "ast_hash": "dec0f36ddcfe65a09d57b9c5577bfc99",
     "semantic_hash": ""
   },
   "src/components/home/JourneySection.tsx": {
@@ -150,13 +150,13 @@
     "semantic_hash": ""
   },
   "src/components/home/ServicesSection.tsx": {
-    "mtime": 1784067558.711432,
-    "ast_hash": "65f09cf4c701aa7536a35609ffade13e",
+    "mtime": 1784499150.6606293,
+    "ast_hash": "91affed399275645953488adcdb64421",
     "semantic_hash": ""
   },
   "src/components/home/StoriesSection.tsx": {
-    "mtime": 1784078207.9915893,
-    "ast_hash": "6325a43aa5a2b4fba3dbe8bf095b0280",
+    "mtime": 1784331856.016949,
+    "ast_hash": "efa7490ac1ce9a9f6ba2f85d26e1f6ce",
     "semantic_hash": ""
   },
   "src/components/home/cta/ContourField.tsx": {
@@ -205,7 +205,7 @@
     "semantic_hash": ""
   },
   "src/components/layout/SiteFooter.tsx": {
-    "mtime": 1783989431.5114186,
+    "mtime": 1784247474.7991688,
     "ast_hash": "0510ebc0ecfe1e273ca19062f026481f",
     "semantic_hash": ""
   },
@@ -230,13 +230,13 @@
     "semantic_hash": ""
   },
   "src/components/pdp/PdpBeforeAfterSection.tsx": {
-    "mtime": 1784163776.9565089,
-    "ast_hash": "573904f118f813bd08d918d1538fd646",
+    "mtime": 1784499150.6261916,
+    "ast_hash": "219e7b0f0b51970238e4e81ec061c2d3",
     "semantic_hash": ""
   },
   "src/components/pdp/PdpCtaBand.tsx": {
-    "mtime": 1784163770.918455,
-    "ast_hash": "3c62945b6b3e3ee82ecbb7f022103d84",
+    "mtime": 1784413794.5037303,
+    "ast_hash": "1733d00bf63c6d2e8e5b623dfce65f44",
     "semantic_hash": ""
   },
   "src/components/pdp/PdpDataProvider.tsx": {
@@ -245,8 +245,8 @@
     "semantic_hash": ""
   },
   "src/components/pdp/PdpFaqSection.tsx": {
-    "mtime": 1783559091.662848,
-    "ast_hash": "dfdbb26b4d019863582700c4b98b8fe7",
+    "mtime": 1784413794.506086,
+    "ast_hash": "8e8ae5221ec11bc4babf54927229e72f",
     "semantic_hash": ""
   },
   "src/components/pdp/PdpHeader.tsx": {
@@ -255,13 +255,13 @@
     "semantic_hash": ""
   },
   "src/components/pdp/PdpHeroSection.tsx": {
-    "mtime": 1784163750.0773766,
-    "ast_hash": "eef0f5453387cef213ad3f18298e3d45",
+    "mtime": 1784416594.2822168,
+    "ast_hash": "2b1b99fb9857c2374c1df16a04826e61",
     "semantic_hash": ""
   },
   "src/components/pdp/PdpIncludedSection.tsx": {
-    "mtime": 1784078764.1879928,
-    "ast_hash": "a88840b97278fd99e8cbad4bd7b816d1",
+    "mtime": 1784499150.6311934,
+    "ast_hash": "54a3643716d1fcafcf80fb51bce8ae4c",
     "semantic_hash": ""
   },
   "src/components/pdp/PdpOutcomeSection.tsx": {
@@ -285,7 +285,7 @@
     "semantic_hash": ""
   },
   "src/components/pdp/PdpTransformationSection.tsx": {
-    "mtime": 1784138090.475402,
+    "mtime": 1784237717.8145134,
     "ast_hash": "78f5c229e4d83909998ed68e9744ae65",
     "semantic_hash": ""
   },
@@ -300,8 +300,8 @@
     "semantic_hash": ""
   },
   "src/components/pdp/ProductPdpPage.tsx": {
-    "mtime": 1784163765.297466,
-    "ast_hash": "5a2a3ce3a14e0aebb99fa589c3aec1dc",
+    "mtime": 1784413794.5142996,
+    "ast_hash": "3340878260a6d350ee30b4546ae0e5fc",
     "semantic_hash": ""
   },
   "src/components/pdp/usePdpHeaderState.ts": {
@@ -310,7 +310,7 @@
     "semantic_hash": ""
   },
   "src/components/pdp/data/glp1-pdp-content.ts": {
-    "mtime": 1784138090.4774022,
+    "mtime": 1784499150.6606293,
     "ast_hash": "6eb7309d18169d6bf41712896485178c",
     "semantic_hash": ""
   },
@@ -320,7 +320,7 @@
     "semantic_hash": ""
   },
   "src/components/pdp/data/pdp-data-registry.ts": {
-    "mtime": 1784138090.475402,
+    "mtime": 1784499150.653925,
     "ast_hash": "9fdde7760159200fb82ef55acdff6164",
     "semantic_hash": ""
   },
@@ -335,13 +335,13 @@
     "semantic_hash": ""
   },
   "src/components/quiz/dynamic/DynamicQuiz.tsx": {
-    "mtime": 1784030715.9084833,
-    "ast_hash": "798a1302d6264a10b8335d6f0bbf44b2",
+    "mtime": 1784588854.0331094,
+    "ast_hash": "62b09813e02f3acca586f6403c8aac9d",
     "semantic_hash": ""
   },
   "src/components/quiz/dynamic/DynamicQuizModal.tsx": {
-    "mtime": 1783820498.0147135,
-    "ast_hash": "18ad1d63cd0050df9fdaec67d139337c",
+    "mtime": 1784588825.237089,
+    "ast_hash": "ea7a992eb274fa791dba6109045b7134",
     "semantic_hash": ""
   },
   "src/components/ui/accordion.tsx": {
@@ -605,8 +605,8 @@
     "semantic_hash": ""
   },
   "src/lib/ask-tidl-content.ts": {
-    "mtime": 1783692252.5966313,
-    "ast_hash": "a01a3d2c3944439408f93a30aad70fc9",
+    "mtime": 1784331741.587353,
+    "ast_hash": "9d788c24711c2518a9833c386309b332",
     "semantic_hash": ""
   },
   "src/lib/auth-storage.ts": {
@@ -615,8 +615,8 @@
     "semantic_hash": ""
   },
   "src/lib/categories.ts": {
-    "mtime": 1784068953.5411649,
-    "ast_hash": "ace9fb8b036587ceafe48f973b5c7bb3",
+    "mtime": 1784508104.5696764,
+    "ast_hash": "9e9ef488ae1d88f2adf69f001ff509aa",
     "semantic_hash": ""
   },
   "src/lib/category-bundles.ts": {
@@ -625,8 +625,8 @@
     "semantic_hash": ""
   },
   "src/lib/category-recommendations.ts": {
-    "mtime": 1783692252.6077335,
-    "ast_hash": "91749deb2135dbcf4fb155f31c80611a",
+    "mtime": 1784330896.188547,
+    "ast_hash": "22260e98da54205260a530687b68bfe7",
     "semantic_hash": ""
   },
   "src/lib/category-testimonials.ts": {
@@ -660,18 +660,18 @@
     "semantic_hash": ""
   },
   "src/lib/pdp-marketing.ts": {
-    "mtime": 1784138870.6774242,
+    "mtime": 1784237717.777542,
     "ast_hash": "853a799059dd1d4d5f66ae973d448d15",
     "semantic_hash": ""
   },
   "src/lib/peptide-images.ts": {
-    "mtime": 1784138090.4320314,
+    "mtime": 1784499150.6322103,
     "ast_hash": "edb0544dee1a4d701006e51515c76120",
     "semantic_hash": ""
   },
   "src/lib/peptides.ts": {
-    "mtime": 1784138090.4300072,
-    "ast_hash": "9bde6504dc49f89ee41c3e4ab479d465",
+    "mtime": 1784333236.3771267,
+    "ast_hash": "1964f8d5f5f8b8251427e97537e79a2c",
     "semantic_hash": ""
   },
   "src/lib/pricing.ts": {
@@ -680,12 +680,12 @@
     "semantic_hash": ""
   },
   "src/lib/product-catalog.ts": {
-    "mtime": 1784138090.475402,
-    "ast_hash": "f0a60f333c1781360a70228fdb894dcd",
+    "mtime": 1784416598.3941987,
+    "ast_hash": "17c3897f69bb20db17d8cda41acf0a75",
     "semantic_hash": ""
   },
   "src/lib/products.ts": {
-    "mtime": 1784138090.474405,
+    "mtime": 1784499150.6351917,
     "ast_hash": "2da66666de8ce8ec3459d6f5fd8c78ce",
     "semantic_hash": ""
   },
@@ -695,8 +695,8 @@
     "semantic_hash": ""
   },
   "src/lib/services-content.ts": {
-    "mtime": 1784138090.4763985,
-    "ast_hash": "d2c10e1e2499c9d897630a2bdb780b28",
+    "mtime": 1784417658.556626,
+    "ast_hash": "4fff6f5b513d67fa424e3554fca47c81",
     "semantic_hash": ""
   },
   "src/lib/site-assets.ts": {
@@ -705,8 +705,8 @@
     "semantic_hash": ""
   },
   "src/lib/stories-content.ts": {
-    "mtime": 1783990698.1751149,
-    "ast_hash": "34e7f88a942319c76573c57d929ec44b",
+    "mtime": 1784331844.4696012,
+    "ast_hash": "b4bd0499f0b4a4c10f2b78fe9c7d671d",
     "semantic_hash": ""
   },
   "src/lib/testimonials.ts": {
@@ -725,8 +725,8 @@
     "semantic_hash": ""
   },
   "src/lib/prescribe-rx/browse-api.ts": {
-    "mtime": 1783989431.5551841,
-    "ast_hash": "99ac4eb927353e4e63f5cd37a947960d",
+    "mtime": 1784588814.5788891,
+    "ast_hash": "d6106c785cf4527a1869c372c7274490",
     "semantic_hash": ""
   },
   "src/lib/prescribe-rx/client.ts": {
@@ -755,8 +755,8 @@
     "semantic_hash": ""
   },
   "src/lib/prescribe-rx/merge-sandbox-pdp.ts": {
-    "mtime": 1784138090.4320314,
-    "ast_hash": "5f802e12c01b85e5ef267f83e0d20ee9",
+    "mtime": 1784499150.6322103,
+    "ast_hash": "14cdcb37da201fd6d1fd8857a7652445",
     "semantic_hash": ""
   },
   "src/lib/prescribe-rx/types.ts": {
@@ -765,13 +765,13 @@
     "semantic_hash": ""
   },
   "src/lib/prescribe-rx/use-home-sandbox.ts": {
-    "mtime": 1784067558.7220225,
-    "ast_hash": "b7310b6f46397306c3ce90daab7141ef",
+    "mtime": 1784237717.8290584,
+    "ast_hash": "dc219c19261885002d4307188ad5b53e",
     "semantic_hash": ""
   },
   "src/lib/prescribe-rx/use-live-catalog.ts": {
-    "mtime": 1784053573.4961867,
-    "ast_hash": "2317f37240b7e45fa64522823193c13b",
+    "mtime": 1784237717.8145134,
+    "ast_hash": "77bc2dcd446e831744ae7d164caad068",
     "semantic_hash": ""
   },
   "src/providers/auth-provider.tsx": {
@@ -790,8 +790,8 @@
     "semantic_hash": ""
   },
   "src/routes/checkout.tsx": {
-    "mtime": 1783820983.6357112,
-    "ast_hash": "b4b856e6bc79245bb42e47fd6262c960",
+    "mtime": 1784588848.0391276,
+    "ast_hash": "cfc714fe2867f307b49aefdd40360a47",
     "semantic_hash": ""
   },
   "src/routes/confirmation.tsx": {
@@ -820,8 +820,8 @@
     "semantic_hash": ""
   },
   "src/routes/__root.tsx": {
-    "mtime": 1783820511.5460093,
-    "ast_hash": "93563f41ed4855f2c43e5f20a79f21f3",
+    "mtime": 1784588808.1446676,
+    "ast_hash": "29af42cc9c77aee0d482be8b57e39c59",
     "semantic_hash": ""
   },
   "src/routes/account/index.tsx": {
@@ -840,8 +840,8 @@
     "semantic_hash": ""
   },
   "src/routes/api/prx/checkout.ts": {
-    "mtime": 1783790848.2100484,
-    "ast_hash": "312cb85708ef520c733e1a5dabdf3c34",
+    "mtime": 1784588787.1072736,
+    "ast_hash": "ffaa432a1c8c0a4af00a451b3e9ce334",
     "semantic_hash": ""
   },
   "src/routes/api/prx/encounter-types.$encounterTypeId.schema.ts": {
@@ -935,8 +935,8 @@
     "semantic_hash": ""
   },
   "src/server/prx/mappers.ts": {
-    "mtime": 1784029764.2020242,
-    "ast_hash": "718f298ac93b400356d3412c75979c63",
+    "mtime": 1784588784.1614041,
+    "ast_hash": "8417605aec645c52ed4f404559c00840",
     "semantic_hash": ""
   },
   "src/server/prx/respond.ts": {
@@ -1035,8 +1035,8 @@
     "semantic_hash": ""
   },
   "the-last-sandbox-details.md": {
-    "mtime": 1784030432.3172364,
-    "ast_hash": "a362f447153e1515872db71a1ca39270",
+    "mtime": 1784588866.3096495,
+    "ast_hash": "fe2c98b3147c2836cec4cb21e1daa8f7",
     "semantic_hash": ""
   },
   "graphify-out/converted/TIDL.com Overview_08JUN26 (1)_494c2e0f.md": {
@@ -1660,8 +1660,8 @@
     "semantic_hash": ""
   },
   "src/components/category/CategoryFormularySection.tsx": {
-    "mtime": 1784138090.474405,
-    "ast_hash": "c7b51bbd6da15d3f398182be25c40cf6",
+    "mtime": 1784508618.730383,
+    "ast_hash": "b5068cd77d96bcec9e2f5f7c9d7f2a76",
     "semantic_hash": ""
   },
   "ui/TIDL-Design-System.md": {
@@ -1705,8 +1705,8 @@
     "semantic_hash": ""
   },
   "src/components/category/CategoryWhySection.tsx": {
-    "mtime": 1784067558.7023587,
-    "ast_hash": "b318a364b95538e5f9aafd736aa1cc46",
+    "mtime": 1784240094.721356,
+    "ast_hash": "ba8b12fadd4010de22994432e9587d1d",
     "semantic_hash": ""
   },
   ".tmp-et.json": {
@@ -1715,12 +1715,12 @@
     "semantic_hash": ""
   },
   ".tmp-pdp-verify/cat-check.mjs": {
-    "mtime": 1784138090.4774022,
+    "mtime": 1784499150.7121687,
     "ast_hash": "79328a9bc1467a8d3291e9f5e2019d98",
     "semantic_hash": ""
   },
   ".tmp-pdp-verify/check.mjs": {
-    "mtime": 1784138090.4237309,
+    "mtime": 1784499150.6113303,
     "ast_hash": "20c2586ec9d0e048941edbcc5e439574",
     "semantic_hash": ""
   },
@@ -1930,7 +1930,7 @@
     "semantic_hash": ""
   },
   "src/components/category/CategoryFaqSection.tsx": {
-    "mtime": 1784068953.5286016,
+    "mtime": 1784413205.9153483,
     "ast_hash": "d5d57708ccaca87cfb605c77221f65ea",
     "semantic_hash": ""
   },
@@ -1945,8 +1945,8 @@
     "semantic_hash": ""
   },
   "src/components/pdp/PdpMinimalSections.tsx": {
-    "mtime": 1784163766.0479007,
-    "ast_hash": "2e09e4964dcb7fcda8e9c6448f165386",
+    "mtime": 1784499150.6206603,
+    "ast_hash": "891d3e07583e3cf761158fde8ee0f3ad",
     "semantic_hash": ""
   },
   "public/pdp/page.md": {
@@ -1995,13 +1995,13 @@
     "semantic_hash": ""
   },
   "code to Figma/README.md": {
-    "mtime": 1784153087.1043367,
+    "mtime": 1784499150.6103287,
     "ast_hash": "32ddaaa45e44e0fbaba90aa99c267d39",
     "semantic_hash": ""
   },
   "code to Figma/index.html": {
-    "mtime": 1784153052.142316,
-    "ast_hash": "b6cfc114957fc1ace148bd44bc2b4f21",
+    "mtime": 1784499903.315097,
+    "ast_hash": "9f47e462a9302ed59fea9aab7f60f093",
     "semantic_hash": ""
   },
   "code to Figma/assets/logo-yellow.png": {
@@ -2047,6 +2047,396 @@
   "code to Figma/assets/service-recovery.png": {
     "mtime": 1784067558.6861067,
     "ast_hash": "30d148b027eed380f2ad0da2aeaee116",
+    "semantic_hash": ""
+  },
+  "src/components/pdp/PdpGoalOutcomesSection.tsx": {
+    "mtime": 1784237717.7955563,
+    "ast_hash": "c83a4948ab22de3af96561b85a83c428",
+    "semantic_hash": ""
+  },
+  "docs/google-stitch-landing-prompt.md": {
+    "mtime": 1784237717.7925658,
+    "ast_hash": "55909c6292bd4e221edb8f3b344bd99d",
+    "semantic_hash": ""
+  },
+  "src/components/category/CategoryAfterSection.tsx": {
+    "mtime": 1784508076.3012266,
+    "ast_hash": "daf317d3e65fe1f609d33158e8443eba",
+    "semantic_hash": ""
+  },
+  "src/components/category/CategoryTrustSection.tsx": {
+    "mtime": 1784499150.6322103,
+    "ast_hash": "42575a2e887bf48d2c0f238f5556448b",
+    "semantic_hash": ""
+  },
+  "src/lib/category-products.ts": {
+    "mtime": 1784416597.508447,
+    "ast_hash": "155e80db18bb5aacade6b5393c40ecd7",
+    "semantic_hash": ""
+  },
+  "src/components/category/CategorySandboxDetailDrawer.tsx": {
+    "mtime": 1784239728.844378,
+    "ast_hash": "44e9a6c596e99a07f0f82b538fee9ba0",
+    "semantic_hash": ""
+  },
+  "src/components/category/CategoryExperienceSection.tsx": {
+    "mtime": 1784237812.9047694,
+    "ast_hash": "a9924740b3248139067a80e2c38401a8",
+    "semantic_hash": ""
+  },
+  "public/category/longevity/hero.png": {
+    "mtime": 1784225644.8782642,
+    "ast_hash": "61d15ed9dcec8a868184485c497de8b2",
+    "semantic_hash": ""
+  },
+  "public/category/longevity/mood-1.png": {
+    "mtime": 1784217440.0058484,
+    "ast_hash": "1a00b96838c2d502a69625f7347e953f",
+    "semantic_hash": ""
+  },
+  "public/category/longevity/mood-2.png": {
+    "mtime": 1784217591.3490038,
+    "ast_hash": "9b482c4874a605c3a098e35a236d278e",
+    "semantic_hash": ""
+  },
+  "public/category/longevity/mood-3.png": {
+    "mtime": 1784217568.155164,
+    "ast_hash": "efe477cf3132e19a5bc714bf6326f455",
+    "semantic_hash": ""
+  },
+  "public/category/metabolic-health/evening.png": {
+    "mtime": 1784217108.8851068,
+    "ast_hash": "bc3e69b3bfcfa0858e5f0b9b24d2e87c",
+    "semantic_hash": ""
+  },
+  "public/category/metabolic-health/hero.png": {
+    "mtime": 1784216883.148558,
+    "ast_hash": "a54a46741aad56a9ae7252ad4061e250",
+    "semantic_hash": ""
+  },
+  "public/category/metabolic-health/midday.png": {
+    "mtime": 1784217130.9320393,
+    "ast_hash": "7de80d46f2ae30279acd9ab1582eeb01",
+    "semantic_hash": ""
+  },
+  "public/category/metabolic-health/morning.png": {
+    "mtime": 1784217099.109681,
+    "ast_hash": "6aa83fc4bcd9a7e0d2281f01679b4a93",
+    "semantic_hash": ""
+  },
+  "public/category/performance/hero.png": {
+    "mtime": 1784225764.3393643,
+    "ast_hash": "45d6308a4a6cf8ea06ad9e003c5d6b9a",
+    "semantic_hash": ""
+  },
+  "public/category/performance/ritual-1.png": {
+    "mtime": 1784223868.3567173,
+    "ast_hash": "924a88b839d7777b652ed9ca23cc8e3d",
+    "semantic_hash": ""
+  },
+  "public/category/performance/ritual-2.png": {
+    "mtime": 1784223889.360351,
+    "ast_hash": "84a2d717dd7259509e7a7d9ed631dd79",
+    "semantic_hash": ""
+  },
+  "public/category/performance/ritual-3.png": {
+    "mtime": 1784223938.9075148,
+    "ast_hash": "d3dbc1a73185d71752e90bfbe00696b3",
+    "semantic_hash": ""
+  },
+  "public/category/recovery/hero.png": {
+    "mtime": 1784225866.3475573,
+    "ast_hash": "0d9e0d380103ebe8638a07ed1d568d62",
+    "semantic_hash": ""
+  },
+  "public/category/recovery/repair.png": {
+    "mtime": 1784224869.340043,
+    "ast_hash": "e76fe86cf6a5f2f4d06d6aa2b270c8ed",
+    "semantic_hash": ""
+  },
+  "public/category/recovery/sleep.png": {
+    "mtime": 1784223994.7768254,
+    "ast_hash": "83190a5925dd686c96729b47190db25b",
+    "semantic_hash": ""
+  },
+  "public/category/recovery/stretch.png": {
+    "mtime": 1784224054.1906507,
+    "ast_hash": "864eda7526d13fd24fe2a525fb201828",
+    "semantic_hash": ""
+  },
+  "public/category/testosterone/after.png": {
+    "mtime": 1784224836.2730901,
+    "ast_hash": "a177ad6a346634d5f7ec3eb4d824e42c",
+    "semantic_hash": ""
+  },
+  "public/category/testosterone/hero.png": {
+    "mtime": 1784225580.4871585,
+    "ast_hash": "fd46b0d387ba8963d814598e8df5f821",
+    "semantic_hash": ""
+  },
+  "public/category/testosterone/you-1.png": {
+    "mtime": 1784217165.025424,
+    "ast_hash": "f410a2d15f5eb96afe5e5840a1dfb822",
+    "semantic_hash": ""
+  },
+  "public/category/testosterone/you-2.png": {
+    "mtime": 1784217202.0625458,
+    "ast_hash": "11af0b280bd7073b11940c733cd0ceb0",
+    "semantic_hash": ""
+  },
+  "public/category/testosterone/you-3.png": {
+    "mtime": 1784217427.4226885,
+    "ast_hash": "c4157c57fa79409d37635f0e227988b7",
+    "semantic_hash": ""
+  },
+  "public/category/weight-loss/after.png": {
+    "mtime": 1784216865.139983,
+    "ast_hash": "c655a85347fefb60d3e4bac912668f11",
+    "semantic_hash": ""
+  },
+  "public/category/weight-loss/hero.png": {
+    "mtime": 1784332910.3626945,
+    "ast_hash": "7ea904c2e6d3bacdcc01941919c01552",
+    "semantic_hash": ""
+  },
+  "public/category/weight-loss/life-1.png": {
+    "mtime": 1784216788.809549,
+    "ast_hash": "87c88da3f9ce574ceaa517a7f71c0ec6",
+    "semantic_hash": ""
+  },
+  "public/category/weight-loss/life-2.png": {
+    "mtime": 1784216839.0081983,
+    "ast_hash": "af6180efffa1ee5f339f6552860aa55b",
+    "semantic_hash": ""
+  },
+  "public/category/weight-loss/life-3.png": {
+    "mtime": 1784225795.6855464,
+    "ast_hash": "f201acafe3d09dba653e976330d13747",
+    "semantic_hash": ""
+  },
+  "public/pdp/how/assess.png": {
+    "mtime": 1784240568.4692533,
+    "ast_hash": "fe601ca9ca91512c605d06a985ebe39d",
+    "semantic_hash": ""
+  },
+  "public/pdp/how/begin.png": {
+    "mtime": 1784240913.7176762,
+    "ast_hash": "cb2cf0d415a3d3ad488a7fac3455b822",
+    "semantic_hash": ""
+  },
+  "public/pdp/how/prescribe.png": {
+    "mtime": 1784240683.7737145,
+    "ast_hash": "90c8fbc01df577d10b002a1f7fec2b5d",
+    "semantic_hash": ""
+  },
+  "public/pdp/how/ship.png": {
+    "mtime": 1784240796.9546914,
+    "ast_hash": "c2e8e312df339961272aa24c2a649079",
+    "semantic_hash": ""
+  },
+  "public/hero_main section_landing.webp": {
+    "mtime": 1784244448.8045864,
+    "ast_hash": "6a5c689abd1b232af12caab91e2f8ba0",
+    "semantic_hash": ""
+  },
+  "src/assets/ChatGPT Image Jul 17, 2026, 04_07_48 AM.png": {
+    "mtime": 1784308496.7819164,
+    "ast_hash": "23adfd1aada415f340d017de76be254f",
+    "semantic_hash": ""
+  },
+  "src/assets/outcomes-hero.jpg": {
+    "mtime": 1784298520.9135592,
+    "ast_hash": "45af4c3dd24840af904b1720c83f8e33",
+    "semantic_hash": ""
+  },
+  "src/assets/tidl-ai-hero.png": {
+    "mtime": 1784308496.8020017,
+    "ast_hash": "74e335d92c0aac0857f2390f828148cf",
+    "semantic_hash": ""
+  },
+  "src/assets/tidl-pen-peptide-hero.png": {
+    "mtime": 1784308496.8201559,
+    "ast_hash": "fe7386084ceff6a0b65d105145acf85b",
+    "semantic_hash": ""
+  },
+  "src/components/home/CareMosaicSection.tsx": {
+    "mtime": 1784329689.7564924,
+    "ast_hash": "a167e9f99342da91277b00673340f777",
+    "semantic_hash": ""
+  },
+  "public/goals/longevity.png": {
+    "mtime": 1784326174.2709446,
+    "ast_hash": "76a0592c98f438e43f9a1a3482601af0",
+    "semantic_hash": ""
+  },
+  "public/goals/metabolic.png": {
+    "mtime": 1784324866.8220172,
+    "ast_hash": "16442f82f47f1621158ced497561d66c",
+    "semantic_hash": ""
+  },
+  "public/goals/performance.png": {
+    "mtime": 1784326364.5884933,
+    "ast_hash": "29a9ebec314b8caec27ff718232f1791",
+    "semantic_hash": ""
+  },
+  "public/goals/recovery.png": {
+    "mtime": 1784326492.1517646,
+    "ast_hash": "b08abd8ff16a8a8f07dc2aec8a943b17",
+    "semantic_hash": ""
+  },
+  "public/goals/testosterone.png": {
+    "mtime": 1784325901.2921796,
+    "ast_hash": "e1d29df1c9507ee6924f26861b0a835a",
+    "semantic_hash": ""
+  },
+  "public/goals/weight-loss.png": {
+    "mtime": 1784324600.4877596,
+    "ast_hash": "73d6b1096ad69fa142452939fe411642",
+    "semantic_hash": ""
+  },
+  "src/assets/tidl-care-confident-man-cutout.png": {
+    "mtime": 1784317165.7765267,
+    "ast_hash": "3902747c3682130c0bd25d103580b24c",
+    "semantic_hash": ""
+  },
+  "src/assets/tidl-care-confident-man-studio.png": {
+    "mtime": 1784317165.813488,
+    "ast_hash": "5484b0b4ca7e09f348c3e62073f360e6",
+    "semantic_hash": ""
+  },
+  "src/assets/tidl-hand-held-bpc157-hero.png": {
+    "mtime": 1784317165.8468883,
+    "ast_hash": "7badeb899dedffcf7c11a2a3b226d123",
+    "semantic_hash": ""
+  },
+  "src/components/home/PenCalloutStage.tsx": {
+    "mtime": 1784332296.7328987,
+    "ast_hash": "c7110e99060366e92956146f88f54204",
+    "semantic_hash": ""
+  },
+  "public/feel/confidence.png": {
+    "mtime": 1784419732.6499915,
+    "ast_hash": "22eaa0e6d5453571bf0bcffe9005b714",
+    "semantic_hash": ""
+  },
+  "public/feel/mornings.png": {
+    "mtime": 1784419794.2348368,
+    "ast_hash": "9d3b5f78ca458205f0f36c73e4269131",
+    "semantic_hash": ""
+  },
+  "public/feel/soft-landings.png": {
+    "mtime": 1784419742.9541948,
+    "ast_hash": "e11bee610bd9657abdd99a6ad9010aae",
+    "semantic_hash": ""
+  },
+  "public/feel/still-here.png": {
+    "mtime": 1784418613.468639,
+    "ast_hash": "20233e01ec03e95231129c42e7a61362",
+    "semantic_hash": ""
+  },
+  ".tmp-pdp-verify/journey-circle.html": {
+    "mtime": 1784506658.8702762,
+    "ast_hash": "d98b97696dd3053ce555c8648c934ac6",
+    "semantic_hash": ""
+  },
+  ".tmp-pdp-verify/journey-circle-ring.png": {
+    "mtime": 1784506710.889196,
+    "ast_hash": "58649190b02d241b67ecc801a97edb6d",
+    "semantic_hash": ""
+  },
+  ".tmp-pdp-verify/metabolic-products/5amino.png": {
+    "mtime": 1783989431.1072369,
+    "ast_hash": "ee4e7276d0d06b0ac4266ec9ca0d1e4a",
+    "semantic_hash": ""
+  },
+  ".tmp-pdp-verify/metabolic-products/b12.png": {
+    "mtime": 1783989431.056531,
+    "ast_hash": "157144c03a9707237dc1f87600c0a84b",
+    "semantic_hash": ""
+  },
+  ".tmp-pdp-verify/metabolic-products/glutathione.png": {
+    "mtime": 1783989431.0807116,
+    "ast_hash": "b47959ad42bbd89011389407d93d69f1",
+    "semantic_hash": ""
+  },
+  ".tmp-pdp-verify/metabolic-products/motsc-lyo.png": {
+    "mtime": 1784033320.023048,
+    "ast_hash": "48d57b3ae7070976e106cb14a26df94c",
+    "semantic_hash": ""
+  },
+  ".tmp-pdp-verify/metabolic-products/motsc-vial.png": {
+    "mtime": 1783989431.1640491,
+    "ast_hash": "a5ff64d410ae501ac1ac6c62087df52a",
+    "semantic_hash": ""
+  },
+  ".tmp-pdp-verify/metabolic-products/ss31-vial.png": {
+    "mtime": 1783989431.1946537,
+    "ast_hash": "cf9d91c7fbaed29106f444cb096dea3a",
+    "semantic_hash": ""
+  },
+  "public/category/metabolic-health/after.png": {
+    "mtime": 1784508051.4756646,
+    "ast_hash": "2d5edd444c4954a56ac1424f3ccbc6a5",
+    "semantic_hash": ""
+  },
+  "src/components/analytics/AnalyticsBootstrap.tsx": {
+    "mtime": 1784588772.259659,
+    "ast_hash": "7d39996ff7a9d2618087636346a9c720",
+    "semantic_hash": ""
+  },
+  "src/lib/analytics/attribution.ts": {
+    "mtime": 1784588758.345567,
+    "ast_hash": "5ea13ea57d899357c236e2da4526f85c",
+    "semantic_hash": ""
+  },
+  "src/lib/analytics/config.ts": {
+    "mtime": 1784588756.930708,
+    "ast_hash": "6ca9c56961af51baaf3ee8f6bdfc350d",
+    "semantic_hash": ""
+  },
+  "src/lib/analytics/events.ts": {
+    "mtime": 1784588758.7114227,
+    "ast_hash": "25481be557cc8c67c009383ea153f5ef",
+    "semantic_hash": ""
+  },
+  "src/lib/analytics/sanitize-checkout.ts": {
+    "mtime": 1784588762.8957605,
+    "ast_hash": "8611a6f014177b2243e87411b34b9073",
+    "semantic_hash": ""
+  },
+  "src/lib/analytics/track.ts": {
+    "mtime": 1784588762.5958543,
+    "ast_hash": "2df07db60139b3f4269825f95dd05332",
+    "semantic_hash": ""
+  },
+  "src/lib/dynamic-quiz-bridge.ts": {
+    "mtime": 1784588767.659563,
+    "ast_hash": "fb648610fe3ecc9d7c2ef35622193861",
+    "semantic_hash": ""
+  },
+  "src/routes/api/funnel/event.ts": {
+    "mtime": 1784588774.2454224,
+    "ast_hash": "41d22853f48b6111cefbc2db278d1407",
+    "semantic_hash": ""
+  },
+  "src/server/funnel/event-store.ts": {
+    "mtime": 1784588772.9073646,
+    "ast_hash": "ef77021769e6dec0dc6776cd1195fa34",
+    "semantic_hash": ""
+  },
+  "src/server/prx/sanitize-checkout.ts": {
+    "mtime": 1784588784.0313506,
+    "ast_hash": "9bc3cd938ce62ecf0abfb9a5282aca37",
+    "semantic_hash": ""
+  },
+  "integration-deployment-plan.md": {
+    "mtime": 1784588751.0716383,
+    "ast_hash": "49f952fb3ee9cca47c538732a69d1faa",
+    "semantic_hash": ""
+  },
+  "message-to-prx-provider-assignment.md": {
+    "mtime": 1784588752.9996164,
+    "ast_hash": "d73b661a218ed3bcd1fe95b297de070c",
     "semantic_hash": ""
   }
 }

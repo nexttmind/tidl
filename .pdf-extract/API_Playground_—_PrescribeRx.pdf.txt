@@ -1,0 +1,29 @@
+API Playground
+Hit any sandbox API endpoint live. Sandbox tokens are auto-loaded from /api/docs/tokens ;
+switch token type with the dropdown to change scope (sales-org / client / patient). All calls go
+to https://demo.prescribe-rx.com/api/v1 on this instance.
+Sandbox-only. This page is disabled in production (app()->environment('production')) and the routes
+return 404. Treat all data here as throwaway — sandbox tokens are regenerated every 12h.
+Request
+Token type
+sales-org token
+Loaded 5 sandbox tokens (auto-regenerated every 12h)
+Method & path
+GET /catalog
+GET /catalog GET /products GET /packages GET /encounters GET /orders GET /auth/me
+GET /me/patient/dashboard GET /telehealth/encounter-types GET /webhooks/event-types
+POST /telehealth/intake/unified
+Body (JSON — used for POST/PUT/PATCH)
+{"key": "value"}
+Send request
+cURL equivalent
+Response
+—
+Body
+←  B a c k  t o  A P I r e f e r e n c e
+No response yet — click "Send request"
+Headers
+Heads up: POSTing to /telehealth/intake/unified creates real (sandbox-flagged) encounters. The
+preset payload uses a name with "Test" so the encounter is auto-flagged as is_sandbox=true, which
+skips provider auto-assignment + fulfillment dispatch. Production parity testing should always use
+the explicit "is_sandbox": true field.

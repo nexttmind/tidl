@@ -90,13 +90,13 @@
     "semantic_hash": ""
   },
   "src/components/category/CategoryHero.tsx": {
-    "mtime": 1784067558.7002027,
-    "ast_hash": "4f37ba0415cd603fdf1988028e7a3e7a",
+    "mtime": 1784216024.4670076,
+    "ast_hash": "0f548976619aeb480d949774c25ef00a",
     "semantic_hash": ""
   },
   "src/components/category/CategoryPage.tsx": {
-    "mtime": 1784138090.4330287,
-    "ast_hash": "751ded0859d89516faa577e7ede817ae",
+    "mtime": 1784215920.53475,
+    "ast_hash": "116df6fc38ce88d457dc97b242ae5e21",
     "semantic_hash": ""
   },
   "src/components/category/CategoryPenProgram.tsx": {
@@ -135,8 +135,8 @@
     "semantic_hash": ""
   },
   "src/components/home/HomePage.tsx": {
-    "mtime": 1784069078.9853127,
-    "ast_hash": "0275495632c5be1d4d6896c9b641683c",
+    "mtime": 1784215400.4697268,
+    "ast_hash": "e0bbe4a51cbede75d329d655ce6f120f",
     "semantic_hash": ""
   },
   "src/components/home/JourneySection.tsx": {
@@ -230,13 +230,13 @@
     "semantic_hash": ""
   },
   "src/components/pdp/PdpBeforeAfterSection.tsx": {
-    "mtime": 1784138090.424729,
-    "ast_hash": "46dcf7f937562c064e612f224349d69c",
+    "mtime": 1784214312.8131943,
+    "ast_hash": "3c16a1edadca8ca841251f9194e63eb6",
     "semantic_hash": ""
   },
   "src/components/pdp/PdpCtaBand.tsx": {
-    "mtime": 1784139758.6089668,
-    "ast_hash": "4391a6efe5d08f4b3e58e4127141e22d",
+    "mtime": 1784214365.0631087,
+    "ast_hash": "1733d00bf63c6d2e8e5b623dfce65f44",
     "semantic_hash": ""
   },
   "src/components/pdp/PdpDataProvider.tsx": {
@@ -255,8 +255,8 @@
     "semantic_hash": ""
   },
   "src/components/pdp/PdpHeroSection.tsx": {
-    "mtime": 1784138090.4237309,
-    "ast_hash": "b0c0fcc0e431d7e936d44de394832064",
+    "mtime": 1784214302.4462333,
+    "ast_hash": "7480f8e2de2a76dd46f9475c77cc7b97",
     "semantic_hash": ""
   },
   "src/components/pdp/PdpIncludedSection.tsx": {
@@ -300,8 +300,8 @@
     "semantic_hash": ""
   },
   "src/components/pdp/ProductPdpPage.tsx": {
-    "mtime": 1784138090.4340305,
-    "ast_hash": "e67188cdf39fce582f96d9eaed3fb7d0",
+    "mtime": 1784214251.2320094,
+    "ast_hash": "a407b671c1d5af23bf5978ba4849b86e",
     "semantic_hash": ""
   },
   "src/components/pdp/usePdpHeaderState.ts": {
@@ -615,8 +615,8 @@
     "semantic_hash": ""
   },
   "src/lib/categories.ts": {
-    "mtime": 1784068953.5411649,
-    "ast_hash": "ace9fb8b036587ceafe48f973b5c7bb3",
+    "mtime": 1784215849.9173727,
+    "ast_hash": "29855555a067f439b0a3270d2cf282ac",
     "semantic_hash": ""
   },
   "src/lib/category-bundles.ts": {
@@ -755,8 +755,8 @@
     "semantic_hash": ""
   },
   "src/lib/prescribe-rx/merge-sandbox-pdp.ts": {
-    "mtime": 1784138090.4320314,
-    "ast_hash": "5f802e12c01b85e5ef267f83e0d20ee9",
+    "mtime": 1784215377.040979,
+    "ast_hash": "14cdcb37da201fd6d1fd8857a7652445",
     "semantic_hash": ""
   },
   "src/lib/prescribe-rx/types.ts": {
@@ -765,13 +765,13 @@
     "semantic_hash": ""
   },
   "src/lib/prescribe-rx/use-home-sandbox.ts": {
-    "mtime": 1784067558.7220225,
-    "ast_hash": "b7310b6f46397306c3ce90daab7141ef",
+    "mtime": 1784215844.4685626,
+    "ast_hash": "dc219c19261885002d4307188ad5b53e",
     "semantic_hash": ""
   },
   "src/lib/prescribe-rx/use-live-catalog.ts": {
-    "mtime": 1784053573.4961867,
-    "ast_hash": "2317f37240b7e45fa64522823193c13b",
+    "mtime": 1784215377.034717,
+    "ast_hash": "f598f9cb3d92a568ae9719bb8c4615f5",
     "semantic_hash": ""
   },
   "src/providers/auth-provider.tsx": {
@@ -1660,8 +1660,8 @@
     "semantic_hash": ""
   },
   "src/components/category/CategoryFormularySection.tsx": {
-    "mtime": 1784138090.474405,
-    "ast_hash": "c7b51bbd6da15d3f398182be25c40cf6",
+    "mtime": 1784215828.2920225,
+    "ast_hash": "b1deca63d923dff65c192748b0ff0ddf",
     "semantic_hash": ""
   },
   "ui/TIDL-Design-System.md": {
@@ -1945,8 +1945,8 @@
     "semantic_hash": ""
   },
   "src/components/pdp/PdpMinimalSections.tsx": {
-    "mtime": 1784140125.973747,
-    "ast_hash": "405a8841d987f90219d4c40fa8f7c64b",
+    "mtime": 1784214344.1823287,
+    "ast_hash": "ecbecf89038a4e3f53939485e7927f3d",
     "semantic_hash": ""
   },
   "public/pdp/page.md": {
@@ -1992,6 +1992,86 @@
   "public/pdp/icons/photo-protocol.png": {
     "mtime": 1784077507.2255938,
     "ast_hash": "30919b5fa7a79117683bfab66e263178",
+    "semantic_hash": ""
+  },
+  "code to Figma/README.md": {
+    "mtime": 1784153087.1043367,
+    "ast_hash": "32ddaaa45e44e0fbaba90aa99c267d39",
+    "semantic_hash": ""
+  },
+  "code to Figma/index.html": {
+    "mtime": 1784153052.142316,
+    "ast_hash": "b6cfc114957fc1ace148bd44bc2b4f21",
+    "semantic_hash": ""
+  },
+  "code to Figma/assets/logo-yellow.png": {
+    "mtime": 1783550593.868879,
+    "ast_hash": "aeb931e44a45bab971b7942dc505025b",
+    "semantic_hash": ""
+  },
+  "code to Figma/assets/logo.png": {
+    "mtime": 1781873760.7459347,
+    "ast_hash": "5d2a64b459271c4ca9c0975c11d00ded",
+    "semantic_hash": ""
+  },
+  "code to Figma/assets/pen.png": {
+    "mtime": 1783692252.4120173,
+    "ast_hash": "6b8306e4f9910d7948a1e182851d8c2b",
+    "semantic_hash": ""
+  },
+  "code to Figma/assets/portrait-man.png": {
+    "mtime": 1783692252.464015,
+    "ast_hash": "e036872066163055ee101bac2ac267f9",
+    "semantic_hash": ""
+  },
+  "code to Figma/assets/portrait-woman.png": {
+    "mtime": 1783692252.5050075,
+    "ast_hash": "d56cd687dda4a30ad6a0c6137a00f4c8",
+    "semantic_hash": ""
+  },
+  "code to Figma/assets/progress.png": {
+    "mtime": 1784067558.6933749,
+    "ast_hash": "ba7d2c66192716d676eda462cd5ed9b7",
+    "semantic_hash": ""
+  },
+  "code to Figma/assets/service-metabolic.png": {
+    "mtime": 1784067558.6678424,
+    "ast_hash": "ba7d2c66192716d676eda462cd5ed9b7",
+    "semantic_hash": ""
+  },
+  "code to Figma/assets/service-performance.png": {
+    "mtime": 1784067558.6748393,
+    "ast_hash": "c1711dadf68ef0f1f062e3604cb0e36a",
+    "semantic_hash": ""
+  },
+  "code to Figma/assets/service-recovery.png": {
+    "mtime": 1784067558.6861067,
+    "ast_hash": "30d148b027eed380f2ad0da2aeaee116",
+    "semantic_hash": ""
+  },
+  "src/components/pdp/PdpGoalOutcomesSection.tsx": {
+    "mtime": 1784214240.170115,
+    "ast_hash": "c83a4948ab22de3af96561b85a83c428",
+    "semantic_hash": ""
+  },
+  "docs/google-stitch-landing-prompt.md": {
+    "mtime": 1784214932.8140857,
+    "ast_hash": "55909c6292bd4e221edb8f3b344bd99d",
+    "semantic_hash": ""
+  },
+  "src/components/category/CategoryAfterSection.tsx": {
+    "mtime": 1784215807.4929564,
+    "ast_hash": "dc81a0ef7bbd603127a39264ffe8b163",
+    "semantic_hash": ""
+  },
+  "src/components/category/CategoryTrustSection.tsx": {
+    "mtime": 1784215802.682066,
+    "ast_hash": "3154c2c041a19117833ba16f76863fe6",
+    "semantic_hash": ""
+  },
+  "src/lib/category-products.ts": {
+    "mtime": 1784215769.306569,
+    "ast_hash": "a4ee9525338ae3e2686da4c533831bd1",
     "semantic_hash": ""
   }
 }

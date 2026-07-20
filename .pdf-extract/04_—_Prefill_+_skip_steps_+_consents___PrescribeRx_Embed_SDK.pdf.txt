@@ -1,0 +1,82 @@
+ Full prefill + skip steps + pre-accepted consents
+White-label flow: your platform already has the patient on file (registered, ID-verified,
+consented). Skip steps the wizard would otherwise re-collect, prefill the patient block, and
+pass through the structured ID metadata + consent acknowledgements you captured
+upstream.
+The integration pattern
+// 1. Pre-fill demographics + answers (keyed by field slug)
+PrescribeRx.prefill({
+  first_name:    'Jane',
+  last_name:     'Smith',
+  email:         'jane.smith@example.com',
+  date_of_birth: '1988-03-22',
+  phone:         '555-555-9876',
+  current_weight_lbs: 185,
+  weight_goal:   'lose_15_lbs'
+});
+// 2. Skip steps you've already handled upstream
+PrescribeRx.setSkipSteps([
+  'identification',    // already verified during signup
+  'payment-step',      // charged on our gateway already
+  'review-step'        // fast-path through review
+]);
+// 3. Pass through ID metadata captured during your signup flow
+PrescribeRx.setIdentification({
+  id_type:   'drivers_license',
+  id_number: 'D1234567',
+  id_state:  'GA'
+});
+// 4. Pre-mark consents the patient already accepted on your platform
+PrescribeRx.setConsents([
+  {
+    consent_type:    6,                    // Telehealth (see /api/docs/field-
+    consent_text:    'I consent to telehealth consultation.',
+    consent_version: '2.1',
+    consented_at:    '2026-04-15T10:32:00Z',
+    signature_method: 'click'
+  },
+  {
+E x a m p l e  0 4  ·
+←  A l l  e x a m p l e s
+    consent_type:    7,                    // Controlled substance
+    consent_text:    'I consent to controlled-substance prescribing.',
+    signature_method: 'click'
+  }
+Try it
+prefill (full patient block) setSkipSteps (3 steps) setIdentification (DL)
+setConsents (telehealth + Rx) Run all 4 above Reset wizard
+Live wizard
+
+
+SANDBOX MODE — TEST TRANSACTION ONLY. No real charges will be
+processed. Use test card 4111 1111 1111 1111, any future expiration, any 3-
+digit CVC.
+Male TRT Consult
+1         
+Step 1 of 10 · 10%
+2
+3
+4
+5
+6
+7
+8
+9
+1 0
+ Product Selection
+Select products/medications of interest
+Browse Products
+
+Testosterone 200 mg/ml (5ML Vial)
+Sex Hormones (Male)
+Testosterone Example
+Sex Hormones (Male) $14.70
+
+
+Save & Continue 
+Event log
+13:02:14.307ready {"version":"1.1.0"}
+Tip — consent_type values
+1=HIPAA · 2=TCPA · 3=SMS · 4=Email · 5=Terms · 6=Telehealth · 7=Controlled-substance · 8=Privacy ·
+9=BAA · 10=Disclosure · 99=Custom
+See field-mapping for what each consent type unlocks downstream + how the audit log row is shaped.

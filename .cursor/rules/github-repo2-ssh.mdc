@@ -1,24 +1,29 @@
 ---
-description: When user says push to repo 2, use the dedicated SSH key/host alias
+description: When user says push to repo 2, use the dedicated SSH key for foundersof404 (not nexttmind)
 alwaysApply: true
 ---
 
-# GitHub repo 2 SSH key
+# GitHub repo 2 SSH key (foundersof404)
+
+The second SSH key is for **[foundersof404](https://github.com/foundersof404/)**, not `nexttmind`.
 
 When the user says **push to repo 2**, **push repo 2**, or similar:
 
 1. Use SSH host alias `github.com-repo2` (NOT `github.com`, `github.com-nexttmind`, or `github.com-tidl`).
-2. Key file: `~/.ssh/id_ed25519_github_repo2` (fingerprinting must not match the primary GitHub key).
-3. Remote URL form: `git@github.com-repo2:OWNER/REPO.git`
-4. Never reuse `id_ed25519_github`, `id_ed25519_github_deploy`, or `tidl_deploy_mhmd_al_asher` for repo 2 pushes.
+2. Key file: `~/.ssh/id_ed25519_github_repo2`
+3. Default remote: `git@github.com-repo2:foundersof404/tidl.git` (already configured as `repo2`)
+4. Never use nexttmind keys (`id_ed25519_github_deploy`, `tidl_deploy_mhmd_al_asher`) for repo 2
+5. Never push to `nexttmind/*` with the repo2 key unless the user explicitly asks
+
+## Setup reminder
+
+- Account: [foundersof404](https://github.com/foundersof404/)
+- Repo: [foundersof404/tidl](https://github.com/foundersof404/tidl)
+- Public key must stay on that account/repo for `github.com-repo2` auth
+- Ask if they want a different REPO under `foundersof404`. Do not invent it.
 
 ## Quick push pattern
 
 ```powershell
-git remote set-url repo2 git@github.com-repo2:OWNER/REPO.git
 git push repo2 HEAD
 ```
-
-If the remote is not named `repo2` yet, create it with that URL before pushing.
-
-Ask for OWNER/REPO if the second repo URL is unknown. Do not invent it.

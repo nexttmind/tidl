@@ -1,0 +1,74 @@
+ Pre-attached lab results
+Encounter type with requires_labs=true ? Don't make the patient wait for a fresh draw if they
+already have recent results. Pass them via setLabResults and the wizard skips its auto-order-
+labs branch + persists the PDFs as patient_documents linked to the chart and encounter.
+The integration pattern
+// 1. Attach prior lab results — base64 OR HTTPS URL fetched server-side
+PrescribeRx.setLabResults([
+  {
+    name:         'TSH 2026-04',
+    lab_type:     'TSH',
+    collected_at: '2026-04-15',
+    pdf_base64:   'JVBERi0xLjQK...'     // preferred
+  },
+  {
+    name:         'Comprehensive Metabolic Panel',
+    lab_type:     'CMP',
+    collected_at: '2026-04-15',
+    pdf_url:      'https://your-cdn.example.com/labs/abc123.pdf'
+  }
+]);
+// 2. (Optional) attach other supporting documents alongside
+PrescribeRx.setDocuments([
+  { type: 'lab_result_pdf', filename: 'thyroid_panel.pdf', file_base64: '...' 
+]);
+// On submit, the wizard checks each required panel against the supplied
+// lab_type markers. All required panels covered → labs_satisfied=true and
+// the auto-lab-order branch is skipped. Missing panels → ONLY those are
+// auto-ordered. See /api/docs/field-mapping#documents for the full schema.
+Try it
+Click "Generate test PDF" first; that creates a tiny placeholder PDF + base64-encodes it inline.
+Then click "setLabResults" to ship it to the iframe.
+E x a m p l e  0 5  ·
+←  A l l e x a m p l e s
+Generate test PDF setLabResults (TSH + CMP) setDocuments (raw)
+Reset wizard
+PDF size: —
+Base64 size: —
+Live wizard
+
+
+SANDBOX MODE — TEST TRANSACTION ONLY. No real charges will be
+processed. Use test card 4111 1111 1111 1111, any future expiration, any 3-
+digit CVC.
+Male TRT Consult
+1         
+Step 1 of 10 · 10%
+2
+3
+4
+5
+6
+7
+8
+9
+1 0
+ Product Selection
+Select products/medications of interest
+Browse Products
+
+Testosterone 200 mg/ml (5ML Vial)
+Sex Hormones (Male)
+Testosterone Example
+Sex Hormones (Male) $14.70
+
+
+Save & Continue 
+Event log
+13:02:22.874ready {"version":"1.1.0"}
+Required vs satisfied
+Use GET /api/v1/encounters/{id}/lab-requirements from your backend to check which biomarkers are
+still needed. The endpoint returns missing_biomarker_ids[] per panel — pass through to your UI so the
+patient sees "we still need a free T4" instead of a generic "labs required" prompt.
+curl "https://demo.prescribe-rx.com/api/v1/encounters/$ENC/lab-requirements" \
+  -H "Authorization: Bearer $TOKEN"

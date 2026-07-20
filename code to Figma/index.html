@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TIDL — Home (Code to Figma)</title>
+    <meta
+      name="description"
+      content="Static HTML/CSS recreation of the TIDL homepage for Code to Figma. No Webflow."
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
+  </head>
+  <body>
+    <!-- Announcement -->
+    <div class="announce">
+      <div class="announce-inner">
+        <p>TIDL is now a telehealth platform. Care that delivers results.</p>
+        <a href="#journey">Learn more →</a>
+      </div>
+    </div>
+
+    <!-- Header + Hero -->
+    <header class="site-top">
+      <nav class="nav">
+        <a class="nav-logo" href="#">
+          <img src="assets/logo-yellow.png" alt="TIDL" />
+        </a>
+        <ul class="nav-links">
+          <li><a href="#services">Treatments</a></li>
+          <li><a href="#pen">The Pen</a></li>
+          <li><a href="#journey">About</a></li>
+          <li><a href="#stories">Reviews</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+        <a class="btn btn-light" href="#cta">Get started</a>
+      </nav>
+
+      <section class="hero">
+        <div class="hero-copy">
+          <h1>The only GLP-1 that's pre-dosed for you. Click it, don't calculate it.</h1>
+          <p>
+            Doctor-prescribed GLP-1, delivered pre-dosed to your door. Plans start at $299/mo.
+            Online in 5 minutes.
+          </p>
+          <a class="btn btn-dark" href="#cta">Take the 5-Minute Quiz</a>
+        </div>
+        <img
+          class="hero-bg"
+          src="https://cdn.prod.website-files.com/6a484773bf274d9b9ec3f5b9/6a4a44f83052977cb1646003_hf_20260705_114532_eed1607f-baf0-4f2d-9b83-39b75e08344a.png"
+          alt=""
+        />
+        <img
+          class="hero-overlay"
+          src="https://cdn.prod.website-files.com/6a484773bf274d9b9ec3f5b9/6a484775bf274d9b9ec3f7ba_overlay%20(2).png"
+          alt=""
+        />
+      </section>
+    </header>
+
+    <!-- Services / Pick your goal -->
+    <section class="section services" id="services">
+      <div class="wrap">
+        <h2 class="section-title">Pick your goal.</h2>
+        <div class="service-grid">
+          <article class="service-card">
+            <div class="service-media">
+              <img
+                src="https://cdn.prod.website-files.com/6a484773bf274d9b9ec3f5b9/6a4a948975e49a6ca9c6b6e5_hf_20260705_172618_ea8e3be2-4637-4096-83cc-5ec995f07e09.png"
+                alt="Weight loss"
+              />
+              <span>Weight loss</span>
+            </div>
+            <p>GLP-1 treatment dosed for you by a doctor. No mixing, no guesswork, no yo-yo.</p>
+            <a class="text-link" href="#">See Pricing &amp; Plans →</a>
+          </article>
+          <article class="service-card">
+            <div class="service-media">
+              <img
+                src="https://cdn.prod.website-files.com/6a484773bf274d9b9ec3f5b9/6a4a95a92a6dee9e17ed919e_hf_20260705_173015_06ec6b8c-b985-4bab-80b1-41afe144db92.png"
+                alt="Testosterone"
+              />
+              <span>Testosterone</span>
+            </div>
+            <p>Energy, strength, drive, focus. TRT built around your labs and your life.</p>
+            <a class="text-link" href="#">Explore TRT →</a>
+          </article>
+          <article class="service-card">
+            <div class="service-media">
+              <img
+                src="https://cdn.prod.website-files.com/6a484773bf274d9b9ec3f5b9/6a4bd7ba829cdf371074ee74_hf_20260706_160923_8f107d2e-39e5-41c3-8290-18fd580d714a.png"
+                alt="Longevity"
+              />
+              <span>Longevity</span>
+            </div>
+            <p>Peptide protocols to recover faster, sleep deeper, and stay sharp.</p>
+            <a class="text-link" href="#">Explore longevity →</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- TIDL Pen -->
+    <section class="section pen" id="pen">
+      <div class="wrap">
+        <p class="kicker">The TIDL Pen</p>
+        <h2 class="section-title section-title-light">
+          GLP-1, pre-dosed.<br /><em>Just click.</em>
+        </h2>
+
+        <div class="pen-grid">
+          <div class="pen-col pen-col-left">
+            <div class="pen-feat">
+              <span>01</span>
+              <h3>Precision dose slider</h3>
+              <p>Your dose, set to your prescription. Nothing to calculate.</p>
+            </div>
+            <div class="pen-feat">
+              <span>02</span>
+              <h3>Graduated dose scale</h3>
+              <p>Clear markings from 0.1 to 1.0 ml. Zero guesswork.</p>
+            </div>
+          </div>
+
+          <div class="pen-stage">
+            <img src="assets/pen.png" alt="The TIDL Pen" />
+          </div>
+
+          <div class="pen-col pen-col-right">
+            <div class="pen-feat">
+              <span>03</span>
+              <h3>Sealed and dispensed to you</h3>
+              <p>Labeled with your name at the pharmacy.</p>
+            </div>
+            <div class="pen-feat">
+              <span>04</span>
+              <h3>Cold-chain shipped</h3>
+              <p>Temperature-safe packaging to your door.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="center">
+          <a class="btn btn-gold" href="#cta">See If You Qualify</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Journey / How it works -->
+    <section class="section journey" id="journey">
+      <div class="wrap">
+        <p class="kicker kicker-dark">How it works</p>
+        <h2 class="section-title">Five minutes. Real care. Your door.</h2>
+        <div class="journey-grid">
+          <article class="journey-card">
+            <img
+              src="https://cdn.prod.website-files.com/6a484773bf274d9b9ec3f5b9/6a4aa74cb673463b10d3ae0a_hf_20260705_182659_b144a633-d893-4de0-b45e-39e6df164b2f.png"
+              alt=""
+            />
+            <h3>01 · Quiz</h3>
+            <p>Share your goals and health history in about five minutes.</p>
+          </article>
+          <article class="journey-card">
+            <img
+              src="https://cdn.prod.website-files.com/6a484773bf274d9b9ec3f5b9/6a4aa74d68be0cc0c1e6ff78_hf_20260705_183156_8357ac89-69ac-4055-a74d-07ea368560c8.png"
+              alt=""
+            />
+            <h3>02 · Provider review</h3>
+            <p>A licensed provider in your state reviews your intake before anything is prescribed.</p>
+          </article>
+          <article class="journey-card">
+            <img
+              src="https://cdn.prod.website-files.com/6a484773bf274d9b9ec3f5b9/6a4aa92efc42f4d1ca52f73b_hf_20260705_185141_41c69960-1413-4b75-8318-f0800323717b.png"
+              alt=""
+            />
+            <h3>03 · Ship &amp; begin</h3>
+            <p>Medication arrives from a US pharmacy in plain packaging, cold-chain when needed.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reviews -->
+    <section class="section stories" id="stories">
+      <div class="wrap">
+        <h2 class="section-title">Patient reviews</h2>
+        <div class="story-grid">
+          <article class="story-card">
+            <div class="story-person">
+              <img src="assets/portrait-woman.png" alt="" />
+              <div>
+                <strong>Elena V.</strong>
+                <span>−18 lbs in 14 weeks*</span>
+              </div>
+            </div>
+            <blockquote>
+              “Five-minute quiz, doctor review, treatment at my door. Finally feeling like myself again.”
+            </blockquote>
+            <p class="verified">Verified</p>
+          </article>
+          <article class="story-card">
+            <div class="story-person">
+              <img src="assets/portrait-man.png" alt="" />
+              <div>
+                <strong>James R.</strong>
+                <span>−14 lbs in 10 weeks*</span>
+              </div>
+            </div>
+            <blockquote>
+              “No waiting rooms, no awkward visits. Genuinely the easiest health decision I've made.”
+            </blockquote>
+            <p class="verified">Verified</p>
+          </article>
+          <article class="story-card">
+            <div class="story-person">
+              <img src="assets/portrait-woman.png" alt="" />
+              <div>
+                <strong>Priya N.</strong>
+                <span>−11 lbs in 12 weeks*</span>
+              </div>
+            </div>
+            <blockquote>
+              “Felt legitimate from day one. Real doctors, real pharmacy, clear instructions.”
+            </blockquote>
+            <p class="verified">Verified</p>
+          </article>
+        </div>
+        <p class="note">*Individual results vary. Not a guarantee of your results.</p>
+      </div>
+    </section>
+
+    <!-- Families / emotional mid CTA -->
+    <section class="section families" id="families">
+      <img
+        class="families-bg"
+        src="https://cdn.prod.website-files.com/6a484773bf274d9b9ec3f5b9/6a4bdcc786041c1c67e4f84a_hf_20260706_164258_2d8f8b0b-75a0-491a-bc5b-ce98730f9f41.png"
+        alt=""
+      />
+      <div class="wrap families-inner">
+        <div class="families-copy">
+          <h2>The strongest version of you is a quiz away.</h2>
+          <p>Doctor-prescribed GLP-1, TRT, and peptide care. One five-minute quiz. No waiting rooms, no guesswork.</p>
+          <a class="btn btn-dark" href="#cta">Start My Quiz</a>
+        </div>
+        <div class="families-cards">
+          <div class="fam-card fam-card-main">
+            <h3>The pen that changed the game</h3>
+            <p>Pre-dosed and ready to use. No mixing, no measuring, no guesswork. Just click and go.</p>
+          </div>
+          <div class="fam-card fam-card-plain">
+            <p>Shipped from a US pharmacy. Plain packaging.</p>
+          </div>
+          <div class="fam-card fam-card-photo">
+            <img src="assets/progress.png" alt="" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section faq" id="faq">
+      <div class="wrap narrow">
+        <h2 class="section-title">Frequently asked questions</h2>
+        <details class="faq-item" open>
+          <summary>Do I need a prescription?</summary>
+          <p>
+            Yes, and that's the point. Every TIDL treatment is prescription-only. The quiz doubles as your
+            medical intake, and if a licensed provider decides treatment is right for you, they write the
+            prescription themselves.
+          </p>
+        </details>
+        <details class="faq-item">
+          <summary>Who reviews and prescribes my treatment?</summary>
+          <p>
+            A licensed medical provider in your state reads your full intake before anything is prescribed.
+            No algorithms making medical decisions.
+          </p>
+        </details>
+        <details class="faq-item">
+          <summary>How does the TIDL Pen work?</summary>
+          <p>
+            Your dose is set to your prescription, with a clear graduated scale so there's never any
+            guesswork. No vials, no syringes, nothing to mix or assemble.
+          </p>
+        </details>
+        <details class="faq-item">
+          <summary>Is shipping discreet?</summary>
+          <p>
+            Completely. Your treatment arrives in plain, unbranded outer packaging with nothing on the box
+            that says what's inside.
+          </p>
+        </details>
+        <details class="faq-item">
+          <summary>Can I talk to my care team after I start?</summary>
+          <p>
+            Anytime. Message your care team with questions about your treatment, side effects, or progress,
+            and a real person answers.
+          </p>
+        </details>
+      </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="section cta" id="cta">
+      <div class="wrap narrow center">
+        <p class="kicker">Your turn</p>
+        <h2 class="section-title section-title-light">
+          Let her be the first<br />to take this quiz.
+        </h2>
+        <p class="cta-copy">
+          Five honest minutes, a licensed provider, and the quiet decision to become her again.
+        </p>
+        <a class="btn btn-gold" href="#">Start my free quiz</a>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="wrap footer-inner">
+        <img class="footer-logo" src="assets/logo-yellow.png" alt="TIDL" />
+        <div class="footer-cols">
+          <div>
+            <h4>Treatments</h4>
+            <a href="#services">Weight loss</a>
+            <a href="#services">Testosterone</a>
+            <a href="#services">Longevity</a>
+          </div>
+          <div>
+            <h4>Company</h4>
+            <a href="#journey">How it works</a>
+            <a href="#faq">FAQ</a>
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
+          </div>
+          <div>
+            <h4>Care</h4>
+            <a href="#pen">The TIDL Pen</a>
+            <a href="#stories">Reviews</a>
+            <a href="#cta">Get started</a>
+          </div>
+        </div>
+        <p class="footer-note">© 2026 TIDL. Prescription care, delivered.</p>
+      </div>
+    </footer>
+  </body>
+</html>

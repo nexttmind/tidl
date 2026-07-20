@@ -1,0 +1,199 @@
+﻿{
+    "data":  [
+                 {
+                     "id":  "019f11f4-69b0-73b8-921e-130b27680af6",
+                     "name":  "Async Message",
+                     "slug":  "quick-async-message",
+                     "description":  "Send a message to a provider and get a reply.",
+                     "icon":  null,
+                     "product_class":  null,
+                     "product_type":  null,
+                     "is_featured":  false,
+                     "requires_labs":  false,
+                     "interaction_type":  "Asynchronous"
+                 },
+                 {
+                     "id":  "019d0461-7ee9-7092-be92-c7fa5ae73b19",
+                     "name":  "Female HRT ",
+                     "slug":  "female-hrt",
+                     "description":  null,
+                     "icon":  "ti ti-stethoscope",
+                     "product_class":  "Sex Hormones (Female)",
+                     "product_type":  null,
+                     "is_featured":  false,
+                     "requires_labs":  true,
+                     "interaction_type":  "Video Call"
+                 },
+                 {
+                     "id":  "019d38e7-598f-71e5-980a-28edc612d416",
+                     "name":  "Female HRT Reassessment",
+                     "slug":  "female-hrt-reassessment",
+                     "description":  "Female HRT Reassessment",
+                     "icon":  "ti ti-stethoscope",
+                     "product_class":  "Sex Hormones (Female)",
+                     "product_type":  null,
+                     "is_featured":  false,
+                     "requires_labs":  true,
+                     "interaction_type":  "Video Call"
+                 },
+                 {
+                     "id":  "019ef75b-bca3-71fb-9eda-18c680c23155",
+                     "name":  "General Sync Video Consult",
+                     "slug":  "general-sync-video-consult",
+                     "description":  "General Sync Video Consult",
+                     "icon":  null,
+                     "product_class":  null,
+                     "product_type":  null,
+                     "is_featured":  false,
+                     "requires_labs":  false,
+                     "interaction_type":  "Video Call"
+                 },
+                 {
+                     "id":  "019ce396-481f-7057-a917-d7ac8d85e05f",
+                     "name":  "GLP-1 Re-Assessment",
+                     "slug":  "glp-1-re-assessment",
+                     "description":  "Follow-up re-assessment for patients currently on GLP-1 receptor agonist therapy. Evaluates adverse reactions, serious symptoms, and medication change requests.",
+                     "icon":  "",
+                     "product_class":  "GLP-1s \u0026 GIPs",
+                     "product_type":  null,
+                     "is_featured":  false,
+                     "requires_labs":  false,
+                     "interaction_type":  "Asynchronous"
+                 },
+                 {
+                     "id":  "019ce396-46a1-73ab-87d6-c40310555401",
+                     "name":  "GLP-1 Screening",
+                     "slug":  "glp-1-screening",
+                     "description":  "Initial screening assessment for GLP-1 receptor agonist therapy (Tirzepatide/Semaglutide/Liraglutide) for weight management. Evaluates contraindications, medical history, and medication interactions.",
+                     "icon":  "ti ti-stethoscope",
+                     "product_class":  "GLP-1s \u0026 GIPs",
+                     "product_type":  null,
+                     "is_featured":  false,
+                     "requires_labs":  false,
+                     "interaction_type":  "Asynchronous"
+                 },
+                 {
+                     "id":  "019ef8ed-3713-7277-ac46-b0a13d7a3e3b",
+                     "name":  "M24u Wellness",
+                     "slug":  "m24u-wellness",
+                     "description":  "M24u Wellness",
+                     "icon":  null,
+                     "product_class":  "Sex Hormones (Male)",
+                     "product_type":  null,
+                     "is_featured":  false,
+                     "requires_labs":  false,
+                     "interaction_type":  "Video Call"
+                 },
+                 {
+                     "id":  "019d000e-a554-721d-a727-08f65de4fd0b",
+                     "name":  "Male TRT Consult",
+                     "slug":  "male-trt-consult",
+                     "description":  "Male TRT Consultation Intake",
+                     "icon":  null,
+                     "product_class":  "Sex Hormones (Male)",
+                     "product_type":  null,
+                     "is_featured":  false,
+                     "requires_labs":  true,
+                     "interaction_type":  "Video Call"
+                 },
+                 {
+                     "id":  "019d38e7-f54b-73a7-ad35-74284ec44ee1",
+                     "name":  "Male TRT Reassessment",
+                     "slug":  "male-trt-reassessment",
+                     "description":  "Male TRT Reassessment",
+                     "icon":  null,
+                     "product_class":  "Sex Hormones (Male)",
+                     "product_type":  null,
+                     "is_featured":  false,
+                     "requires_labs":  true,
+                     "interaction_type":  "Video Call"
+                 },
+                 {
+                     "id":  "019cf5ff-116d-737b-91e0-7304d67ecaf7",
+                     "name":  "Mens Sexual Health ED Assessment",
+                     "slug":  "mens-sexual-health-ed-assessment",
+                     "description":  "Men\u0027s Erectile Dysfunction and Libido consultation",
+                     "icon":  null,
+                     "product_class":  "Sexual Wellness",
+                     "product_type":  null,
+                     "is_featured":  false,
+                     "requires_labs":  false,
+                     "interaction_type":  "Asynchronous"
+                 },
+                 {
+                     "id":  "019cf663-3452-700c-84a5-16108fc67a3f",
+                     "name":  "Mens Sexual Health ED Re-Assessment",
+                     "slug":  "mens-sexual-health-ed-re-assessment",
+                     "description":  "Mens Sexual Health ED Re-Assessment",
+                     "icon":  null,
+                     "product_class":  "Sexual Wellness",
+                     "product_type":  null,
+                     "is_featured":  false,
+                     "requires_labs":  false,
+                     "interaction_type":  "Asynchronous"
+                 },
+                 {
+                     "id":  "019d2842-2d46-723f-bba5-a0a8d36fdc0b",
+                     "name":  "Peptide Assessment",
+                     "slug":  "peptide-assessment",
+                     "description":  "Initial patient clinical assessment for peptide treatment therapy",
+                     "icon":  null,
+                     "product_class":  "Peptides (Clinical Use Only)",
+                     "product_type":  null,
+                     "is_featured":  false,
+                     "requires_labs":  false,
+                     "interaction_type":  "Asynchronous"
+                 },
+                 {
+                     "id":  "019d38e8-6709-703d-b4dc-7288997d2e8c",
+                     "name":  "Peptide Reassessment",
+                     "slug":  "peptide-reassessment",
+                     "description":  "Peptide Reassessment",
+                     "icon":  null,
+                     "product_class":  "Peptides (Clinical Use Only)",
+                     "product_type":  null,
+                     "is_featured":  false,
+                     "requires_labs":  false,
+                     "interaction_type":  "Asynchronous"
+                 },
+                 {
+                     "id":  "019df619-5f51-71d0-90fc-a38d8db60163",
+                     "name":  "Universal Encounter",
+                     "slug":  "universal-encounter",
+                     "description":  "Universal Encounter all dynamic based on product selections.",
+                     "icon":  null,
+                     "product_class":  null,
+                     "product_type":  null,
+                     "is_featured":  false,
+                     "requires_labs":  false,
+                     "interaction_type":  null
+                 },
+                 {
+                     "id":  "019f11f4-69a6-72d7-8e63-2c1f0fee3c4a",
+                     "name":  "Video Visit",
+                     "slug":  "quick-video-visit",
+                     "description":  "A quick video consultation with a provider.",
+                     "icon":  null,
+                     "product_class":  null,
+                     "product_type":  null,
+                     "is_featured":  false,
+                     "requires_labs":  false,
+                     "interaction_type":  "Video Call"
+                 },
+                 {
+                     "id":  "019f11f4-69ad-703e-b273-f3e7b9dbf130",
+                     "name":  "Voice Visit",
+                     "slug":  "quick-voice-visit",
+                     "description":  "A quick phone consultation with a provider.",
+                     "icon":  null,
+                     "product_class":  null,
+                     "product_type":  null,
+                     "is_featured":  false,
+                     "requires_labs":  false,
+                     "interaction_type":  "Phone Call"
+                 }
+             ],
+    "meta":  {
+                 "total":  16
+             }
+}
